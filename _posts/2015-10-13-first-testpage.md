@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "테스트 페이지"
 date:   2015-10-13 17:55:00
 categories: 일상
 ---
