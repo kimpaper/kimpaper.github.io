@@ -1,11 +1,17 @@
 # Site settings
-title: 페이퍼 세상 살아요...
+title: 페이퍼 세상에 살아요...
+header-img: img/home-bg.jpg
 email: kimpaper@gmail.com
-description: > # 나만 보면 된다.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://kimpaper.github.io/" # the base hostname & protocol for your site
-# twitter_username: jekyllrb
+description: "나만 보면 된다."
+baseurl: "/kimpaper"
+#url: "http://yourdomain.com"
+#twitter_username: SBootstrap
 github_username:  kimpaper
+facebook_username:  seretude
 
 # Build settings
 markdown: kramdown
+highlighter: pygments
+permalink: pretty
+paginate: 5
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
