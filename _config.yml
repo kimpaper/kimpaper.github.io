@@ -3,7 +3,7 @@ title: 페이퍼 세상에 살아요...
 header-img: img/home-bg.jpg
 email: kimpaper@gmail.com
 description: "나만 보면 된다."
-baseurl: "/kimpaper"
+baseurl: "/"
 #url: "http://yourdomain.com"
 #twitter_username: SBootstrap
 github_username:  kimpaper
