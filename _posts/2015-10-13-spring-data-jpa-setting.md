@@ -3,7 +3,7 @@ layout: post
 title:  "spring jpa 설정 및 테스트 (maven 설정)"
 date:   2015-10-13 17:55:00
 categories: spring
-tags: spring, jpa
+tags: spring jpa
 ---
 
 전 대부분 mybatis 를 이용하여 개발을 하는데.
@@ -11,7 +11,7 @@ JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.
 
 ### 1. 라이브러리 import....
 maven pom.xml
-```
+```xml
 <dependency>
    <groupid>org.springframework.data</groupid>
    <artifactid>spring-data-jpa</artifactid>
@@ -26,7 +26,7 @@ maven pom.xml
 
 
 ### 2. Entity class를 만들어 줍니다.
-참고로 SerializedName, Expose는  jpa와 직접 관련은 없습니다.. (개체를 그대로 JsonView 할때 사용)
+> 참고로 SerializedName, Expose는  jpa와 직접 관련은 없습니다.. (개체를 그대로 JsonView 할때 사용)
 ```java
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -191,4 +191,5 @@ public class NoticeService extends ServiceBase  {
 
 
 인터넷상에 자료가 많아서 설정은 어렵지 않았습니다.
+
 하지만 실제로 사용에 요령이 필요하다고 하네요.. (제대로 이해를 하지 않고 사용하면 성능에도 영향을 준다고 함)

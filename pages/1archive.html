@@ -5,12 +5,13 @@ permalink: /archive/
 icon: octicon-repo
 styles: archive.css
 isNavItem: true
+header-img: "img/contact-bg.jpg"
 ---
 <section id="cd-timeline" class="cd-container">
 {% for post in site.posts  %}
     <div class="cd-timeline-block" id="{{ post.date | date: '%Y-%m-%d' }}">
         <div class="cd-timeline-img cd-picture">
-            <img src="{{ '/icon-picture.svg' | prepend: site.imgrepo }}" alt="Picture">
+            <img src="/img/icon-picture.svg" alt="Picture">
         </div>
 
         <div class="cd-timeline-content">
