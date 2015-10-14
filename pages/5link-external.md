@@ -4,7 +4,9 @@ title: Link
 permalink: /link/
 icon: octicon-link-external
 header-img: "img/contact-bg.jpg"
+published: false
 ---
 
-* nothing
+# friend
+### [commonlife](https://commonlife.github.io/)
 

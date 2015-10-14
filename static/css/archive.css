@@ -143,7 +143,7 @@ Main components
     color: #303e49;
 }
 .cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
-    font-size: 13px;
+    font-size: 24px;
 }
 .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
     display: inline-block;
@@ -183,7 +183,7 @@ a.cd-read-more:hover{text-decoration:none; background-color: #424242;  }
         font-size: 16px;
     }
     .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
-        font-size: 14px;
+        font-size: 24px;
     }
 }
 @media only screen and (min-width: 1170px) {
@@ -206,7 +206,7 @@ a.cd-read-more:hover{text-decoration:none; background-color: #424242;  }
         width: 100%;
         left: 122%;
         top: 6px;
-        font-size: 16px;
+        font-size: 24px;
     }
     .cd-timeline-block:nth-child(even) .cd-timeline-content {
         float: right;

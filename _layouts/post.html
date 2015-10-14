@@ -1,5 +1,6 @@
 ---
 layout: default
+styles: [tagCloud.css, tags.css]
 ---
 
 <!-- Post Header -->
@@ -12,6 +13,7 @@ layout: default
                     {% if page.subtitle %}
                     <h2 class="subheading">{{ page.subtitle }}</h2>
                     {% endif %}
+
                     <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
                 </div>
             </div>
@@ -19,13 +21,25 @@ layout: default
     </div>
 </header>
 
+
+
+
 <!-- Post Content -->
 <article>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div>
+                    <ul class="tag-box inline">
+                        {% for tag in page.tags %}
+                        <li><a class="word-keep" href="{{ site.baseurl | prepend: site.url }}/tags/#{{ tag }}"><span class="octicon octicon-tag"></span>&nbsp;{{ tag }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
 
-				{{ content }}
+                <hr>
+
+                {{ content }}
 
                 <hr>
 
