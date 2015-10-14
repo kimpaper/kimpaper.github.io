@@ -10,4 +10,7 @@ blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-128289946644024979
 blogger_orig_url: http://kimpaper.blogspot.com/2015/02/tomcat-outofmemory.html
 ---
 
-<br /><pre><code class="bash"><br />// catalina.sh 맨 상위에 아래를 추가해서 메모리를 크게 잡자.<br />export CATALINA_OPTS="-Djava.awt.headless=true -server -Xms2048m -Xmx2048m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=512m"<br /><br /></code></pre>
+#### catalina.sh 맨 상위에 아래를 추가해서 메모리를 크게 잡자. (주의 서버 메모리를 생각해서 적당히. )
+```bash
+export CATALINA_OPTS="-Djava.awt.headless=true -server -Xms2048m -Xmx2048m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=512m"
+```
