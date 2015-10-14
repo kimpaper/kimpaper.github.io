@@ -107,7 +107,7 @@ public class Notice {
 
 ### 3. repository 를 만들어줍니다. (아무것도 없는게.. 인상적)
 ```java
-public interface NoticeRepository extends JpaRepository&lt;Notice, Integer> {
+public interface NoticeRepository extends JpaRepository<Notice, Integer> {
 
 }
 ```

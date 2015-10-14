@@ -1,0 +1,15 @@
+---
+layout: post
+title: 'spring-rabbitmq 연동 '
+date: '2015-03-10T18:55:00.001-07:00'
+author: 페이퍼
+tags:
+- rabbitmq
+- CentOS
+- spring
+modified_time: '2015-10-07T18:29:48.607-07:00'
+blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-8989695240384925971
+blogger_orig_url: http://kimpaper.blogspot.com/2015/03/spring-rabbitmq.html
+---
+
+설치는 그냥 rpm 으로 설치   <br /><pre><code class="bash"><br /># 서버 시작.<br />sbin/rabbitmq-server start<br /><br /># 서버 중지<br />sbin/rabbitmqctl stop<br /><br /></code></pre><br /><br /><br />---  spring-rabbit 연동 pom.xml <br /><pre><code><br /><dependency><br />  <groupid>org.springframework.amqp</groupId><br />  <artifactid>spring-rabbit</artifactId><br />  <version>1.4.1.RELEASE</version><br /></dependency><br /><br /></code></pre><br /><br />context-rabbitmq.xml <br /><pre><code><br /><!-- A reference to the org.springframework.amqp.rabbit.connection.ConnectionFactory --><br /><rabbit:connection-factory id="connectionFactory" host="localhost" username="worker" password="workerpassword"></rabbit:connection-factory><br /><br /><!-- Creates a org.springframework.amqp.rabbit.core.RabbitTemplate for access to the broker --><br /><rabbit:template id="amqpTemplate" connection-factory="connectionFactory"></rabbit:template><br /><br /><!-- Creates a org.springframework.amqp.rabbit.core.RabbitAdmin  to manage exchanges, queues and bindings --><br /><rabbit:admin connection-factory="connectionFactory"></rabbit:admin><br /><br /><!-- Creates a queue for consumers to retrieve messages --><br /><rabbit:queue name="simple_queue"></rabbit:queue><br /><br /><rabbit:listener-container  connection-factory="connectionFactory"><br />    <rabbit:listener queues="simple_queue" ref="mqService" /><br /></rabbit:listener-container><br /><br /></code></pre><br /><br /><br />MqService.java <br /><pre><code><br />@Service<br />public class MqService implements MessageListener {<br />    private static final Logger logger = LoggerFactory.getLogger(MqService.class);<br />    private static final String TASK_QUEUE_NAME = "simple_queue";<br /><br />    @Autowired<br />    private RabbitTemplate rabbitTemplate;<br /><br />    public void send(String message) throws IOException {<br />        rabbitTemplate.convertAndSend(TASK_QUEUE_NAME, message);<br /><br />        logger.info("send message={}", message);<br />    }<br /><br />    @Override<br />    public void onMessage(Message message) {<br />        String msg = null;<br />        try {<br />            msg = new String(message.getBody(), "UTF-8");<br />        } catch (UnsupportedEncodingException e) {<br />            e.printStackTrace();<br />        }<br /><br />        logger.info("recv message=" + msg );<br />    }<br />}<br /><br /></code></pre>

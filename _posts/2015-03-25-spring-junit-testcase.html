@@ -1,0 +1,14 @@
+---
+layout: post
+title: spring junit testcase 작성
+date: '2015-03-24T22:42:00.001-07:00'
+author: 페이퍼
+tags:
+- spring
+- junit
+modified_time: '2015-10-07T00:10:13.397-07:00'
+blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-1507101564013434217
+blogger_orig_url: http://kimpaper.blogspot.com/2015/03/spring-junit-testcase.html
+---
+
+ maven에 아래 추가. <br /><pre><code><br /><dependency><br />   <groupid>org.springframework</groupId><br />   <artifactid>spring-test</artifactId><br />   <version>4.0.5.RELEASE</version><br />   <scope>test</scope><br />  </dependency><br /></code></pre><br /><br />test java코드 MemberServiceTest.java  <br /><pre><code><br />@RunWith(SpringJUnit4ClassRunner.class)<br />@ContextConfiguration( {<br />  "classpath:servlet-context.xml",<br />  "classpath:config/context-datasource.xml"<br />}<br />)<br />public class MemberServiceTest {<br /><br />    @Autowired<br />    MemberService memberService;<br /><br /><br />    @Test<br />    public void testSr2002() throws Exception {<br />        RequestData req = new RequestData(null, new DbMap());<br />        ResponseData res = new ResponseData(new DbMap());<br /><br />        memberService.sr2002(req, res);<br />    }<br /><br />}<br /></code></pre><br /><br /><br />이때 디비를 jndi-lookup 를 이용하는 경우를 위해 test/resources/config/context-datasource.xml 을 넣어서 아래와 같이 기존 id를 덮었다.<br /><br />test/resources/config/context-datasource.xml 파일 <br /><pre><code><br /><br /><?xml version="1.0" encoding="UTF-8"?><br /><beans xmlns="http://www.springframework.org/schema/beans"<br />       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"<br />       xmlns:p="http://www.springframework.org/schema/p"<br />       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"><br /><br />    <bean id="dataSource"<br />          class="org.springframework.jdbc.datasource.DriverManagerDataSource"<br />          p:driverClassName="com.mysql.jdbc.Driver"<br />          p:url="jdbc:mysql://server:3306/dbname"<br />          p:username="sa"<br />          p:password="" /><br /><br /><br /></beans><br /><br /></code></pre><br />

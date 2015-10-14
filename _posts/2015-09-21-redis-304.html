@@ -1,0 +1,13 @@
+---
+layout: post
+title: redis 3.0.4 설치
+date: '2015-09-20T21:47:00.002-07:00'
+author: 페이퍼
+tags:
+- redis
+modified_time: '2015-10-07T02:44:53.802-07:00'
+blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-4802810893734608535
+blogger_orig_url: http://kimpaper.blogspot.com/2015/09/redis-304.html
+---
+
+<br />컴파일러를 먼저 설치해야 합니다. (설치돼 있다면 패스)<br /><pre><code class="bash"><br />yum install gcc gcc-c++ autoconf automake<br /></pre></code><br /><br />참고) http://www.redis.io/download<br /><br /><pre><code class="bash noxml"><br /># 다운로드 및 설치 (컴파일)<br />wget http://download.redis.io/releases/redis-3.0.4.tar.gz<br />tar xzf redis-3.0.4.tar.gz<br />cd redis-3.0.4<br />make && make install<br />cd utils<br />./install_server.sh<br /><br /># redis-6379로 서비스가 만들어져 있을껀데.. 사용하기 좋게 redis로 이름 바꿔줍니다.<br />mv /etc/init.d/redis-6379 /etc/init.d/redis<br /><br />service redis start<br /><br /># chkconfig redis on 하면 부팅시 자동 실행됩니다.<br /><br /></code></pre><br /><br />

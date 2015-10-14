@@ -1,0 +1,13 @@
+---
+layout: post
+title: CentOS 명령어 모음
+date: '2015-02-05T17:42:00.001-08:00'
+author: 페이퍼
+tags:
+- CentOS
+modified_time: '2015-10-06T02:39:11.676-07:00'
+blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-2015666870986396829
+blogger_orig_url: http://kimpaper.blogspot.com/2015/02/blog-post_21.html
+---
+
+<pre><code class="bash"><br />#프로그램 설치위치 찾기<br />paper$ which java<br />/usr/bin/java<br /><br />#오래된 로그파일만 찾아서 삭제함<br />find /logs/httpd/ -type f -mtime +180 -exec rm -f {} \;<br /><br /><br />#hosts 편집<br />vi /etc/hosts<br /><br /><br />#dns서버 수정<br />vi /etc/resolv.conf<br /><br />#OS 비트 확인<br />getconf LONG_BIT<br /><br />#OS 버전 확인<br />$ cat /etc/issue<br /><br />#폰트목록<br />$ fc-list<br /><br />#폰트 반영 (/usr/share/fonts 에 폰트 넣고)<br />$ fc-cache -fv<br /><br /></code></pre>

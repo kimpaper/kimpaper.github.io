@@ -1,0 +1,13 @@
+---
+layout: post
+title: spring jpa의 @NamedQuery, @NamedNativeQuery 연습
+date: '2015-10-08T01:32:00.003-07:00'
+author: 페이퍼
+tags:
+- spring
+modified_time: '2015-10-12T02:44:33.816-07:00'
+blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-209417036101833092
+blogger_orig_url: http://kimpaper.blogspot.com/2015/10/spring-jpa-namedquery-namednativequery.html
+---
+
+jpa에서.. repository를 이용하여 findAll이나.. findOneBy.... 시리즈를 써서 데이타를 조회 할수 있지만<br />아래와 같이 특정 쿼리를 직접 입력하여 이용도 가능합니다.<br /><br />/classes/META-INF/orm.xml<br /><pre><code><br /><?xml version="1.0" encoding="UTF-8"?><br /><entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"<br />                 version="2.0"><br /><br />    <named-query name="Inter.findByAlal2"><br />        <query>select i from Inter i where i.internameko = ?1</query><br />    </named-query><br /><br />    <named-native-query name="Inter.findByAlal" result-class="sample.jpa.Inter"><br />        <query>select a.inter_seq, a.inter_name_ko, a.inter_name_en from tb_inter a where a.inter_name_ko = ?</query><br />    </named-native-query><br /><br /></entity-mappings><br /><br /></code></pre><br />또는.. 아래와 같이 Entity 클래스에 선언가능하다. (전 xml을 선호..)<br /><pre><code><br />@Entity @Table(name="tb_inter")<br />@NamedQuery(name = "User.findByAlal2",<br />  query = "select i from Inter i where i.internameko = ?1")<br />public class Inter {<br />....<br />}<br /><br /></code></pre>(비슷한 속성으로는 @Query도 사용가능하고. 이 속성은 Repository에 선언합니다.)<br /><br /><b>% named-query와 named-native-query의 차이점</b><br />- named-query는 현재 코드내에 선언한 Entity를 기준으로 쿼리를 날린다. (Inter.java파일 참고)<br />- named-native-query는 db에 직접 쿼리를 날린다. (그러므로 result-class를 지정해야 한다.)<br /><br />Inter.java<br /><pre><code><br />@Entity @Table(name="tb_inter")<br />public class Inter {<br />    @Id @Column(name = "inter_seq") @GeneratedValue(strategy = GenerationType.AUTO)<br />    private Integer interseq;<br />    @Column(name = "inter_name_ko") @Expose<br />    private String internameko;<br />    @Column(name = "inter_name_en") @Expose<br />    private String internameen;<br />}<br /><br /></code></pre><br />
