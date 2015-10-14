@@ -45,7 +45,7 @@ public class WordCount {
     private static final Logger logger = LoggerFactory.getLogger(WordCount.class);
 
     public static class TokenizerMapper
-            extends Mapper&lt;Object, Text, Text, IntWritable> {
+            extends Mapper<Object, Text, Text, IntWritable> {
 
         private final static IntWritable one = new IntWritable(1);
         private Text word = new Text();
@@ -64,11 +64,11 @@ public class WordCount {
 
 
     public static class IntSumReducer
-            extends Reducer&lt;Text, IntWritable, Text, IntWritable> {
+            extends Reducer<Text, IntWritable, Text, IntWritable> {
         private IntWritable result = new IntWritable();
 
         @Override
-        public void reduce(Text key, Iterable&lt;IntWritable> values, Context context) throws IOException, InterruptedException {
+        public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
             logger.info("reduce key={}", key);
 
             int sum = 0;
