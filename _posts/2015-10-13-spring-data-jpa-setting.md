@@ -27,6 +27,7 @@ maven pom.xml
 
 ### 2. Entity class를 만들어 줍니다.
 > 참고로 SerializedName, Expose는  jpa와 직접 관련은 없습니다.. (개체를 그대로 JsonView 할때 사용)
+
 ```java
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
