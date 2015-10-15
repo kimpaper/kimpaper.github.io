@@ -3,8 +3,7 @@ layout: post
 title: spring jpa 설정 및 테스트 (maven 설정)
 date: '2015-10-05T00:41:00.001-07:00'
 author: 페이퍼
-tags:
-- spring
+tags: spring jpa
 categories: spring
 modified_time: '2015-10-12T02:44:48.380-07:00'
 blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-7944949787333282
