@@ -109,7 +109,7 @@ public class Notice {
 
 #### 3. repository 를 만들어줍니다. (아무것도 없어도 된다)
 ```java
-public interface NoticeRepository extends JpaRepository&lt;Notice, Integer> {
+public interface NoticeRepository extends JpaRepository<Notice, Integer> {
 
 }
 ```
