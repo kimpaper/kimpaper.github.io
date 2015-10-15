@@ -186,7 +186,7 @@ public class NoticeService extends ServiceBase  {
     private NoticeRepository noticeRepository;
 
     public void srXX(RequestData req, ResponseData res) throws Exception {
-        List&lt;Notice> list = noticeRepository.findAll();
+        List<Notice> list = noticeRepository.findAll();
         res.put("notice_list", list);
     }
 }
