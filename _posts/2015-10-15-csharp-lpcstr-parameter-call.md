@@ -4,6 +4,7 @@ title: c# 에서 c++(dll)로 LPCTSTR parameter 넘겨 호출 하기
 date: '2015-10-15T12:13:00.001-08:00'
 author: 페이퍼
 tags: c# 마샬링 marshalling
+header-img: "img/post-bg-01.jpg"
 ---
 c++ 로 된 dll을 c#에서 호출할때 예제입니다.
 
