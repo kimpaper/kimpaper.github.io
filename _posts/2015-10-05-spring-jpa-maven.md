@@ -3,8 +3,7 @@ layout: post
 title: spring jpa 설정 및 테스트 (maven 설정)
 date: '2015-10-05T00:41:00.001-07:00'
 author: 페이퍼
-tags:
-- spring
+tags: spring jpa
 categories: spring
 modified_time: '2015-10-12T02:44:48.380-07:00'
 blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-7944949787333282
@@ -14,8 +13,7 @@ blogger_orig_url: http://kimpaper.blogspot.com/2015/10/spring-jpa-maven.html
 
 JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.
 
-1. 라이브러리 import....
-maven pom.xml
+#### 1. 라이브러리 import.... maven pom.xml
 ```xml
 <dependency>
    <groupid>org.springframework.data</groupid>
@@ -30,8 +28,8 @@ maven pom.xml
 ```
 
 
-2. Entity class를 만들어 줍니다.
-참고로 SerializedName, Expose는  jpa와 직접 관련은 없습니다.. (개체를 그대로 JsonView 할때 사용)
+#### 2. Entity class를 만들어 줍니다.
+참고로 SerializedName, Expose는  jpa와 직접 관련은 없습니다.. (개체를 그대로 JsonView 할때 사용)  
 ```java
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -109,16 +107,16 @@ public class Notice {
 
 
 
-3. repository 를 만들어줍니다. (아무것도 없어도 된다)
+#### 3. repository 를 만들어줍니다. (아무것도 없어도 된다)
 ```java
-public interface NoticeRepository extends JpaRepository&lt;Notice, Integer> {
+public interface NoticeRepository extends JpaRepository<Notice, Integer> {
 
 }
 ```
 
 
 
-4. context-jpa.xml 설정합니다. (txManager2인 이유는 기존에 mybatis에 영향을 주지 않기 위해서입니다. , mybatis를 한번에 다 걷어낼 자신이 없...)
+#### 4. context-jpa.xml 설정합니다. txManager2인 이유는 기존에 mybatis에 영향을 주지 않기 위해서입니다. , ~~mybatis를 한번에 다 걷어낼 자신이 없...~~
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -178,7 +176,7 @@ public interface NoticeRepository extends JpaRepository&lt;Notice, Integer> {
 
 
 
-5. 사용 예제
+#### 5. 사용 예제
 ```java
 @Service
 public class NoticeService extends ServiceBase  {
@@ -188,12 +186,11 @@ public class NoticeService extends ServiceBase  {
     private NoticeRepository noticeRepository;
 
     public void srXX(RequestData req, ResponseData res) throws Exception {
-        List&lt;Notice> list = noticeRepository.findAll();
+        List<Notice> list = noticeRepository.findAll();
         res.put("notice_list", list);
     }
 }
 ```
-
 
 인터넷상에 자료가 많아서 설정은 어렵지 않았습니다.
 
