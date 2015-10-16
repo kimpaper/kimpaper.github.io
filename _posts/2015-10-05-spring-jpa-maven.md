@@ -136,41 +136,32 @@ public interface NoticeRepository extends JpaRepository<Notice, Integer> {
 
     <!-- Configure the transaction manager bean -->
     <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="txManager2">
-        <property name="entityManagerFactory" ref="entityManagerFactory">
-        </property>
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
 
     <tx:advice id="txAdvice2" transaction-manager="txManager2">
         <tx:attributes>
-            <tx:method name="*" rollback-for="Exception">
-            </tx:method>
+            <tx:method name="*" rollback-for="Exception" />
         </tx:attributes>
     </tx:advice>
 
     <aop:config>
-        <aop:pointcut expression="execution(* sample..service..*.sr*(..))" id="requiredTx2">
-            <aop:advisor advice-ref="txAdvice2" pointcut-ref="requiredTx2">
-            </aop:advisor>
-        </aop:pointcut>
+        <aop:pointcut expression="execution(* sample..service..*.sr*(..))" id="requiredTx2" />
+        <aop:advisor advice-ref="txAdvice2" pointcut-ref="requiredTx2" />
     </aop:config>
 
     <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" id="hibernateJpaVendorAdapter">
-        <property name="showSql" value="true">
-        </property>
+        <property name="showSql" value="true" />
     </bean>
 
     <!-- Configure the entity manager factory bean -->
     <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
-        <property name="dataSource" ref="dataSource">
-            <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter">
-                <property name="packagesToScan" value="sample.app">
-                </property>
-            </property>
-        </property>
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
+        <property name="packagesToScan" value="sample.app" />
     </bean>
 
-    <jpa:repositories base-package="sample.app" transaction-manager-ref="txManager2">
-    </jpa:repositories>
+    <jpa:repositories base-package="sample.app" transaction-manager-ref="txManager2" />
 </beans>
 ```
 
