@@ -16,13 +16,13 @@ JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.
 #### 1. 라이브러리 import.... maven pom.xml
 ```xml
 <dependency>
-   <groupid>org.springframework.data</groupid>
-   <artifactid>spring-data-jpa</artifactid>
+   <groupId>org.springframework.data</groupId>
+   <artifactId>spring-data-jpa</artifactId>
    <version>1.9.0.RELEASE</version>
 </dependency>
 <dependency>
-   <groupid>org.hibernate</groupid>
-   <artifactid>hibernate-entitymanager</artifactid>
+   <groupId>org.hibernate</groupId>
+   <artifactId>hibernate-entitymanager</artifactId>
    <version>4.3.8.Final</version>
 </dependency>
 ```
