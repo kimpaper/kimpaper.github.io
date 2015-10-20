@@ -59,14 +59,14 @@ public class Member {
             , cascade = CascadeType.ALL
             , fetch = FetchType.EAGER
             , mappedBy = "member_seq")
-    private List&lt;memberinter> memberInterList;
+    private List<Memberinter> memberInterList;
 }
 ```
 
 
 #### MemberRepository.java
 ```java
-public interface MemberRepository extends JpaRepository&lt;Member, Integer> {
+public interface MemberRepository extends JpaRepository<Member, Integer> {
 
 }
 ```
