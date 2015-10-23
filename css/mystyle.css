@@ -4,3 +4,8 @@ del {
 }
 
 
+.word-keep{
+    display: inline-block;
+    word-break: keep-all;
+}
+
