@@ -12,10 +12,10 @@ blogger_orig_url: http://kimpaper.blogspot.com/2015/10/spring-jpa.html
 
 entity 작업에 조회까지.. 테스트 해봤습니다.
 
-- 테이블의 관계가 아래와 같을때 상황   
-```java
+- 테이블의 관계가 아래와 같을때 상황
+
+```
 tb_member -< tb_member_inter >- tb_inter
-          -< tb_image
 ```
 
 **조회 조건**
