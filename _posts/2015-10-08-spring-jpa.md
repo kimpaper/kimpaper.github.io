@@ -12,24 +12,25 @@ blogger_orig_url: http://kimpaper.blogspot.com/2015/10/spring-jpa.html
 
 entity 작업에 조회까지.. 테스트 해봤습니다.
 
-- 테이블의 관계가 아래와 같을때 상황
+- 테이블의 관계가 아래와 같을때 상황   
 ```
 tb_member -< tb_member_inter >- tb_inter
           -< tb_image
 ```
-**조회 조건**
+
+** 조회 조건 **
 1. Member를 가져오면.. member의 이미지들과... inter의 목록을 함께 가져오도록
 2. inter의 상세 정보는 tb_inter에 있음 (가져올때 조인해서..)
 
 
-**아래 class들 간략 설명**
+** 아래 class들 간략 설명 **
 - MemberInter의 PK가 두개이므로. 위와 같이 클래스를 하나 만들어서 @IdClass를 지정해야 함
 - @Expose 는 Gson관련하여 화면에 뿌릴 필드를 정하는 옵션입니다. jpa와는 무관합니다.
 - MemberInter.class에서 많이 헷갈렸습니다. (@ManyToOne)
   - @JoinColumn을 추가로.. 써야 합니다.
   - optional을 true로 하면 join시 outer join을 합니다. (false는 inner join)
 
-**FetchType**
+** FetchType **
 - FetchType.EAGER -> 즉시 조회해서 데이타 채움
 - FetchType.LAZY -> 필요시 DB조회
 
@@ -51,7 +52,7 @@ public class Member {
             , cascade = CascadeType.ALL
             , fetch = FetchType.EAGER
             , mappedBy = "member_seq")
-    private List&lt;image> imageList;
+    private List<image> imageList;
 
     @Expose
     @OneToMany(
