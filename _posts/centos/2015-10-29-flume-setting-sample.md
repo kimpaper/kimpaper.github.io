@@ -131,7 +131,7 @@ agent2.sinks.k1.port = 4545
 - `-n`, `--name` 에이전트 이름
 
 
-agnet1에서 sinks를 file_roll로 하니 아래와 같이 file list들이 쌓인다..
+agent1에서 sinks를 file_roll로 하니 아래와 같이 file list들이 쌓인다..
 ```bash
 gimjonghuiui-MacBook-Pro:flume paper$ ls -l
 total 24
