@@ -12,10 +12,11 @@ tags: centos flume mac
 ### 설치
 - http://flume.apache.org/download.html 에서 다운로드 한다.
 - 적절한 곳에 압축을 풀어 준다 ~/dev/tool/flume
-- JAVA_HOME이 지정되 있지 않으면. ~/.bash_profile 을 열어 환경 변수를 설정해 준다. (난 mac이어서 없었나보다..) 
-  ```bash
+- JAVA_HOME이 지정되 있지 않으면. ~/.bash_profile 을 열어 환경 변수를 설정해 준다. 
+```bash
   export JAVA_HOME = /usr (자바 경로.)
-  ```
+```  
+
 > 설치 및 테스트는 mac에서 했지만. centos에서도 잘되리라 믿는다.
 
 
