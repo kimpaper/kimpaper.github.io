@@ -134,7 +134,7 @@ agent2.sinks.k1.port = 4545
 
 
 agent1에서 sinks를 file_roll로 하니 아래와 같이 file list들이 쌓인다.
-`sink.rollInterval` 속성을 이용해서 interval은 조정 가능 하다.
+`sink.rollInterval` 속성을 이용해서 interval은 조정 가능 하다. (아래는 30초 기준이다.)
 ```bash
 gimjonghuiui-MacBook-Pro:flume paper$ ls -l
 total 24
