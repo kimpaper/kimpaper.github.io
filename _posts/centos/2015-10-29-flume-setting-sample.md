@@ -85,9 +85,11 @@ agent1.channels.c1.type = memory
 agent1.channels.c1.capacity = 10000
 agent1.channels.c1.transactionCapacity = 1000
 
-# /logs/flume 에 저장한다
+# /logs/flume에 저장한다 
 agent1.sinks.k1.type = file_roll
 agent1.sinks.k1.sink.directory = /logs/flume
+# 하루(24 hour) 단위로 파일.. rolling.
+agent1.sinks.k1.sink.rollInterval = 86400
 agent1.sinks.k1.channel = c1
 ```
 
@@ -131,7 +133,8 @@ agent2.sinks.k1.port = 4545
 - `-n`, `--name` 에이전트 이름
 
 
-agent1에서 sinks를 file_roll로 하니 아래와 같이 file list들이 쌓인다..
+agent1에서 sinks를 file_roll로 하니 아래와 같이 file list들이 쌓인다.
+`sink.rollInterval` 속성을 이용해서 interval은 조정 가능 하다.
 ```bash
 gimjonghuiui-MacBook-Pro:flume paper$ ls -l
 total 24
@@ -144,7 +147,4 @@ total 24
 -rw-r--r--  1 paper  wheel    0 10 29 15:42 1446100818312-6
 -rw-r--r--  1 paper  wheel    0 10 29 15:43 1446100818312-7
 ```
-
-
-.. 하나의 파일로 병합하는 작업은 따로 해야 하나.. 
 
