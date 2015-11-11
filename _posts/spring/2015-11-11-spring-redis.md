@@ -82,6 +82,8 @@ public class RedisTest {
         logger.info("redis-test={}", res);
     }
 }
+```
+
 
 ### 실행 결과
 ```text
