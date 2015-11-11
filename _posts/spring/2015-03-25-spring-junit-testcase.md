@@ -13,11 +13,11 @@ blogger_orig_url: http://kimpaper.blogspot.com/2015/03/spring-junit-testcase.htm
 #### pom.xml에 아래 추가. 
 ```xml
 <dependency>
-   <groupid>org.springframework</groupId>
-   <artifactid>spring-test</artifactId>
+   <groupId>org.springframework</groupId>
+   <artifactId>spring-test</artifactId>
    <version>4.0.5.RELEASE</version>
    <scope>test</scope>
-  </dependency>
+</dependency>
 ```
 
 
