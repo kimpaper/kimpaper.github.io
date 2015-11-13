@@ -7,8 +7,8 @@ tags: spring jpa
 header-img: 'img/post-bg-06.jpg'
 ---
 
-Test.java에서 처럼 EntityManager를 이용하여 orm.xml에 정의한 NamedQuery를 바로 실행 할 수 있다. 
-> repository를 이용하여 호출하면 getResultList로만 실행되는 것 같다.
+`Test.java`에서 처럼 `EntityManager`를 이용하여 `orm.xml`에 정의한 NamedQuery를 바로 실행 할 수 있다. 
+> `repository`를 이용하여 호출하면 `getResultList`로만 실행되는 것 같다.
 > update 반영된 Row수를 알기 위해 아래와 같이 호출 했다.
 
 #### Test.java 
