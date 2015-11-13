@@ -1,13 +1,9 @@
 ---
 layout: post
 title: 하둡 스프링 연동 테스트 - hadoop 2.6.x with spring 4.0
-date: '2015-04-12T19:46:00.002-07:00'
+date: '2015-04-12T19:46:00'
 author: 페이퍼
 tags: hadoop spring
-categories: spring
-modified_time: '2015-10-05T20:37:14.650-07:00'
-blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-7603073138487848030
-blogger_orig_url: http://kimpaper.blogspot.com/2015/04/hadoop-26x-with-spring-40.html
 ---
 
 Hadoop 설치 및 설정은 아래와 같이 (osx 요세미티.) 

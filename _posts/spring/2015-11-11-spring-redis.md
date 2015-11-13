@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'spring redis 연동 '
-date: '2015-11-10T17:36:00.001-07:00'
+date: '2015-11-10T17:36:00'
 author: 페이퍼
 tags: spring redis
 header-img: "img/post-bg-05.jpg"

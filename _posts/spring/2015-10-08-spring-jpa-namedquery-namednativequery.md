@@ -1,13 +1,10 @@
 ---
 layout: post
 title: spring jpa의 @NamedQuery, @NamedNativeQuery 연습
-date: '2015-10-08T01:32:00.003-07:00'
+date: '2015-10-08T01:32:00'
 author: 페이퍼
 tags: spring java jpa
 categories: spring
-modified_time: '2015-10-12T02:44:33.816-07:00'
-blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-209417036101833092
-blogger_orig_url: http://kimpaper.blogspot.com/2015/10/spring-jpa-namedquery-namednativequery.html
 ---
 
 jpa에서.. repository를 이용하여 findAll이나.. findOneBy.... 시리즈를 써서 데이타를 조회 할수 있지만

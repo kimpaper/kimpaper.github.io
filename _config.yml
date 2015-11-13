@@ -9,6 +9,9 @@ baseurl: ""
 github_username:  kimpaper
 facebook_username:  seretude
 
+# timezone.
+timezone: Asia/Seoul 
+
 # Build settings
 highlighter: pygments
 permalink: pretty

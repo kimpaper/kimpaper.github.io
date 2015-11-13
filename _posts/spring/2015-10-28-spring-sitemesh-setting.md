@@ -1,7 +1,7 @@
 ---
 layout: post
 title: spring + sitemesh 웹사이트 구축
-date: '2015-10-28T17:08:00.001-08:00'
+date: '2015-10-28T17:08:00'
 author: 페이퍼
 tags: spring sitemesh
 header-img: "img/post-bg-04.jpg"

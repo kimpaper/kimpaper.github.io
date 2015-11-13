@@ -1,12 +1,9 @@
 ---
 layout: post
 title: 하둡 스프링 연동 테스트2 - hadoop 2.6.x with spring 4.0 (MapReduce WordCount example)
-date: '2015-04-15T00:39:00.002-07:00'
+date: '2015-04-15T00:39:00'
 author: 페이퍼
 tags: hadoop spring
-modified_time: '2015-10-08T02:52:24.063-07:00'
-blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-2562697657835486790
-blogger_orig_url: http://kimpaper.blogspot.com/2015/04/2-hadoop-26x-with-spring-40-mapreduce.html
 ---
 
 #### context-hadoop.xml에 아래 내용 추가. 

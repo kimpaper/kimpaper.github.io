@@ -1,13 +1,9 @@
 ---
 layout: post
 title: 'spring-rabbitmq 연동 '
-date: '2015-03-10T18:55:00.001-07:00'
+date: '2015-03-10T18:55:00'
 author: 페이퍼
 tags: rabbitmq centos spring
-categories: spring
-modified_time: '2015-10-07T18:29:48.607-07:00'
-blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-8989695240384925971
-blogger_orig_url: http://kimpaper.blogspot.com/2015/03/spring-rabbitmq.html
 ---
 
 #### 설치는 그냥 rpm 으로 설치   

@@ -1,12 +1,9 @@
 ---
 layout: post
 title: spring map to xml viewresolver
-date: '2015-02-05T17:16:00.001-08:00'
+date: '2015-02-05T17:16:00'
 author: 페이퍼
 tags: spring xmlview
-modified_time: '2015-10-06T02:38:44.117-07:00'
-blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-7168819677260787069
-blogger_orig_url: http://kimpaper.blogspot.com/2015/02/spring-map-to-xml-viewresolver.html
 ---
 항상 json으로만 뱉다가 xml로 뱉어야 하는 상황이 발생해서 만든 spring view 클래스  
 결과가 map에 경우에만 해당됨

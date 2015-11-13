@@ -1,13 +1,9 @@
 ---
 layout: post
 title: spring junit testcase 작성
-date: '2015-03-24T22:42:00.001-07:00'
+date: '2015-03-24T22:42:00'
 author: 페이퍼
 tags: spring junit spring-test
-categories: spring
-modified_time: '2015-10-07T00:10:13.397-07:00'
-blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-1507101564013434217
-blogger_orig_url: http://kimpaper.blogspot.com/2015/03/spring-junit-testcase.html
 ---
 
 #### pom.xml에 아래 추가. 

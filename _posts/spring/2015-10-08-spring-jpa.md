@@ -1,13 +1,9 @@
 ---
 layout: post
 title: 'spring jpa 조회 연습 '
-date: '2015-10-07T18:04:00.001-07:00'
+date: '2015-10-07T18:04:00'
 author: 페이퍼
 tags: spring java jpa
-categories: spring
-modified_time: '2015-10-12T02:44:41.766-07:00'
-blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-4483482309913710725
-blogger_orig_url: http://kimpaper.blogspot.com/2015/10/spring-jpa.html
 ---
 
 entity 작업에 조회까지.. 테스트 해봤습니다.

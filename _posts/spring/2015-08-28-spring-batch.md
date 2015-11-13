@@ -1,13 +1,9 @@
 ---
 layout: post
 title: 'spring batch 사용 '
-date: '2015-08-27T22:44:00.001-07:00'
+date: '2015-08-27T22:44:00'
 author: 페이퍼
 tags: spring
-categories: spring
-modified_time: '2015-10-12T02:44:55.964-07:00'
-blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-5156884198111675879
-blogger_orig_url: http://kimpaper.blogspot.com/2015/08/spring-batch.html
 ---
 
 최근에 spring-batch를 사용해 봤는데.. 결과는 성공적 특히 트랜잭션commit size와 read size를 따로 지정할 수 있다는게 좋은것 같다.  
