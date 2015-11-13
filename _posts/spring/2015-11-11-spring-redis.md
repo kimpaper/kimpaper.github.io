@@ -4,7 +4,7 @@ title: 'spring redis 연동 '
 date: '2015-11-10T17:36:00.001-07:00'
 author: 페이퍼
 tags: spring redis
-categories: spring
+header-img: "img/post-bg-05.jpg"
 ---
 #### pom.xml 에 아래 추가.
 ```xml
