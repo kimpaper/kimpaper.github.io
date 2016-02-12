@@ -11,7 +11,7 @@ blogger_orig_url: http://kimpaper.blogspot.com/2015/02/mysql-mariadb-utf8mb4.htm
 
 #### 1. 현재 설정된 상태 확인
 
-```bash
+```shell
 MariaDB [(none)]> show variables like "%character%";show variables like "%collation%";
  +--------------------------+---------------------------------+
  | Variable_name            | Value                           |
@@ -30,7 +30,7 @@ MariaDB [(none)]> show variables like "%character%";show variables like "%collat
 
 
 #### 2. sudo vi /etc/my.cnf 파일을 아래 부분 수정  
-```bash
+```shell
 [client]
 default-character-set=utf8mb4
 
@@ -45,13 +45,13 @@ character-set-server = utf8mb4
 
 
 #### 3. 서비스 재시작
-```bash
+```shell
 service mysql restart
 ```
 
 
 #### 4. 확인 
-```bash
+```shell
 MariaDB [(none)]> show variables like "%character%";show variables like "%collation%";
 
 +--------------------------+----------------------------+

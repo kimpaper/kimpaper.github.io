@@ -7,7 +7,7 @@ tags: rabbitmq centos spring
 ---
 
 #### 설치는 그냥 rpm 으로 설치   
-```bash
+```shell
 # 서버 시작.
 sbin/rabbitmq-server start
 

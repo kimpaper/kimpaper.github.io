@@ -13,7 +13,7 @@ jfreeChart를 사용하는 중인데 tomcat위에서 돌리면 한글이 ㅁㅁ�
 
 아래와 같이 한글 폰트를 os에 설치 한다. (물론 코드에서는 폰트 명을 지정해야 한다.)
 
-```bash
+```shell
 yum install -y kde-i18n-Korean
 yum install -y fonts-korean
 fc-cache -fv
