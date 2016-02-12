@@ -17,7 +17,7 @@ header-img: "img/post-bg-01.jpg"
 4. logback.xml 파일을 수정해서 `$FLUME_HOME/conf/logback.xml`에 넣는다.
 
 #### logback.xml 샘플
-{% highlight xml %}
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
@@ -84,7 +84,7 @@ header-img: "img/post-bg-01.jpg"
 	</root>
 	
 </configuration>
-{% endhighlight %}
+```
 
 ## logback에 event 기록 하도록 설정
 마스터 서버에서 로그를 모아 저장하는 sink로 file_roll를 이용하려고 했으나 단점이 있다.
@@ -97,13 +97,13 @@ header-img: "img/post-bg-01.jpg"
 설치 방법은 위 사이트에서 참고
 
 #### conf/flume-agent1.conf
-{% highlight bash %}
+```bash
 ...
 agent1.sinks.k1.type = kimpaper.flume.sink.Slj4jSink
 agent1.sinks.k1.logLevel = info
 agent1.sinks.k1.channel = c1
 ...
-{% endhighlight %}
+```
 sink는 위와 같이 적용 한다.
 
 

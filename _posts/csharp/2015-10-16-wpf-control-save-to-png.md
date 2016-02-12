@@ -9,7 +9,7 @@ header-img: "img/post-bg-02.jpg"
 예전에 했던 대로 System.Drawing 을 써서 하려고 했는데..
 wpf에 이런 기능이 있었네..
 
-{% highlight csharp %}
+```csharp
 // uiPage.ren
 public void DoPageToPng(string fileName)
 {
@@ -27,5 +27,5 @@ public void DoPageToPng(string fileName)
         }
     }
 }
-{% endhighlight %}
+```
 

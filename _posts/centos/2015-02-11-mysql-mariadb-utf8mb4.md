@@ -11,7 +11,7 @@ blogger_orig_url: http://kimpaper.blogspot.com/2015/02/mysql-mariadb-utf8mb4.htm
 
 #### 1. 현재 설정된 상태 확인
 
-{% highlight bash %}
+```bash
 MariaDB [(none)]> show variables like "%character%";show variables like "%collation%";
  +--------------------------+---------------------------------+
  | Variable_name            | Value                           |
@@ -25,12 +25,12 @@ MariaDB [(none)]> show variables like "%character%";show variables like "%collat
  | character_set_system     | utf8                            |
  | character_sets_dir       | /usr/local/mysql/share/charsets/|
  +--------------------------+---------------------------------+
-{% endhighlight %}
+```
 
 
 
 #### 2. sudo vi /etc/my.cnf 파일을 아래 부분 수정  
-{% highlight bash %}
+```bash
 [client]
 default-character-set=utf8mb4
 
@@ -40,18 +40,18 @@ default-character-set=utf8mb4
 [mysqld]
 collation-server = utf8mb4_unicode_ci
 character-set-server = utf8mb4
-{% endhighlight %}
+```
 
 
 
 #### 3. 서비스 재시작
-{% highlight bash %}
+```bash
 service mysql restart
-{% endhighlight %}
+```
 
 
 #### 4. 확인 
-{% highlight bash %}
+```bash
 MariaDB [(none)]> show variables like "%character%";show variables like "%collation%";
 
 +--------------------------+----------------------------+
@@ -76,7 +76,7 @@ MariaDB [(none)]> show variables like "%character%";show variables like "%collat
 | collation_server     | utf8mb4_unicode_ci |
 +----------------------+--------------------+
 3 rows in set (0.00 sec)
-{% endhighlight %}
+```
 
 마지막으로 실제 적용할 컬럼의 타입을 바꿔야 한다.
 

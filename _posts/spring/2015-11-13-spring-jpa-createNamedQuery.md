@@ -12,20 +12,20 @@ header-img: 'img/post-bg-06.jpg'
 > update 반영된 Row수를 알기 위해 아래와 같이 호출 했다.
 
 #### Test.java 
-{% highlight java %}
+```java
 @PersistenceContext private EntityManager em;
 
 public void test() {
     int cnt = em.createNamedQuery("Order.clearOrder").executeUpdate();
     logger.info("Order.clearOrder updated={}", cnt);
 }
-{% endhighlight %}
+```
 > `@PersistenceContext private EntityManager em;` 에서..  
 > `@PersistenceContext` `@Autowired` 둘다 작동 하는것 같다. 차이는 아직 잘 모르겠다.
 
 
 #### META-INF/orm.xml
-{% highlight xml %}
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
                  version="2.0">
@@ -39,6 +39,6 @@ update tb_order
         </query>
     </named-native-query>
 </entity-mappings>
-{% endhighlight %}
+```
 
 

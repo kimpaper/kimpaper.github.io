@@ -14,15 +14,15 @@ header-img: "img/post-bg-05.jpg"
 - http://flume.apache.org/download.html 에서 다운로드 한다.
 - 적절한 곳에 압축을 풀어 준다 ~/dev/tool/flume
 - JAVA_HOME이 지정되 있지 않으면. ~/.bash_profile 을 열어 환경 변수를 설정해 준다. 
-{% highlight bash %}
+```bash
   export JAVA_HOME = /usr (자바 경로.)
-{% endhighlight %}
+```
 
 > 설치 및 테스트는 mac에서 했지만. centos에서도 잘되리라 믿는다.
 
 
 #### 기본 flume.conf 파일
-{% highlight bash %}
+```bash
 # The configuration file needs to define the sources,
 # the channels and the sinks.
 # Sources, channels and sinks are defined per agent,
@@ -51,7 +51,7 @@ agent.channels.memoryChannel.type = memory
 # can be defined as well
 # In this case, it specifies the capacity of the memory channel
 agent.channels.memoryChannel.capacity = 100
-{% endhighlight %}
+```
 
 참고) https://flume.apache.org/FlumeUserGuide.html
 설정파일은 sources, channels, sinks 로 나눠져 있다.
@@ -71,7 +71,7 @@ agent.channels.memoryChannel.capacity = 100
 - agent2는 수집된 로그를 agent1으로 전송 한다.
 
 #### 저장하는 서버 agent1 (flume/conf/flume-agent1.conf)
-{% highlight bash %}
+```bash
 agent1.sources = r1
 agent1.channels = c1
 agent1.sinks = k1
@@ -92,10 +92,10 @@ agent1.sinks.k1.sink.directory = /logs/flume
 # 하루(24 hour) 단위로 파일.. rolling.
 agent1.sinks.k1.sink.rollInterval = 86400
 agent1.sinks.k1.channel = c1
-{% endhighlight %}
+```
 
 #### 저장서버로 로그를 전송 하는 서버 (여러대로 늘어난다) agent2 (flume/conf/flume-agent2.conf)
-{% highlight bash %}
+```bash
 agent2.sources = r1 r2
 agent2.channels = c1
 agent2.sinks = k1
@@ -118,16 +118,16 @@ agent2.sinks.k1.type = avro
 agent2.sinks.k1.channel = c1
 agent2.sinks.k1.hostname = 127.0.0.1
 agent2.sinks.k1.port = 4545
-{% endhighlight %}
+```
 
 **위에 sources를 두개 지정할 수 있다 (파일이 다른 경우)**
 
 ### 서비스 실행 
 두가지 설정을 한 서비스를 각각 실행 하자.
-{% highlight bash %}
+```bash
 ./bin/flume-ng agent -c ./conf -f ./conf/flume-agent1.conf -n agent1
 ./bin/flume-ng agent -c ./conf -f ./conf/flume-agent2.conf -n agent2
-{% endhighlight %}
+```
 
 - `-c`, `--conf` 설정폴더
 - `-f`, `--conf-file` 설정파일 
@@ -136,7 +136,7 @@ agent2.sinks.k1.port = 4545
 
 agent1에서 sinks를 file_roll로 하니 아래와 같이 file list들이 쌓인다.
 `sink.rollInterval` 속성을 이용해서 interval은 조정 가능 하다. (아래는 30초 기준이다.)
-{% highlight bash %}
+```bash
 gimjonghuiui-MacBook-Pro:flume paper$ ls -l
 total 24
 -rw-r--r--  1 paper  wheel    0 10 29 15:40 1446100807777-1
@@ -147,5 +147,5 @@ total 24
 -rw-r--r--  1 paper  wheel    0 10 29 15:42 1446100818312-5
 -rw-r--r--  1 paper  wheel    0 10 29 15:42 1446100818312-6
 -rw-r--r--  1 paper  wheel    0 10 29 15:43 1446100818312-7
-{% endhighlight %}
+```
 

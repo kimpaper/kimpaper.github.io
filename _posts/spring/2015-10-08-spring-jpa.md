@@ -36,7 +36,7 @@ tb_member -< tb_member_inter >- tb_inter
 
 
 #### Member.java
-{% highlight java %}
+```java
 @Entity @Table(name = "tb_member")
 public class Member {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -58,19 +58,19 @@ public class Member {
             , mappedBy = "member_seq")
     private List<Memberinter> memberInterList;
 }
-{% endhighlight %}
+```
 
 
 #### MemberRepository.java
-{% highlight java %}
+```java
 public interface MemberRepository extends JpaRepository<Member, Integer> {
 
 }
-{% endhighlight %}
+```
 
 
 #### Image.java
-{% highlight java %}
+```java
 @Entity
 @Table(name = "tb_image")
 public class Image {
@@ -82,11 +82,11 @@ public class Image {
     @Column @Expose
     private String file_name;
 }
-{% endhighlight %}
+```
 
 
 #### Inter.java
-{% highlight java %}
+```java
 @Entity @Table(name="tb_inter") @Embeddable
 public class Inter {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -94,11 +94,11 @@ public class Inter {
     @Column @Expose
     private String inter_name_ko;
 }
-{% endhighlight %}
+```
 
 
 #### MemberInter.java
-{% highlight java %}
+```java
 @Entity @Table(name="tb_member_inter") @IdClass(MemberInterPk.class)
 public class MemberInter {
     @Id @Column
@@ -117,21 +117,21 @@ public class MemberInter {
     @Expose
     private Inter inter;
 }
-{% endhighlight %}
+```
 
 
 #### MemberInterPk.java
-{% highlight java %}
+```java
 public class MemberInterPk implements Serializable {
     private Integer member_seq;
     private Integer inter_seq;
 }
-{% endhighlight %}
+```
 
 
 test 코드...
 #### TestServiceTest.java
-{% highlight java %}
+```java
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({
         "classpath:servlet-context.xml",
@@ -156,6 +156,6 @@ public class TestServiceTest {
         logger.info("------------ jpa test ended....    ------------------------");
     }
 }
-{% endhighlight %}
+```
 
 
