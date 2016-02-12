@@ -13,7 +13,8 @@ facebook_username:  seretude
 timezone: Asia/Seoul 
 
 # Build settings
-highlighter: rouge
+#pygments, rouge
+highlighter: pygments
 permalink: pretty
 paginate: 10
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
