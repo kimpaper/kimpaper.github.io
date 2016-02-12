@@ -93,7 +93,7 @@ sitemesh.xml파일은 수정할 부분이 거의 없습니다 (decorators.xml파
 
 기본 레이아웃인 layout.jsp 파일 입니다.
 #### /views/layout/layout.jsp
-{% highlight jsp %}
+{% highlight xml %}
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
@@ -141,7 +141,7 @@ sitemesh.xml파일은 수정할 부분이 거의 없습니다 (decorators.xml파
 이제 실제로 MVC에서 사용하는 jsp파일입니다.
 
 #### /views/appInfo/list.jsp
-{% highlight jsp %}
+{% highlight xml %}
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <head>
     <!-- page script -->
