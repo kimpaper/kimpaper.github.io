@@ -11,7 +11,7 @@ jpa에서.. repository를 이용하여 findAll이나.. findOneBy.... 시리즈�
 아래와 같이 특정 쿼리를 직접 입력하여 이용도 가능합니다.
 
 #### /classes/META-INF/orm.xml
-```xml
+{% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
                  version="2.0">
@@ -25,17 +25,17 @@ jpa에서.. repository를 이용하여 findAll이나.. findOneBy.... 시리즈�
     </named-native-query>
 
 </entity-mappings>
-```
+{% endhighlight %}
 
 또는.. 아래와 같이 Entity 클래스에 선언해도 됩니다
-```java
+{% highlight java %}
 @Entity @Table(name="tb_inter")
 @NamedQuery(name = "User.findByAlal2",
   query = "select i from Inter i where i.internameko = ?1")
 public class Inter {
 ....
 }
-```
+{% endhighlight %}
 
 (비슷한 속성으로는 @Query도 사용가능하고. 이 속성은 Repository에 사용합니다.)
 
@@ -44,7 +44,7 @@ public class Inter {
  - named-native-query는 db에 직접 쿼리를 날린다. (그러므로 result-class를 지정해야 한다.)
 
 #### Inter.java
-```java
+{% highlight java %}
 @Entity @Table(name="tb_inter")
 public class Inter {
     @Id @Column(name = "inter_seq") @GeneratedValue(strategy = GenerationType.AUTO)
@@ -54,6 +54,6 @@ public class Inter {
     @Column(name = "inter_name_en") @Expose
     private String internameen;
 }
-```
+{% endhighlight %}
 
 

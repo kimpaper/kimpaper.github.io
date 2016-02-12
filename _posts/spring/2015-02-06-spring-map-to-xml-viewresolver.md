@@ -10,15 +10,15 @@ tags: spring xmlview
 
 아래 설정하고...
 #### applicationServlet.xml
-```xml
+{% highlight xml %}
     <beans:bean id="xmlView2" class="org.springframework.web.servlet.view.XmlViewResolver">
         <beans:property name="order" value="1"/>
         <beans:property name="location" value="classpath:xml-views.xml"/>
     </beans:bean>
-```
+{% endhighlight %}
 
 #### xml-views.xml 내용.
-```
+{% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
         "http://www.springframework.org/dtd/spring-beans.dtd">
@@ -29,10 +29,10 @@ tags: spring xmlview
         </property>
     </bean>
 </beans>
-```
+{% endhighlight %}
 
 #### AjaxResponseXMLView.java 아래 클래스를 이용함
-```java
+{% highlight java %}
 public class AjaxResponseXMLView extends AbstractView {
 
     @Override
@@ -105,4 +105,4 @@ public class AjaxResponseXMLView extends AbstractView {
         return src;
     }
 }
-```
+{% endhighlight %}

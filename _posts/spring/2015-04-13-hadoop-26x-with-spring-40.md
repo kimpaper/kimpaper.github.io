@@ -14,17 +14,17 @@ http://iamhereweare.blogspot.kr/2014/05/hadoop.html
 
 
 #### pom.xml 에 아래 dependency 추가. 
-```xml
+{% highlight xml %}
 <dependency>
   <groupid>org.springframework.data</groupId>
   <artifactid>spring-data-hadoop</artifactId>
   <version>2.1.1.RELEASE</version>
 </dependency>
-```
+{% endhighlight %}
 
 
 #### context-hadoop.xml spring 설정에 파일 추가 
-```xml
+{% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -36,12 +36,12 @@ http://iamhereweare.blogspot.kr/2014/05/hadoop.html
         fs.default.name=hdfs://localhost:9000
     </hdp:configuration>
 </beans>
-```
+{% endhighlight %}
 
 
 아래와 같이 test코드 작성. 
 #### HdTestServiceTest.java 
-```java
+{% highlight java %}
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({
         "classpath:servlet-context.xml",
@@ -89,7 +89,7 @@ public class HdTestServiceTest {
         }
     }
 }
-```
+{% endhighlight %}
 
 잘된다. 다만 아직 로컬에서 못벗어 났지만.. ~~벗어날 서버가 없어..~~  
 위 코드를 이용하면 파일 업로드 다운로드까지는 구현이 가능합니다.   

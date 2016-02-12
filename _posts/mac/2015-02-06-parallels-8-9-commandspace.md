@@ -1,10 +1,10 @@
 ---
 layout: post
 title: Parallels에서 Command+Space로 한영변환 하기
-date: '2015-02-05T17:29:00.003-08:00'
+date: '2015-02-05T17:29:00.003'
 author: 페이퍼
 tags: mac parallels
-modified_time: '2015-03-10T18:36:28.758-07:00'
+modified_time: '2015-03-10T18:36:28.758'
 thumbnail: http://4.bp.blogspot.com/-2rkw58VJ6Rg/VP-b_LCLr8I/AAAAAAAAHBw/XamoL6Sg_Lc/s72-c/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2013-06-28_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_10.37.57.png
 blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-5246683936050808000
 blogger_orig_url: http://kimpaper.blogspot.com/2015/02/parallels-8-9-commandspace.html

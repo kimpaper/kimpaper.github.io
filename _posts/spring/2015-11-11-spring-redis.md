@@ -7,7 +7,7 @@ tags: spring redis
 header-img: "img/post-bg-05.jpg"
 ---
 #### pom.xml 에 아래 추가.
-```xml
+{% highlight xml %}
 <dependency>
     <groupId>org.springframework.data</groupId>
     <artifactId>spring-data-redis</artifactId>
@@ -18,12 +18,12 @@ header-img: "img/post-bg-05.jpg"
     <artifactId>jedis</artifactId>
     <version>2.1.0</version>
 </dependency>
-```
+{% endhighlight %}
 > 버전을 잘 맞춰야 한다. 안그러면 몇몇 class가 없어서 오류가 발생해요.
 
 
 #### context-redis.xml
-```xml
+{% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:p="http://www.springframework.org/schema/p"
@@ -44,11 +44,11 @@ header-img: "img/post-bg-05.jpg"
           p:connectionFactory-ref="jedisConnFactory"
     />
 </beans>
-```
+{% endhighlight %}
 > `6379`가 redis기본 포트이다. 설치시 변경 가능하다.
 
 #### RedisTest.java
-```java
+{% highlight java %}
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration( {
         "classpath:spring/application-context.xml"
@@ -82,16 +82,16 @@ public class RedisTest {
         logger.info("redis-test={}", res);
     }
 }
-```
+{% endhighlight %}
 
 
 ### 실행 결과
-```text
+{% highlight text %}
 ...
 [INFO ] 17:30:28.990 [main] - create.. cache..
 [INFO ] 17:30:29.190 [main] - redis-test={result_code=0000, result_message=success}
 [INFO ] 17:30:29.288 [main] - redis-test=null
 ...
-```
+{% endhighlight %}
 
 

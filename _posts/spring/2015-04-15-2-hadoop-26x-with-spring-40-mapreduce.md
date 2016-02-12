@@ -7,7 +7,7 @@ tags: hadoop spring
 ---
 
 #### context-hadoop.xml에 아래 내용 추가. 
-```xml
+{% highlight xml %}
 <hdp:configuration id="hdConf">
     fs.default.name=hdfs://localhost:9000
 </hdp:configuration>
@@ -23,11 +23,11 @@ tags: hadoop spring
 
 <hdp:job-runner id="wordCountJobRunner" job-ref="wordCountJob" run-at-startup="false">
 </hdp:job-runner>
-```
+{% endhighlight %}
 
 
 #### WordCount.java
-```java
+{% highlight java %}
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -77,11 +77,11 @@ public class WordCount {
         }
     }
 }
-```
+{% endhighlight %}
 
 
 #### Test.java  
-```java
+{% highlight java %}
 @Autowired
 private org.apache.hadoop.conf.Configuration hdConf;
 
@@ -105,7 +105,7 @@ public void beforeCopyFile() throws IOException {
 public void testRunJob() throws Exception {
     wordCountJobRunner.call();
 }
-```
+{% endhighlight %}
 
 1. Before를 통하여 로컬에 있는 debug.log 파일을 hdfs에 카피 해놓는다.   
 2. Job을 실행한다.  

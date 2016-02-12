@@ -7,26 +7,26 @@ tags: rabbitmq centos spring
 ---
 
 #### 설치는 그냥 rpm 으로 설치   
-```bash
+{% highlight bash %}
 # 서버 시작.
 sbin/rabbitmq-server start
 
 # 서버 중지
 sbin/rabbitmqctl stop
-```
+{% endhighlight %}
 
 #### spring-rabbit 연동 pom.xml 
-```xml
+{% highlight xml %}
 <dependency>
   <groupid>org.springframework.amqp</groupId>
   <artifactid>spring-rabbit</artifactId>
   <version>1.4.1.RELEASE</version>
 </dependency>
-```
+{% endhighlight %}
 
 
 #### context-rabbitmq.xml 
-```xml
+{% highlight xml %}
 <!-- A reference to the org.springframework.amqp.rabbit.connection.ConnectionFactory -->
 <rabbit:connection-factory id="connectionFactory" host="localhost" username="worker" password="workerpassword" />
 
@@ -42,11 +42,11 @@ sbin/rabbitmqctl stop
 <rabbit:listener-container  connection-factory="connectionFactory">
     <rabbit:listener queues="simple_queue" ref="mqService" />
 </rabbit:listener-container>
-```
+{% endhighlight %}
 
 
 #### MqService.java 
-```java
+{% highlight java %}
 @Service
 public class MqService implements MessageListener {
     private static final Logger logger = LoggerFactory.getLogger(MqService.class);
@@ -73,6 +73,6 @@ public class MqService implements MessageListener {
         logger.info("recv message=" + msg );
     }
 }
-```
+{% endhighlight %}
 
 

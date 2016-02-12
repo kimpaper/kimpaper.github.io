@@ -18,7 +18,7 @@ reader, writer는 커스텀 하지 않고 mybatis에서 기본으로 제공하�
 참고) https://mybatis.github.io/spring/ko/batch.html
 
 
-```xml
+{% highlight xml %}
 <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
     <property name="jobRepository" ref="jobRepository" />
 </bean>
@@ -51,7 +51,7 @@ reader, writer는 커스텀 하지 않고 mybatis에서 기본으로 제공하�
     <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     <property name="statementId" value="com.xxxxx.mapper.QueryMapper.updateMemberRst" />
 </bean>
-```
+{% endhighlight %}
 
 
 

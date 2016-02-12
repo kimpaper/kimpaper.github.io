@@ -1,7 +1,7 @@
 ---
 layout: post
 title: c# 에서 c++(dll)로 LPCTSTR parameter 넘겨 호출 하기
-date: '2015-10-15T12:13:00.001-08:00'
+date: '2015-10-15T12:13:00.001'
 author: 페이퍼
 tags: c# 마샬링 marshalling
 header-img: "img/post-bg-01.jpg"
@@ -10,19 +10,19 @@ c++ 로 된 dll을 c#에서 호출할때 예제입니다.
 
 ### 먼저 c++ 코드들을 간단히 짰습니다.
 #### test.h
-```cpp
+{% highlight cpp %}
 extern "C" __declspec(dllexport) int test(LPCTSTR szFileName);
-```
+{% endhighlight %}
 
 #### test.cpp
-```cpp
+{% highlight cpp %}
 int test(LPCTSTR szFileName) {
      return 0;
 }
-```
+{% endhighlight %}
 
 ### 다음은 c#쪽 코드들입니다
-```csharp
+{% highlight csharp %}
 [DllImport("sampleLib.dll", CallingConvention = CallingConvention.Cdecl)]
 private static extern int test( [MarshalAs(UnmanagedType.LPWStr)] string szFileName);
 
@@ -32,15 +32,15 @@ private void button2_Click(object sender, EventArgs e)
     int result = test(ticketName);
     Debug.WriteLine("test=" + result);
 }
-```
+{% endhighlight %}
 
 ```CallingConvention = CallingConvention.Cdecl```와 ```[MarshalAs(UnmanagedType.LPWStr)]``` 가 중요합니다.
 
 ### 반대로 c++에서 string을 받는건 IntPtr로 받아 아래와 같이 하면 됩니다.
-```csharp
+{% highlight csharp %}
 IntPtr ptr = test("111111");
 string data = Marshal.PtrToStringAnsi(ptr);
 // 꼭 해제 한다
 Marshal.FreeHGlobal(data);
-```
+{% endhighlight %}
 

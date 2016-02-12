@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 맥에서 Unity3D 기본 에디터로 VisualStudio Code 사용하기 
-date: '2015-12-18T15:39:00.001-08:00'
+date: '2015-12-18T15:39:00.001'
 author: 페이퍼
 tags: unity visualstudio-code
 header-img: "img/post-bg-04.jpg"

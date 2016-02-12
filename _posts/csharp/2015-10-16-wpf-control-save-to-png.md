@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WPF(c#)에서 control을 png로 저장
-date: '2015-10-15T12:13:00.001-08:00'
+date: '2015-10-15T12:13:00.001'
 author: 페이퍼
 tags: c# wpf
 header-img: "img/post-bg-02.jpg"
@@ -9,7 +9,7 @@ header-img: "img/post-bg-02.jpg"
 예전에 했던 대로 System.Drawing 을 써서 하려고 했는데..
 wpf에 이런 기능이 있었네..
 
-```csharp
+{% highlight csharp %}
 // uiPage.ren
 public void DoPageToPng(string fileName)
 {
@@ -27,5 +27,5 @@ public void DoPageToPng(string fileName)
         }
     }
 }
-```
+{% endhighlight %}
 

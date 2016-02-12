@@ -10,7 +10,7 @@ tags: spring jpa
 JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.
 
 #### 1. 라이브러리 import.... maven pom.xml
-```xml
+{% highlight xml %}
 <dependency>
    <groupId>org.springframework.data</groupId>
    <artifactId>spring-data-jpa</artifactId>
@@ -21,12 +21,12 @@ JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.
    <artifactId>hibernate-entitymanager</artifactId>
    <version>4.3.8.Final</version>
 </dependency>
-```
+{% endhighlight %}
 
 
 #### 2. Entity class를 만들어 줍니다.
 참고로 SerializedName, Expose는  jpa와 직접 관련은 없습니다.. (개체를 그대로 JsonView 할때 사용)  
-```java
+{% highlight java %}
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -99,21 +99,21 @@ public class Notice {
         this.delYn = delYn;
     }
 }
-```
+{% endhighlight %}
 
 
 
 #### 3. repository 를 만들어줍니다. (아무것도 없어도 된다)
-```java
+{% highlight java %}
 public interface NoticeRepository extends JpaRepository<Notice, Integer> {
 
 }
-```
+{% endhighlight %}
 
 
 
 #### 4. context-jpa.xml 설정합니다. txManager2인 이유는 기존에 mybatis에 영향을 주지 않기 위해서입니다. , ~~mybatis를 한번에 다 걷어낼 자신이 없...~~
-```xml
+{% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -159,12 +159,12 @@ public interface NoticeRepository extends JpaRepository<Notice, Integer> {
 
     <jpa:repositories base-package="sample.app" transaction-manager-ref="txManager2" />
 </beans>
-```
+{% endhighlight %}
 
 
 
 #### 5. 사용 예제
-```java
+{% highlight java %}
 @Service
 public class NoticeService extends ServiceBase  {
     private static final Logger logger = LoggerFactory.getLogger(NoticeService.class);
@@ -177,7 +177,7 @@ public class NoticeService extends ServiceBase  {
         res.put("notice_list", list);
     }
 }
-```
+{% endhighlight %}
 
 인터넷상에 자료가 많아서 설정은 어렵지 않았습니다.
 

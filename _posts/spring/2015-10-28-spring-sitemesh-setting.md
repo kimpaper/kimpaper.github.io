@@ -10,17 +10,17 @@ header-img: "img/post-bg-04.jpg"
 sitemesh를 설정을 해보겠습니다.
 
 #### pom.xml
-```xml
+{% highlight xml %}
 <dependency>
     <groupId>opensymphony</groupId>
     <artifactId>sitemesh</artifactId>
     <version>2.4.2</version>
 </dependency>
-```
+{% endhighlight %}
 
 
 #### WEB-INF/web.xml 에 아래 추가.
-```xml
+{% highlight xml %}
 <filter>
     <filter-name>sitemesh</filter-name>
     <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
@@ -29,10 +29,10 @@ sitemesh를 설정을 해보겠습니다.
     <filter-name>sitemesh</filter-name>
     <url-pattern>/*</url-pattern>
 </filter-mapping>
-```
+{% endhighlight %}
 
 #### WEB-INF/sitemesh.xml
-```xml
+{% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemesh>
     <property name="decorators-file" value="/WEB-INF/decorators.xml" />
@@ -61,11 +61,11 @@ sitemesh를 설정을 해보겠습니다.
         </mapper>
     </decorator-mappers>
 </sitemesh>
-```
+{% endhighlight %}
 sitemesh.xml파일은 수정할 부분이 거의 없습니다 (decorators.xml파일 경로) 
 
 #### WEB-INF/decorators.xml
-```xml
+{% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/decorators">
     <excludes>
@@ -81,7 +81,7 @@ sitemesh.xml파일은 수정할 부분이 거의 없습니다 (decorators.xml파
         <pattern>/*</pattern>
     </decorator>
 </decorators>
-```
+{% endhighlight %}
 셋팅은 위와 같이 xml만 넣어주면 완료됩니다.
 - ```<excludes>```에는 decorator를 적용하지 않을 url패턴을 입력합니다.
 - ```<decorator>```실제 적용될 jsp 레이아웃이나 템플릿입니다.
@@ -93,7 +93,7 @@ sitemesh.xml파일은 수정할 부분이 거의 없습니다 (decorators.xml파
 
 기본 레이아웃인 layout.jsp 파일 입니다.
 #### /views/layout/layout.jsp
-```jsp
+{% highlight jsp %}
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
@@ -130,7 +130,7 @@ sitemesh.xml파일은 수정할 부분이 거의 없습니다 (decorators.xml파
 </div>
 </body>
 </html>
-```
+{% endhighlight %}
 
 제가 사용하는 layout.jsp를 그대로 올린건 아니고 간단히 요약을 했습니다.  (오류가 있을수도..)
 - ```<decorator:head />``` 적용되는 대상 페이지에서 ```<head>``` 의 내용을 가져다 붙여 줍니다.
@@ -141,7 +141,7 @@ sitemesh.xml파일은 수정할 부분이 거의 없습니다 (decorators.xml파
 이제 실제로 MVC에서 사용하는 jsp파일입니다.
 
 #### /views/appInfo/list.jsp
-```jsp
+{% highlight jsp %}
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <head>
     <!-- page script -->
@@ -184,7 +184,7 @@ sitemesh.xml파일은 수정할 부분이 거의 없습니다 (decorators.xml파
 </section><!-- /.content -->
 
 </body>
-```
+{% endhighlight %}
 
 list.jsp와 같이 원하는 jsp에 ```<head>```  ```<body>```를 구성하면 layout.jsp의 형식으로 출력되게 됩니다.
 

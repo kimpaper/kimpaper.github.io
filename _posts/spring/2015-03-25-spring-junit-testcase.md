@@ -7,18 +7,18 @@ tags: spring junit spring-test
 ---
 
 #### pom.xml에 아래 추가. 
-```xml
+{% highlight xml %}
 <dependency>
    <groupId>org.springframework</groupId>
    <artifactId>spring-test</artifactId>
    <version>4.0.5.RELEASE</version>
    <scope>test</scope>
 </dependency>
-```
+{% endhighlight %}
 
 
 #### test java코드 MemberServiceTest.java  
-```java
+{% highlight java %}
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration( {
   "classpath:servlet-context.xml",
@@ -40,14 +40,14 @@ public class MemberServiceTest {
     }
 
 }
-```
+{% endhighlight %}
 
 
 
 이때 디비를 jndi-lookup 를 이용하는 경우를 위해 test/resources/config/context-datasource.xml 을 넣어서 아래와 같이 기존 id를 덮었다.
 
 #### test/resources/config/context-datasource.xml 파일 
-```xml
+{% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -63,7 +63,7 @@ public class MemberServiceTest {
 
 
 </beans>
-```
+{% endhighlight %}
 
 
 
