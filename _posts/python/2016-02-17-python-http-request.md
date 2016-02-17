@@ -11,13 +11,13 @@ header-img: "img/post-bg-04.jpg"
 --
 
 아래코드에는 아래 나열된 사항들에 대한 코딩이 적용되어 있다  
-  * http request
-  * thread(timer 대응)
-  * logging사용법
-  * try-except 예외처리
-  * raise throw
-  * json parsing 및 데이타 읽기 방법
-  * string 처리
+*   http request
+* thread(timer 대응)
+*  logging사용법
+* try-except 예외처리
+* raise throw
+* json parsing 및 데이타 읽기 방법
+* string 처리
 
 ### ServerCheck.py 파일
 ```python
