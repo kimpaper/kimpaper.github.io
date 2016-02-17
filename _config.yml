@@ -19,7 +19,7 @@ permalink: pretty
 paginate: 10
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 #markdown: kramdown
-markdown: kramdown
+#markdown: kramdown
 kramdown:
   input: GFM
 #  auto_ids:       true
