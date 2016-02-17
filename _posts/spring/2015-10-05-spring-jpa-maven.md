@@ -112,7 +112,7 @@ public interface NoticeRepository extends JpaRepository<Notice, Integer> {
 
 
 
-#### 4. context-jpa.xml 설정합니다. txManager2인 이유는 기존에 mybatis에 영향을 주지 않기 위해서입니다. , ~~mybatis를 한번에 다 걷어낼 자신이 없...~~
+#### 4. context-jpa.xml 설정합니다. txManager2인 이유는 기존에 mybatis에 영향을 주지 않기 위해서입니다. , <del>mybatis를 한번에 다 걷어낼 자신이 없...</del>
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"

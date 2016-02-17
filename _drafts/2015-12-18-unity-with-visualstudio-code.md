@@ -18,7 +18,7 @@ MS에서 얼마전에 공개한 mac용 VisualStudio Code에서 유니티를 지�
 
 2. 커맨드+P를 누르고. ```ext install Omnisharp``` 추가 기능으로 설치 한다
 
-3. 맥의 터미널 상에 ```brew install mono``` 로 mono를 설치한다 ~~오래걸린다~~
+3. 맥의 터미널 상에 ```brew install mono``` 로 mono를 설치한다 <del>오래걸린다</del>
 
 4. 이후로는 아래 사이트를 따라 하면 된다 
 https://code.visualstudio.com/docs/runtimes/unity

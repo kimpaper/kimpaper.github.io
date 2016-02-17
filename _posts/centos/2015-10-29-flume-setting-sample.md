@@ -56,7 +56,7 @@ agent.channels.memoryChannel.capacity = 100
 참고) https://flume.apache.org/FlumeUserGuide.html
 설정파일은 sources, channels, sinks 로 나눠져 있다.
 - sources: 읽어오는 대상 (원격 서버에서 전달받기도 한다.)
-- channels: 아마... sinks로 저장하기 위한 버퍼? 같은 역할인것 같음 ~~솔찍히 모름~~
+- channels: 아마... sinks로 저장하기 위한 버퍼? 같은 역할인것 같음 <del>솔찍히 모름</del>
 - sinks: 저장할 대상 또는 전달할 대상?
 
 아래 그림을 보면 살짝 이해가 된다. (아래 그림에는 저장 대상이 하둡인데.. 나는 하둡을 이용하진 않을 것이다.)
