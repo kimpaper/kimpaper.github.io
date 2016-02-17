@@ -34,7 +34,7 @@ private void button2_Click(object sender, EventArgs e)
 }
 ```
 
-```CallingConvention = CallingConvention.Cdecl```와 ```[MarshalAs(UnmanagedType.LPWStr)]``` 가 중요합니다.
+`CallingConvention = CallingConvention.Cdecl`와 `[MarshalAs(UnmanagedType.LPWStr)]` 가 중요합니다.
 
 ### 반대로 c++에서 string을 받는건 IntPtr로 받아 아래와 같이 하면 됩니다.
 ```csharp

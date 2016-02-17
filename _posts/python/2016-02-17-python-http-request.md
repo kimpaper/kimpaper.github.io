@@ -19,7 +19,7 @@ header-img: "img/post-bg-04.jpg"
 - string 처리
 
 ### ServerCheck.py 파일
-~~~python
+```python
 import threading
 import urllib.request
 import json
@@ -86,7 +86,7 @@ th.start()
 
 logger.info("모니터링 시작 합니다")
 
-~~~
+```
 
 ### 실행 방법 
 ```bash
