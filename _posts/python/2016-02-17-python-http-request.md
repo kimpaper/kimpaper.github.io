@@ -7,17 +7,16 @@ tags: python
 header-img: "img/post-bg-04.jpg"
 ---
 
-요즘 파이썬 공부중인데 연습겸 10초마다 webserver가 죽었는지 체크하는 간단한 프로그램을 만들어 봤다.
---
+요즘 파이썬 공부중인데 연습겸 10초마다 webserver가 죽었는지 체크하는 간단한 프로그램을 만들어 봤다.  
+아래코드에는 아래 나열된 사항들에 대한 코딩이 적용되어 있다
 
-아래코드에는 아래 나열된 사항들에 대한 코딩이 적용되어 있다  
-*   http request
-* thread(timer 대응)
-*  logging사용법
-* try-except 예외처리
-* raise throw
-* json parsing 및 데이타 읽기 방법
-* string 처리
+- http request
+- thread(timer 대응)
+- logging사용법
+- try-except 예외처리
+- raise throw
+- json parsing 및 데이타 읽기 방법
+- string 처리
 
 ### ServerCheck.py 파일
 ```python
