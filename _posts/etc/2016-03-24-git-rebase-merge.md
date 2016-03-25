@@ -22,6 +22,8 @@ feature에서 작업하던 도중 쌓인 develop의 commit들이 local feature�
 
 그림을 그려서 설명하면 참 좋겠지만.. 그림을 못그린다.
 
-
-
-rebase시에 컴플릿은 history 기준으로 한번씩 해결하도록 유도 한다 이것은 툴들이 지원하니까. 어렵진 않다.
+rebase시에 컴플릿은 local feature에서 commit한걸 기준으로 한번씩 단계적으로 해결을 resolve를 해나가는데.
+ 
+이 과정에서 원하는 결과가 제대로 안나올수 있다. (파일 하나의 resolve 작업을 여러번 해야 하는데..)
+ 
+rebase 를 이용하려면 되도록 주기를 짧게 가져가는것이 좋을것같다.
