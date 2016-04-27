@@ -1,12 +1,10 @@
 ---
 layout: post
-title: 'jfreeChart 에서 한글 깨질때 centos 폰트 설정 '
+title: jfreeChart에서 한글 폰트 사용 (centos 폰트 설정)
 date: '2015-07-01T20:33:00.001'
 author: 페이퍼
 tags: jfreechart centos java
 modified_time: '2016-04-19T15:00:00.000'
-blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-5249527455620459104
-blogger_orig_url: http://kimpaper.blogspot.com/2015/07/jfreechart-centos.html
 ---
 
 jfreeChart를 사용하는 중인데 tomcat위에서 돌리면 한글이 ㅁㅁㅁ 과 같이 나온다.
@@ -25,4 +23,3 @@ lineAndShapeRenderer.setLegendTextFont(i, _BASE_FONT);
 ```
 
 tomcat 재시작은 필요 없다.
-
