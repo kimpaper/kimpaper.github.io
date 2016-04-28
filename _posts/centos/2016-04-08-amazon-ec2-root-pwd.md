@@ -19,7 +19,7 @@ passwd root
 ```
 
 
-```shell
+```bash
 sudo vi /etc/ssh/sshd_config
 
 # 아래 두개 옵션을 yes로 하고 저장후 닫기 

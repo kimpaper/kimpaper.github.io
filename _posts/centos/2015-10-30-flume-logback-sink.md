@@ -97,7 +97,7 @@ header-img: "img/post-bg-01.jpg"
 설치 방법은 위 사이트에서 참고
 
 #### conf/flume-agent1.conf
-```shell
+```bash
 ...
 agent1.sinks.k1.type = kimpaper.flume.sink.Slj4jSink
 agent1.sinks.k1.logLevel = info

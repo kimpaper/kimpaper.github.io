@@ -9,7 +9,7 @@ header-img: "img/post-bg-05.jpg"
 
 ## centos 6에 3.5.1 버전을 설치 하는 command line
  
-```shell
+```bash
 wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz
 xz -d Python-3.5.1.tar.xz
 # 혹시 xz가 없다면 yum install xz 로 설치 하라.

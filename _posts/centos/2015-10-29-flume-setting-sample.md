@@ -14,7 +14,7 @@ header-img: "img/post-bg-05.jpg"
 - http://flume.apache.org/download.html 에서 다운로드 한다.
 - 적절한 곳에 압축을 풀어 준다 ~/dev/tool/flume
 - JAVA_HOME이 지정되 있지 않으면. ~/.bash_profile 을 열어 환경 변수를 설정해 준다. 
-```shell
+```bash
   export JAVA_HOME = /usr (자바 경로.)
 ```
 
@@ -22,7 +22,7 @@ header-img: "img/post-bg-05.jpg"
 
 
 #### 기본 flume.conf 파일
-```shell
+```bash
 # The configuration file needs to define the sources,
 # the channels and the sinks.
 # Sources, channels and sinks are defined per agent,
@@ -73,7 +73,7 @@ agent.channels.memoryChannel.capacity = 100
 
 #### 저장하는 서버 agent1 (flume/conf/flume-agent1.conf)
 
-```shell
+```bash
 agent1.sources = r1
 agent1.channels = c1
 agent1.sinks = k1
@@ -98,7 +98,7 @@ agent1.sinks.k1.channel = c1
 
 #### 저장서버로 로그를 전송 하는 서버 (여러대로 늘어난다) agent2 (flume/conf/flume-agent2.conf)
 
-```shell
+```bash
 agent2.sources = r1 r2
 agent2.channels = c1
 agent2.sinks = k1
@@ -128,7 +128,7 @@ agent2.sinks.k1.port = 4545
 ### 서비스 실행 
 두가지 설정을 한 서비스를 각각 실행 하자.  
 
-```shell
+```bash
 ./bin/flume-ng agent -c ./conf -f ./conf/flume-agent1.conf -n agent1
 ./bin/flume-ng agent -c ./conf -f ./conf/flume-agent2.conf -n agent2
 ```
@@ -141,7 +141,7 @@ agent2.sinks.k1.port = 4545
 agent1에서 sinks를 file_roll로 하니 아래와 같이 file list들이 쌓인다.
 `sink.rollInterval` 속성을 이용해서 interval은 조정 가능 하다. (아래는 30초 기준이다.)  
 
-```shell
+```bash
 gimjonghuiui-MacBook-Pro:flume paper$ ls -l
 total 24
 -rw-r--r--  1 paper  wheel    0 10 29 15:40 1446100807777-1
