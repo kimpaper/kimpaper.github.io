@@ -116,13 +116,10 @@ $SPARK_HOME/bin/spark-submit --master local[4] voicelog.py
 # 툴설정 (IntelliJ IDEA)
 
 ### 우선 파일이 연결되는걸 확인했으니 .. intellij에서 연동하는걸 해보자.  
-1. 코드에 pyspark 보이게 하기
+1. 코드에 pyspark 보이게 하기  
 프로젝트 환경설정에서 SDKs 에 아래와 같이 라이브러리를 추가해 준다 
-
 ![설정](/postimg/160601_1.png)
-
-2. 실행 스크립트 연결
-
+2. 실행 스크립트 연결  
 ![설정](/postimg/160601_2.png)
 
 > `$SPARK_HOME/bin/spark-submit --master local[4] voicelog.py` 를 실행하도록 구성해준다
