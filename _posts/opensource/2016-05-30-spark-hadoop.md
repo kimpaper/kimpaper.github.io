@@ -113,11 +113,11 @@ $SPARK_HOME/bin/spark-submit --master local[4] voicelog.py
 1. 코드에 pyspark 보이게 하기
 프로젝트 환경설정에서 SDKs 에 아래와 같이 라이브러리를 추가해 준다 
 
-![설정](https://www.dropbox.com/s/oax6mfortcqygos/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202016-05-31%2018.30.06.png?dl=1)
+![설정](/postimg/160601_1.png)
 
 2. 실행 스크립트 연결
 
-![설정](https://www.dropbox.com/s/joiui4n3xq3eb7k/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202016-05-31%2018.31.00.png?dl=1)
+![설정](/postimg/160601_2.png)
 
 > `$SPARK_HOME/bin/spark-submit --master local[4] voicelog.py` 를 실행하도록 구성해준다
 
@@ -171,19 +171,30 @@ print("완료")
 ```bash
 $SPARK_HOME/bin/spark-submit --master local[4] voicelog.py
 ```
-
+참고로 `spark-submit --help`를 쳐보면 많은 옵션을 확인 할 수 있다
 
 ### 스파크 서버에 연결하여 실행
 스파크를 실행해서 클러스터 구성후에 연동하는 법은 아래 처럼 스파크를 따로 실행해놓고 python코드에서 스파크 주소를 쓰면 되는것 같다  
 ~~안해봤다~~
 ```bash
-gimjonghuiui-MacBook-Pro:sbin paper$ ./start-all.sh
+$SPARK_HOME/sbin/start-all.sh
 ```
 
-![MasterUI 캡쳐](https://www.dropbox.com/s/zvj9btla00g4z7n/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202016-05-31%2015.18.47.png?dl=1)
+![MasterUI 캡쳐](/postimg/160601_3.png)
 
 위에 MasterUI를 자세히 보면 
 URL: spark://로 시작 하는 부분을 확인 할 수 있다.
 
 SparkContext("spark://.....", "voicelog")
+
+> 예전에는 단순히 오류 추적에만 사용했던 로그였기에 기간이 지나면 자동삭제하게 해놨었는데..
+> 앞으로는 로그를 잘 모아놔야겠다  
+> 일단 로그 쓸때 가치 있는 데이타를 좀 포함시켜보자 
+
+
+
+
+
+
+
 
