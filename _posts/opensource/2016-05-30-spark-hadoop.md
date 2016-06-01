@@ -12,8 +12,11 @@ header-img: "img/post-bg-01.jpg"
 > 참고로 OSX에서 진행된 작업이다.
 
 # 설정
+
 ### 1. Hadoop를 설치 하고 실행한다
+
 ### 2. hdfs상에 파일을 올린다.
+
 ```bash
 cd /logs
 hdfs dfs -put test.log /input/
@@ -49,10 +52,10 @@ SparkContext available as sc, HiveContext available as sqlContext.
 
 ### 4. python 환경 잡기 (spark-submit 환경임) 
 
- ```bash
+```bash
  # 환경변수 설정을 위해 아래 파일을 연다 (물론 OSX 기준)
  vi ~/.bash_profile
- ```
+```
 
 `.bash_profile`파일에 아래와 같이 추가 한다
 
@@ -65,6 +68,7 @@ export PYSPARK_DRIVER_PYTHON=ipython
 ```
 
 혹시 ipython이 없다면 아래 명령어로 설치 한다
+
 ```bash
 pip install ipython
 ```
@@ -93,6 +97,7 @@ $SPARK_HOME/bin/spark-submit --master local[4] voicelog.py
 ```
 
 아래와 같이 결과를 볼 수 있다
+
 ```bash
 16/05/30 17:52:58 INFO spark.SparkContext: Running Spark version 1.6.1
 2016-05-30 17:52:58.646 java[7629:1534234] Unable to load realm info from SCDynamicStore
@@ -109,7 +114,8 @@ $SPARK_HOME/bin/spark-submit --master local[4] voicelog.py
 
 
 # 툴설정 (IntelliJ IDEA)
-### 우선 파일이 연결되는걸 확인했으니 .. intellij에서 연동하는걸 해보자.
+
+### 우선 파일이 연결되는걸 확인했으니 .. intellij에서 연동하는걸 해보자.  
 1. 코드에 pyspark 보이게 하기
 프로젝트 환경설정에서 SDKs 에 아래와 같이 라이브러리를 추가해 준다 
 
@@ -141,7 +147,7 @@ def printLine(line):
 
 sc = SparkContext(appName="voicelog")
 # /input/ 경로에 있는 모든 파일을 가져와서 분석을 실시한다 
-> sc.textFile로 하려고 했으나.분석 대상이 multi line이어서 아래를 이용한다
+# sc.textFile로 하려고 했으나.분석 대상이 multi line이어서 아래를 이용한다
 
 t = sc.newAPIHadoopFile(
     '/input/',
@@ -176,6 +182,7 @@ $SPARK_HOME/bin/spark-submit --master local[4] voicelog.py
 ### 스파크 서버에 연결하여 실행
 스파크를 실행해서 클러스터 구성후에 연동하는 법은 아래 처럼 스파크를 따로 실행해놓고 python코드에서 스파크 주소를 쓰면 되는것 같다  
 ~~안해봤다~~
+
 ```bash
 $SPARK_HOME/sbin/start-all.sh
 ```
@@ -185,7 +192,9 @@ $SPARK_HOME/sbin/start-all.sh
 위에 MasterUI를 자세히 보면 
 URL: spark://로 시작 하는 부분을 확인 할 수 있다.
 
+```python
 SparkContext("spark://.....", "voicelog")
+```
 
 > 예전에는 단순히 오류 추적에만 사용했던 로그였기에 기간이 지나면 자동삭제하게 해놨었는데..
 > 앞으로는 로그를 잘 모아놔야겠다  
