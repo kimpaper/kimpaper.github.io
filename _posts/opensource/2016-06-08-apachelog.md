@@ -32,7 +32,7 @@ CustomLog logs/ssl_access_log \
 기존 TransferLog에 남기지 않고 CustomLog를 하나 더 추가 했다.  
 
 맨 뒤에 %D를 붙이면 응답시간이 마이크로초 단위로 찍히게 된다 더욱 자세한 내용은 아래 링크를 참고 한다   
-https://httpd.apache.org/docs/2.2/ko/mod/mod_log_config.html
+[https://httpd.apache.org/docs/2.2/ko/mod/mod_log_config.html](https://httpd.apache.org/docs/2.2/ko/mod/mod_log_config.html)
 
 그래서 로그가 아래와 같이 쌓이는걸 확인 할 수 있다 맨 마지막 스페이스 이후에 숫자가 응답시간이다
 
