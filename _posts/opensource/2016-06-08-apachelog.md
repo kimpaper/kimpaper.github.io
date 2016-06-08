@@ -11,7 +11,7 @@ app에서 데이타 통신을하는 api서버가 있다
 > 서버는 apache+tomcat, spring으로 구현한 서버이다  
 
 hadoop과 spark, python 설정은  
-[Python and Spark로 로그 파일 분석 (with hadoop)](2016-05-30-spark-hadoop)
+[Python and Spark로 로그 파일 분석 (with hadoop)](/2016/05/30/spark-hadoop/)
 을 참고 하자 
 
 
@@ -20,6 +20,7 @@ hadoop과 spark, python 설정은
 
 `/etc/httpd/conf.d/ssl.conf` 경로에서 아래를 편집했다.  
 물론. 설정 파일이 있는 경로와 이름은 서버마다 틀릴 수 있다 
+
 ```bash
 <VirtualHost _default_:443>
 ...
@@ -34,6 +35,7 @@ CustomLog logs/ssl_access_log \
 https://httpd.apache.org/docs/2.2/ko/mod/mod_log_config.html
 
 그래서 로그가 아래와 같이 쌓이는걸 확인 할 수 있다 맨 마지막 스페이스 이후에 숫자가 응답시간이다
+
 ```text
 [08/Jun/2016:13:37:11 +0900] xx.xx.xx.xx TLSv1 ECDHE-RSA-AES128-SHA "POST /interface/if1 HTTP/1.1" 571 23687
 [08/Jun/2016:13:37:14 +0900] xx.xx.xx.xx TLSv1 ECDHE-RSA-AES128-SHA "POST /interface/if2 HTTP/1.1" 711 17120
