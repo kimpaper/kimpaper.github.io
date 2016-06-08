@@ -65,6 +65,8 @@ def mapLine(line):
     
     # 마이크로초이므로 백만을 나눠준다
     return (url, int(microtime) / 1000)
+    
+    
 sc = SparkContext(appName="apache_log")
 
 t = sc.textFile("/input2/*")
