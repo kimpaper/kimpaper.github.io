@@ -7,7 +7,8 @@ tags: spark hadoop python apache
 header-img: "img/post-bg-02.jpg"
 ---
 app에서 데이타 통신을하는 api서버가 있다  
-각 인터페이스별 평균 응답시간을 아파치 로그를 활용하여 구해봤다  
+각 인터페이스별 평균 응답시간을 아파치 로그를 활용하여 구해봤다
+
 > 서버는 apache+tomcat, spring으로 구현한 서버이다  
 
 hadoop과 spark, python 설정은  
@@ -29,7 +30,8 @@ CustomLog logs/ssl_access_log \
 ...
 </VirtualHost>
 ```
-기존 TransferLog에 남기지 않고 CustomLog를 하나 더 추가 했다.  
+
+> 기존 TransferLog에 남기지 않고 CustomLog를 하나 더 추가 했다.  
 
 맨 뒤에 %D를 붙이면 응답시간이 마이크로초 단위로 찍히게 된다 더욱 자세한 내용은 아래 링크를 참고 한다   
 [https://httpd.apache.org/docs/2.2/ko/mod/mod_log_config.html](https://httpd.apache.org/docs/2.2/ko/mod/mod_log_config.html)
