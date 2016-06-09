@@ -60,9 +60,10 @@ pat = re.compile("/interface/(\w+)")
 def mapLine(line):
     m = pat.search(line)
     if m is None:
-        return ("", {"avg":0, "min":0, "max":0, "used":1})
-
-    name = m.group(1)
+        name = "other"
+    else:
+        name = m.group(1)
+        
     microtime = line[line.rfind(" "):]
     
     # 마이크로초이므로 백만을 나눠준다
@@ -71,8 +72,8 @@ def mapLine(line):
     val["min"] = int(microtime) / 1000
     val["max"] = int(microtime) / 1000
     val["used"] = 1
-    
     return (name, val)
+
 
 def reduceLine(a, b):
     val = {}
@@ -82,6 +83,7 @@ def reduceLine(a, b):
     val["used"] = a["used"] + b["used"]
     return val
 
+
 sc = SparkContext(appName="apache_log")
 
 t = sc.textFile("/input2/*")
@@ -90,6 +92,7 @@ t = t.reduceByKey(reduceLine)
 l = t.collect()
 l.sort()
 
+print("name\tavg\tmax\tmin\tcalls")
 for data in l:
     # name, avg, max, min, used
     print("%s\t%d\t%d\t%d\t%d" % (data[0], data[1]["avg"], data[1]["max"], data[1]["min"], data[1]["used"]))
