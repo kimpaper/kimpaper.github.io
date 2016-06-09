@@ -1,6 +1,6 @@
 ---
 layout: post
-title: restful api 서버에서 평균 응답시간 구하기 
+title: restful api 서버에서 평균 응답시간, 호출횟수, Min, Max 구하기 
 date: '2016-06-08T15:32:00.001'
 author: 페이퍼
 tags: spark hadoop python apache
@@ -60,26 +60,39 @@ pat = re.compile("/interface/(\w+)")
 def mapLine(line):
     m = pat.search(line)
     if m is None:
-        return ("", 0)
+        return ("", {"avg":0, "min":0, "max":0, "used":1})
 
-    url = m.group(1)
+    name = m.group(1)
     microtime = line[line.rfind(" "):]
     
-    # print(url + str(microtime))
-    
     # 마이크로초이므로 백만을 나눠준다
-    return (url, int(microtime) / 1000)
+    val = {}
+    val["avg"] = int(microtime) / 1000
+    val["min"] = int(microtime) / 1000
+    val["max"] = int(microtime) / 1000
+    val["used"] = 1
     
-    
+    return (name, val)
+
+def reduceLine(a, b):
+    val = {}
+    val["avg"] = (a["avg"] + b["avg"]) / 2
+    val["max"] = max(a["max"], b["max"])
+    val["min"] = min(a["min"], b["min"])
+    val["used"] = a["used"] + b["used"]
+    return val
+
 sc = SparkContext(appName="apache_log")
 
 t = sc.textFile("/input2/*")
 t = t.map(mapLine)
-l = t.reduceByKey(lambda a, b: (a + b) / 2).collect()
+t = t.reduceByKey(reduceLine)
+l = t.collect()
+l.sort()
 
 for data in l:
-    # 결과는 name    ms 식으로 표현   
-    print("%s\t%d" % data)
+    # name, avg, max, min, used
+    print("%s\t%d\t%d\t%d\t%d" % (data[0], data[1]["avg"], data[1]["max"], data[1]["min"], data[1]["used"]))
 
 print("완료")
 ```
