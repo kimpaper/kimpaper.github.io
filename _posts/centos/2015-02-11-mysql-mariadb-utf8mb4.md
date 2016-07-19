@@ -30,6 +30,7 @@ MariaDB [(none)]> show variables like "%character%";show variables like "%collat
 
 
 #### 2. sudo vi /etc/my.cnf 파일을 아래 부분 수정  
+
 ```bash
 [client]
 default-character-set=utf8mb4
@@ -45,12 +46,14 @@ character-set-server = utf8mb4
 
 
 #### 3. 서비스 재시작
+
 ```bash
 service mysql restart
 ```
 
 
 #### 4. 확인 
+
 ```bash
 MariaDB [(none)]> show variables like "%character%";show variables like "%collation%";
 

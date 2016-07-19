@@ -11,6 +11,7 @@ jpa에서.. repository를 이용하여 findAll이나.. findOneBy.... 시리즈�
 아래와 같이 특정 쿼리를 직접 입력하여 이용도 가능합니다.
 
 #### /classes/META-INF/orm.xml
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
@@ -28,6 +29,7 @@ jpa에서.. repository를 이용하여 findAll이나.. findOneBy.... 시리즈�
 ```
 
 또는.. 아래와 같이 Entity 클래스에 선언해도 됩니다
+
 ```java
 @Entity @Table(name="tb_inter")
 @NamedQuery(name = "User.findByAlal2",
