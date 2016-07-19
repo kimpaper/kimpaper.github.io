@@ -36,6 +36,7 @@ tb_member -< tb_member_inter >- tb_inter
 
 
 #### Member.java
+
 ```java
 @Entity @Table(name = "tb_member")
 public class Member {
@@ -62,6 +63,7 @@ public class Member {
 
 
 #### MemberRepository.java
+
 ```java
 public interface MemberRepository extends JpaRepository<Member, Integer> {
 
@@ -70,6 +72,7 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
 
 
 #### Image.java
+
 ```java
 @Entity
 @Table(name = "tb_image")
@@ -86,6 +89,7 @@ public class Image {
 
 
 #### Inter.java
+
 ```java
 @Entity @Table(name="tb_inter") @Embeddable
 public class Inter {
@@ -98,6 +102,7 @@ public class Inter {
 
 
 #### MemberInter.java
+
 ```java
 @Entity @Table(name="tb_member_inter") @IdClass(MemberInterPk.class)
 public class MemberInter {
@@ -121,6 +126,7 @@ public class MemberInter {
 
 
 #### MemberInterPk.java
+
 ```java
 public class MemberInterPk implements Serializable {
     private Integer member_seq;
@@ -131,6 +137,7 @@ public class MemberInterPk implements Serializable {
 
 test 코드...
 #### TestServiceTest.java
+
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({
