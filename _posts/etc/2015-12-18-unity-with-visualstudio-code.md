@@ -3,7 +3,7 @@ layout: post
 title: 맥에서 Unity3D 기본 에디터로 VisualStudio Code 사용하기 
 date: '2015-12-18T15:39:00.001'
 author: 페이퍼
-tags: unity visualstudio-code
+tags: unity vscode
 header-img: "img/post-bg-04.jpg"
 ---
 
@@ -16,7 +16,7 @@ MS에서 얼마전에 공개한 mac용 VisualStudio Code에서 유니티를 지�
 1. 우선 VS code를 설치 한다 
 `https://code.visualstudio.com/`
 
-2. 커맨드+P를 누르고. `ext install Omnisharp` 추가 기능으로 설치 한다
+2. 커맨드+P를 누르고. `ext install Omnisharp` 추가 기능으로 설치 한다 ~~안해도 되는거 같기도...~~
 
 3. 맥의 터미널 상에 `brew install mono` 로 mono를 설치한다 <del>오래걸린다</del>
 
