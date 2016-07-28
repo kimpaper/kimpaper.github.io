@@ -21,7 +21,7 @@ tags: redis
 - value에 문자 숫자 등을 저장한다
 - 저장시 별도로 형이 없다 (숫자 문자 구분이 없음)
 - 숫자도 저장가능 하다 그리고 숫자에 `incr`, `incrby`, `decr`, `decrby` 같은 atomic counter 연산이 가능
-> incrby 는 `incrby "test_strings" 10` 같이 특정 수를 더할때 사용
+- `incrby`, `decrby` 는 특정 수를 더하거나 뺄때 사용 `incrby "test_strings" 10` 처럼 사용 
 
 ```bash
 # redis-cli
@@ -56,6 +56,7 @@ OK
 ```
 
 `rpop`를 이용하여 queue 구현이 가능할꺼 같다
+
 ```bash
 127.0.0.1:6379> rpop test_lists
 "3"
@@ -145,6 +146,7 @@ scroe를 문자형으로 쓰면 안된다
 
 
 중복이 안되면 동일한 value를 넣으면 기존 데이타의 score를 덮어서 데이타 순서가 바뀐다
+
 ```bash
 127.0.0.1:6379> zadd test_ssets "0" 2
 (integer) 0
