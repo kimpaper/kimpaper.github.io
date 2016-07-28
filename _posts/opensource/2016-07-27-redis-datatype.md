@@ -38,8 +38,7 @@ OK
 
 ### Lists
 - value에 list를 저장한다
-
-> lrange: 값을 조회 이때 -1은 모두 가져오라는 뜻
+- lrange: 값을 조회 이때 -1은 모두 가져오라는 뜻
 
 ```bash
 127.0.0.1:6379> lpush "test_lists" 1
@@ -55,7 +54,7 @@ OK
 3) "3"
 ```
 
-`rpop`를 이용하여 queue 구현이 가능할꺼 같다
+- `rpop`를 이용하여 queue 구현이 가능할꺼 같다
 
 ```bash
 127.0.0.1:6379> rpop test_lists
@@ -65,7 +64,7 @@ OK
 2) "1"
 ```
 
-`rbpop`을 이용하면 순차적인 분산 작업도 구현 가능할꺼 같다 `rpop`과 비슷하나 데이타가 없다면 데이타가 들어올때까지 `block` 상태로 대기한다 
+- `rbpop`을 이용하면 순차적인 분산 작업도 구현 가능할꺼 같다 `rpop`과 비슷하나 데이타가 없다면 데이타가 들어올때까지 `block` 상태로 대기한다 
 
 ### Sets
 - value을 set형태로 가지고 있음
@@ -102,14 +101,14 @@ OK
 4) "asdf"
 ```
 
-hget시에 값이 없다면 (nil)을 반환
+- hget시에 값이 없다면 (nil)을 반환
 
 ```bash
 127.0.0.1:6379> hget htest temp
 (nil)
 ```
 
-특정 hashkey에 대한 값을 바꿈 
+- hashkey에 대한 값을 바꿈 
 
 ```bash
 127.0.0.1:6379> hget htest userpwd
@@ -137,15 +136,14 @@ hget시에 값이 없다면 (nil)을 반환
 2) "2"
 ```
 
-scroe를 문자형으로 쓰면 안된다
+- score를 문자형으로 쓰면 안된다
 
 ```bash
 127.0.0.1:6379> zadd test_ssets "a" 2
 (error) ERR value is not a valid float
 ```
 
-
-중복이 안되면 동일한 value를 넣으면 기존 데이타의 score를 덮어서 데이타 순서가 바뀐다
+- 중복이 안되면 동일한 value를 넣으면 기존 데이타의 score를 덮어서 데이타 순서가 바뀐다
 
 ```bash
 127.0.0.1:6379> zadd test_ssets "0" 2
