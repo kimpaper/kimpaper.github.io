@@ -13,11 +13,11 @@ blogger_orig_url: http://kimpaper.blogspot.com/2015/02/parallels-8-9-commandspac
 8버전부터 11버전까지 아래 셋팅을 이용하여 사용 중입니다.
 
 #### 1. 키보드 설정에서  "이전 입력 소스 선택"이랑 "입력 메뉴에서 다음 소스 선택"을 서로 단축키를 바꿈
-![2015020501.png](/postimg/2015020501.png)
+![2015020501.png](/images/2015020501.png)
 
 
 #### 2. 페러럴즈 환경설정에서 아래 단축키를 매핑추가함 (Command+Space -> AltGr)
-![2015020502.png](/postimg/2015020502.png)
+![2015020502.png](/images/2015020502.png)
 
 
 끝. 위와 같이 했더니 저는 됬어요.
