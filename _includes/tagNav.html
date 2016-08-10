@@ -1,0 +1,18 @@
+<!-- Navigation -->
+<nav>
+    <div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div>
+            <ul>
+                <li>
+                    <a href="#">전체 ({{site.posts | size}})</a>
+                </li>
+                {% for tag in site.tags %}
+                <li><a href="/tags/#{{ tag | first | replace:'#','sharp' }}">{{ tag | first }} (<span>{{ tag | last | size }}</span>)</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>

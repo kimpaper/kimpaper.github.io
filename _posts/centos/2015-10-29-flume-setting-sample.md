@@ -62,7 +62,7 @@ agent.channels.memoryChannel.capacity = 100
 
 아래 그림을 보면 살짝 이해가 된다. (아래 그림에는 저장 대상이 하둡인데.. 나는 하둡을 이용하진 않을 것이다.)
 
-![img](/postimg/2015-10-29-flume-setting-sample-UserGuide_image00.png)
+![img](/images/2015-10-29-flume-setting-sample-UserGuide_image00.png)
 
 그림출처) https://flume.apache.org/FlumeUserGuide.html
 
