@@ -10,15 +10,10 @@ blogger_orig_url: http://kimpaper.blogspot.com/2015/02/tomcat-outofmemory.html
 ---
 
 #### catalina.sh 맨 상위에 아래를 추가해서 메모리를 크게 잡자. (주의 서버 메모리를 생각해서 적당히. )
-```bash
-export CATALINA_OPTS="-Djava.awt.headless=true -server -Xms2048m -Xmx2048m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=512m"
+```
+export CATALINA_OPTS="-Djava.awt.headless=true -server -Xms2048m -Xmx2048m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled"
 ```
 
-아래 옵션도 넣어주자
-
-```bash
--XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled
-```
 
 > 참고) http://stackoverflow.com/questions/88235/dealing-with-java-lang-outofmemoryerror-permgen-space-error
 
