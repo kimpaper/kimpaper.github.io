@@ -33,7 +33,7 @@ layout: default
                 <div>
                     <ul class="tag-box inline">
                         {% for tag in page.tags %}
-                        <li><a class="word-keep" href="{{ site.baseurl | prepend: site.url }}/tags/#{{ tag }}"><span class="octicon octicon-tag"></span>&nbsp;{{ tag }}</a></li>
+                        <li><a class="word-keep" href="{{ site.baseurl | prepend: site.url }}/tags/#{{ tag | replace:'#','sharp' | replace:'.net','dotnet' }}"><span class="octicon octicon-tag"></span>&nbsp;{{ tag }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
