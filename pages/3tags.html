@@ -10,7 +10,7 @@ header-img: "img/contact-bg.jpg"
 
 <div id="tags">
 {% for tag in site.tags %}
-<section id="{{ tag | first | replace:'#','sharp' }}">
+<section id="{{ tag | first | replace:'#','sharp' | replace:'.net','dotnet' }}">
     <h2>{{ tag | first }}</h2>
     <ul>
         {% for posts in tag  %}{% for post in posts %}{% if post.title != null %}

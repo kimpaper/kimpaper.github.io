@@ -7,6 +7,7 @@ function setTag() {
     var selectedTag = hash.substring(1);
     if(selectedTag.indexOf('#') > -1) {
         selectedTag = selectedTag.replace(/#/gi, 'sharp');
+        selectedTag = selectedTag.replace(/.net/gi, 'dotnet');
     }
     
     if(selectedTag === "") {
