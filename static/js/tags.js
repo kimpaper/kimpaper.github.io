@@ -15,7 +15,7 @@ function setTag() {
     }
     else {
         $('div#tags > section').hide();
-        $('div#tags > section#' + selectedTag).show();
+        $('div#tags > section#tag-' + selectedTag).show();
     }
     
     window.scrollTo(0, 0);
