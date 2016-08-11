@@ -15,8 +15,6 @@
                 {% else %}
                 <li><a href="/tags/#{{ tag | first | replace:'#','sharp' | replace:'.net','dotnet' }}">{{ tag | first }} (<span>{{ tag | last | size }}</span>)</a></li>
                 {% endif %}
-
-                
                 
                 {% endfor %}
                 
