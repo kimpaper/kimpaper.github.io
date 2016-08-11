@@ -8,7 +8,7 @@
                     <a href="#">전체 ({{site.posts | size}})</a>
                 </li>
                 {% for tag in site.tags %}
-                <li><a href="/tags/#{{ tag | first | replace:'#','sharp' }}">{{ tag | first }} (<span>{{ tag | last | size }}</span>)</a></li>
+                <li><a href="/tags/#{{ tag | first | replace:'#','sharp' | replace:'.net','dotnet' }}">{{ tag | first }} (<span>{{ tag | last | size }}</span>)</a></li>
                 {% endfor %}
             </ul>
         </div>
