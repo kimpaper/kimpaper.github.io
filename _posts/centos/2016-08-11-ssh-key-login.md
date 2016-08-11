@@ -21,7 +21,7 @@ ssh-keygen -t rsa -C "name"
 cat ~/.ssh/id_rsa.pub
 ```
 
-## 대상 Server
+## 대상 Server (CentOS)
 ### public key를 `~/.ssh/authorized_keys` 파일에 추가
 ```
 vi ~/.ssh/authorized_keys
