@@ -1,4 +1,4 @@
-baseURL: "https://kimpaper.github.io/kimpaper.github.io"
+baseURL: "https://kimpaper.github.io"
 title: 기록 저장소
 paginate: 10
 theme: PaperMod
