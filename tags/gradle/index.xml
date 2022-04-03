@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>gradle on 기록 저장소</title>
+    <link>https://kimpaper.github.io/kimpaper.github.io/tags/gradle/</link>
+    <description>Recent content in gradle on 기록 저장소</description>
+    <image>
+      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 14 Jul 2016 14:15:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/gradle/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>maven에서 gradle로 변환...</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2016/07/14/gradle/</link>
+      <pubDate>Thu, 14 Jul 2016 14:15:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2016/07/14/gradle/</guid>
+      <description>gradle설치 (for macOS) 1  brew install gradle   원래 수동으로 설치하는 방법이 있으나.. 나는 위와 같이 자동 설치를 좋아한다 대부분 그렇지 않을까~
+수동 설치는 사이트에서 참고하자 https://gradle.org/gradle-download/
+pom.xml -&amp;gt; build.gradle로 변환 1 2  # 프로젝트 폴더 (pom.xml이 있는곳) 으로 이동  gradle init --type pom   위와 같이 하면 project name 및 dependencies 등이 gralde용 build script로 변환이 되고 프로젝트가 gradle를 사용가능하도록 설정된다
+ intelliJ IDEA에서 기존 maven으로 구성된 프로젝트라면 module을 새로 import해야 한다 (그래야 툴에서 인식이 되는듯 하다)</description>
+    </item>
+    
+  </channel>
+</rss>

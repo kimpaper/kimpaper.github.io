@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>tomcat on 기록 저장소</title>
+    <link>https://kimpaper.github.io/kimpaper.github.io/tags/tomcat/</link>
+    <description>Recent content in tomcat on 기록 저장소</description>
+    <image>
+      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 05 Feb 2015 17:10:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/tomcat/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>tomcat 에서 OutOfMemory 자주 나오면.</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-02-06-tomcat-outofmemory/</link>
+      <pubDate>Thu, 05 Feb 2015 17:10:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-02-06-tomcat-outofmemory/</guid>
+      <description>catalina.sh 맨 상위에 아래를 추가해서 메모리를 크게 잡자. (주의 서버 메모리를 생각해서 적당히. ) 1  export CATALINA_OPTS=&amp;#34;-Djava.awt.headless=true -server -Xms2048m -Xmx2048m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled&amp;#34;    참고) http://stackoverflow.com/questions/88235/dealing-with-java-lang-outofmemoryerror-permgen-space-error
+ </description>
+    </item>
+    
+  </channel>
+</rss>

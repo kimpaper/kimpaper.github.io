@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>기록 저장소</title>
+    <link>https://kimpaper.github.io/kimpaper.github.io/</link>
+    <description>Recent content on 기록 저장소</description>
+    <image>
+      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 28 Mar 2022 16:53:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>golang profiler 사용</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/golang/2022-03-28-golang_profiler/</link>
+      <pubDate>Mon, 28 Mar 2022 16:53:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/golang/2022-03-28-golang_profiler/</guid>
+      <description>http prof 를 이용해 프로파일 한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14  import ( &amp;#34;net/http&amp;#34; _ &amp;#34;net/http/pprof&amp;#34; ) func main() { go func() { log.Println(http.ListenAndServe(&amp;#34;0.0.0.0:6060&amp;#34;, nil)) }() ... do somthing ... }   cpu profile (30초동안 데이터를 모은다) 1  go tool pprof http://xxxx:6060/debug/pprof/profile   heap memory (현재 메모리 정보를 반환한다) 1  go tool pprof http://xxxx:6060/debug/pprof/heap    heap 을 실행하면 아래와 같이 command line (pprof)가 나오는데 프로파일 명령을 넣으면 된다.</description>
+    </item>
+    
+    <item>
+      <title>kubernetes cert-manager</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2020/05/13/kubernetes-certmanager/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2020/05/13/kubernetes-certmanager/</guid>
+      <description>kubernetes 에서 ingress 상에서 https를 서비스하는데 지원을 해주는 좋은.. 모듈
+cert manager 설치 (1) 참고 https://cert-manager.io/docs/installation/kubernetes/
+1 2  kubectl create namespace cert-manager kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.13.1/cert-manager.yaml   cert manager 설치 (with helm) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  $ kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.13.1/deploy/manifests/00-crds.yaml $ kubectl create namespace cert-manager $ helm repo add jetstack https://charts.jetstack.io $ helm repo update # Helm v3+ $ helm install \  cert-manager jetstack/cert-manager \  --namespace cert-manager \  --version v0.</description>
+    </item>
+    
+    <item>
+      <title>kubernetes glusterfs 연동</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/kube/2020-05-13-kubernetes-glusterfs/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/kube/2020-05-13-kubernetes-glusterfs/</guid>
+      <description>glusterfs-kubernetes 설치 시도 중 gluster-kubernetes/deploy/gk-deploy 파일을 열어서 아래 라인을 고쳐야 한다 (kubectl에 없어진 인자값을 쓴다)
+1 2 3  # deprecated &amp;#34;--show-all&amp;#34; parameter #heketi_pod=$(${CLI} get pod --no-headers --show-all --selector=&amp;#34;heketi&amp;#34; | awk &amp;#39;{print $1}&amp;#39;) heketi_pod=$(${CLI} get pod --no-headers --selector=&amp;#34;heketi&amp;#34; | awk &amp;#39;{print $1}&amp;#39;)   1 2 3 4 5 6 7 8 9  # daemonset을 설치하기 위해 # 노드별로 아래 경로를 비워야함 rm -rf /var/lib/misc/glusterfsd /var/lib/glusterd /var/log/glusterfs /etc/glusterfs /var/lib/heketi #uninstall .</description>
+    </item>
+    
+    <item>
+      <title>kubernetes ingress - 특정 url로 proxy 걸기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2020/05/13/kubernetes-ingress-urlproxy/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2020/05/13/kubernetes-ingress-urlproxy/</guid>
+      <description>외부로 ingress를 노출하고 처리하는 서버가 kubernetes 내에 service가 아니라 다른 별도의 서버일 경우에 아래와 같이 proxy_pass를 지정한다. (사실 응용하면 nginx 기능들이 지원하는건 다 될것 같다.)  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  kind: Ingress apiVersion: extensions/v1beta1 metadata: name: gitlab.test.com namespace: nginx-ingress annotations: kubernetes.io/ingress.class: nginx nginx.ingress.kubernetes.io/proxy-connect-timeout: &amp;#39;3600&amp;#39; nginx.</description>
+    </item>
+    
+    <item>
+      <title>ssh key를 이용한 로그인</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2016-08-11-ssh-key-login/</link>
+      <pubDate>Thu, 11 Aug 2016 16:07:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2016-08-11-ssh-key-login/</guid>
+      <description>macOS 에서 ssh key를 지정하여 서버로 비밀번호 타이핑 없이 바로 로그인 하게 하자
+평소엔 보안때문에 안해놓는다.
+macOS - 키 생성 1  ssh-keygen -t rsa -C &amp;#34;name&amp;#34;   - public key를 조회 1  cat ~/.ssh/id_rsa.pub   대상 Server (CentOS) - public key를 ~/.ssh/authorized_keys 파일에 추가 1  vi ~/.ssh/authorized_keys   </description>
+    </item>
+    
+    <item>
+      <title>redis data type 종류</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2016/07/27/redis-datatype/</link>
+      <pubDate>Wed, 27 Jul 2016 14:32:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2016/07/27/redis-datatype/</guid>
+      <description>Redis Data Type 요약 인터넷상에 수많은 좋은 자료가 있음에도 공부 차원에서 정리를 한다
+테스트는 redis-cli를 이용해서 하지만 실제 사용은 언어에 맞는 api library를 사용 할듯
+개요 http://redis.io/topics/data-types-intro
+예제 http://redis.io/topics/data-types
+Strings  value에 문자 숫자 등을 저장한다 저장시 별도로 형이 없다 (숫자 문자 구분이 없음) 숫자도 저장가능 하다 그리고 숫자에 incr, incrby, decr, decrby 같은 atomic counter 연산이 가능 incrby, decrby 는 특정 수를 더하거나 뺄때 사용 incrby &amp;quot;test_strings&amp;quot; 10 처럼 사용  1 2 3 4 5 6 7 8 9 10  # redis-cli 127.</description>
+    </item>
+    
+    <item>
+      <title>maven에서 gradle로 변환...</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2016/07/14/gradle/</link>
+      <pubDate>Thu, 14 Jul 2016 14:15:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2016/07/14/gradle/</guid>
+      <description>gradle설치 (for macOS) 1  brew install gradle   원래 수동으로 설치하는 방법이 있으나.. 나는 위와 같이 자동 설치를 좋아한다 대부분 그렇지 않을까~
+수동 설치는 사이트에서 참고하자 https://gradle.org/gradle-download/
+pom.xml -&amp;gt; build.gradle로 변환 1 2  # 프로젝트 폴더 (pom.xml이 있는곳) 으로 이동  gradle init --type pom   위와 같이 하면 project name 및 dependencies 등이 gralde용 build script로 변환이 되고 프로젝트가 gradle를 사용가능하도록 설정된다
+ intelliJ IDEA에서 기존 maven으로 구성된 프로젝트라면 module을 새로 import해야 한다 (그래야 툴에서 인식이 되는듯 하다)</description>
+    </item>
+    
+    <item>
+      <title>fluentd로 로그를 모으기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2016-06-21-fluentd/</link>
+      <pubDate>Wed, 22 Jun 2016 15:47:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2016-06-21-fluentd/</guid>
+      <description>예전에 flume로 에러 로그들을 모으고 있었는데 fluentd로 갈아타려고 한다. 사실 모으는 목적이 아니라 모니터링이 목적
+설치 아래 사이트에 나오는 command만 실행해주면 chkconfig 등록까지 다 해준다. 참고 공식 사이트
+http://docs.fluentd.org/articles/install-by-rpm#step-0-before-installation
+구성은 flume와 비슷한것 같다
+client -&amp;gt; server 구성으로 해놓고 client에서 수집된 로그를 server로 전달.
+아래 커맨드 실행 1  curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh   서비스 구동 1  service td-agent start    당연히 service td-agent stop 가 중지다</description>
+    </item>
+    
+    <item>
+      <title>restful api 서버에서 평균 응답시간, 호출횟수, Min, Max 구하기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2016/06/08/apachelog/</link>
+      <pubDate>Wed, 08 Jun 2016 15:32:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2016/06/08/apachelog/</guid>
+      <description>app에서 데이타 통신을하는 api서버가 있다
+각 인터페이스별 평균 응답시간을 아파치 로그를 활용하여 구해봤다
+ 서버는 apache+tomcat, spring으로 구현한 서버이다
+ hadoop과 spark, python 설정은
+Python and Spark로 로그 파일 분석 (with hadoop) 을 참고 하자
+1. 아파치 TransferLog 로그파일에 응답 시간 남기기 우선 분석하기 전에 아파치 로그에 응답 시간을 추가로 기록하도록 하자
+/etc/httpd/conf.d/ssl.conf 경로에서 아래를 편집했다.
+물론. 설정 파일이 있는 경로와 이름은 서버마다 틀릴 수 있다
+1 2 3 4 5 6  &amp;lt;VirtualHost _default_:443&amp;gt; .</description>
+    </item>
+    
+    <item>
+      <title>Python and Spark로 로그 파일 분석 (with hadoop)</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2016-05-30-spark-hadoop/</link>
+      <pubDate>Mon, 30 May 2016 16:35:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2016-05-30-spark-hadoop/</guid>
+      <description>Spark를 이용한 파일 분석  spark도 잘 모르고 hadoop도 잘 모르는 상태에서 진행해서 틀린 부분이 있을 것이다.
+참고로 OSX에서 진행된 작업이다.
+ 설정 1. Hadoop를 설치 하고 실행한다 2. hdfs상에 파일을 올린다. 1 2  cd /logs hdfs dfs -put test.log /input/   아래와 같이 파일 브라우징이 가능하다 아래에서 올라간 파일을 확인! http://localhost:50070/explorer.html#/input
+3. spark의 python 커맨드 테스트.. $SPARK_HOME/bin/pyspark 하둡을 켜고 pyspark를 실행하면 아래와 같이 나온다
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  Python 2.</description>
+    </item>
+    
+    <item>
+      <title>AWS EC2서버에 패스워드로 로그인 하기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2016/04/08/amazon-ec2-root-pwd/</link>
+      <pubDate>Fri, 08 Apr 2016 11:33:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2016/04/08/amazon-ec2-root-pwd/</guid>
+      <description>AWS ec2 서버에는 password로 ssh접근이 안되도록 되어 있다. 아래 파일을 수정하여 접근이 되도록 해보자.
+centos 6.5에서 작업한 것이다
+1 2  # 루트계정에 패스워드 지정 passwd root   1 2 3 4 5 6 7 8  sudo vi /etc/ssh/sshd_config # 아래 두개 옵션을 yes로 하고 저장후 닫기  PermitRootLogin yes PasswordAuthentication yes # sshd 재시작  service sshd restart   </description>
+    </item>
+    
+    <item>
+      <title>git에서 rebase와 merge</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2016-03-24-git-rebase-merge/</link>
+      <pubDate>Thu, 24 Mar 2016 16:36:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2016-03-24-git-rebase-merge/</guid>
+      <description>요즘엔 git을 많이 이용하는데 항상 rebase와 merge에 대해서 헷갈리곤 했다.
+잘 모를때 rebase로 하다가 소스를 날려먹은 후로는.. merge만 써왔다
+최근에 몇군데 찾아봤는데 rebase 는 branch의 base를 재배치 한다는 의미라고 한다. gitflow를 쓰면서 feature를 새로 만들어서 작업을 하다 그동안 쌓인 develop를 rebase를 해봤는데. feature에서 작업하던 도중 쌓인 develop의 commit들이 local feature밑으로 들어가지는걸 확인했다.
+히스토리가 꼬이지 않아 좋지만 한가지 문제는 feature를 서버로 push한 상태라면.. feature브런치가 두개가 생겨버린다 물론 로컬이 최신이므로 remote/origin을 feature를 삭제하고 신규로 push하면 해결되는것 같다.</description>
+    </item>
+    
+    <item>
+      <title>git local commit revert 시키기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2016-02-25-git-revert-local-commit/</link>
+      <pubDate>Thu, 25 Feb 2016 14:35:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2016-02-25-git-revert-local-commit/</guid>
+      <description>아래와 같이 복구 대상 저장소를 지정한다 (현재 checkout이 develop인 경우)
+1  git reset --hard remotes/origin/develop   저장소를 지정하지 않으면 현재 checkout된 remote를 기준으로 revert하는것 같다
+1  git reset --hard   </description>
+    </item>
+    
+    <item>
+      <title>Python으로 간단한 webserver 체크</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/python/2016-02-17-python-http-request/</link>
+      <pubDate>Wed, 17 Feb 2016 11:41:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/python/2016-02-17-python-http-request/</guid>
+      <description>요즘 파이썬 공부중인데 연습겸 10초마다 webserver가 죽었는지 체크하는 간단한 프로그램을 만들어 봤다.
+아래코드에는 아래 나열된 사항들에 대한 코딩이 적용되어 있다
+ http request thread(timer 대응) logging사용법 try-except 예외처리 raise throw json parsing 및 데이타 읽기 방법 string 처리  ServerCheck.py 파일 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65  import threading import urllib.</description>
+    </item>
+    
+    <item>
+      <title>CentOS 6에서 Python3 설치 하기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/python/2016-02-12-install-python3/</link>
+      <pubDate>Fri, 12 Feb 2016 16:53:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/python/2016-02-12-install-python3/</guid>
+      <description>centos 6에 3.5.1 버전을 설치 하는 command line 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  yum install zlib-devel -y yum install openssl openssl-devel -y wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz xz -d Python-3.5.1.tar.xz # 혹시 xz가 없다면 yum install xz 로 설치 하라. tar -xvf Python-3.5.1.tar cd Python-3.5.1 ./configure --prefix=/usr/local --enable-shared LDFLAGS=&amp;#34;-Wl,-rpath /usr/local/lib&amp;#34; make &amp;amp;&amp;amp; make altinstall # pip설치  curl -k -O https://bootstrap.pypa.io/get-pip.py python3.</description>
+    </item>
+    
+    <item>
+      <title>맥에서 Unity3D 기본 에디터로 VisualStudio Code 사용하기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2015-12-18-unity-with-visualstudio-code/</link>
+      <pubDate>Fri, 18 Dec 2015 15:39:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2015-12-18-unity-with-visualstudio-code/</guid>
+      <description>맥용 Unity로 개발할때 보통 MonoDevelopr를 이용하여 코딩 한다 그런데 한글을 지원안해서. 아주 불편했는데.
+MS에서 얼마전에 공개한 mac용 VisualStudio Code에서 유니티를 지원한다고 해서 한번 설정해봤다.
+설치   우선 VS code를 설치 한다 https://code.visualstudio.com/
+  커맨드+P를 누르고. ext install Omnisharp 추가 기능으로 설치 한다 안해도 되는거 같기도&amp;hellip;
+  맥의 터미널 상에 brew install mono 로 mono를 설치한다 오래걸린다
+  이후로는 아래 사이트를 따라 하면 된다 https://code.visualstudio.com/docs/runtimes/unity
+  git clone https://github.</description>
+    </item>
+    
+    <item>
+      <title>Mariadb Query test할때 cache 안먹게 하기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2015-12-15-mysql-cache-reset/</link>
+      <pubDate>Tue, 15 Dec 2015 14:55:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2015-12-15-mysql-cache-reset/</guid>
+      <description>쿼리 튜닝할때 아래를 실행하고 하면 cache 안된 결과를 볼 수 있다.
+1  RESETQUERYCACHE;  </description>
+    </item>
+    
+    <item>
+      <title>spring jpa namedQuery 직접 호출하기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-11-13-spring-jpa-createnamedquery/</link>
+      <pubDate>Fri, 13 Nov 2015 17:57:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-11-13-spring-jpa-createnamedquery/</guid>
+      <description>Test.java에서 처럼 EntityManager를 이용하여 orm.xml에 정의한 NamedQuery를 바로 실행 할 수 있다..
+ repository를 이용하여 호출하면 getResultList로만 실행되는 것 같다. update 반영된 Row수를 알기 위해 아래와 같이 호출 했다.
+ Test.java 1 2 3 4 5 6  @PersistenceContext private EntityManager em; public void test() { int cnt = em.createNamedQuery(&amp;#34;Order.clearOrder&amp;#34;).executeUpdate(); logger.info(&amp;#34;Order.clearOrder updated={}&amp;#34;, cnt); }    @PersistenceContext private EntityManager em; 에서..
+@PersistenceContext @Autowired 둘다 작동 하는것 같다. 차이는 아직 잘 모르겠다.</description>
+    </item>
+    
+    <item>
+      <title>spring redis 연동 </title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-11-11-spring-redis/</link>
+      <pubDate>Tue, 10 Nov 2015 17:36:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-11-11-spring-redis/</guid>
+      <description>pom.xml 에 아래 추가. 1 2 3 4 5 6 7 8 9 10  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-data-redis&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.1.0.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;redis.clients&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;jedis&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;    버전을 잘 맞춰야 한다. 안그러면 몇몇 class가 없어서 오류가 발생해요.
+ context-redis.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;beans xmlns=&amp;#34;http://www.springframework.org/schema/beans&amp;#34; xmlns:p=&amp;#34;http://www.springframework.org/schema/p&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xsi:schemaLocation=&amp;#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd&amp;#34;&amp;gt; &amp;lt;bean id=&amp;#34;jedisConnFactory&amp;#34; class=&amp;#34;org.</description>
+    </item>
+    
+    <item>
+      <title>Flume의 기본 로그를 log4j에서 logback으로 변경</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-10-30-flume-logback-sink/</link>
+      <pubDate>Fri, 30 Oct 2015 18:13:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-10-30-flume-logback-sink/</guid>
+      <description>flume에 logback로 로그 파일 쓰기 flume에 logback 설치 방법  (http://logback.qos.ch/download.html) 에서 logback 다운로드 한다 . (현재 v1.1.3) 압축을 풀고. logback-classic-1.1.3.jar, logback-core-1.1.3.jar 를 $FLUME_HOME/lib에 복사해 넣는다. 기존 log4j는 ./lib/slf4j-log4j12-1.6.1.jar를 ./lib/slf4j-log4j12-1.6.1.jar.back로 이름을 바꾼다. log4j를 지우는 것은 선택사항이다 (놔두면 둘다 기록 한다) logback.xml 파일을 수정해서 $FLUME_HOME/conf/logback.xml에 넣는다.  logback.xml 샘플 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66  &amp;lt;?</description>
+    </item>
+    
+    <item>
+      <title>logback에서 시간 &#43; 용량 기준으로 로그파일 분할하기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2015/10/30/logback-config/</link>
+      <pubDate>Fri, 30 Oct 2015 11:18:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2015/10/30/logback-config/</guid>
+      <description>logback을 이용하는 경우 오늘이 지나거나 용량이 100메가를 넘어가면 파일이 분리된다.
+logback.xml 에 아래 appender 추가 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  &amp;lt;appender name=&amp;#34;debug&amp;#34; class=&amp;#34;ch.qos.logback.core.rolling.RollingFileAppender&amp;#34;&amp;gt; &amp;lt;filter class=&amp;#34;ch.qos.logback.classic.filter.ThresholdFilter&amp;#34;&amp;gt; &amp;lt;level&amp;gt;DEBUG&amp;lt;/level&amp;gt; &amp;lt;/filter&amp;gt; &amp;lt;prudent&amp;gt;false&amp;lt;/prudent&amp;gt; &amp;lt;file&amp;gt;/logs/debug.log&amp;lt;/file&amp;gt; &amp;lt;rollingPolicy class=&amp;#34;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&amp;#34;&amp;gt; &amp;lt;fileNamePattern&amp;gt;/logs/old/debug.%d{yyyy-MM-dd}.%i.log&amp;lt;/fileNamePattern&amp;gt; &amp;lt;timeBasedFileNamingAndTriggeringPolicy class=&amp;#34;ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP&amp;#34;&amp;gt; &amp;lt;maxFileSize&amp;gt;100mb&amp;lt;/maxFileSize&amp;gt; &amp;lt;/timeBasedFileNamingAndTriggeringPolicy&amp;gt; &amp;lt;maxHistory&amp;gt;30&amp;lt;/maxHistory&amp;gt; &amp;lt;/rollingPolicy&amp;gt; &amp;lt;encoder&amp;gt; &amp;lt;pattern&amp;gt;[%-5level] %d{HH:mm:ss.SSS} %logger{36} - %msg%n&amp;lt;/pattern&amp;gt; &amp;lt;/encoder&amp;gt; &amp;lt;/appender&amp;gt;    &amp;lt;maxFileSize /&amp;gt; 는 분할할 용량이다 (kb, gb도 된다) &amp;lt;maxHistory /&amp;gt; 30일 지난 로그는 오래된 순서대로 지워준다.</description>
+    </item>
+    
+    <item>
+      <title>Flume 설치 및 테스트 (mac)</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-10-29-flume-setting-sample/</link>
+      <pubDate>Thu, 29 Oct 2015 15:51:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-10-29-flume-setting-sample/</guid>
+      <description>Flume 란?  여러대(여러서비스..)에 기록되는 로그파일들을 실시간으로 한곳으로 모아주는 서비스  설치  http://flume.apache.org/download.html 에서 다운로드 한다. 적절한 곳에 압축을 풀어 준다 ~/dev/tool/flume JAVA_HOME이 지정되 있지 않으면. ~/.bash_profile 을 열어 환경 변수를 설정해 준다.  1  export JAVA_HOME = /usr (자바 경로.)    설치 및 테스트는 mac에서 했지만. centos에서도 잘되리라 믿는다.
+ 기본 flume.conf 파일 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  # The configuration file needs to define the sources, # the channels and the sinks.</description>
+    </item>
+    
+    <item>
+      <title>spring &#43; sitemesh 웹사이트 구축</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2015/10/28/spring-sitemesh-setting/</link>
+      <pubDate>Wed, 28 Oct 2015 17:08:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2015/10/28/spring-sitemesh-setting/</guid>
+      <description>sitemesh를 설정을 해보겠습니다.
+pom.xml 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;opensymphony&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;sitemesh&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.4.2&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   WEB-INF/web.xml 에 아래 추가. 1 2 3 4 5 6 7 8  &amp;lt;filter&amp;gt; &amp;lt;filter-name&amp;gt;sitemesh&amp;lt;/filter-name&amp;gt; &amp;lt;filter-class&amp;gt;com.opensymphony.module.sitemesh.filter.PageFilter&amp;lt;/filter-class&amp;gt; &amp;lt;/filter&amp;gt; &amp;lt;filter-mapping&amp;gt; &amp;lt;filter-name&amp;gt;sitemesh&amp;lt;/filter-name&amp;gt; &amp;lt;url-pattern&amp;gt;/*&amp;lt;/url-pattern&amp;gt; &amp;lt;/filter-mapping&amp;gt;   WEB-INF/sitemesh.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  &amp;lt;?</description>
+    </item>
+    
+    <item>
+      <title>spring jpa 저장</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2015/10/21/jpa-save/</link>
+      <pubDate>Wed, 21 Oct 2015 16:20:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2015/10/21/jpa-save/</guid>
+      <description>jpa에서는 저장시 repository.save 함수를 이용하여 저장합니다
+Member class처럼 @OneToMany나 @ManyToOne 필드들을 함께 저장 할 수 있습니다.
+Member.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  @Entity @Table(name = &amp;#34;tb_member&amp;#34;) public class Member { @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = &amp;#34;member_seq&amp;#34;) public Integer memberSeq; @Column public String nickname; @Expose @OneToMany( targetEntity = MemberInter.class , cascade = CascadeType.ALL , fetch = FetchType.</description>
+    </item>
+    
+    <item>
+      <title>c# 에서 c&#43;&#43;(dll)로 LPCTSTR parameter 넘겨 호출 하기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2015/10/15/csharp-lpcstr-parameter-call/</link>
+      <pubDate>Thu, 15 Oct 2015 12:13:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2015/10/15/csharp-lpcstr-parameter-call/</guid>
+      <description>c++ 로 된 dll을 c#에서 호출할때 예제입니다.
+먼저 c++ 코드들을 간단히 짰습니다. test.h 1  extern &amp;#34;C&amp;#34; __declspec(dllexport) int test(LPCTSTR szFileName);   test.cpp 1 2 3  int test(LPCTSTR szFileName) { return 0; }   다음은 c#쪽 코드들입니다 1 2 3 4 5 6 7 8 9  [DllImport(&amp;#34;sampleLib.dll&amp;#34;, CallingConvention = CallingConvention.Cdecl)] private static extern int test( [MarshalAs(UnmanagedType.LPWStr)] string szFileName); private void button2_Click(object sender, EventArgs e) { string szFileName = @&amp;#34;c:\filename.</description>
+    </item>
+    
+    <item>
+      <title>WPF(c#)에서 control을 png로 저장</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/dotnet/2015-10-16-wpf-control-save-to-png/</link>
+      <pubDate>Thu, 15 Oct 2015 12:13:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/dotnet/2015-10-16-wpf-control-save-to-png/</guid>
+      <description>예전에 했던 대로 System.Drawing 을 써서 하려고 했는데.. wpf에 이런 기능이 있었네..
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  // uiPage.ren public void DoPageToPng(string fileName) { RenderTargetBitmap rtb = new RenderTargetBitmap((int)uiPage.ActualWidth, (int)uiPage.ActualHeight, 96, 96, PixelFormats.Pbgra32); rtb.Render(uiPage); PngBitmapEncoder png2 = new PngBitmapEncoder(); png2.Frames.Add(BitmapFrame.Create(rtb)); using (MemoryStream stream = new MemoryStream()) { png2.Save(stream); using (System.Drawing.Image image = System.Drawing.Image.FromStream(stream)) { image.Save(fileName); } } }   </description>
+    </item>
+    
+    <item>
+      <title>spring jpa의 @NamedQuery, @NamedNativeQuery 연습</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</link>
+      <pubDate>Thu, 08 Oct 2015 01:32:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</guid>
+      <description>jpa에서.. repository를 이용하여 findAll이나.. findOneBy&amp;hellip;. 시리즈를 써서 데이타를 조회 할수 있지만 아래와 같이 특정 쿼리를 직접 입력하여 이용도 가능합니다.
+/classes/META-INF/orm.xml 1 2 3 4 5 6 7 8 9 10 11 12 13  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;entity-mappings xmlns=&amp;#34;http://java.sun.com/xml/ns/persistence/orm&amp;#34; version=&amp;#34;2.0&amp;#34;&amp;gt; &amp;lt;named-query name=&amp;#34;Inter.findByAlal2&amp;#34;&amp;gt; &amp;lt;query&amp;gt;select i from Inter i where i.internameko = ?1&amp;lt;/query&amp;gt; &amp;lt;/named-query&amp;gt; &amp;lt;named-native-query name=&amp;#34;Inter.findByAlal&amp;#34; result-class=&amp;#34;sample.jpa.Inter&amp;#34;&amp;gt; &amp;lt;query&amp;gt;select a.inter_seq, a.inter_name_ko, a.inter_name_en from tb_inter a where a.inter_name_ko = ?&amp;lt;/query&amp;gt; &amp;lt;/named-native-query&amp;gt; &amp;lt;/entity-mappings&amp;gt;   또는.</description>
+    </item>
+    
+    <item>
+      <title>spring jpa 조회 연습 </title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa/</link>
+      <pubDate>Wed, 07 Oct 2015 18:04:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa/</guid>
+      <description>entity 작업에 조회까지.. 테스트 해봤습니다.
+ 테이블의 관계가 아래와 같을때 상황  1  tb_member -&amp;lt; tb_member_inter &amp;gt;- tb_inter   조회 조건
+ Member를 가져오면.. member의 이미지들과&amp;hellip; inter의 목록을 함께 가져오도록 inter의 상세 정보는 tb_inter에 있음 (가져올때 조인해서..)  아래 class들 간략 설명
+ MemberInter의 PK가 두개이므로. 위와 같이 클래스를 하나 만들어서 @IdClass를 지정해야 함 @Expose 는 Gson관련하여 화면에 뿌릴 필드를 정하는 옵션입니다. jpa와는 무관합니다. MemberInter.class에서 많이 헷갈렸습니다. (@ManyToOne)  @JoinColumn을 추가로.</description>
+    </item>
+    
+    <item>
+      <title>spring jpa 설정 및 테스트 (maven 설정)</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2015/10/05/spring-jpa-maven/</link>
+      <pubDate>Mon, 05 Oct 2015 00:41:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2015/10/05/spring-jpa-maven/</guid>
+      <description>거의 대부분 mybatis 를 이용하여 개발을 하는데..
+JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.
+1. 라이브러리 import&amp;hellip;. maven pom.xml 1 2 3 4 5 6 7 8 9 10  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-data-jpa&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.9.0.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.hibernate&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;hibernate-entitymanager&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;4.3.8.Final&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   2. Entity class를 만들어 줍니다. 참고로 SerializedName, Expose는 jpa와 직접 관련은 없습니다.. (개체를 그대로 JsonView 할때 사용)
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72  import com.</description>
+    </item>
+    
+    <item>
+      <title>redis 3.2.3 설치</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</link>
+      <pubDate>Sun, 20 Sep 2015 21:47:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</guid>
+      <description>컴파일러를 먼저 설치해야 합니다. (설치돼 있다면 패스) 1  yum install gcc gcc-c++ autoconf automake   참고) http://www.redis.io/download
+설치 1 2 3 4 5 6 7  # 다운로드 및 설치 (컴파일) wget http://download.redis.io/releases/redis-3.2.3.tar.gz tar xzf redis-3.2.3.tar.gz cd redis-3.2.3 make &amp;amp;&amp;amp; make install cd utils ./install_server.sh   실행로그 확인 1  tail -f /var/log/redis_6379.log -n 1000   로그에서 Warning 없애기  vi /etc/sysctl.conf 파일에 아래 추가  1 2  vm.</description>
+    </item>
+    
+    <item>
+      <title>.NET Framework 4.5.2로 개발했다가. 4.0로... 내림 </title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/dotnet/2015-09-17-net-framework-452-40/</link>
+      <pubDate>Wed, 16 Sep 2015 20:21:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/dotnet/2015-09-17-net-framework-452-40/</guid>
+      <description>최근에 윈도우 어플을 개발할 일이 생겼다.
+.NET 4.5부터 async 문법이 새로 들어갔다 해서.. 이왕 하는거 4.5.2로&amp;hellip; 만들기로 했다. 오&amp;hellip;&amp;hellip; 엄청나게 편리하다.!!
+async, await 두개가 중요하다. 특히 UI프로그램에서 background thread와 main thread와의 동기화를 쉽게 지원한다.
+아래는 id/pwd를 입력받아서 서버통신으로 인증을 진행하는 코드다.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27  private async void btnLogin_Click(object sender, RoutedEventArgs e) { string id = tbEmail.</description>
+    </item>
+    
+    <item>
+      <title>디지탈오션에 서버 셋팅기 (centos 6.7)</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-09-16-centos-67/</link>
+      <pubDate>Tue, 15 Sep 2015 20:40:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-09-16-centos-67/</guid>
+      <description>친구랑 개발하는 간단한 쪽지앱의 서버로 사용할 서버를 구축했다. 물론 나는 잘 모른다 모든건 다 구글을 통해..
+1. SWAP 메모리 할당  https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-centos-6
+ 1 2 3 4 5  dd if=/dev/zero of=/swapfile bs=1024 count=2048k mkswap /swapfile swapon /swapfile chown root:root /swapfile chmod 0600 /swapfile   아래 내용을 /etc/fstab 에 붙인다.
+1  /swapfile swap swap defaults 0 0   2. 서버 시간을 KST 로 바꿈 &amp;amp; rdate 설치 1 2  ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime yum install rdate   3.</description>
+    </item>
+    
+    <item>
+      <title>spring batch 사용 </title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-08-28-spring-batch/</link>
+      <pubDate>Thu, 27 Aug 2015 22:44:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-08-28-spring-batch/</guid>
+      <description>최근에 spring-batch를 사용해 봤는데.. 결과는 성공적 특히 트랜잭션commit size와 read size를 따로 지정할 수 있다는게 좋은것 같다.
+쿼리나 기타 로직보다 아래 설정이 중요한 듯 하여 아래 설정을 기록으로 남긴다.
+job에 대해서 요약하면
+reader에서 데이타를 읽어서 process 에서 처리 하고 writer로 결과를 기록 한다.
+물론 위 설정 외에 각 시작 구간마다 이벤트를 받아 처리 할 수 있는 listener 같은 것도 제공한다.
+reader, writer는 커스텀 하지 않고 mybatis에서 기본으로 제공하는 걸 이용했다.</description>
+    </item>
+    
+    <item>
+      <title>jfreeChart에서 한글 폰트 사용 (centos 폰트 설정)</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-07-02-jfreechart-centos/</link>
+      <pubDate>Wed, 01 Jul 2015 20:33:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-07-02-jfreechart-centos/</guid>
+      <description>jfreeChart를 사용하는 중인데 tomcat위에서 돌리면 한글이 ㅁㅁㅁ 과 같이 나온다.
+/usr/share/fonts 폴더에 폰트파일을 넣고 fc-cache -fv 를 해주자!!
+1 2 3 4 5 6 7 8  // 코드 상에 아래와 같이 폰트를 지정한다. private static final Font _BASE_FONT = new Font(&amp;#34;나눔고딕&amp;#34;,Font.PLAIN,11); ... 중략 &amp;#39;&amp;#39;&amp;#39; // setFont를 적절하게 코드 내에 사용한다. lineAndShapeRenderer.setLegendTextFont(i, _BASE_FONT); ...   tomcat 재시작은 필요 없다.</description>
+    </item>
+    
+    <item>
+      <title>OSX 10.10.3 homebrew 설치하기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/mac/2015-06-04-osx-10103-homebrew/</link>
+      <pubDate>Thu, 04 Jun 2015 01:05:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/mac/2015-06-04-osx-10103-homebrew/</guid>
+      <description>터미널 열고
+1  ruby -e &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;#34;   1 2  gimjonghuiui-MacBook-Pro:bin paper$ brew -v Homebrew 0.9.5   출처: http://coolestguidesontheplanet.com/installing-homebrew-os-x-yosemite-10-10-package-manager-unix-apps/</description>
+    </item>
+    
+    <item>
+      <title>하둡 스프링 연동 테스트2 - hadoop 2.6.x with spring 4.0 (MapReduce WordCount example)</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</link>
+      <pubDate>Wed, 15 Apr 2015 00:39:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</guid>
+      <description>context-hadoop.xml에 아래 내용 추가. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  &amp;lt;hdp:configuration id=&amp;#34;hdConf&amp;#34;&amp;gt; fs.default.name=hdfs://localhost:9000 &amp;lt;/hdp:configuration&amp;gt; &amp;lt;hdp:job id=&amp;#34;wordCountJob&amp;#34; input-path=&amp;#34;/input/&amp;#34; output-path=&amp;#34;/output/&amp;#34; configuration-ref=&amp;#34;hdConf&amp;#34; mapper=&amp;#34;delim.app.service.WordCount$TokenizerMapper&amp;#34; reducer=&amp;#34;delim.app.service.WordCount$IntSumReducer&amp;#34; &amp;gt; &amp;lt;/hdp:job&amp;gt; &amp;lt;hdp:job-runner id=&amp;#34;wordCountJobRunner&amp;#34; job-ref=&amp;#34;wordCountJob&amp;#34; run-at-startup=&amp;#34;false&amp;#34;&amp;gt; &amp;lt;/hdp:job-runner&amp;gt;   WordCount.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49  import org.</description>
+    </item>
+    
+    <item>
+      <title>하둡 스프링 연동 테스트 - hadoop 2.6.x with spring 4.0</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2015/04/12/hadoop-26x-with-spring-40/</link>
+      <pubDate>Sun, 12 Apr 2015 19:46:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2015/04/12/hadoop-26x-with-spring-40/</guid>
+      <description>Hadoop 설치 및 설정은 아래와 같이 (osx 요세미티.) https://hadoop.apache.org/releases.html#Download ( 2.6.x 버전 )
+설치는 아래 블로그 보고 함 http://iamhereweare.blogspot.kr/2014/05/hadoop.html
+pom.xml 에 아래 dependency 추가. 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp;lt;groupid&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactid&amp;gt;spring-data-hadoop&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.1.1.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   context-hadoop.xml spring 설정에 파일 추가 1 2 3 4 5 6 7 8 9 10 11  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;beans xmlns=&amp;#34;http://www.springframework.org/schema/beans&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xmlns:hdp=&amp;#34;http://www.springframework.org/schema/hadoop&amp;#34; xsi:schemaLocation=&amp;#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/hadoop http://www.springframework.org/schema/hadoop/spring-hadoop.xsd&amp;#34;&amp;gt; &amp;lt;hdp:configuration id=&amp;#34;hdConf&amp;#34;&amp;gt; fs.default.name=hdfs://localhost:9000 &amp;lt;/hdp:configuration&amp;gt; &amp;lt;/beans&amp;gt;   아래와 같이 test코드 작성.</description>
+    </item>
+    
+    <item>
+      <title>아파치에서 403 오류 나올때.</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-03-27-403/</link>
+      <pubDate>Fri, 27 Mar 2015 01:47:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-03-27-403/</guid>
+      <description>이것저것 했는데 403이 계속 나오면..
+1  chcon -R --reference=/var/www /www/webroot   또는
+1  chcon -R -h -t httpd_sys_content_t /www/webroot   </description>
+    </item>
+    
+    <item>
+      <title>spring junit testcase 작성</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-03-25-spring-junit-testcase/</link>
+      <pubDate>Tue, 24 Mar 2015 22:42:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-03-25-spring-junit-testcase/</guid>
+      <description>pom.xml에 아래 추가. 1 2 3 4 5 6  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-test&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;4.0.5.RELEASE&amp;lt;/version&amp;gt; &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt; &amp;lt;/dependency&amp;gt;   test java코드 MemberServiceTest.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  @RunWith(SpringJUnit4ClassRunner.class) @ContextConfiguration( { &amp;#34;classpath:servlet-context.xml&amp;#34;, &amp;#34;classpath:config/context-datasource.xml&amp;#34; } ) public class MemberServiceTest { @Autowired MemberService memberService; @Test public void testSr2002() throws Exception { RequestData req = new RequestData(null, new DbMap()); ResponseData res = new ResponseData(new DbMap()); memberService.</description>
+    </item>
+    
+    <item>
+      <title>spring-rabbitmq 연동 </title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-03-11-spring-rabbitmq/</link>
+      <pubDate>Tue, 10 Mar 2015 18:55:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-03-11-spring-rabbitmq/</guid>
+      <description>설치는 그냥 rpm 으로 설치 1 2 3 4 5  # 서버 시작. sbin/rabbitmq-server start # 서버 중지 sbin/rabbitmqctl stop   spring-rabbit 연동 pom.xml 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp;lt;groupid&amp;gt;org.springframework.amqp&amp;lt;/groupId&amp;gt; &amp;lt;artifactid&amp;gt;spring-rabbit&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.4.1.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   context-rabbitmq.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  &amp;lt;!-- A reference to the org.springframework.amqp.rabbit.connection.ConnectionFactory --&amp;gt; &amp;lt;rabbit:connection-factory id=&amp;#34;connectionFactory&amp;#34; host=&amp;#34;localhost&amp;#34; username=&amp;#34;worker&amp;#34; password=&amp;#34;workerpassword&amp;#34; /&amp;gt; &amp;lt;!-- Creates a org.</description>
+    </item>
+    
+    <item>
+      <title>git 관련 명령어 모음</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-03-05-git/</link>
+      <pubDate>Wed, 04 Mar 2015 17:33:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-03-05-git/</guid>
+      <description>svn to git 마이그레이션 1 2  git svn clone --stdlayout --no-metadata -A users.txt svn://example.com/repository/projectname cd projectname    아래 users.txt 만드는건데 perl 이 없어서 그런지.. 안되네요&amp;hellip; ㅠ
+svn log ^/ --xml | grep -P &amp;quot;^&amp;lt;author&amp;quot; | sort -u | \ perl -pe &#39;s/&amp;lt;author&amp;gt;(.*?)&amp;lt;\/author&amp;gt;/$1 = /&#39; &amp;gt; users.txt
+ ignore file처리 1  git svn show-ignore -i trunk &amp;gt; .gitignore   remote git 지정 1  git remote add origin git@git.</description>
+    </item>
+    
+    <item>
+      <title>mysql, mariadb에서 유니코드(utf8mb4) 지원하기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</link>
+      <pubDate>Tue, 10 Feb 2015 20:48:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</guid>
+      <description>1. 현재 설정된 상태 확인 1 2 3 4 5 6 7 8 9 10 11 12 13  MariaDB [(none)]&amp;gt; show variables like &amp;#34;%character%&amp;#34;;show variables like &amp;#34;%collation%&amp;#34;; +--------------------------+---------------------------------+ | Variable_name | Value | +--------------------------+---------------------------------+ | character_set_client | utf8 | | character_set_connection | utf8 | | character_set_database | utf8 | | character_set_filesystem | binary | | character_set_results | utf8 | | character_set_server | utf8 | | character_set_system | utf8 | | character_sets_dir | /usr/local/mysql/share/charsets/| +--------------------------+---------------------------------+   2.</description>
+    </item>
+    
+    <item>
+      <title>CentOS 명령어 모음</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-02-06-blog-post_21/</link>
+      <pubDate>Thu, 05 Feb 2015 17:42:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-02-06-blog-post_21/</guid>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39  #프로그램 설치위치 찾기 which java /usr/bin/java #오래된 로그파일만 찾아서 삭제함 find /logs/httpd/ -type f -mtime +180 -exec rm -f {} \; #hosts 편집 vi /etc/hosts #dns서버 수정 vi /etc/resolv.conf #OS 비트 확인 getconf LONG_BIT #OS 버전 확인 cat /etc/issue #폰트목록 fc-list #폰트 반영 (/usr/share/fonts 에 폰트 넣고) fc-cache -fv #로그보기 tail -f file.</description>
+    </item>
+    
+    <item>
+      <title>Parallels에서 Command&#43;Space로 한영변환 하기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/mac/2015-02-06-parallels-8-9-commandspace/</link>
+      <pubDate>Thu, 05 Feb 2015 17:29:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/mac/2015-02-06-parallels-8-9-commandspace/</guid>
+      <description>8버전부터 11버전까지 아래 셋팅을 이용하여 사용 중입니다.
+1. 키보드 설정에서 &amp;ldquo;이전 입력 소스 선택&amp;quot;이랑 &amp;ldquo;입력 메뉴에서 다음 소스 선택&amp;quot;을 서로 단축키를 바꿈 2. 페러럴즈 환경설정에서 아래 단축키를 매핑추가함 (Command+Space -&amp;gt; AltGr) 끝. 위와 같이 했더니 저는 됬어요.</description>
+    </item>
+    
+    <item>
+      <title>spring map to xml viewresolver</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</link>
+      <pubDate>Thu, 05 Feb 2015 17:16:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</guid>
+      <description>항상 json으로만 뱉다가 xml로 뱉어야 하는 상황이 발생해서 만든 spring view 클래스
+결과가 map에 경우에만 해당됨
+아래 설정하고&amp;hellip;
+applicationServlet.xml 1 2 3 4  &amp;lt;beans:bean id=&amp;#34;xmlView2&amp;#34; class=&amp;#34;org.springframework.web.servlet.view.XmlViewResolver&amp;#34;&amp;gt; &amp;lt;beans:property name=&amp;#34;order&amp;#34; value=&amp;#34;1&amp;#34;/&amp;gt; &amp;lt;beans:property name=&amp;#34;location&amp;#34; value=&amp;#34;classpath:xml-views.xml&amp;#34;/&amp;gt; &amp;lt;/beans:bean&amp;gt;   xml-views.xml 내용. 1 2 3 4 5 6 7 8 9 10  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;!DOCTYPE beans PUBLIC &amp;#34;-//SPRING//DTD BEAN//EN&amp;#34; &amp;#34;http://www.springframework.org/dtd/spring-beans.dtd&amp;#34;&amp;gt; &amp;lt;beans&amp;gt; &amp;lt;bean name=&amp;#34;xmlView&amp;#34; class=&amp;#34;com.xxxxx.view.AjaxResponseXMLView&amp;#34;&amp;gt; &amp;lt;property name=&amp;#34;contentType&amp;#34;&amp;gt; &amp;lt;value&amp;gt;text/xml;charset=utf-8&amp;lt;/value&amp;gt; &amp;lt;/property&amp;gt; &amp;lt;/bean&amp;gt; &amp;lt;/beans&amp;gt;   AjaxResponseXMLView.</description>
+    </item>
+    
+    <item>
+      <title>tomcat 에서 OutOfMemory 자주 나오면.</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-02-06-tomcat-outofmemory/</link>
+      <pubDate>Thu, 05 Feb 2015 17:10:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-02-06-tomcat-outofmemory/</guid>
+      <description>catalina.sh 맨 상위에 아래를 추가해서 메모리를 크게 잡자. (주의 서버 메모리를 생각해서 적당히. ) 1  export CATALINA_OPTS=&amp;#34;-Djava.awt.headless=true -server -Xms2048m -Xmx2048m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled&amp;#34;    참고) http://stackoverflow.com/questions/88235/dealing-with-java-lang-outofmemoryerror-permgen-space-error
+ </description>
+    </item>
+    
+    
+    
+    
+    
+  </channel>
+</rss>

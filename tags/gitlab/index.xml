@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>gitlab on 기록 저장소</title>
+    <link>https://kimpaper.github.io/kimpaper.github.io/tags/gitlab/</link>
+    <description>Recent content in gitlab on 기록 저장소</description>
+    <image>
+      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 04 Mar 2015 17:33:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/gitlab/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>git 관련 명령어 모음</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-03-05-git/</link>
+      <pubDate>Wed, 04 Mar 2015 17:33:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-03-05-git/</guid>
+      <description>svn to git 마이그레이션 1 2  git svn clone --stdlayout --no-metadata -A users.txt svn://example.com/repository/projectname cd projectname    아래 users.txt 만드는건데 perl 이 없어서 그런지.. 안되네요&amp;hellip; ㅠ
+svn log ^/ --xml | grep -P &amp;quot;^&amp;lt;author&amp;quot; | sort -u | \ perl -pe &#39;s/&amp;lt;author&amp;gt;(.*?)&amp;lt;\/author&amp;gt;/$1 = /&#39; &amp;gt; users.txt
+ ignore file처리 1  git svn show-ignore -i trunk &amp;gt; .gitignore   remote git 지정 1  git remote add origin git@git.</description>
+    </item>
+    
+  </channel>
+</rss>

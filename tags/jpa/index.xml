@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>jpa on 기록 저장소</title>
+    <link>https://kimpaper.github.io/kimpaper.github.io/tags/jpa/</link>
+    <description>Recent content in jpa on 기록 저장소</description>
+    <image>
+      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 13 Nov 2015 17:57:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/jpa/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>spring jpa namedQuery 직접 호출하기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-11-13-spring-jpa-createnamedquery/</link>
+      <pubDate>Fri, 13 Nov 2015 17:57:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-11-13-spring-jpa-createnamedquery/</guid>
+      <description>Test.java에서 처럼 EntityManager를 이용하여 orm.xml에 정의한 NamedQuery를 바로 실행 할 수 있다..
+ repository를 이용하여 호출하면 getResultList로만 실행되는 것 같다. update 반영된 Row수를 알기 위해 아래와 같이 호출 했다.
+ Test.java 1 2 3 4 5 6  @PersistenceContext private EntityManager em; public void test() { int cnt = em.createNamedQuery(&amp;#34;Order.clearOrder&amp;#34;).executeUpdate(); logger.info(&amp;#34;Order.clearOrder updated={}&amp;#34;, cnt); }    @PersistenceContext private EntityManager em; 에서..
+@PersistenceContext @Autowired 둘다 작동 하는것 같다. 차이는 아직 잘 모르겠다.</description>
+    </item>
+    
+    <item>
+      <title>spring jpa 저장</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2015/10/21/jpa-save/</link>
+      <pubDate>Wed, 21 Oct 2015 16:20:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2015/10/21/jpa-save/</guid>
+      <description>jpa에서는 저장시 repository.save 함수를 이용하여 저장합니다
+Member class처럼 @OneToMany나 @ManyToOne 필드들을 함께 저장 할 수 있습니다.
+Member.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  @Entity @Table(name = &amp;#34;tb_member&amp;#34;) public class Member { @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = &amp;#34;member_seq&amp;#34;) public Integer memberSeq; @Column public String nickname; @Expose @OneToMany( targetEntity = MemberInter.class , cascade = CascadeType.ALL , fetch = FetchType.</description>
+    </item>
+    
+    <item>
+      <title>spring jpa의 @NamedQuery, @NamedNativeQuery 연습</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</link>
+      <pubDate>Thu, 08 Oct 2015 01:32:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</guid>
+      <description>jpa에서.. repository를 이용하여 findAll이나.. findOneBy&amp;hellip;. 시리즈를 써서 데이타를 조회 할수 있지만 아래와 같이 특정 쿼리를 직접 입력하여 이용도 가능합니다.
+/classes/META-INF/orm.xml 1 2 3 4 5 6 7 8 9 10 11 12 13  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;entity-mappings xmlns=&amp;#34;http://java.sun.com/xml/ns/persistence/orm&amp;#34; version=&amp;#34;2.0&amp;#34;&amp;gt; &amp;lt;named-query name=&amp;#34;Inter.findByAlal2&amp;#34;&amp;gt; &amp;lt;query&amp;gt;select i from Inter i where i.internameko = ?1&amp;lt;/query&amp;gt; &amp;lt;/named-query&amp;gt; &amp;lt;named-native-query name=&amp;#34;Inter.findByAlal&amp;#34; result-class=&amp;#34;sample.jpa.Inter&amp;#34;&amp;gt; &amp;lt;query&amp;gt;select a.inter_seq, a.inter_name_ko, a.inter_name_en from tb_inter a where a.inter_name_ko = ?&amp;lt;/query&amp;gt; &amp;lt;/named-native-query&amp;gt; &amp;lt;/entity-mappings&amp;gt;   또는.</description>
+    </item>
+    
+    <item>
+      <title>spring jpa 조회 연습 </title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa/</link>
+      <pubDate>Wed, 07 Oct 2015 18:04:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa/</guid>
+      <description>entity 작업에 조회까지.. 테스트 해봤습니다.
+ 테이블의 관계가 아래와 같을때 상황  1  tb_member -&amp;lt; tb_member_inter &amp;gt;- tb_inter   조회 조건
+ Member를 가져오면.. member의 이미지들과&amp;hellip; inter의 목록을 함께 가져오도록 inter의 상세 정보는 tb_inter에 있음 (가져올때 조인해서..)  아래 class들 간략 설명
+ MemberInter의 PK가 두개이므로. 위와 같이 클래스를 하나 만들어서 @IdClass를 지정해야 함 @Expose 는 Gson관련하여 화면에 뿌릴 필드를 정하는 옵션입니다. jpa와는 무관합니다. MemberInter.class에서 많이 헷갈렸습니다. (@ManyToOne)  @JoinColumn을 추가로.</description>
+    </item>
+    
+    <item>
+      <title>spring jpa 설정 및 테스트 (maven 설정)</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2015/10/05/spring-jpa-maven/</link>
+      <pubDate>Mon, 05 Oct 2015 00:41:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2015/10/05/spring-jpa-maven/</guid>
+      <description>거의 대부분 mybatis 를 이용하여 개발을 하는데..
+JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.
+1. 라이브러리 import&amp;hellip;. maven pom.xml 1 2 3 4 5 6 7 8 9 10  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-data-jpa&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.9.0.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.hibernate&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;hibernate-entitymanager&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;4.3.8.Final&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   2. Entity class를 만들어 줍니다. 참고로 SerializedName, Expose는 jpa와 직접 관련은 없습니다.. (개체를 그대로 JsonView 할때 사용)
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72  import com.</description>
+    </item>
+    
+  </channel>
+</rss>

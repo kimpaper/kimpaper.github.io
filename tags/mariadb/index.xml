@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>mariadb on 기록 저장소</title>
+    <link>https://kimpaper.github.io/kimpaper.github.io/tags/mariadb/</link>
+    <description>Recent content in mariadb on 기록 저장소</description>
+    <image>
+      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 15 Dec 2015 14:55:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/mariadb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mariadb Query test할때 cache 안먹게 하기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2015-12-15-mysql-cache-reset/</link>
+      <pubDate>Tue, 15 Dec 2015 14:55:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2015-12-15-mysql-cache-reset/</guid>
+      <description>쿼리 튜닝할때 아래를 실행하고 하면 cache 안된 결과를 볼 수 있다.
+1  RESETQUERYCACHE;  </description>
+    </item>
+    
+    <item>
+      <title>디지탈오션에 서버 셋팅기 (centos 6.7)</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-09-16-centos-67/</link>
+      <pubDate>Tue, 15 Sep 2015 20:40:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-09-16-centos-67/</guid>
+      <description>친구랑 개발하는 간단한 쪽지앱의 서버로 사용할 서버를 구축했다. 물론 나는 잘 모른다 모든건 다 구글을 통해..
+1. SWAP 메모리 할당  https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-centos-6
+ 1 2 3 4 5  dd if=/dev/zero of=/swapfile bs=1024 count=2048k mkswap /swapfile swapon /swapfile chown root:root /swapfile chmod 0600 /swapfile   아래 내용을 /etc/fstab 에 붙인다.
+1  /swapfile swap swap defaults 0 0   2. 서버 시간을 KST 로 바꿈 &amp;amp; rdate 설치 1 2  ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime yum install rdate   3.</description>
+    </item>
+    
+    <item>
+      <title>mysql, mariadb에서 유니코드(utf8mb4) 지원하기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</link>
+      <pubDate>Tue, 10 Feb 2015 20:48:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</guid>
+      <description>1. 현재 설정된 상태 확인 1 2 3 4 5 6 7 8 9 10 11 12 13  MariaDB [(none)]&amp;gt; show variables like &amp;#34;%character%&amp;#34;;show variables like &amp;#34;%collation%&amp;#34;; +--------------------------+---------------------------------+ | Variable_name | Value | +--------------------------+---------------------------------+ | character_set_client | utf8 | | character_set_connection | utf8 | | character_set_database | utf8 | | character_set_filesystem | binary | | character_set_results | utf8 | | character_set_server | utf8 | | character_set_system | utf8 | | character_sets_dir | /usr/local/mysql/share/charsets/| +--------------------------+---------------------------------+   2.</description>
+    </item>
+    
+  </channel>
+</rss>

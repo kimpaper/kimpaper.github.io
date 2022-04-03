@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>unity on 기록 저장소</title>
+    <link>https://kimpaper.github.io/kimpaper.github.io/tags/unity/</link>
+    <description>Recent content in unity on 기록 저장소</description>
+    <image>
+      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 18 Dec 2015 15:39:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/unity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>맥에서 Unity3D 기본 에디터로 VisualStudio Code 사용하기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2015-12-18-unity-with-visualstudio-code/</link>
+      <pubDate>Fri, 18 Dec 2015 15:39:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2015-12-18-unity-with-visualstudio-code/</guid>
+      <description>맥용 Unity로 개발할때 보통 MonoDevelopr를 이용하여 코딩 한다 그런데 한글을 지원안해서. 아주 불편했는데.
+MS에서 얼마전에 공개한 mac용 VisualStudio Code에서 유니티를 지원한다고 해서 한번 설정해봤다.
+설치   우선 VS code를 설치 한다 https://code.visualstudio.com/
+  커맨드+P를 누르고. ext install Omnisharp 추가 기능으로 설치 한다 안해도 되는거 같기도&amp;hellip;
+  맥의 터미널 상에 brew install mono 로 mono를 설치한다 오래걸린다
+  이후로는 아래 사이트를 따라 하면 된다 https://code.visualstudio.com/docs/runtimes/unity
+  git clone https://github.</description>
+    </item>
+    
+  </channel>
+</rss>

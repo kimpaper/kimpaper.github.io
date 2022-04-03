@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>fluentd on 기록 저장소</title>
+    <link>https://kimpaper.github.io/kimpaper.github.io/tags/fluentd/</link>
+    <description>Recent content in fluentd on 기록 저장소</description>
+    <image>
+      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 22 Jun 2016 15:47:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/fluentd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>fluentd로 로그를 모으기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2016-06-21-fluentd/</link>
+      <pubDate>Wed, 22 Jun 2016 15:47:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2016-06-21-fluentd/</guid>
+      <description>예전에 flume로 에러 로그들을 모으고 있었는데 fluentd로 갈아타려고 한다. 사실 모으는 목적이 아니라 모니터링이 목적
+설치 아래 사이트에 나오는 command만 실행해주면 chkconfig 등록까지 다 해준다. 참고 공식 사이트
+http://docs.fluentd.org/articles/install-by-rpm#step-0-before-installation
+구성은 flume와 비슷한것 같다
+client -&amp;gt; server 구성으로 해놓고 client에서 수집된 로그를 server로 전달.
+아래 커맨드 실행 1  curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh   서비스 구동 1  service td-agent start    당연히 service td-agent stop 가 중지다</description>
+    </item>
+    
+  </channel>
+</rss>

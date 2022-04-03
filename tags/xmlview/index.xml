@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>xmlview on 기록 저장소</title>
+    <link>https://kimpaper.github.io/kimpaper.github.io/tags/xmlview/</link>
+    <description>Recent content in xmlview on 기록 저장소</description>
+    <image>
+      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 05 Feb 2015 17:16:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/xmlview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>spring map to xml viewresolver</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</link>
+      <pubDate>Thu, 05 Feb 2015 17:16:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</guid>
+      <description>항상 json으로만 뱉다가 xml로 뱉어야 하는 상황이 발생해서 만든 spring view 클래스
+결과가 map에 경우에만 해당됨
+아래 설정하고&amp;hellip;
+applicationServlet.xml 1 2 3 4  &amp;lt;beans:bean id=&amp;#34;xmlView2&amp;#34; class=&amp;#34;org.springframework.web.servlet.view.XmlViewResolver&amp;#34;&amp;gt; &amp;lt;beans:property name=&amp;#34;order&amp;#34; value=&amp;#34;1&amp;#34;/&amp;gt; &amp;lt;beans:property name=&amp;#34;location&amp;#34; value=&amp;#34;classpath:xml-views.xml&amp;#34;/&amp;gt; &amp;lt;/beans:bean&amp;gt;   xml-views.xml 내용. 1 2 3 4 5 6 7 8 9 10  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;!DOCTYPE beans PUBLIC &amp;#34;-//SPRING//DTD BEAN//EN&amp;#34; &amp;#34;http://www.springframework.org/dtd/spring-beans.dtd&amp;#34;&amp;gt; &amp;lt;beans&amp;gt; &amp;lt;bean name=&amp;#34;xmlView&amp;#34; class=&amp;#34;com.xxxxx.view.AjaxResponseXMLView&amp;#34;&amp;gt; &amp;lt;property name=&amp;#34;contentType&amp;#34;&amp;gt; &amp;lt;value&amp;gt;text/xml;charset=utf-8&amp;lt;/value&amp;gt; &amp;lt;/property&amp;gt; &amp;lt;/bean&amp;gt; &amp;lt;/beans&amp;gt;   AjaxResponseXMLView.</description>
+    </item>
+    
+  </channel>
+</rss>

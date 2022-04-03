@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>kubernetes on 기록 저장소</title>
+    <link>https://kimpaper.github.io/kimpaper.github.io/tags/kubernetes/</link>
+    <description>Recent content in kubernetes on 기록 저장소</description>
+    <image>
+      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 13 May 2020 11:18:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kubernetes cert-manager</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2020/05/13/kubernetes-certmanager/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2020/05/13/kubernetes-certmanager/</guid>
+      <description>kubernetes 에서 ingress 상에서 https를 서비스하는데 지원을 해주는 좋은.. 모듈
+cert manager 설치 (1) 참고 https://cert-manager.io/docs/installation/kubernetes/
+1 2  kubectl create namespace cert-manager kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.13.1/cert-manager.yaml   cert manager 설치 (with helm) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  $ kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.13.1/deploy/manifests/00-crds.yaml $ kubectl create namespace cert-manager $ helm repo add jetstack https://charts.jetstack.io $ helm repo update # Helm v3+ $ helm install \  cert-manager jetstack/cert-manager \  --namespace cert-manager \  --version v0.</description>
+    </item>
+    
+    <item>
+      <title>kubernetes glusterfs 연동</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/posts/kube/2020-05-13-kubernetes-glusterfs/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/kube/2020-05-13-kubernetes-glusterfs/</guid>
+      <description>glusterfs-kubernetes 설치 시도 중 gluster-kubernetes/deploy/gk-deploy 파일을 열어서 아래 라인을 고쳐야 한다 (kubectl에 없어진 인자값을 쓴다)
+1 2 3  # deprecated &amp;#34;--show-all&amp;#34; parameter #heketi_pod=$(${CLI} get pod --no-headers --show-all --selector=&amp;#34;heketi&amp;#34; | awk &amp;#39;{print $1}&amp;#39;) heketi_pod=$(${CLI} get pod --no-headers --selector=&amp;#34;heketi&amp;#34; | awk &amp;#39;{print $1}&amp;#39;)   1 2 3 4 5 6 7 8 9  # daemonset을 설치하기 위해 # 노드별로 아래 경로를 비워야함 rm -rf /var/lib/misc/glusterfsd /var/lib/glusterd /var/log/glusterfs /etc/glusterfs /var/lib/heketi #uninstall .</description>
+    </item>
+    
+    <item>
+      <title>kubernetes ingress - 특정 url로 proxy 걸기</title>
+      <link>https://kimpaper.github.io/kimpaper.github.io/2020/05/13/kubernetes-ingress-urlproxy/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/kimpaper.github.io/2020/05/13/kubernetes-ingress-urlproxy/</guid>
+      <description>외부로 ingress를 노출하고 처리하는 서버가 kubernetes 내에 service가 아니라 다른 별도의 서버일 경우에 아래와 같이 proxy_pass를 지정한다. (사실 응용하면 nginx 기능들이 지원하는건 다 될것 같다.)  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  kind: Ingress apiVersion: extensions/v1beta1 metadata: name: gitlab.test.com namespace: nginx-ingress annotations: kubernetes.io/ingress.class: nginx nginx.ingress.kubernetes.io/proxy-connect-timeout: &amp;#39;3600&amp;#39; nginx.</description>
+    </item>
+    
+  </channel>
+</rss>
