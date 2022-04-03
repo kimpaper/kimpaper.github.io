@@ -42,9 +42,9 @@ go tool pprof http://10.10.33.192:6060/debug/pprof/heap
 - 가령 web 을 치면 윈도우에 경우 web 브라우저에 메모리 Map이 나온다
 
 ```bash
-Fetching profile over HTTP from http://10.10.33.192:6060/debug/pprof/heap
-Saved profile in C:\Users\Paper\pprof\pprof.clouddb-receiver.alloc_objects.alloc_space.inuse_objects.inuse_space.013.pb.gz
-File: clouddb-receiver
+Fetching profile over HTTP from http://xxxx:6060/debug/pprof/heap
+Saved profile in C:\Users\Paper\pprof\pprof.xxxx.alloc_objects.alloc_space.inuse_objects.inuse_space.013.pb.gz
+File: xxxx
 Build ID: 8028feec58a6d0902dc3f3c6e08c6ce789b01028
 Type: inuse_space
 Time: Apr 3, 2022 at 12:17pm (KST)
