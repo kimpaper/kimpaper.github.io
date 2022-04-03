@@ -86,7 +86,7 @@ params:
           url: "index.xml"
 
     editPost:
-        URL: "https://github.com/kimpaper/tree/master/content"
+        URL: "https://github.com/kimpaper/kimpaper.github.io/tree/main/content"
         Text: "Edit" # edit text
         appendFilePath: true # to append file path to Edit link
 
