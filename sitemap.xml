@@ -2,320 +2,320 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/categories/</loc>
+    <loc>https://kimpaper.github.io/categories/</loc>
     <lastmod>2022-03-28T16:53:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/go/</loc>
+    <loc>https://kimpaper.github.io/tags/go/</loc>
     <lastmod>2022-03-28T16:53:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/golang/</loc>
+    <loc>https://kimpaper.github.io/tags/golang/</loc>
     <lastmod>2022-03-28T16:53:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/categories/golang/</loc>
+    <loc>https://kimpaper.github.io/categories/golang/</loc>
     <lastmod>2022-03-28T16:53:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/golang/2022-03-28-golang_profiler/</loc>
+    <loc>https://kimpaper.github.io/posts/golang/2022-03-28-golang_profiler/</loc>
     <lastmod>2022-03-28T16:53:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/</loc>
+    <loc>https://kimpaper.github.io/posts/</loc>
     <lastmod>2022-03-28T16:53:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/</loc>
+    <loc>https://kimpaper.github.io/tags/</loc>
     <lastmod>2022-03-28T16:53:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/</loc>
+    <loc>https://kimpaper.github.io/</loc>
     <lastmod>2022-03-28T16:53:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/cert-manager/</loc>
+    <loc>https://kimpaper.github.io/tags/cert-manager/</loc>
     <lastmod>2020-05-13T11:18:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/glusterfs/</loc>
+    <loc>https://kimpaper.github.io/tags/glusterfs/</loc>
     <lastmod>2020-05-13T11:18:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/ingress/</loc>
+    <loc>https://kimpaper.github.io/tags/ingress/</loc>
     <lastmod>2020-05-13T11:18:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/kubernetes/</loc>
+    <loc>https://kimpaper.github.io/tags/kubernetes/</loc>
     <lastmod>2020-05-13T11:18:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/categories/kubernetes/</loc>
+    <loc>https://kimpaper.github.io/categories/kubernetes/</loc>
     <lastmod>2020-05-13T11:18:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/2020/05/13/kubernetes-certmanager/</loc>
+    <loc>https://kimpaper.github.io/2020/05/13/kubernetes-certmanager/</loc>
     <lastmod>2020-05-13T11:18:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/kube/2020-05-13-kubernetes-glusterfs/</loc>
+    <loc>https://kimpaper.github.io/posts/kube/2020-05-13-kubernetes-glusterfs/</loc>
     <lastmod>2020-05-13T11:18:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/2020/05/13/kubernetes-ingress-urlproxy/</loc>
+    <loc>https://kimpaper.github.io/2020/05/13/kubernetes-ingress-urlproxy/</loc>
     <lastmod>2020-05-13T11:18:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/letsencrypt/</loc>
+    <loc>https://kimpaper.github.io/tags/letsencrypt/</loc>
     <lastmod>2020-05-13T11:18:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/centos/</loc>
+    <loc>https://kimpaper.github.io/tags/centos/</loc>
     <lastmod>2016-08-11T16:07:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/categories/centos/</loc>
+    <loc>https://kimpaper.github.io/categories/centos/</loc>
     <lastmod>2016-08-11T16:07:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/macos/</loc>
+    <loc>https://kimpaper.github.io/tags/macos/</loc>
     <lastmod>2016-08-11T16:07:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/ssh/</loc>
+    <loc>https://kimpaper.github.io/tags/ssh/</loc>
     <lastmod>2016-08-11T16:07:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2016-08-11-ssh-key-login/</loc>
+    <loc>https://kimpaper.github.io/posts/centos/2016-08-11-ssh-key-login/</loc>
     <lastmod>2016-08-11T16:07:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/categories/opensource/</loc>
+    <loc>https://kimpaper.github.io/categories/opensource/</loc>
     <lastmod>2016-07-27T14:32:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/redis/</loc>
+    <loc>https://kimpaper.github.io/tags/redis/</loc>
     <lastmod>2016-07-27T14:32:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/2016/07/27/redis-datatype/</loc>
+    <loc>https://kimpaper.github.io/2016/07/27/redis-datatype/</loc>
     <lastmod>2016-07-27T14:32:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/gradle/</loc>
+    <loc>https://kimpaper.github.io/tags/gradle/</loc>
     <lastmod>2016-07-14T14:15:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/2016/07/14/gradle/</loc>
+    <loc>https://kimpaper.github.io/2016/07/14/gradle/</loc>
     <lastmod>2016-07-14T14:15:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/spring/</loc>
+    <loc>https://kimpaper.github.io/tags/spring/</loc>
     <lastmod>2016-07-14T14:15:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/fluentd/</loc>
+    <loc>https://kimpaper.github.io/tags/fluentd/</loc>
     <lastmod>2016-06-22T15:47:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2016-06-21-fluentd/</loc>
+    <loc>https://kimpaper.github.io/posts/opensource/2016-06-21-fluentd/</loc>
     <lastmod>2016-06-22T15:47:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/apache/</loc>
+    <loc>https://kimpaper.github.io/tags/apache/</loc>
     <lastmod>2016-06-08T15:32:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/hadoop/</loc>
+    <loc>https://kimpaper.github.io/tags/hadoop/</loc>
     <lastmod>2016-06-08T15:32:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/python/</loc>
+    <loc>https://kimpaper.github.io/tags/python/</loc>
     <lastmod>2016-06-08T15:32:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/2016/06/08/apachelog/</loc>
+    <loc>https://kimpaper.github.io/2016/06/08/apachelog/</loc>
     <lastmod>2016-06-08T15:32:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/spark/</loc>
+    <loc>https://kimpaper.github.io/tags/spark/</loc>
     <lastmod>2016-06-08T15:32:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2016-05-30-spark-hadoop/</loc>
+    <loc>https://kimpaper.github.io/posts/opensource/2016-05-30-spark-hadoop/</loc>
     <lastmod>2016-05-30T16:35:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/aws/</loc>
+    <loc>https://kimpaper.github.io/tags/aws/</loc>
     <lastmod>2016-04-08T11:33:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/2016/04/08/amazon-ec2-root-pwd/</loc>
+    <loc>https://kimpaper.github.io/2016/04/08/amazon-ec2-root-pwd/</loc>
     <lastmod>2016-04-08T11:33:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/git/</loc>
+    <loc>https://kimpaper.github.io/tags/git/</loc>
     <lastmod>2016-03-24T16:36:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2016-03-24-git-rebase-merge/</loc>
+    <loc>https://kimpaper.github.io/posts/etc/2016-03-24-git-rebase-merge/</loc>
     <lastmod>2016-03-24T16:36:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2016-02-25-git-revert-local-commit/</loc>
+    <loc>https://kimpaper.github.io/posts/etc/2016-02-25-git-revert-local-commit/</loc>
     <lastmod>2016-02-25T14:35:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/python/2016-02-17-python-http-request/</loc>
+    <loc>https://kimpaper.github.io/posts/python/2016-02-17-python-http-request/</loc>
     <lastmod>2016-02-17T11:41:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/python/2016-02-12-install-python3/</loc>
+    <loc>https://kimpaper.github.io/posts/python/2016-02-12-install-python3/</loc>
     <lastmod>2016-02-12T16:53:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/unity/</loc>
+    <loc>https://kimpaper.github.io/tags/unity/</loc>
     <lastmod>2015-12-18T15:39:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/vscode/</loc>
+    <loc>https://kimpaper.github.io/tags/vscode/</loc>
     <lastmod>2015-12-18T15:39:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2015-12-18-unity-with-visualstudio-code/</loc>
+    <loc>https://kimpaper.github.io/posts/etc/2015-12-18-unity-with-visualstudio-code/</loc>
     <lastmod>2015-12-18T15:39:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/cache/</loc>
+    <loc>https://kimpaper.github.io/tags/cache/</loc>
     <lastmod>2015-12-15T14:55:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/mariadb/</loc>
+    <loc>https://kimpaper.github.io/tags/mariadb/</loc>
     <lastmod>2015-12-15T14:55:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2015-12-15-mysql-cache-reset/</loc>
+    <loc>https://kimpaper.github.io/posts/etc/2015-12-15-mysql-cache-reset/</loc>
     <lastmod>2015-12-15T14:55:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/mysql/</loc>
+    <loc>https://kimpaper.github.io/tags/mysql/</loc>
     <lastmod>2015-12-15T14:55:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/jpa/</loc>
+    <loc>https://kimpaper.github.io/tags/jpa/</loc>
     <lastmod>2015-11-13T17:57:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/categories/spring/</loc>
+    <loc>https://kimpaper.github.io/categories/spring/</loc>
     <lastmod>2015-11-13T17:57:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-11-13-spring-jpa-createnamedquery/</loc>
+    <loc>https://kimpaper.github.io/posts/spring/2015-11-13-spring-jpa-createnamedquery/</loc>
     <lastmod>2015-11-13T17:57:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-11-11-spring-redis/</loc>
+    <loc>https://kimpaper.github.io/posts/spring/2015-11-11-spring-redis/</loc>
     <lastmod>2015-11-10T17:36:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/flume/</loc>
+    <loc>https://kimpaper.github.io/tags/flume/</loc>
     <lastmod>2015-10-30T18:13:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-10-30-flume-logback-sink/</loc>
+    <loc>https://kimpaper.github.io/posts/centos/2015-10-30-flume-logback-sink/</loc>
     <lastmod>2015-10-30T18:13:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/logback/</loc>
+    <loc>https://kimpaper.github.io/tags/logback/</loc>
     <lastmod>2015-10-30T18:13:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/2015/10/30/logback-config/</loc>
+    <loc>https://kimpaper.github.io/2015/10/30/logback-config/</loc>
     <lastmod>2015-10-30T11:18:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-10-29-flume-setting-sample/</loc>
+    <loc>https://kimpaper.github.io/posts/centos/2015-10-29-flume-setting-sample/</loc>
     <lastmod>2015-10-29T15:51:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/mac/</loc>
+    <loc>https://kimpaper.github.io/tags/mac/</loc>
     <lastmod>2015-10-29T15:51:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/sitemesh/</loc>
+    <loc>https://kimpaper.github.io/tags/sitemesh/</loc>
     <lastmod>2015-10-28T17:08:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/2015/10/28/spring-sitemesh-setting/</loc>
+    <loc>https://kimpaper.github.io/2015/10/28/spring-sitemesh-setting/</loc>
     <lastmod>2015-10-28T17:08:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/2015/10/21/jpa-save/</loc>
+    <loc>https://kimpaper.github.io/2015/10/21/jpa-save/</loc>
     <lastmod>2015-10-21T16:20:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/categories/.net/</loc>
+    <loc>https://kimpaper.github.io/categories/.net/</loc>
     <lastmod>2015-10-15T12:13:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/.net/</loc>
+    <loc>https://kimpaper.github.io/tags/.net/</loc>
     <lastmod>2015-10-15T12:13:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/2015/10/15/csharp-lpcstr-parameter-call/</loc>
+    <loc>https://kimpaper.github.io/2015/10/15/csharp-lpcstr-parameter-call/</loc>
     <lastmod>2015-10-15T12:13:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/marshalling/</loc>
+    <loc>https://kimpaper.github.io/tags/marshalling/</loc>
     <lastmod>2015-10-15T12:13:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/wpf/</loc>
+    <loc>https://kimpaper.github.io/tags/wpf/</loc>
     <lastmod>2015-10-15T12:13:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/dotnet/2015-10-16-wpf-control-save-to-png/</loc>
+    <loc>https://kimpaper.github.io/posts/dotnet/2015-10-16-wpf-control-save-to-png/</loc>
     <lastmod>2015-10-15T12:13:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/%EB%A7%88%EC%83%AC%EB%A7%81/</loc>
+    <loc>https://kimpaper.github.io/tags/%EB%A7%88%EC%83%AC%EB%A7%81/</loc>
     <lastmod>2015-10-15T12:13:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/java/</loc>
+    <loc>https://kimpaper.github.io/tags/java/</loc>
     <lastmod>2015-10-08T01:32:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</loc>
+    <loc>https://kimpaper.github.io/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</loc>
     <lastmod>2015-10-08T01:32:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa/</loc>
+    <loc>https://kimpaper.github.io/posts/spring/2015-10-08-spring-jpa/</loc>
     <lastmod>2015-10-07T18:04:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/2015/10/05/spring-jpa-maven/</loc>
+    <loc>https://kimpaper.github.io/2015/10/05/spring-jpa-maven/</loc>
     <lastmod>2015-10-05T00:41:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</loc>
+    <loc>https://kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</loc>
     <lastmod>2015-09-20T21:47:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/dotnet/2015-09-17-net-framework-452-40/</loc>
+    <loc>https://kimpaper.github.io/posts/dotnet/2015-09-17-net-framework-452-40/</loc>
     <lastmod>2015-09-16T20:21:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/%EC%9D%BC%EC%83%81/</loc>
+    <loc>https://kimpaper.github.io/tags/%EC%9D%BC%EC%83%81/</loc>
     <lastmod>2015-09-16T20:21:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/rabbitmq/</loc>
+    <loc>https://kimpaper.github.io/tags/rabbitmq/</loc>
     <lastmod>2015-09-15T20:40:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-09-16-centos-67/</loc>
+    <loc>https://kimpaper.github.io/posts/centos/2015-09-16-centos-67/</loc>
     <lastmod>2015-09-15T20:40:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-08-28-spring-batch/</loc>
+    <loc>https://kimpaper.github.io/posts/spring/2015-08-28-spring-batch/</loc>
     <lastmod>2015-08-27T22:44:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/jfreechart/</loc>
+    <loc>https://kimpaper.github.io/tags/jfreechart/</loc>
     <lastmod>2015-07-01T20:33:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-07-02-jfreechart-centos/</loc>
+    <loc>https://kimpaper.github.io/posts/centos/2015-07-02-jfreechart-centos/</loc>
     <lastmod>2015-07-01T20:33:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/categories/mac/</loc>
+    <loc>https://kimpaper.github.io/categories/mac/</loc>
     <lastmod>2015-06-04T01:05:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/mac/2015-06-04-osx-10103-homebrew/</loc>
+    <loc>https://kimpaper.github.io/posts/mac/2015-06-04-osx-10103-homebrew/</loc>
     <lastmod>2015-06-04T01:05:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</loc>
+    <loc>https://kimpaper.github.io/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</loc>
     <lastmod>2015-04-15T00:39:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/2015/04/12/hadoop-26x-with-spring-40/</loc>
+    <loc>https://kimpaper.github.io/2015/04/12/hadoop-26x-with-spring-40/</loc>
     <lastmod>2015-04-12T19:46:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-03-27-403/</loc>
+    <loc>https://kimpaper.github.io/posts/centos/2015-03-27-403/</loc>
     <lastmod>2015-03-27T01:47:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/junit/</loc>
+    <loc>https://kimpaper.github.io/tags/junit/</loc>
     <lastmod>2015-03-24T22:42:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-03-25-spring-junit-testcase/</loc>
+    <loc>https://kimpaper.github.io/posts/spring/2015-03-25-spring-junit-testcase/</loc>
     <lastmod>2015-03-24T22:42:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/spring-test/</loc>
+    <loc>https://kimpaper.github.io/tags/spring-test/</loc>
     <lastmod>2015-03-24T22:42:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-03-11-spring-rabbitmq/</loc>
+    <loc>https://kimpaper.github.io/posts/spring/2015-03-11-spring-rabbitmq/</loc>
     <lastmod>2015-03-10T18:55:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-03-05-git/</loc>
+    <loc>https://kimpaper.github.io/posts/centos/2015-03-05-git/</loc>
     <lastmod>2015-03-04T17:33:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/gitlab/</loc>
+    <loc>https://kimpaper.github.io/tags/gitlab/</loc>
     <lastmod>2015-03-04T17:33:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/svn/</loc>
+    <loc>https://kimpaper.github.io/tags/svn/</loc>
     <lastmod>2015-03-04T17:33:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</loc>
+    <loc>https://kimpaper.github.io/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</loc>
     <lastmod>2015-02-10T20:48:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-02-06-blog-post_21/</loc>
+    <loc>https://kimpaper.github.io/posts/centos/2015-02-06-blog-post_21/</loc>
     <lastmod>2015-02-05T17:42:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/parallels/</loc>
+    <loc>https://kimpaper.github.io/tags/parallels/</loc>
     <lastmod>2015-02-05T17:29:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/mac/2015-02-06-parallels-8-9-commandspace/</loc>
+    <loc>https://kimpaper.github.io/posts/mac/2015-02-06-parallels-8-9-commandspace/</loc>
     <lastmod>2015-02-05T17:29:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</loc>
+    <loc>https://kimpaper.github.io/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</loc>
     <lastmod>2015-02-05T17:16:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/xmlview/</loc>
+    <loc>https://kimpaper.github.io/tags/xmlview/</loc>
     <lastmod>2015-02-05T17:16:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/tags/tomcat/</loc>
+    <loc>https://kimpaper.github.io/tags/tomcat/</loc>
     <lastmod>2015-02-05T17:10:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-02-06-tomcat-outofmemory/</loc>
+    <loc>https://kimpaper.github.io/posts/centos/2015-02-06-tomcat-outofmemory/</loc>
     <lastmod>2015-02-05T17:10:00+00:00</lastmod>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/archives.fr/</loc>
+    <loc>https://kimpaper.github.io/archives.fr/</loc>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/archives/</loc>
+    <loc>https://kimpaper.github.io/archives/</loc>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/search/</loc>
+    <loc>https://kimpaper.github.io/search/</loc>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/search.fr/</loc>
+    <loc>https://kimpaper.github.io/search.fr/</loc>
   </url><url>
-    <loc>https://kimpaper.github.io/kimpaper.github.io/series/</loc>
+    <loc>https://kimpaper.github.io/series/</loc>
   </url>
 </urlset>

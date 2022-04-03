@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>rabbitmq on 기록 저장소</title>
-    <link>https://kimpaper.github.io/kimpaper.github.io/tags/rabbitmq/</link>
+    <link>https://kimpaper.github.io/tags/rabbitmq/</link>
     <description>Recent content in rabbitmq on 기록 저장소</description>
     <image>
-      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
-      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+      <url>https://kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 15 Sep 2015 20:40:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Sep 2015 20:40:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>디지탈오션에 서버 셋팅기 (centos 6.7)</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-09-16-centos-67/</link>
+      <link>https://kimpaper.github.io/posts/centos/2015-09-16-centos-67/</link>
       <pubDate>Tue, 15 Sep 2015 20:40:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-09-16-centos-67/</guid>
+      <guid>https://kimpaper.github.io/posts/centos/2015-09-16-centos-67/</guid>
       <description>친구랑 개발하는 간단한 쪽지앱의 서버로 사용할 서버를 구축했다. 물론 나는 잘 모른다 모든건 다 구글을 통해..
 1. SWAP 메모리 할당  https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-centos-6
  1 2 3 4 5  dd if=/dev/zero of=/swapfile bs=1024 count=2048k mkswap /swapfile swapon /swapfile chown root:root /swapfile chmod 0600 /swapfile   아래 내용을 /etc/fstab 에 붙인다.
@@ -24,10 +24,10 @@
     
     <item>
       <title>spring-rabbitmq 연동 </title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-03-11-spring-rabbitmq/</link>
+      <link>https://kimpaper.github.io/posts/spring/2015-03-11-spring-rabbitmq/</link>
       <pubDate>Tue, 10 Mar 2015 18:55:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-03-11-spring-rabbitmq/</guid>
+      <guid>https://kimpaper.github.io/posts/spring/2015-03-11-spring-rabbitmq/</guid>
       <description>설치는 그냥 rpm 으로 설치 1 2 3 4 5  # 서버 시작. sbin/rabbitmq-server start # 서버 중지 sbin/rabbitmqctl stop   spring-rabbit 연동 pom.xml 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp;lt;groupid&amp;gt;org.springframework.amqp&amp;lt;/groupId&amp;gt; &amp;lt;artifactid&amp;gt;spring-rabbit&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.4.1.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   context-rabbitmq.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  &amp;lt;!-- A reference to the org.springframework.amqp.rabbit.connection.ConnectionFactory --&amp;gt; &amp;lt;rabbit:connection-factory id=&amp;#34;connectionFactory&amp;#34; host=&amp;#34;localhost&amp;#34; username=&amp;#34;worker&amp;#34; password=&amp;#34;workerpassword&amp;#34; /&amp;gt; &amp;lt;!-- Creates a org.</description>
     </item>
     

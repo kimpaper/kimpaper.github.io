@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>java on 기록 저장소</title>
-    <link>https://kimpaper.github.io/kimpaper.github.io/tags/java/</link>
+    <link>https://kimpaper.github.io/tags/java/</link>
     <description>Recent content in java on 기록 저장소</description>
     <image>
-      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
-      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+      <url>https://kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 08 Oct 2015 01:32:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 08 Oct 2015 01:32:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>spring jpa의 @NamedQuery, @NamedNativeQuery 연습</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</link>
+      <link>https://kimpaper.github.io/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</link>
       <pubDate>Thu, 08 Oct 2015 01:32:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</guid>
+      <guid>https://kimpaper.github.io/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</guid>
       <description>jpa에서.. repository를 이용하여 findAll이나.. findOneBy&amp;hellip;. 시리즈를 써서 데이타를 조회 할수 있지만 아래와 같이 특정 쿼리를 직접 입력하여 이용도 가능합니다.
 /classes/META-INF/orm.xml 1 2 3 4 5 6 7 8 9 10 11 12 13  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;entity-mappings xmlns=&amp;#34;http://java.sun.com/xml/ns/persistence/orm&amp;#34; version=&amp;#34;2.0&amp;#34;&amp;gt; &amp;lt;named-query name=&amp;#34;Inter.findByAlal2&amp;#34;&amp;gt; &amp;lt;query&amp;gt;select i from Inter i where i.internameko = ?1&amp;lt;/query&amp;gt; &amp;lt;/named-query&amp;gt; &amp;lt;named-native-query name=&amp;#34;Inter.findByAlal&amp;#34; result-class=&amp;#34;sample.jpa.Inter&amp;#34;&amp;gt; &amp;lt;query&amp;gt;select a.inter_seq, a.inter_name_ko, a.inter_name_en from tb_inter a where a.inter_name_ko = ?&amp;lt;/query&amp;gt; &amp;lt;/named-native-query&amp;gt; &amp;lt;/entity-mappings&amp;gt;   또는.</description>
     </item>
     
     <item>
       <title>spring jpa 조회 연습 </title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa/</link>
+      <link>https://kimpaper.github.io/posts/spring/2015-10-08-spring-jpa/</link>
       <pubDate>Wed, 07 Oct 2015 18:04:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa/</guid>
+      <guid>https://kimpaper.github.io/posts/spring/2015-10-08-spring-jpa/</guid>
       <description>entity 작업에 조회까지.. 테스트 해봤습니다.
  테이블의 관계가 아래와 같을때 상황  1  tb_member -&amp;lt; tb_member_inter &amp;gt;- tb_inter   조회 조건
  Member를 가져오면.. member의 이미지들과&amp;hellip; inter의 목록을 함께 가져오도록 inter의 상세 정보는 tb_inter에 있음 (가져올때 조인해서..)  아래 class들 간략 설명
@@ -34,10 +34,10 @@
     
     <item>
       <title>jfreeChart에서 한글 폰트 사용 (centos 폰트 설정)</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-07-02-jfreechart-centos/</link>
+      <link>https://kimpaper.github.io/posts/centos/2015-07-02-jfreechart-centos/</link>
       <pubDate>Wed, 01 Jul 2015 20:33:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-07-02-jfreechart-centos/</guid>
+      <guid>https://kimpaper.github.io/posts/centos/2015-07-02-jfreechart-centos/</guid>
       <description>jfreeChart를 사용하는 중인데 tomcat위에서 돌리면 한글이 ㅁㅁㅁ 과 같이 나온다.
 /usr/share/fonts 폴더에 폰트파일을 넣고 fc-cache -fv 를 해주자!!
 1 2 3 4 5 6 7 8  // 코드 상에 아래와 같이 폰트를 지정한다. private static final Font _BASE_FONT = new Font(&amp;#34;나눔고딕&amp;#34;,Font.PLAIN,11); ... 중략 &amp;#39;&amp;#39;&amp;#39; // setFont를 적절하게 코드 내에 사용한다. lineAndShapeRenderer.setLegendTextFont(i, _BASE_FONT); ...   tomcat 재시작은 필요 없다.</description>

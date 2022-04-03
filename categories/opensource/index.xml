@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>opensource on 기록 저장소</title>
-    <link>https://kimpaper.github.io/kimpaper.github.io/categories/opensource/</link>
+    <link>https://kimpaper.github.io/categories/opensource/</link>
     <description>Recent content in opensource on 기록 저장소</description>
     <image>
-      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
-      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+      <url>https://kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 27 Jul 2016 14:32:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/categories/opensource/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Jul 2016 14:32:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/categories/opensource/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>redis data type 종류</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/2016/07/27/redis-datatype/</link>
+      <link>https://kimpaper.github.io/2016/07/27/redis-datatype/</link>
       <pubDate>Wed, 27 Jul 2016 14:32:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/2016/07/27/redis-datatype/</guid>
+      <guid>https://kimpaper.github.io/2016/07/27/redis-datatype/</guid>
       <description>Redis Data Type 요약 인터넷상에 수많은 좋은 자료가 있음에도 공부 차원에서 정리를 한다
 테스트는 redis-cli를 이용해서 하지만 실제 사용은 언어에 맞는 api library를 사용 할듯
 개요 http://redis.io/topics/data-types-intro
@@ -25,10 +25,10 @@ Strings  value에 문자 숫자 등을 저장한다 저장시 별도로 형이 �
     
     <item>
       <title>fluentd로 로그를 모으기</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2016-06-21-fluentd/</link>
+      <link>https://kimpaper.github.io/posts/opensource/2016-06-21-fluentd/</link>
       <pubDate>Wed, 22 Jun 2016 15:47:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2016-06-21-fluentd/</guid>
+      <guid>https://kimpaper.github.io/posts/opensource/2016-06-21-fluentd/</guid>
       <description>예전에 flume로 에러 로그들을 모으고 있었는데 fluentd로 갈아타려고 한다. 사실 모으는 목적이 아니라 모니터링이 목적
 설치 아래 사이트에 나오는 command만 실행해주면 chkconfig 등록까지 다 해준다. 참고 공식 사이트
 http://docs.fluentd.org/articles/install-by-rpm#step-0-before-installation
@@ -39,10 +39,10 @@ client -&amp;gt; server 구성으로 해놓고 client에서 수집된 로그를 
     
     <item>
       <title>restful api 서버에서 평균 응답시간, 호출횟수, Min, Max 구하기</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/2016/06/08/apachelog/</link>
+      <link>https://kimpaper.github.io/2016/06/08/apachelog/</link>
       <pubDate>Wed, 08 Jun 2016 15:32:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/2016/06/08/apachelog/</guid>
+      <guid>https://kimpaper.github.io/2016/06/08/apachelog/</guid>
       <description>app에서 데이타 통신을하는 api서버가 있다
 각 인터페이스별 평균 응답시간을 아파치 로그를 활용하여 구해봤다
  서버는 apache+tomcat, spring으로 구현한 서버이다
@@ -56,10 +56,10 @@ Python and Spark로 로그 파일 분석 (with hadoop) 을 참고 하자
     
     <item>
       <title>Python and Spark로 로그 파일 분석 (with hadoop)</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2016-05-30-spark-hadoop/</link>
+      <link>https://kimpaper.github.io/posts/opensource/2016-05-30-spark-hadoop/</link>
       <pubDate>Mon, 30 May 2016 16:35:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2016-05-30-spark-hadoop/</guid>
+      <guid>https://kimpaper.github.io/posts/opensource/2016-05-30-spark-hadoop/</guid>
       <description>Spark를 이용한 파일 분석  spark도 잘 모르고 hadoop도 잘 모르는 상태에서 진행해서 틀린 부분이 있을 것이다.
 참고로 OSX에서 진행된 작업이다.
  설정 1. Hadoop를 설치 하고 실행한다 2. hdfs상에 파일을 올린다. 1 2  cd /logs hdfs dfs -put test.log /input/   아래와 같이 파일 브라우징이 가능하다 아래에서 올라간 파일을 확인! http://localhost:50070/explorer.html#/input
@@ -69,10 +69,10 @@ Python and Spark로 로그 파일 분석 (with hadoop) 을 참고 하자
     
     <item>
       <title>redis 3.2.3 설치</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</link>
+      <link>https://kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</link>
       <pubDate>Sun, 20 Sep 2015 21:47:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</guid>
+      <guid>https://kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</guid>
       <description>컴파일러를 먼저 설치해야 합니다. (설치돼 있다면 패스) 1  yum install gcc gcc-c++ autoconf automake   참고) http://www.redis.io/download
 설치 1 2 3 4 5 6 7  # 다운로드 및 설치 (컴파일) wget http://download.redis.io/releases/redis-3.2.3.tar.gz tar xzf redis-3.2.3.tar.gz cd redis-3.2.3 make &amp;amp;&amp;amp; make install cd utils ./install_server.sh   실행로그 확인 1  tail -f /var/log/redis_6379.log -n 1000   로그에서 Warning 없애기  vi /etc/sysctl.conf 파일에 아래 추가  1 2  vm.</description>
     </item>

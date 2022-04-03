@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>spring on 기록 저장소</title>
-    <link>https://kimpaper.github.io/kimpaper.github.io/tags/spring/</link>
+    <link>https://kimpaper.github.io/tags/spring/</link>
     <description>Recent content in spring on 기록 저장소</description>
     <image>
-      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
-      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+      <url>https://kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 14 Jul 2016 14:15:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Jul 2016 14:15:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>maven에서 gradle로 변환...</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/2016/07/14/gradle/</link>
+      <link>https://kimpaper.github.io/2016/07/14/gradle/</link>
       <pubDate>Thu, 14 Jul 2016 14:15:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/2016/07/14/gradle/</guid>
+      <guid>https://kimpaper.github.io/2016/07/14/gradle/</guid>
       <description>gradle설치 (for macOS) 1  brew install gradle   원래 수동으로 설치하는 방법이 있으나.. 나는 위와 같이 자동 설치를 좋아한다 대부분 그렇지 않을까~
 수동 설치는 사이트에서 참고하자 https://gradle.org/gradle-download/
 pom.xml -&amp;gt; build.gradle로 변환 1 2  # 프로젝트 폴더 (pom.xml이 있는곳) 으로 이동  gradle init --type pom   위와 같이 하면 project name 및 dependencies 등이 gralde용 build script로 변환이 되고 프로젝트가 gradle를 사용가능하도록 설정된다
@@ -24,10 +24,10 @@ pom.xml -&amp;gt; build.gradle로 변환 1 2  # 프로젝트 폴더 (pom.xml이 
     
     <item>
       <title>spring jpa namedQuery 직접 호출하기</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-11-13-spring-jpa-createnamedquery/</link>
+      <link>https://kimpaper.github.io/posts/spring/2015-11-13-spring-jpa-createnamedquery/</link>
       <pubDate>Fri, 13 Nov 2015 17:57:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-11-13-spring-jpa-createnamedquery/</guid>
+      <guid>https://kimpaper.github.io/posts/spring/2015-11-13-spring-jpa-createnamedquery/</guid>
       <description>Test.java에서 처럼 EntityManager를 이용하여 orm.xml에 정의한 NamedQuery를 바로 실행 할 수 있다..
  repository를 이용하여 호출하면 getResultList로만 실행되는 것 같다. update 반영된 Row수를 알기 위해 아래와 같이 호출 했다.
  Test.java 1 2 3 4 5 6  @PersistenceContext private EntityManager em; public void test() { int cnt = em.createNamedQuery(&amp;#34;Order.clearOrder&amp;#34;).executeUpdate(); logger.info(&amp;#34;Order.clearOrder updated={}&amp;#34;, cnt); }    @PersistenceContext private EntityManager em; 에서..
@@ -36,30 +36,30 @@ pom.xml -&amp;gt; build.gradle로 변환 1 2  # 프로젝트 폴더 (pom.xml이 
     
     <item>
       <title>spring redis 연동 </title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-11-11-spring-redis/</link>
+      <link>https://kimpaper.github.io/posts/spring/2015-11-11-spring-redis/</link>
       <pubDate>Tue, 10 Nov 2015 17:36:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-11-11-spring-redis/</guid>
+      <guid>https://kimpaper.github.io/posts/spring/2015-11-11-spring-redis/</guid>
       <description>pom.xml 에 아래 추가. 1 2 3 4 5 6 7 8 9 10  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-data-redis&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.1.0.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;redis.clients&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;jedis&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;    버전을 잘 맞춰야 한다. 안그러면 몇몇 class가 없어서 오류가 발생해요.
  context-redis.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;beans xmlns=&amp;#34;http://www.springframework.org/schema/beans&amp;#34; xmlns:p=&amp;#34;http://www.springframework.org/schema/p&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xsi:schemaLocation=&amp;#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd&amp;#34;&amp;gt; &amp;lt;bean id=&amp;#34;jedisConnFactory&amp;#34; class=&amp;#34;org.</description>
     </item>
     
     <item>
       <title>spring &#43; sitemesh 웹사이트 구축</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/2015/10/28/spring-sitemesh-setting/</link>
+      <link>https://kimpaper.github.io/2015/10/28/spring-sitemesh-setting/</link>
       <pubDate>Wed, 28 Oct 2015 17:08:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/2015/10/28/spring-sitemesh-setting/</guid>
+      <guid>https://kimpaper.github.io/2015/10/28/spring-sitemesh-setting/</guid>
       <description>sitemesh를 설정을 해보겠습니다.
 pom.xml 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;opensymphony&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;sitemesh&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.4.2&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   WEB-INF/web.xml 에 아래 추가. 1 2 3 4 5 6 7 8  &amp;lt;filter&amp;gt; &amp;lt;filter-name&amp;gt;sitemesh&amp;lt;/filter-name&amp;gt; &amp;lt;filter-class&amp;gt;com.opensymphony.module.sitemesh.filter.PageFilter&amp;lt;/filter-class&amp;gt; &amp;lt;/filter&amp;gt; &amp;lt;filter-mapping&amp;gt; &amp;lt;filter-name&amp;gt;sitemesh&amp;lt;/filter-name&amp;gt; &amp;lt;url-pattern&amp;gt;/*&amp;lt;/url-pattern&amp;gt; &amp;lt;/filter-mapping&amp;gt;   WEB-INF/sitemesh.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  &amp;lt;?</description>
     </item>
     
     <item>
       <title>spring jpa 저장</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/2015/10/21/jpa-save/</link>
+      <link>https://kimpaper.github.io/2015/10/21/jpa-save/</link>
       <pubDate>Wed, 21 Oct 2015 16:20:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/2015/10/21/jpa-save/</guid>
+      <guid>https://kimpaper.github.io/2015/10/21/jpa-save/</guid>
       <description>jpa에서는 저장시 repository.save 함수를 이용하여 저장합니다
 Member class처럼 @OneToMany나 @ManyToOne 필드들을 함께 저장 할 수 있습니다.
 Member.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  @Entity @Table(name = &amp;#34;tb_member&amp;#34;) public class Member { @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = &amp;#34;member_seq&amp;#34;) public Integer memberSeq; @Column public String nickname; @Expose @OneToMany( targetEntity = MemberInter.class , cascade = CascadeType.ALL , fetch = FetchType.</description>
@@ -67,20 +67,20 @@ Member.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  @Entity @Table(name
     
     <item>
       <title>spring jpa의 @NamedQuery, @NamedNativeQuery 연습</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</link>
+      <link>https://kimpaper.github.io/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</link>
       <pubDate>Thu, 08 Oct 2015 01:32:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</guid>
+      <guid>https://kimpaper.github.io/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</guid>
       <description>jpa에서.. repository를 이용하여 findAll이나.. findOneBy&amp;hellip;. 시리즈를 써서 데이타를 조회 할수 있지만 아래와 같이 특정 쿼리를 직접 입력하여 이용도 가능합니다.
 /classes/META-INF/orm.xml 1 2 3 4 5 6 7 8 9 10 11 12 13  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;entity-mappings xmlns=&amp;#34;http://java.sun.com/xml/ns/persistence/orm&amp;#34; version=&amp;#34;2.0&amp;#34;&amp;gt; &amp;lt;named-query name=&amp;#34;Inter.findByAlal2&amp;#34;&amp;gt; &amp;lt;query&amp;gt;select i from Inter i where i.internameko = ?1&amp;lt;/query&amp;gt; &amp;lt;/named-query&amp;gt; &amp;lt;named-native-query name=&amp;#34;Inter.findByAlal&amp;#34; result-class=&amp;#34;sample.jpa.Inter&amp;#34;&amp;gt; &amp;lt;query&amp;gt;select a.inter_seq, a.inter_name_ko, a.inter_name_en from tb_inter a where a.inter_name_ko = ?&amp;lt;/query&amp;gt; &amp;lt;/named-native-query&amp;gt; &amp;lt;/entity-mappings&amp;gt;   또는.</description>
     </item>
     
     <item>
       <title>spring jpa 조회 연습 </title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa/</link>
+      <link>https://kimpaper.github.io/posts/spring/2015-10-08-spring-jpa/</link>
       <pubDate>Wed, 07 Oct 2015 18:04:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-10-08-spring-jpa/</guid>
+      <guid>https://kimpaper.github.io/posts/spring/2015-10-08-spring-jpa/</guid>
       <description>entity 작업에 조회까지.. 테스트 해봤습니다.
  테이블의 관계가 아래와 같을때 상황  1  tb_member -&amp;lt; tb_member_inter &amp;gt;- tb_inter   조회 조건
  Member를 가져오면.. member의 이미지들과&amp;hellip; inter의 목록을 함께 가져오도록 inter의 상세 정보는 tb_inter에 있음 (가져올때 조인해서..)  아래 class들 간략 설명
@@ -89,10 +89,10 @@ Member.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  @Entity @Table(name
     
     <item>
       <title>spring jpa 설정 및 테스트 (maven 설정)</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/2015/10/05/spring-jpa-maven/</link>
+      <link>https://kimpaper.github.io/2015/10/05/spring-jpa-maven/</link>
       <pubDate>Mon, 05 Oct 2015 00:41:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/2015/10/05/spring-jpa-maven/</guid>
+      <guid>https://kimpaper.github.io/2015/10/05/spring-jpa-maven/</guid>
       <description>거의 대부분 mybatis 를 이용하여 개발을 하는데..
 JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.
 1. 라이브러리 import&amp;hellip;. maven pom.xml 1 2 3 4 5 6 7 8 9 10  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-data-jpa&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.9.0.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.hibernate&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;hibernate-entitymanager&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;4.3.8.Final&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   2. Entity class를 만들어 줍니다. 참고로 SerializedName, Expose는 jpa와 직접 관련은 없습니다.. (개체를 그대로 JsonView 할때 사용)
@@ -101,10 +101,10 @@ JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.
     
     <item>
       <title>spring batch 사용 </title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-08-28-spring-batch/</link>
+      <link>https://kimpaper.github.io/posts/spring/2015-08-28-spring-batch/</link>
       <pubDate>Thu, 27 Aug 2015 22:44:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-08-28-spring-batch/</guid>
+      <guid>https://kimpaper.github.io/posts/spring/2015-08-28-spring-batch/</guid>
       <description>최근에 spring-batch를 사용해 봤는데.. 결과는 성공적 특히 트랜잭션commit size와 read size를 따로 지정할 수 있다는게 좋은것 같다.
 쿼리나 기타 로직보다 아래 설정이 중요한 듯 하여 아래 설정을 기록으로 남긴다.
 job에 대해서 요약하면
@@ -115,19 +115,19 @@ reader, writer는 커스텀 하지 않고 mybatis에서 기본으로 제공하�
     
     <item>
       <title>하둡 스프링 연동 테스트2 - hadoop 2.6.x with spring 4.0 (MapReduce WordCount example)</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</link>
+      <link>https://kimpaper.github.io/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</link>
       <pubDate>Wed, 15 Apr 2015 00:39:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</guid>
+      <guid>https://kimpaper.github.io/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</guid>
       <description>context-hadoop.xml에 아래 내용 추가. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  &amp;lt;hdp:configuration id=&amp;#34;hdConf&amp;#34;&amp;gt; fs.default.name=hdfs://localhost:9000 &amp;lt;/hdp:configuration&amp;gt; &amp;lt;hdp:job id=&amp;#34;wordCountJob&amp;#34; input-path=&amp;#34;/input/&amp;#34; output-path=&amp;#34;/output/&amp;#34; configuration-ref=&amp;#34;hdConf&amp;#34; mapper=&amp;#34;delim.app.service.WordCount$TokenizerMapper&amp;#34; reducer=&amp;#34;delim.app.service.WordCount$IntSumReducer&amp;#34; &amp;gt; &amp;lt;/hdp:job&amp;gt; &amp;lt;hdp:job-runner id=&amp;#34;wordCountJobRunner&amp;#34; job-ref=&amp;#34;wordCountJob&amp;#34; run-at-startup=&amp;#34;false&amp;#34;&amp;gt; &amp;lt;/hdp:job-runner&amp;gt;   WordCount.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49  import org.</description>
     </item>
     
     <item>
       <title>하둡 스프링 연동 테스트 - hadoop 2.6.x with spring 4.0</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/2015/04/12/hadoop-26x-with-spring-40/</link>
+      <link>https://kimpaper.github.io/2015/04/12/hadoop-26x-with-spring-40/</link>
       <pubDate>Sun, 12 Apr 2015 19:46:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/2015/04/12/hadoop-26x-with-spring-40/</guid>
+      <guid>https://kimpaper.github.io/2015/04/12/hadoop-26x-with-spring-40/</guid>
       <description>Hadoop 설치 및 설정은 아래와 같이 (osx 요세미티.) https://hadoop.apache.org/releases.html#Download ( 2.6.x 버전 )
 설치는 아래 블로그 보고 함 http://iamhereweare.blogspot.kr/2014/05/hadoop.html
 pom.xml 에 아래 dependency 추가. 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp;lt;groupid&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactid&amp;gt;spring-data-hadoop&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.1.1.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   context-hadoop.xml spring 설정에 파일 추가 1 2 3 4 5 6 7 8 9 10 11  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;beans xmlns=&amp;#34;http://www.springframework.org/schema/beans&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xmlns:hdp=&amp;#34;http://www.springframework.org/schema/hadoop&amp;#34; xsi:schemaLocation=&amp;#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/hadoop http://www.springframework.org/schema/hadoop/spring-hadoop.xsd&amp;#34;&amp;gt; &amp;lt;hdp:configuration id=&amp;#34;hdConf&amp;#34;&amp;gt; fs.default.name=hdfs://localhost:9000 &amp;lt;/hdp:configuration&amp;gt; &amp;lt;/beans&amp;gt;   아래와 같이 test코드 작성.</description>
@@ -135,28 +135,28 @@ pom.xml 에 아래 dependency 추가. 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp
     
     <item>
       <title>spring junit testcase 작성</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-03-25-spring-junit-testcase/</link>
+      <link>https://kimpaper.github.io/posts/spring/2015-03-25-spring-junit-testcase/</link>
       <pubDate>Tue, 24 Mar 2015 22:42:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-03-25-spring-junit-testcase/</guid>
+      <guid>https://kimpaper.github.io/posts/spring/2015-03-25-spring-junit-testcase/</guid>
       <description>pom.xml에 아래 추가. 1 2 3 4 5 6  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-test&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;4.0.5.RELEASE&amp;lt;/version&amp;gt; &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt; &amp;lt;/dependency&amp;gt;   test java코드 MemberServiceTest.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  @RunWith(SpringJUnit4ClassRunner.class) @ContextConfiguration( { &amp;#34;classpath:servlet-context.xml&amp;#34;, &amp;#34;classpath:config/context-datasource.xml&amp;#34; } ) public class MemberServiceTest { @Autowired MemberService memberService; @Test public void testSr2002() throws Exception { RequestData req = new RequestData(null, new DbMap()); ResponseData res = new ResponseData(new DbMap()); memberService.</description>
     </item>
     
     <item>
       <title>spring-rabbitmq 연동 </title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-03-11-spring-rabbitmq/</link>
+      <link>https://kimpaper.github.io/posts/spring/2015-03-11-spring-rabbitmq/</link>
       <pubDate>Tue, 10 Mar 2015 18:55:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-03-11-spring-rabbitmq/</guid>
+      <guid>https://kimpaper.github.io/posts/spring/2015-03-11-spring-rabbitmq/</guid>
       <description>설치는 그냥 rpm 으로 설치 1 2 3 4 5  # 서버 시작. sbin/rabbitmq-server start # 서버 중지 sbin/rabbitmqctl stop   spring-rabbit 연동 pom.xml 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp;lt;groupid&amp;gt;org.springframework.amqp&amp;lt;/groupId&amp;gt; &amp;lt;artifactid&amp;gt;spring-rabbit&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.4.1.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   context-rabbitmq.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  &amp;lt;!-- A reference to the org.springframework.amqp.rabbit.connection.ConnectionFactory --&amp;gt; &amp;lt;rabbit:connection-factory id=&amp;#34;connectionFactory&amp;#34; host=&amp;#34;localhost&amp;#34; username=&amp;#34;worker&amp;#34; password=&amp;#34;workerpassword&amp;#34; /&amp;gt; &amp;lt;!-- Creates a org.</description>
     </item>
     
     <item>
       <title>spring map to xml viewresolver</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</link>
+      <link>https://kimpaper.github.io/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</link>
       <pubDate>Thu, 05 Feb 2015 17:16:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</guid>
+      <guid>https://kimpaper.github.io/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</guid>
       <description>항상 json으로만 뱉다가 xml로 뱉어야 하는 상황이 발생해서 만든 spring view 클래스
 결과가 map에 경우에만 해당됨
 아래 설정하고&amp;hellip;

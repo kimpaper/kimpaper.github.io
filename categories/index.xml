@@ -2,74 +2,74 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on 기록 저장소</title>
-    <link>https://kimpaper.github.io/kimpaper.github.io/categories/</link>
+    <link>https://kimpaper.github.io/categories/</link>
     <description>Recent content in Categories on 기록 저장소</description>
     <image>
-      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
-      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+      <url>https://kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 28 Mar 2022 16:53:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Mar 2022 16:53:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>golang</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/categories/golang/</link>
+      <link>https://kimpaper.github.io/categories/golang/</link>
       <pubDate>Mon, 28 Mar 2022 16:53:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/categories/golang/</guid>
+      <guid>https://kimpaper.github.io/categories/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>kubernetes</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/categories/kubernetes/</link>
+      <link>https://kimpaper.github.io/categories/kubernetes/</link>
       <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/categories/kubernetes/</guid>
+      <guid>https://kimpaper.github.io/categories/kubernetes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>centos</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/categories/centos/</link>
+      <link>https://kimpaper.github.io/categories/centos/</link>
       <pubDate>Thu, 11 Aug 2016 16:07:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/categories/centos/</guid>
+      <guid>https://kimpaper.github.io/categories/centos/</guid>
       <description></description>
     </item>
     
     <item>
       <title>opensource</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/categories/opensource/</link>
+      <link>https://kimpaper.github.io/categories/opensource/</link>
       <pubDate>Wed, 27 Jul 2016 14:32:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/categories/opensource/</guid>
+      <guid>https://kimpaper.github.io/categories/opensource/</guid>
       <description></description>
     </item>
     
     <item>
       <title>spring</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/categories/spring/</link>
+      <link>https://kimpaper.github.io/categories/spring/</link>
       <pubDate>Fri, 13 Nov 2015 17:57:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/categories/spring/</guid>
+      <guid>https://kimpaper.github.io/categories/spring/</guid>
       <description></description>
     </item>
     
     <item>
       <title>.NET</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/categories/.net/</link>
+      <link>https://kimpaper.github.io/categories/.net/</link>
       <pubDate>Thu, 15 Oct 2015 12:13:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/categories/.net/</guid>
+      <guid>https://kimpaper.github.io/categories/.net/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mac</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/categories/mac/</link>
+      <link>https://kimpaper.github.io/categories/mac/</link>
       <pubDate>Thu, 04 Jun 2015 01:05:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/categories/mac/</guid>
+      <guid>https://kimpaper.github.io/categories/mac/</guid>
       <description></description>
     </item>
     

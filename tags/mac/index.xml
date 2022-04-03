@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>mac on 기록 저장소</title>
-    <link>https://kimpaper.github.io/kimpaper.github.io/tags/mac/</link>
+    <link>https://kimpaper.github.io/tags/mac/</link>
     <description>Recent content in mac on 기록 저장소</description>
     <image>
-      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
-      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+      <url>https://kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 29 Oct 2015 15:51:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Oct 2015 15:51:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/tags/mac/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Flume 설치 및 테스트 (mac)</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-10-29-flume-setting-sample/</link>
+      <link>https://kimpaper.github.io/posts/centos/2015-10-29-flume-setting-sample/</link>
       <pubDate>Thu, 29 Oct 2015 15:51:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-10-29-flume-setting-sample/</guid>
+      <guid>https://kimpaper.github.io/posts/centos/2015-10-29-flume-setting-sample/</guid>
       <description>Flume 란?  여러대(여러서비스..)에 기록되는 로그파일들을 실시간으로 한곳으로 모아주는 서비스  설치  http://flume.apache.org/download.html 에서 다운로드 한다. 적절한 곳에 압축을 풀어 준다 ~/dev/tool/flume JAVA_HOME이 지정되 있지 않으면. ~/.bash_profile 을 열어 환경 변수를 설정해 준다.  1  export JAVA_HOME = /usr (자바 경로.)    설치 및 테스트는 mac에서 했지만. centos에서도 잘되리라 믿는다.
  기본 flume.conf 파일 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  # The configuration file needs to define the sources, # the channels and the sinks.</description>
     </item>

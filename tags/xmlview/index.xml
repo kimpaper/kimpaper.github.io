@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>xmlview on 기록 저장소</title>
-    <link>https://kimpaper.github.io/kimpaper.github.io/tags/xmlview/</link>
+    <link>https://kimpaper.github.io/tags/xmlview/</link>
     <description>Recent content in xmlview on 기록 저장소</description>
     <image>
-      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
-      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+      <url>https://kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 05 Feb 2015 17:16:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/xmlview/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Feb 2015 17:16:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/tags/xmlview/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>spring map to xml viewresolver</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</link>
+      <link>https://kimpaper.github.io/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</link>
       <pubDate>Thu, 05 Feb 2015 17:16:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</guid>
+      <guid>https://kimpaper.github.io/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</guid>
       <description>항상 json으로만 뱉다가 xml로 뱉어야 하는 상황이 발생해서 만든 spring view 클래스
 결과가 map에 경우에만 해당됨
 아래 설정하고&amp;hellip;

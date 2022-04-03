@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>일상 on 기록 저장소</title>
-    <link>https://kimpaper.github.io/kimpaper.github.io/tags/%EC%9D%BC%EC%83%81/</link>
+    <link>https://kimpaper.github.io/tags/%EC%9D%BC%EC%83%81/</link>
     <description>Recent content in 일상 on 기록 저장소</description>
     <image>
-      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
-      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+      <url>https://kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 16 Sep 2015 20:21:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/%EC%9D%BC%EC%83%81/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Sep 2015 20:21:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/tags/%EC%9D%BC%EC%83%81/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>.NET Framework 4.5.2로 개발했다가. 4.0로... 내림 </title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/dotnet/2015-09-17-net-framework-452-40/</link>
+      <link>https://kimpaper.github.io/posts/dotnet/2015-09-17-net-framework-452-40/</link>
       <pubDate>Wed, 16 Sep 2015 20:21:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/dotnet/2015-09-17-net-framework-452-40/</guid>
+      <guid>https://kimpaper.github.io/posts/dotnet/2015-09-17-net-framework-452-40/</guid>
       <description>최근에 윈도우 어플을 개발할 일이 생겼다.
 .NET 4.5부터 async 문법이 새로 들어갔다 해서.. 이왕 하는거 4.5.2로&amp;hellip; 만들기로 했다. 오&amp;hellip;&amp;hellip; 엄청나게 편리하다.!!
 async, await 두개가 중요하다. 특히 UI프로그램에서 background thread와 main thread와의 동기화를 쉽게 지원한다.

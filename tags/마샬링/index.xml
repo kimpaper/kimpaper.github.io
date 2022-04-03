@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>마샬링 on 기록 저장소</title>
-    <link>https://kimpaper.github.io/kimpaper.github.io/tags/%EB%A7%88%EC%83%AC%EB%A7%81/</link>
+    <link>https://kimpaper.github.io/tags/%EB%A7%88%EC%83%AC%EB%A7%81/</link>
     <description>Recent content in 마샬링 on 기록 저장소</description>
     <image>
-      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
-      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+      <url>https://kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 15 Oct 2015 12:13:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/%EB%A7%88%EC%83%AC%EB%A7%81/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 15 Oct 2015 12:13:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/tags/%EB%A7%88%EC%83%AC%EB%A7%81/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>c# 에서 c&#43;&#43;(dll)로 LPCTSTR parameter 넘겨 호출 하기</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/2015/10/15/csharp-lpcstr-parameter-call/</link>
+      <link>https://kimpaper.github.io/2015/10/15/csharp-lpcstr-parameter-call/</link>
       <pubDate>Thu, 15 Oct 2015 12:13:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/2015/10/15/csharp-lpcstr-parameter-call/</guid>
+      <guid>https://kimpaper.github.io/2015/10/15/csharp-lpcstr-parameter-call/</guid>
       <description>c++ 로 된 dll을 c#에서 호출할때 예제입니다.
 먼저 c++ 코드들을 간단히 짰습니다. test.h 1  extern &amp;#34;C&amp;#34; __declspec(dllexport) int test(LPCTSTR szFileName);   test.cpp 1 2 3  int test(LPCTSTR szFileName) { return 0; }   다음은 c#쪽 코드들입니다 1 2 3 4 5 6 7 8 9  [DllImport(&amp;#34;sampleLib.dll&amp;#34;, CallingConvention = CallingConvention.Cdecl)] private static extern int test( [MarshalAs(UnmanagedType.LPWStr)] string szFileName); private void button2_Click(object sender, EventArgs e) { string szFileName = @&amp;#34;c:\filename.</description>
     </item>

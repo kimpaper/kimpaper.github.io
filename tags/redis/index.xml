@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>redis on 기록 저장소</title>
-    <link>https://kimpaper.github.io/kimpaper.github.io/tags/redis/</link>
+    <link>https://kimpaper.github.io/tags/redis/</link>
     <description>Recent content in redis on 기록 저장소</description>
     <image>
-      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
-      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+      <url>https://kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 27 Jul 2016 14:32:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Jul 2016 14:32:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>redis data type 종류</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/2016/07/27/redis-datatype/</link>
+      <link>https://kimpaper.github.io/2016/07/27/redis-datatype/</link>
       <pubDate>Wed, 27 Jul 2016 14:32:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/2016/07/27/redis-datatype/</guid>
+      <guid>https://kimpaper.github.io/2016/07/27/redis-datatype/</guid>
       <description>Redis Data Type 요약 인터넷상에 수많은 좋은 자료가 있음에도 공부 차원에서 정리를 한다
 테스트는 redis-cli를 이용해서 하지만 실제 사용은 언어에 맞는 api library를 사용 할듯
 개요 http://redis.io/topics/data-types-intro
@@ -25,20 +25,20 @@ Strings  value에 문자 숫자 등을 저장한다 저장시 별도로 형이 �
     
     <item>
       <title>spring redis 연동 </title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-11-11-spring-redis/</link>
+      <link>https://kimpaper.github.io/posts/spring/2015-11-11-spring-redis/</link>
       <pubDate>Tue, 10 Nov 2015 17:36:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/spring/2015-11-11-spring-redis/</guid>
+      <guid>https://kimpaper.github.io/posts/spring/2015-11-11-spring-redis/</guid>
       <description>pom.xml 에 아래 추가. 1 2 3 4 5 6 7 8 9 10  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-data-redis&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.1.0.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;redis.clients&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;jedis&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;    버전을 잘 맞춰야 한다. 안그러면 몇몇 class가 없어서 오류가 발생해요.
  context-redis.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;beans xmlns=&amp;#34;http://www.springframework.org/schema/beans&amp;#34; xmlns:p=&amp;#34;http://www.springframework.org/schema/p&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xsi:schemaLocation=&amp;#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd&amp;#34;&amp;gt; &amp;lt;bean id=&amp;#34;jedisConnFactory&amp;#34; class=&amp;#34;org.</description>
     </item>
     
     <item>
       <title>redis 3.2.3 설치</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</link>
+      <link>https://kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</link>
       <pubDate>Sun, 20 Sep 2015 21:47:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</guid>
+      <guid>https://kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</guid>
       <description>컴파일러를 먼저 설치해야 합니다. (설치돼 있다면 패스) 1  yum install gcc gcc-c++ autoconf automake   참고) http://www.redis.io/download
 설치 1 2 3 4 5 6 7  # 다운로드 및 설치 (컴파일) wget http://download.redis.io/releases/redis-3.2.3.tar.gz tar xzf redis-3.2.3.tar.gz cd redis-3.2.3 make &amp;amp;&amp;amp; make install cd utils ./install_server.sh   실행로그 확인 1  tail -f /var/log/redis_6379.log -n 1000   로그에서 Warning 없애기  vi /etc/sysctl.conf 파일에 아래 추가  1 2  vm.</description>
     </item>

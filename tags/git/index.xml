@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>git on 기록 저장소</title>
-    <link>https://kimpaper.github.io/kimpaper.github.io/tags/git/</link>
+    <link>https://kimpaper.github.io/tags/git/</link>
     <description>Recent content in git on 기록 저장소</description>
     <image>
-      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
-      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+      <url>https://kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 24 Mar 2016 16:36:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Mar 2016 16:36:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>git에서 rebase와 merge</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2016-03-24-git-rebase-merge/</link>
+      <link>https://kimpaper.github.io/posts/etc/2016-03-24-git-rebase-merge/</link>
       <pubDate>Thu, 24 Mar 2016 16:36:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2016-03-24-git-rebase-merge/</guid>
+      <guid>https://kimpaper.github.io/posts/etc/2016-03-24-git-rebase-merge/</guid>
       <description>요즘엔 git을 많이 이용하는데 항상 rebase와 merge에 대해서 헷갈리곤 했다.
 잘 모를때 rebase로 하다가 소스를 날려먹은 후로는.. merge만 써왔다
 최근에 몇군데 찾아봤는데 rebase 는 branch의 base를 재배치 한다는 의미라고 한다. gitflow를 쓰면서 feature를 새로 만들어서 작업을 하다 그동안 쌓인 develop를 rebase를 해봤는데. feature에서 작업하던 도중 쌓인 develop의 commit들이 local feature밑으로 들어가지는걸 확인했다.
@@ -24,10 +24,10 @@
     
     <item>
       <title>git local commit revert 시키기</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2016-02-25-git-revert-local-commit/</link>
+      <link>https://kimpaper.github.io/posts/etc/2016-02-25-git-revert-local-commit/</link>
       <pubDate>Thu, 25 Feb 2016 14:35:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2016-02-25-git-revert-local-commit/</guid>
+      <guid>https://kimpaper.github.io/posts/etc/2016-02-25-git-revert-local-commit/</guid>
       <description>아래와 같이 복구 대상 저장소를 지정한다 (현재 checkout이 develop인 경우)
 1  git reset --hard remotes/origin/develop   저장소를 지정하지 않으면 현재 checkout된 remote를 기준으로 revert하는것 같다
 1  git reset --hard   </description>
@@ -35,10 +35,10 @@
     
     <item>
       <title>git 관련 명령어 모음</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-03-05-git/</link>
+      <link>https://kimpaper.github.io/posts/centos/2015-03-05-git/</link>
       <pubDate>Wed, 04 Mar 2015 17:33:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/centos/2015-03-05-git/</guid>
+      <guid>https://kimpaper.github.io/posts/centos/2015-03-05-git/</guid>
       <description>svn to git 마이그레이션 1 2  git svn clone --stdlayout --no-metadata -A users.txt svn://example.com/repository/projectname cd projectname    아래 users.txt 만드는건데 perl 이 없어서 그런지.. 안되네요&amp;hellip; ㅠ
 svn log ^/ --xml | grep -P &amp;quot;^&amp;lt;author&amp;quot; | sort -u | \ perl -pe &#39;s/&amp;lt;author&amp;gt;(.*?)&amp;lt;\/author&amp;gt;/$1 = /&#39; &amp;gt; users.txt
  ignore file처리 1  git svn show-ignore -i trunk &amp;gt; .gitignore   remote git 지정 1  git remote add origin git@git.</description>

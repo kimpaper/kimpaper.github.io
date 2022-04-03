@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>vscode on 기록 저장소</title>
-    <link>https://kimpaper.github.io/kimpaper.github.io/tags/vscode/</link>
+    <link>https://kimpaper.github.io/tags/vscode/</link>
     <description>Recent content in vscode on 기록 저장소</description>
     <image>
-      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
-      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+      <url>https://kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 18 Dec 2015 15:39:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Dec 2015 15:39:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>맥에서 Unity3D 기본 에디터로 VisualStudio Code 사용하기</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2015-12-18-unity-with-visualstudio-code/</link>
+      <link>https://kimpaper.github.io/posts/etc/2015-12-18-unity-with-visualstudio-code/</link>
       <pubDate>Fri, 18 Dec 2015 15:39:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/etc/2015-12-18-unity-with-visualstudio-code/</guid>
+      <guid>https://kimpaper.github.io/posts/etc/2015-12-18-unity-with-visualstudio-code/</guid>
       <description>맥용 Unity로 개발할때 보통 MonoDevelopr를 이용하여 코딩 한다 그런데 한글을 지원안해서. 아주 불편했는데.
 MS에서 얼마전에 공개한 mac용 VisualStudio Code에서 유니티를 지원한다고 해서 한번 설정해봤다.
 설치   우선 VS code를 설치 한다 https://code.visualstudio.com/

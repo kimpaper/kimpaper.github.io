@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>glusterfs on 기록 저장소</title>
-    <link>https://kimpaper.github.io/kimpaper.github.io/tags/glusterfs/</link>
+    <link>https://kimpaper.github.io/tags/glusterfs/</link>
     <description>Recent content in glusterfs on 기록 저장소</description>
     <image>
-      <url>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</url>
-      <link>https://kimpaper.github.io/kimpaper.github.io/papermod-cover.png</link>
+      <url>https://kimpaper.github.io/papermod-cover.png</url>
+      <link>https://kimpaper.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 13 May 2020 11:18:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/kimpaper.github.io/tags/glusterfs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 May 2020 11:18:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/tags/glusterfs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>kubernetes glusterfs 연동</title>
-      <link>https://kimpaper.github.io/kimpaper.github.io/posts/kube/2020-05-13-kubernetes-glusterfs/</link>
+      <link>https://kimpaper.github.io/posts/kube/2020-05-13-kubernetes-glusterfs/</link>
       <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
       
-      <guid>https://kimpaper.github.io/kimpaper.github.io/posts/kube/2020-05-13-kubernetes-glusterfs/</guid>
+      <guid>https://kimpaper.github.io/posts/kube/2020-05-13-kubernetes-glusterfs/</guid>
       <description>glusterfs-kubernetes 설치 시도 중 gluster-kubernetes/deploy/gk-deploy 파일을 열어서 아래 라인을 고쳐야 한다 (kubectl에 없어진 인자값을 쓴다)
 1 2 3  # deprecated &amp;#34;--show-all&amp;#34; parameter #heketi_pod=$(${CLI} get pod --no-headers --show-all --selector=&amp;#34;heketi&amp;#34; | awk &amp;#39;{print $1}&amp;#39;) heketi_pod=$(${CLI} get pod --no-headers --selector=&amp;#34;heketi&amp;#34; | awk &amp;#39;{print $1}&amp;#39;)   1 2 3 4 5 6 7 8 9  # daemonset을 설치하기 위해 # 노드별로 아래 경로를 비워야함 rm -rf /var/lib/misc/glusterfsd /var/lib/glusterd /var/log/glusterfs /etc/glusterfs /var/lib/heketi #uninstall .</description>
     </item>
