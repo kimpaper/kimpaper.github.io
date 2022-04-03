@@ -29,13 +29,13 @@ func main() {
 ## cpu profile (30초동안 데이터를 모은다)
 
 ```bash
-go tool pprof http://10.10.33.192:6060/debug/pprof/profile
+go tool pprof http://xxxx:6060/debug/pprof/profile
 ```
 
 ## heap memory (현재 메모리 정보를 반환한다)
 
 ```bash
-go tool pprof http://10.10.33.192:6060/debug/pprof/heap
+go tool pprof http://xxxx:6060/debug/pprof/heap
 ```
 
 - heap 을 실행하면 아래와 같이 command line (pprof)가 나오는데 프로파일 명령을 넣으면 된다.
