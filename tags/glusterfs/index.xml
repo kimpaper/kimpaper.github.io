@@ -17,7 +17,7 @@
       
       <guid>https://kimpaper.github.io/posts/kube/2020-05-13-kubernetes-glusterfs/</guid>
       <description>glusterfs-kubernetes 설치 시도 중 gluster-kubernetes/deploy/gk-deploy 파일을 열어서 아래 라인을 고쳐야 한다 (kubectl에 없어진 인자값을 쓴다)
-1 2 3  # deprecated &amp;#34;--show-all&amp;#34; parameter #heketi_pod=$(${CLI} get pod --no-headers --show-all --selector=&amp;#34;heketi&amp;#34; | awk &amp;#39;{print $1}&amp;#39;) heketi_pod=$(${CLI} get pod --no-headers --selector=&amp;#34;heketi&amp;#34; | awk &amp;#39;{print $1}&amp;#39;)   1 2 3 4 5 6 7 8 9  # daemonset을 설치하기 위해 # 노드별로 아래 경로를 비워야함 rm -rf /var/lib/misc/glusterfsd /var/lib/glusterd /var/log/glusterfs /etc/glusterfs /var/lib/heketi #uninstall .</description>
+1 2 3 # deprecated &amp;#34;--show-all&amp;#34; parameter #heketi_pod=$(${CLI} get pod --no-headers --show-all --selector=&amp;#34;heketi&amp;#34; | awk &amp;#39;{print $1}&amp;#39;) heketi_pod=$(${CLI} get pod --no-headers --selector=&amp;#34;heketi&amp;#34; | awk &amp;#39;{print $1}&amp;#39;) 1 2 3 4 5 6 7 8 9 # daemonset을 설치하기 위해 # 노드별로 아래 경로를 비워야함 rm -rf /var/lib/misc/glusterfsd /var/lib/glusterd /var/log/glusterfs /etc/glusterfs /var/lib/heketi #uninstall ./gk-deploy -g --user-key userkey --admin-key adminkey -n glusterfs --abort #install .</description>
     </item>
     
   </channel>

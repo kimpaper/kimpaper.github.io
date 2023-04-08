@@ -18,13 +18,13 @@
       <guid>https://kimpaper.github.io/2016/06/08/apachelog/</guid>
       <description>app에서 데이타 통신을하는 api서버가 있다
 각 인터페이스별 평균 응답시간을 아파치 로그를 활용하여 구해봤다
- 서버는 apache+tomcat, spring으로 구현한 서버이다
- hadoop과 spark, python 설정은
+서버는 apache+tomcat, spring으로 구현한 서버이다
+hadoop과 spark, python 설정은
 Python and Spark로 로그 파일 분석 (with hadoop) 을 참고 하자
 1. 아파치 TransferLog 로그파일에 응답 시간 남기기 우선 분석하기 전에 아파치 로그에 응답 시간을 추가로 기록하도록 하자
 /etc/httpd/conf.d/ssl.conf 경로에서 아래를 편집했다.
 물론. 설정 파일이 있는 경로와 이름은 서버마다 틀릴 수 있다
-1 2 3 4 5 6  &amp;lt;VirtualHost _default_:443&amp;gt; .</description>
+1 2 3 4 5 6 &amp;lt;VirtualHost _default_:443&amp;gt; .</description>
     </item>
     
     <item>
@@ -33,11 +33,11 @@ Python and Spark로 로그 파일 분석 (with hadoop) 을 참고 하자
       <pubDate>Mon, 30 May 2016 16:35:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/opensource/2016-05-30-spark-hadoop/</guid>
-      <description>Spark를 이용한 파일 분석  spark도 잘 모르고 hadoop도 잘 모르는 상태에서 진행해서 틀린 부분이 있을 것이다.
+      <description>Spark를 이용한 파일 분석 spark도 잘 모르고 hadoop도 잘 모르는 상태에서 진행해서 틀린 부분이 있을 것이다.
 참고로 OSX에서 진행된 작업이다.
- 설정 1. Hadoop를 설치 하고 실행한다 2. hdfs상에 파일을 올린다. 1 2  cd /logs hdfs dfs -put test.log /input/   아래와 같이 파일 브라우징이 가능하다 아래에서 올라간 파일을 확인! http://localhost:50070/explorer.html#/input
+설정 1. Hadoop를 설치 하고 실행한다 2. hdfs상에 파일을 올린다. 1 2 cd /logs hdfs dfs -put test.log /input/ 아래와 같이 파일 브라우징이 가능하다 아래에서 올라간 파일을 확인! http://localhost:50070/explorer.html#/input
 3. spark의 python 커맨드 테스트.. $SPARK_HOME/bin/pyspark 하둡을 켜고 pyspark를 실행하면 아래와 같이 나온다
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  Python 2.</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 Python 2.</description>
     </item>
     
     <item>
@@ -46,7 +46,7 @@ Python and Spark로 로그 파일 분석 (with hadoop) 을 참고 하자
       <pubDate>Wed, 15 Apr 2015 00:39:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</guid>
-      <description>context-hadoop.xml에 아래 내용 추가. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  &amp;lt;hdp:configuration id=&amp;#34;hdConf&amp;#34;&amp;gt; fs.default.name=hdfs://localhost:9000 &amp;lt;/hdp:configuration&amp;gt; &amp;lt;hdp:job id=&amp;#34;wordCountJob&amp;#34; input-path=&amp;#34;/input/&amp;#34; output-path=&amp;#34;/output/&amp;#34; configuration-ref=&amp;#34;hdConf&amp;#34; mapper=&amp;#34;delim.app.service.WordCount$TokenizerMapper&amp;#34; reducer=&amp;#34;delim.app.service.WordCount$IntSumReducer&amp;#34; &amp;gt; &amp;lt;/hdp:job&amp;gt; &amp;lt;hdp:job-runner id=&amp;#34;wordCountJobRunner&amp;#34; job-ref=&amp;#34;wordCountJob&amp;#34; run-at-startup=&amp;#34;false&amp;#34;&amp;gt; &amp;lt;/hdp:job-runner&amp;gt;   WordCount.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49  import org.</description>
+      <description>context-hadoop.xml에 아래 내용 추가. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 &amp;lt;hdp:configuration id=&amp;#34;hdConf&amp;#34;&amp;gt; fs.default.name=hdfs://localhost:9000 &amp;lt;/hdp:configuration&amp;gt; &amp;lt;hdp:job id=&amp;#34;wordCountJob&amp;#34; input-path=&amp;#34;/input/&amp;#34; output-path=&amp;#34;/output/&amp;#34; configuration-ref=&amp;#34;hdConf&amp;#34; mapper=&amp;#34;delim.app.service.WordCount$TokenizerMapper&amp;#34; reducer=&amp;#34;delim.app.service.WordCount$IntSumReducer&amp;#34; &amp;gt; &amp;lt;/hdp:job&amp;gt; &amp;lt;hdp:job-runner id=&amp;#34;wordCountJobRunner&amp;#34; job-ref=&amp;#34;wordCountJob&amp;#34; run-at-startup=&amp;#34;false&amp;#34;&amp;gt; &amp;lt;/hdp:job-runner&amp;gt; WordCount.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 import org.</description>
     </item>
     
     <item>
@@ -57,7 +57,7 @@ Python and Spark로 로그 파일 분석 (with hadoop) 을 참고 하자
       <guid>https://kimpaper.github.io/2015/04/12/hadoop-26x-with-spring-40/</guid>
       <description>Hadoop 설치 및 설정은 아래와 같이 (osx 요세미티.) https://hadoop.apache.org/releases.html#Download ( 2.6.x 버전 )
 설치는 아래 블로그 보고 함 http://iamhereweare.blogspot.kr/2014/05/hadoop.html
-pom.xml 에 아래 dependency 추가. 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp;lt;groupid&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactid&amp;gt;spring-data-hadoop&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.1.1.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   context-hadoop.xml spring 설정에 파일 추가 1 2 3 4 5 6 7 8 9 10 11  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;beans xmlns=&amp;#34;http://www.springframework.org/schema/beans&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xmlns:hdp=&amp;#34;http://www.springframework.org/schema/hadoop&amp;#34; xsi:schemaLocation=&amp;#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/hadoop http://www.springframework.org/schema/hadoop/spring-hadoop.xsd&amp;#34;&amp;gt; &amp;lt;hdp:configuration id=&amp;#34;hdConf&amp;#34;&amp;gt; fs.default.name=hdfs://localhost:9000 &amp;lt;/hdp:configuration&amp;gt; &amp;lt;/beans&amp;gt;   아래와 같이 test코드 작성.</description>
+pom.xml 에 아래 dependency 추가. 1 2 3 4 5 &amp;lt;dependency&amp;gt; &amp;lt;groupid&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactid&amp;gt;spring-data-hadoop&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.1.1.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; context-hadoop.xml spring 설정에 파일 추가 1 2 3 4 5 6 7 8 9 10 11 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;beans xmlns=&amp;#34;http://www.springframework.org/schema/beans&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xmlns:hdp=&amp;#34;http://www.springframework.org/schema/hadoop&amp;#34; xsi:schemaLocation=&amp;#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/hadoop http://www.springframework.org/schema/hadoop/spring-hadoop.xsd&amp;#34;&amp;gt; &amp;lt;hdp:configuration id=&amp;#34;hdConf&amp;#34;&amp;gt; fs.default.name=hdfs://localhost:9000 &amp;lt;/hdp:configuration&amp;gt; &amp;lt;/beans&amp;gt; 아래와 같이 test코드 작성.</description>
     </item>
     
   </channel>

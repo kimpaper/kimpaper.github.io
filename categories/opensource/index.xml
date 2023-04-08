@@ -20,7 +20,7 @@
 테스트는 redis-cli를 이용해서 하지만 실제 사용은 언어에 맞는 api library를 사용 할듯
 개요 http://redis.io/topics/data-types-intro
 예제 http://redis.io/topics/data-types
-Strings  value에 문자 숫자 등을 저장한다 저장시 별도로 형이 없다 (숫자 문자 구분이 없음) 숫자도 저장가능 하다 그리고 숫자에 incr, incrby, decr, decrby 같은 atomic counter 연산이 가능 incrby, decrby 는 특정 수를 더하거나 뺄때 사용 incrby &amp;quot;test_strings&amp;quot; 10 처럼 사용  1 2 3 4 5 6 7 8 9 10  # redis-cli 127.</description>
+Strings value에 문자 숫자 등을 저장한다 저장시 별도로 형이 없다 (숫자 문자 구분이 없음) 숫자도 저장가능 하다 그리고 숫자에 incr, incrby, decr, decrby 같은 atomic counter 연산이 가능 incrby, decrby 는 특정 수를 더하거나 뺄때 사용 incrby &amp;quot;test_strings&amp;quot; 10 처럼 사용 1 2 3 4 5 6 7 8 9 10 # redis-cli 127.</description>
     </item>
     
     <item>
@@ -34,7 +34,9 @@ Strings  value에 문자 숫자 등을 저장한다 저장시 별도로 형이 �
 http://docs.fluentd.org/articles/install-by-rpm#step-0-before-installation
 구성은 flume와 비슷한것 같다
 client -&amp;gt; server 구성으로 해놓고 client에서 수집된 로그를 server로 전달.
-아래 커맨드 실행 1  curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh   서비스 구동 1  service td-agent start    당연히 service td-agent stop 가 중지다</description>
+아래 커맨드 실행 1 curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh 서비스 구동 1 service td-agent start 당연히 service td-agent stop 가 중지다
+설정 /etc/td-agent/td-agent.conf 파일이 설정 파일이다
+1 vi /etc/td-agent/td-agent.</description>
     </item>
     
     <item>
@@ -45,13 +47,13 @@ client -&amp;gt; server 구성으로 해놓고 client에서 수집된 로그를 
       <guid>https://kimpaper.github.io/2016/06/08/apachelog/</guid>
       <description>app에서 데이타 통신을하는 api서버가 있다
 각 인터페이스별 평균 응답시간을 아파치 로그를 활용하여 구해봤다
- 서버는 apache+tomcat, spring으로 구현한 서버이다
- hadoop과 spark, python 설정은
+서버는 apache+tomcat, spring으로 구현한 서버이다
+hadoop과 spark, python 설정은
 Python and Spark로 로그 파일 분석 (with hadoop) 을 참고 하자
 1. 아파치 TransferLog 로그파일에 응답 시간 남기기 우선 분석하기 전에 아파치 로그에 응답 시간을 추가로 기록하도록 하자
 /etc/httpd/conf.d/ssl.conf 경로에서 아래를 편집했다.
 물론. 설정 파일이 있는 경로와 이름은 서버마다 틀릴 수 있다
-1 2 3 4 5 6  &amp;lt;VirtualHost _default_:443&amp;gt; .</description>
+1 2 3 4 5 6 &amp;lt;VirtualHost _default_:443&amp;gt; .</description>
     </item>
     
     <item>
@@ -60,11 +62,11 @@ Python and Spark로 로그 파일 분석 (with hadoop) 을 참고 하자
       <pubDate>Mon, 30 May 2016 16:35:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/opensource/2016-05-30-spark-hadoop/</guid>
-      <description>Spark를 이용한 파일 분석  spark도 잘 모르고 hadoop도 잘 모르는 상태에서 진행해서 틀린 부분이 있을 것이다.
+      <description>Spark를 이용한 파일 분석 spark도 잘 모르고 hadoop도 잘 모르는 상태에서 진행해서 틀린 부분이 있을 것이다.
 참고로 OSX에서 진행된 작업이다.
- 설정 1. Hadoop를 설치 하고 실행한다 2. hdfs상에 파일을 올린다. 1 2  cd /logs hdfs dfs -put test.log /input/   아래와 같이 파일 브라우징이 가능하다 아래에서 올라간 파일을 확인! http://localhost:50070/explorer.html#/input
+설정 1. Hadoop를 설치 하고 실행한다 2. hdfs상에 파일을 올린다. 1 2 cd /logs hdfs dfs -put test.log /input/ 아래와 같이 파일 브라우징이 가능하다 아래에서 올라간 파일을 확인! http://localhost:50070/explorer.html#/input
 3. spark의 python 커맨드 테스트.. $SPARK_HOME/bin/pyspark 하둡을 켜고 pyspark를 실행하면 아래와 같이 나온다
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  Python 2.</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 Python 2.</description>
     </item>
     
     <item>
@@ -73,8 +75,8 @@ Python and Spark로 로그 파일 분석 (with hadoop) 을 참고 하자
       <pubDate>Sun, 20 Sep 2015 21:47:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</guid>
-      <description>컴파일러를 먼저 설치해야 합니다. (설치돼 있다면 패스) 1  yum install gcc gcc-c++ autoconf automake   참고) http://www.redis.io/download
-설치 1 2 3 4 5 6 7  # 다운로드 및 설치 (컴파일) wget http://download.redis.io/releases/redis-3.2.3.tar.gz tar xzf redis-3.2.3.tar.gz cd redis-3.2.3 make &amp;amp;&amp;amp; make install cd utils ./install_server.sh   실행로그 확인 1  tail -f /var/log/redis_6379.log -n 1000   로그에서 Warning 없애기  vi /etc/sysctl.conf 파일에 아래 추가  1 2  vm.</description>
+      <description>컴파일러를 먼저 설치해야 합니다. (설치돼 있다면 패스) 1 yum install gcc gcc-c++ autoconf automake 참고) http://www.redis.io/download
+설치 1 2 3 4 5 6 7 # 다운로드 및 설치 (컴파일) wget http://download.redis.io/releases/redis-3.2.3.tar.gz tar xzf redis-3.2.3.tar.gz cd redis-3.2.3 make &amp;amp;&amp;amp; make install cd utils ./install_server.sh 실행로그 확인 1 tail -f /var/log/redis_6379.log -n 1000 로그에서 Warning 없애기 vi /etc/sysctl.conf 파일에 아래 추가 1 2 vm.overcommit_memory=1 fs.file-max = 1048576 vi /etc/rc.local 파일에 아래 추가 1 2 echo never &amp;gt; /sys/kernel/mm/transparent_hugepage/enabled sysctl -w net.</description>
     </item>
     
   </channel>

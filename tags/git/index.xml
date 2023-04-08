@@ -29,8 +29,8 @@
       
       <guid>https://kimpaper.github.io/posts/etc/2016-02-25-git-revert-local-commit/</guid>
       <description>아래와 같이 복구 대상 저장소를 지정한다 (현재 checkout이 develop인 경우)
-1  git reset --hard remotes/origin/develop   저장소를 지정하지 않으면 현재 checkout된 remote를 기준으로 revert하는것 같다
-1  git reset --hard   </description>
+1 git reset --hard remotes/origin/develop 저장소를 지정하지 않으면 현재 checkout된 remote를 기준으로 revert하는것 같다
+1 git reset --hard </description>
     </item>
     
     <item>
@@ -39,9 +39,9 @@
       <pubDate>Wed, 04 Mar 2015 17:33:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/centos/2015-03-05-git/</guid>
-      <description>svn to git 마이그레이션 1 2  git svn clone --stdlayout --no-metadata -A users.txt svn://example.com/repository/projectname cd projectname    아래 users.txt 만드는건데 perl 이 없어서 그런지.. 안되네요&amp;hellip; ㅠ
+      <description>svn to git 마이그레이션 1 2 git svn clone --stdlayout --no-metadata -A users.txt svn://example.com/repository/projectname cd projectname 아래 users.txt 만드는건데 perl 이 없어서 그런지.. 안되네요&amp;hellip; ㅠ
 svn log ^/ --xml | grep -P &amp;quot;^&amp;lt;author&amp;quot; | sort -u | \ perl -pe &#39;s/&amp;lt;author&amp;gt;(.*?)&amp;lt;\/author&amp;gt;/$1 = /&#39; &amp;gt; users.txt
- ignore file처리 1  git svn show-ignore -i trunk &amp;gt; .gitignore   remote git 지정 1  git remote add origin git@git.</description>
+ignore file처리 1 git svn show-ignore -i trunk &amp;gt; .gitignore remote git 지정 1 git remote add origin git@git.example.com:group/projectname.git tags 처리 1 git for-each-ref refs/remotes/tags | cut -d / -f 4- | grep -v @ | while read tagname; do git tag &amp;#34;$tagname&amp;#34; &amp;#34;tags/$tagname&amp;#34;; git branch -r -d &amp;#34;tags/$tagname&amp;#34;; done branches 처리 1 git for-each-ref refs/remotes | cut -d / -f 3- | grep -v @ | while read branchname; do git branch &amp;#34;$branchname&amp;#34; &amp;#34;refs/remotes/$branchname&amp;#34;; git branch -r -d &amp;#34;$branchname&amp;#34;; done push한다.</description>
     </item>
     
   </channel>

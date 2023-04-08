@@ -16,8 +16,7 @@
       <pubDate>Thu, 05 Feb 2015 17:10:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/centos/2015-02-06-tomcat-outofmemory/</guid>
-      <description>catalina.sh 맨 상위에 아래를 추가해서 메모리를 크게 잡자. (주의 서버 메모리를 생각해서 적당히. ) 1  export CATALINA_OPTS=&amp;#34;-Djava.awt.headless=true -server -Xms2048m -Xmx2048m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled&amp;#34;    참고) http://stackoverflow.com/questions/88235/dealing-with-java-lang-outofmemoryerror-permgen-space-error
- </description>
+      <description>catalina.sh 맨 상위에 아래를 추가해서 메모리를 크게 잡자. (주의 서버 메모리를 생각해서 적당히. ) 1 export CATALINA_OPTS=&amp;#34;-Djava.awt.headless=true -server -Xms2048m -Xmx2048m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled&amp;#34; 참고) http://stackoverflow.com/questions/88235/dealing-with-java-lang-outofmemoryerror-permgen-space-error</description>
     </item>
     
   </channel>

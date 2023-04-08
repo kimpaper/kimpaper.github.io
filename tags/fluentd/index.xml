@@ -21,7 +21,9 @@
 http://docs.fluentd.org/articles/install-by-rpm#step-0-before-installation
 구성은 flume와 비슷한것 같다
 client -&amp;gt; server 구성으로 해놓고 client에서 수집된 로그를 server로 전달.
-아래 커맨드 실행 1  curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh   서비스 구동 1  service td-agent start    당연히 service td-agent stop 가 중지다</description>
+아래 커맨드 실행 1 curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh 서비스 구동 1 service td-agent start 당연히 service td-agent stop 가 중지다
+설정 /etc/td-agent/td-agent.conf 파일이 설정 파일이다
+1 vi /etc/td-agent/td-agent.</description>
     </item>
     
   </channel>

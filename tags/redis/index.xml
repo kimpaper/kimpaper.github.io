@@ -20,7 +20,7 @@
 테스트는 redis-cli를 이용해서 하지만 실제 사용은 언어에 맞는 api library를 사용 할듯
 개요 http://redis.io/topics/data-types-intro
 예제 http://redis.io/topics/data-types
-Strings  value에 문자 숫자 등을 저장한다 저장시 별도로 형이 없다 (숫자 문자 구분이 없음) 숫자도 저장가능 하다 그리고 숫자에 incr, incrby, decr, decrby 같은 atomic counter 연산이 가능 incrby, decrby 는 특정 수를 더하거나 뺄때 사용 incrby &amp;quot;test_strings&amp;quot; 10 처럼 사용  1 2 3 4 5 6 7 8 9 10  # redis-cli 127.</description>
+Strings value에 문자 숫자 등을 저장한다 저장시 별도로 형이 없다 (숫자 문자 구분이 없음) 숫자도 저장가능 하다 그리고 숫자에 incr, incrby, decr, decrby 같은 atomic counter 연산이 가능 incrby, decrby 는 특정 수를 더하거나 뺄때 사용 incrby &amp;quot;test_strings&amp;quot; 10 처럼 사용 1 2 3 4 5 6 7 8 9 10 # redis-cli 127.</description>
     </item>
     
     <item>
@@ -29,8 +29,8 @@ Strings  value에 문자 숫자 등을 저장한다 저장시 별도로 형이 �
       <pubDate>Tue, 10 Nov 2015 17:36:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/spring/2015-11-11-spring-redis/</guid>
-      <description>pom.xml 에 아래 추가. 1 2 3 4 5 6 7 8 9 10  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-data-redis&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.1.0.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;redis.clients&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;jedis&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;    버전을 잘 맞춰야 한다. 안그러면 몇몇 class가 없어서 오류가 발생해요.
- context-redis.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;beans xmlns=&amp;#34;http://www.springframework.org/schema/beans&amp;#34; xmlns:p=&amp;#34;http://www.springframework.org/schema/p&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xsi:schemaLocation=&amp;#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd&amp;#34;&amp;gt; &amp;lt;bean id=&amp;#34;jedisConnFactory&amp;#34; class=&amp;#34;org.</description>
+      <description>pom.xml 에 아래 추가. 1 2 3 4 5 6 7 8 9 10 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-data-redis&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.1.0.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;redis.clients&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;jedis&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 버전을 잘 맞춰야 한다. 안그러면 몇몇 class가 없어서 오류가 발생해요.
+context-redis.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;beans xmlns=&amp;#34;http://www.springframework.org/schema/beans&amp;#34; xmlns:p=&amp;#34;http://www.springframework.org/schema/p&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xsi:schemaLocation=&amp;#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd&amp;#34;&amp;gt; &amp;lt;bean id=&amp;#34;jedisConnFactory&amp;#34; class=&amp;#34;org.springframework.data.redis.connection.jedis.JedisConnectionFactory&amp;#34; p:usePool=&amp;#34;true&amp;#34; p:hostName=&amp;#34;172.xxx.xxx.xxx&amp;#34; p:port=&amp;#34;6379&amp;#34; /&amp;gt; &amp;lt;!</description>
     </item>
     
     <item>
@@ -39,8 +39,8 @@ Strings  value에 문자 숫자 등을 저장한다 저장시 별도로 형이 �
       <pubDate>Sun, 20 Sep 2015 21:47:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</guid>
-      <description>컴파일러를 먼저 설치해야 합니다. (설치돼 있다면 패스) 1  yum install gcc gcc-c++ autoconf automake   참고) http://www.redis.io/download
-설치 1 2 3 4 5 6 7  # 다운로드 및 설치 (컴파일) wget http://download.redis.io/releases/redis-3.2.3.tar.gz tar xzf redis-3.2.3.tar.gz cd redis-3.2.3 make &amp;amp;&amp;amp; make install cd utils ./install_server.sh   실행로그 확인 1  tail -f /var/log/redis_6379.log -n 1000   로그에서 Warning 없애기  vi /etc/sysctl.conf 파일에 아래 추가  1 2  vm.</description>
+      <description>컴파일러를 먼저 설치해야 합니다. (설치돼 있다면 패스) 1 yum install gcc gcc-c++ autoconf automake 참고) http://www.redis.io/download
+설치 1 2 3 4 5 6 7 # 다운로드 및 설치 (컴파일) wget http://download.redis.io/releases/redis-3.2.3.tar.gz tar xzf redis-3.2.3.tar.gz cd redis-3.2.3 make &amp;amp;&amp;amp; make install cd utils ./install_server.sh 실행로그 확인 1 tail -f /var/log/redis_6379.log -n 1000 로그에서 Warning 없애기 vi /etc/sysctl.conf 파일에 아래 추가 1 2 vm.overcommit_memory=1 fs.file-max = 1048576 vi /etc/rc.local 파일에 아래 추가 1 2 echo never &amp;gt; /sys/kernel/mm/transparent_hugepage/enabled sysctl -w net.</description>
     </item>
     
   </channel>

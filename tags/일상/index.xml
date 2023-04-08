@@ -20,7 +20,7 @@
 .NET 4.5부터 async 문법이 새로 들어갔다 해서.. 이왕 하는거 4.5.2로&amp;hellip; 만들기로 했다. 오&amp;hellip;&amp;hellip; 엄청나게 편리하다.!!
 async, await 두개가 중요하다. 특히 UI프로그램에서 background thread와 main thread와의 동기화를 쉽게 지원한다.
 아래는 id/pwd를 입력받아서 서버통신으로 인증을 진행하는 코드다.
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27  private async void btnLogin_Click(object sender, RoutedEventArgs e) { string id = tbEmail.</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 private async void btnLogin_Click(object sender, RoutedEventArgs e) { string id = tbEmail.</description>
     </item>
     
   </channel>

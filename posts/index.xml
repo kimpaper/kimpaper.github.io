@@ -9,14 +9,29 @@
       <link>https://kimpaper.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 28 Mar 2022 16:53:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Apr 2023 01:05:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>아카이브유틸리티 동작 안되는 현상</title>
+      <link>https://kimpaper.github.io/posts/mac/2023-04-08-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EB%8F%99%EC%9E%91-%EC%95%88%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81/</link>
+      <pubDate>Sat, 08 Apr 2023 01:05:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/posts/mac/2023-04-08-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EB%8F%99%EC%9E%91-%EC%95%88%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81/</guid>
+      <description>맥북에어 m2에서 겪었던 현상.
+아카이브 유틸리티 동작이 안되는 현상 왜 그러는지는 모르겠지만, zip을 클릭했을때 압축이 안풀리는 현상이 있었다 이유를 보니
+숫자가 앞에 있었다.
+1_test.zip 압축이 풀리지 않음 test.zip 압축풀림
+이름을 변경하니 더블클릭으로 압축이 풀렸다.
+1_test.zip 압축풀기 메뉴를 눌러 폴더 선택을 직접 하면 풀린다.
+연속 압축으로 인식한껄까.</description>
+    </item>
+    
     <item>
       <title>golang profiler 사용</title>
       <link>https://kimpaper.github.io/posts/golang/2022-03-28-golang_profiler/</link>
       <pubDate>Mon, 28 Mar 2022 16:53:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/golang/2022-03-28-golang_profiler/</guid>
-      <description>http prof 를 이용해 프로파일 한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14  import ( &amp;#34;net/http&amp;#34; _ &amp;#34;net/http/pprof&amp;#34; ) func main() { go func() { log.Println(http.ListenAndServe(&amp;#34;0.0.0.0:6060&amp;#34;, nil)) }() ... do somthing ... }   cpu profile (30초동안 데이터를 모은다) 1  go tool pprof http://xxxx:6060/debug/pprof/profile   heap memory (현재 메모리 정보를 반환한다) 1  go tool pprof http://xxxx:6060/debug/pprof/heap    heap 을 실행하면 아래와 같이 command line (pprof)가 나오는데 프로파일 명령을 넣으면 된다.</description>
+      <description>http prof 를 이용해 프로파일 한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 import ( &amp;#34;net/http&amp;#34; _ &amp;#34;net/http/pprof&amp;#34; ) func main() { go func() { log.Println(http.ListenAndServe(&amp;#34;0.0.0.0:6060&amp;#34;, nil)) }() ... do somthing ... } cpu profile (30초동안 데이터를 모은다) 1 go tool pprof http://xxxx:6060/debug/pprof/profile heap memory (현재 메모리 정보를 반환한다) 1 go tool pprof http://xxxx:6060/debug/pprof/heap heap 을 실행하면 아래와 같이 command line (pprof)가 나오는데 프로파일 명령을 넣으면 된다.</description>
     </item>
     
     <item>
@@ -27,7 +42,7 @@
       <guid>https://kimpaper.github.io/2020/05/13/kubernetes-certmanager/</guid>
       <description>kubernetes 에서 ingress 상에서 https를 서비스하는데 지원을 해주는 좋은.. 모듈
 cert manager 설치 (1) 참고 https://cert-manager.io/docs/installation/kubernetes/
-1 2  kubectl create namespace cert-manager kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.13.1/cert-manager.yaml   cert manager 설치 (with helm) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  $ kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.13.1/deploy/manifests/00-crds.yaml $ kubectl create namespace cert-manager $ helm repo add jetstack https://charts.jetstack.io $ helm repo update # Helm v3+ $ helm install \  cert-manager jetstack/cert-manager \  --namespace cert-manager \  --version v0.</description>
+1 2 kubectl create namespace cert-manager kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.13.1/cert-manager.yaml cert manager 설치 (with helm) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 $ kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.13.1/deploy/manifests/00-crds.yaml $ kubectl create namespace cert-manager $ helm repo add jetstack https://charts.jetstack.io $ helm repo update # Helm v3+ $ helm install \ cert-manager jetstack/cert-manager \ --namespace cert-manager \ --version v0.</description>
     </item>
     
     <item>
@@ -37,7 +52,7 @@ cert manager 설치 (1) 참고 https://cert-manager.io/docs/installation/kuberne
       
       <guid>https://kimpaper.github.io/posts/kube/2020-05-13-kubernetes-glusterfs/</guid>
       <description>glusterfs-kubernetes 설치 시도 중 gluster-kubernetes/deploy/gk-deploy 파일을 열어서 아래 라인을 고쳐야 한다 (kubectl에 없어진 인자값을 쓴다)
-1 2 3  # deprecated &amp;#34;--show-all&amp;#34; parameter #heketi_pod=$(${CLI} get pod --no-headers --show-all --selector=&amp;#34;heketi&amp;#34; | awk &amp;#39;{print $1}&amp;#39;) heketi_pod=$(${CLI} get pod --no-headers --selector=&amp;#34;heketi&amp;#34; | awk &amp;#39;{print $1}&amp;#39;)   1 2 3 4 5 6 7 8 9  # daemonset을 설치하기 위해 # 노드별로 아래 경로를 비워야함 rm -rf /var/lib/misc/glusterfsd /var/lib/glusterd /var/log/glusterfs /etc/glusterfs /var/lib/heketi #uninstall .</description>
+1 2 3 # deprecated &amp;#34;--show-all&amp;#34; parameter #heketi_pod=$(${CLI} get pod --no-headers --show-all --selector=&amp;#34;heketi&amp;#34; | awk &amp;#39;{print $1}&amp;#39;) heketi_pod=$(${CLI} get pod --no-headers --selector=&amp;#34;heketi&amp;#34; | awk &amp;#39;{print $1}&amp;#39;) 1 2 3 4 5 6 7 8 9 # daemonset을 설치하기 위해 # 노드별로 아래 경로를 비워야함 rm -rf /var/lib/misc/glusterfsd /var/lib/glusterd /var/log/glusterfs /etc/glusterfs /var/lib/heketi #uninstall ./gk-deploy -g --user-key userkey --admin-key adminkey -n glusterfs --abort #install .</description>
     </item>
     
     <item>
@@ -46,7 +61,7 @@ cert manager 설치 (1) 참고 https://cert-manager.io/docs/installation/kuberne
       <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/2020/05/13/kubernetes-ingress-urlproxy/</guid>
-      <description>외부로 ingress를 노출하고 처리하는 서버가 kubernetes 내에 service가 아니라 다른 별도의 서버일 경우에 아래와 같이 proxy_pass를 지정한다. (사실 응용하면 nginx 기능들이 지원하는건 다 될것 같다.)  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  kind: Ingress apiVersion: extensions/v1beta1 metadata: name: gitlab.test.com namespace: nginx-ingress annotations: kubernetes.io/ingress.class: nginx nginx.ingress.kubernetes.io/proxy-connect-timeout: &amp;#39;3600&amp;#39; nginx.</description>
+      <description>외부로 ingress를 노출하고 처리하는 서버가 kubernetes 내에 service가 아니라 다른 별도의 서버일 경우에 아래와 같이 proxy_pass를 지정한다. (사실 응용하면 nginx 기능들이 지원하는건 다 될것 같다.) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 kind: Ingress apiVersion: extensions/v1beta1 metadata: name: gitlab.test.com namespace: nginx-ingress annotations: kubernetes.io/ingress.class: nginx nginx.ingress.kubernetes.io/proxy-connect-timeout: &amp;#39;3600&amp;#39; nginx.ingress.kubernetes.io/proxy-read-timeout: &amp;#39;3600&amp;#39; nginx.</description>
     </item>
     
     <item>
@@ -57,7 +72,7 @@ cert manager 설치 (1) 참고 https://cert-manager.io/docs/installation/kuberne
       <guid>https://kimpaper.github.io/posts/centos/2016-08-11-ssh-key-login/</guid>
       <description>macOS 에서 ssh key를 지정하여 서버로 비밀번호 타이핑 없이 바로 로그인 하게 하자
 평소엔 보안때문에 안해놓는다.
-macOS - 키 생성 1  ssh-keygen -t rsa -C &amp;#34;name&amp;#34;   - public key를 조회 1  cat ~/.ssh/id_rsa.pub   대상 Server (CentOS) - public key를 ~/.ssh/authorized_keys 파일에 추가 1  vi ~/.ssh/authorized_keys   </description>
+macOS - 키 생성 1 ssh-keygen -t rsa -C &amp;#34;name&amp;#34; - public key를 조회 1 cat ~/.ssh/id_rsa.pub 대상 Server (CentOS) - public key를 ~/.ssh/authorized_keys 파일에 추가 1 vi ~/.ssh/authorized_keys </description>
     </item>
     
     <item>
@@ -70,7 +85,7 @@ macOS - 키 생성 1  ssh-keygen -t rsa -C &amp;#34;name&amp;#34;   - public key
 테스트는 redis-cli를 이용해서 하지만 실제 사용은 언어에 맞는 api library를 사용 할듯
 개요 http://redis.io/topics/data-types-intro
 예제 http://redis.io/topics/data-types
-Strings  value에 문자 숫자 등을 저장한다 저장시 별도로 형이 없다 (숫자 문자 구분이 없음) 숫자도 저장가능 하다 그리고 숫자에 incr, incrby, decr, decrby 같은 atomic counter 연산이 가능 incrby, decrby 는 특정 수를 더하거나 뺄때 사용 incrby &amp;quot;test_strings&amp;quot; 10 처럼 사용  1 2 3 4 5 6 7 8 9 10  # redis-cli 127.</description>
+Strings value에 문자 숫자 등을 저장한다 저장시 별도로 형이 없다 (숫자 문자 구분이 없음) 숫자도 저장가능 하다 그리고 숫자에 incr, incrby, decr, decrby 같은 atomic counter 연산이 가능 incrby, decrby 는 특정 수를 더하거나 뺄때 사용 incrby &amp;quot;test_strings&amp;quot; 10 처럼 사용 1 2 3 4 5 6 7 8 9 10 # redis-cli 127.</description>
     </item>
     
     <item>
@@ -79,10 +94,10 @@ Strings  value에 문자 숫자 등을 저장한다 저장시 별도로 형이 �
       <pubDate>Thu, 14 Jul 2016 14:15:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/2016/07/14/gradle/</guid>
-      <description>gradle설치 (for macOS) 1  brew install gradle   원래 수동으로 설치하는 방법이 있으나.. 나는 위와 같이 자동 설치를 좋아한다 대부분 그렇지 않을까~
+      <description>gradle설치 (for macOS) 1 brew install gradle 원래 수동으로 설치하는 방법이 있으나.. 나는 위와 같이 자동 설치를 좋아한다 대부분 그렇지 않을까~
 수동 설치는 사이트에서 참고하자 https://gradle.org/gradle-download/
-pom.xml -&amp;gt; build.gradle로 변환 1 2  # 프로젝트 폴더 (pom.xml이 있는곳) 으로 이동  gradle init --type pom   위와 같이 하면 project name 및 dependencies 등이 gralde용 build script로 변환이 되고 프로젝트가 gradle를 사용가능하도록 설정된다
- intelliJ IDEA에서 기존 maven으로 구성된 프로젝트라면 module을 새로 import해야 한다 (그래야 툴에서 인식이 되는듯 하다)</description>
+pom.xml -&amp;gt; build.gradle로 변환 1 2 # 프로젝트 폴더 (pom.xml이 있는곳) 으로 이동 gradle init --type pom 위와 같이 하면 project name 및 dependencies 등이 gralde용 build script로 변환이 되고 프로젝트가 gradle를 사용가능하도록 설정된다
+intelliJ IDEA에서 기존 maven으로 구성된 프로젝트라면 module을 새로 import해야 한다 (그래야 툴에서 인식이 되는듯 하다)</description>
     </item>
     
     <item>
@@ -96,7 +111,9 @@ pom.xml -&amp;gt; build.gradle로 변환 1 2  # 프로젝트 폴더 (pom.xml이 
 http://docs.fluentd.org/articles/install-by-rpm#step-0-before-installation
 구성은 flume와 비슷한것 같다
 client -&amp;gt; server 구성으로 해놓고 client에서 수집된 로그를 server로 전달.
-아래 커맨드 실행 1  curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh   서비스 구동 1  service td-agent start    당연히 service td-agent stop 가 중지다</description>
+아래 커맨드 실행 1 curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh 서비스 구동 1 service td-agent start 당연히 service td-agent stop 가 중지다
+설정 /etc/td-agent/td-agent.conf 파일이 설정 파일이다
+1 vi /etc/td-agent/td-agent.</description>
     </item>
     
     <item>
@@ -107,13 +124,13 @@ client -&amp;gt; server 구성으로 해놓고 client에서 수집된 로그를 
       <guid>https://kimpaper.github.io/2016/06/08/apachelog/</guid>
       <description>app에서 데이타 통신을하는 api서버가 있다
 각 인터페이스별 평균 응답시간을 아파치 로그를 활용하여 구해봤다
- 서버는 apache+tomcat, spring으로 구현한 서버이다
- hadoop과 spark, python 설정은
+서버는 apache+tomcat, spring으로 구현한 서버이다
+hadoop과 spark, python 설정은
 Python and Spark로 로그 파일 분석 (with hadoop) 을 참고 하자
 1. 아파치 TransferLog 로그파일에 응답 시간 남기기 우선 분석하기 전에 아파치 로그에 응답 시간을 추가로 기록하도록 하자
 /etc/httpd/conf.d/ssl.conf 경로에서 아래를 편집했다.
 물론. 설정 파일이 있는 경로와 이름은 서버마다 틀릴 수 있다
-1 2 3 4 5 6  &amp;lt;VirtualHost _default_:443&amp;gt; .</description>
+1 2 3 4 5 6 &amp;lt;VirtualHost _default_:443&amp;gt; .</description>
     </item>
     
     <item>
@@ -122,11 +139,11 @@ Python and Spark로 로그 파일 분석 (with hadoop) 을 참고 하자
       <pubDate>Mon, 30 May 2016 16:35:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/opensource/2016-05-30-spark-hadoop/</guid>
-      <description>Spark를 이용한 파일 분석  spark도 잘 모르고 hadoop도 잘 모르는 상태에서 진행해서 틀린 부분이 있을 것이다.
+      <description>Spark를 이용한 파일 분석 spark도 잘 모르고 hadoop도 잘 모르는 상태에서 진행해서 틀린 부분이 있을 것이다.
 참고로 OSX에서 진행된 작업이다.
- 설정 1. Hadoop를 설치 하고 실행한다 2. hdfs상에 파일을 올린다. 1 2  cd /logs hdfs dfs -put test.log /input/   아래와 같이 파일 브라우징이 가능하다 아래에서 올라간 파일을 확인! http://localhost:50070/explorer.html#/input
+설정 1. Hadoop를 설치 하고 실행한다 2. hdfs상에 파일을 올린다. 1 2 cd /logs hdfs dfs -put test.log /input/ 아래와 같이 파일 브라우징이 가능하다 아래에서 올라간 파일을 확인! http://localhost:50070/explorer.html#/input
 3. spark의 python 커맨드 테스트.. $SPARK_HOME/bin/pyspark 하둡을 켜고 pyspark를 실행하면 아래와 같이 나온다
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  Python 2.</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 Python 2.</description>
     </item>
     
     <item>
@@ -137,7 +154,7 @@ Python and Spark로 로그 파일 분석 (with hadoop) 을 참고 하자
       <guid>https://kimpaper.github.io/2016/04/08/amazon-ec2-root-pwd/</guid>
       <description>AWS ec2 서버에는 password로 ssh접근이 안되도록 되어 있다. 아래 파일을 수정하여 접근이 되도록 해보자.
 centos 6.5에서 작업한 것이다
-1 2  # 루트계정에 패스워드 지정 passwd root   1 2 3 4 5 6 7 8  sudo vi /etc/ssh/sshd_config # 아래 두개 옵션을 yes로 하고 저장후 닫기  PermitRootLogin yes PasswordAuthentication yes # sshd 재시작  service sshd restart   </description>
+1 2 # 루트계정에 패스워드 지정 passwd root 1 2 3 4 5 6 7 8 sudo vi /etc/ssh/sshd_config # 아래 두개 옵션을 yes로 하고 저장후 닫기 PermitRootLogin yes PasswordAuthentication yes # sshd 재시작 service sshd restart </description>
     </item>
     
     <item>
@@ -159,8 +176,8 @@ centos 6.5에서 작업한 것이다
       
       <guid>https://kimpaper.github.io/posts/etc/2016-02-25-git-revert-local-commit/</guid>
       <description>아래와 같이 복구 대상 저장소를 지정한다 (현재 checkout이 develop인 경우)
-1  git reset --hard remotes/origin/develop   저장소를 지정하지 않으면 현재 checkout된 remote를 기준으로 revert하는것 같다
-1  git reset --hard   </description>
+1 git reset --hard remotes/origin/develop 저장소를 지정하지 않으면 현재 checkout된 remote를 기준으로 revert하는것 같다
+1 git reset --hard </description>
     </item>
     
     <item>
@@ -171,7 +188,7 @@ centos 6.5에서 작업한 것이다
       <guid>https://kimpaper.github.io/posts/python/2016-02-17-python-http-request/</guid>
       <description>요즘 파이썬 공부중인데 연습겸 10초마다 webserver가 죽었는지 체크하는 간단한 프로그램을 만들어 봤다.
 아래코드에는 아래 나열된 사항들에 대한 코딩이 적용되어 있다
- http request thread(timer 대응) logging사용법 try-except 예외처리 raise throw json parsing 및 데이타 읽기 방법 string 처리  ServerCheck.py 파일 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65  import threading import urllib.</description>
+http request thread(timer 대응) logging사용법 try-except 예외처리 raise throw json parsing 및 데이타 읽기 방법 string 처리 ServerCheck.py 파일 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 import threading import urllib.</description>
     </item>
     
     <item>
@@ -180,7 +197,7 @@ centos 6.5에서 작업한 것이다
       <pubDate>Fri, 12 Feb 2016 16:53:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/python/2016-02-12-install-python3/</guid>
-      <description>centos 6에 3.5.1 버전을 설치 하는 command line 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  yum install zlib-devel -y yum install openssl openssl-devel -y wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz xz -d Python-3.5.1.tar.xz # 혹시 xz가 없다면 yum install xz 로 설치 하라. tar -xvf Python-3.5.1.tar cd Python-3.5.1 ./configure --prefix=/usr/local --enable-shared LDFLAGS=&amp;#34;-Wl,-rpath /usr/local/lib&amp;#34; make &amp;amp;&amp;amp; make altinstall # pip설치  curl -k -O https://bootstrap.pypa.io/get-pip.py python3.</description>
+      <description>centos 6에 3.5.1 버전을 설치 하는 command line 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 yum install zlib-devel -y yum install openssl openssl-devel -y wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz xz -d Python-3.5.1.tar.xz # 혹시 xz가 없다면 yum install xz 로 설치 하라. tar -xvf Python-3.5.1.tar cd Python-3.5.1 ./configure --prefix=/usr/local --enable-shared LDFLAGS=&amp;#34;-Wl,-rpath /usr/local/lib&amp;#34; make &amp;amp;&amp;amp; make altinstall # pip설치 curl -k -O https://bootstrap.pypa.io/get-pip.py python3.5 get-pip.py 간단한 프로그램에는 Python이 좋은듯 java는 프로젝트 구성하기도 귀찮고&amp;hellip;</description>
     </item>
     
     <item>
@@ -191,11 +208,11 @@ centos 6.5에서 작업한 것이다
       <guid>https://kimpaper.github.io/posts/etc/2015-12-18-unity-with-visualstudio-code/</guid>
       <description>맥용 Unity로 개발할때 보통 MonoDevelopr를 이용하여 코딩 한다 그런데 한글을 지원안해서. 아주 불편했는데.
 MS에서 얼마전에 공개한 mac용 VisualStudio Code에서 유니티를 지원한다고 해서 한번 설정해봤다.
-설치   우선 VS code를 설치 한다 https://code.visualstudio.com/
-  커맨드+P를 누르고. ext install Omnisharp 추가 기능으로 설치 한다 안해도 되는거 같기도&amp;hellip;
-  맥의 터미널 상에 brew install mono 로 mono를 설치한다 오래걸린다
-  이후로는 아래 사이트를 따라 하면 된다 https://code.visualstudio.com/docs/runtimes/unity
-  git clone https://github.</description>
+설치 우선 VS code를 설치 한다 https://code.visualstudio.com/
+커맨드+P를 누르고. ext install Omnisharp 추가 기능으로 설치 한다 안해도 되는거 같기도&amp;hellip;
+맥의 터미널 상에 brew install mono 로 mono를 설치한다 오래걸린다
+이후로는 아래 사이트를 따라 하면 된다 https://code.visualstudio.com/docs/runtimes/unity
+git clone https://github.com/dotBunny/VSCode.git를 내려받고 Plugins\Editor\dotBunny 폴더를 자신의 유니티 프로젝트 내부에 넣는다</description>
     </item>
     
     <item>
@@ -205,7 +222,7 @@ MS에서 얼마전에 공개한 mac용 VisualStudio Code에서 유니티를 지�
       
       <guid>https://kimpaper.github.io/posts/etc/2015-12-15-mysql-cache-reset/</guid>
       <description>쿼리 튜닝할때 아래를 실행하고 하면 cache 안된 결과를 볼 수 있다.
-1  RESETQUERYCACHE;  </description>
+1 RESET QUERY CACHE; </description>
     </item>
     
     <item>
@@ -215,9 +232,10 @@ MS에서 얼마전에 공개한 mac용 VisualStudio Code에서 유니티를 지�
       
       <guid>https://kimpaper.github.io/posts/spring/2015-11-13-spring-jpa-createnamedquery/</guid>
       <description>Test.java에서 처럼 EntityManager를 이용하여 orm.xml에 정의한 NamedQuery를 바로 실행 할 수 있다..
- repository를 이용하여 호출하면 getResultList로만 실행되는 것 같다. update 반영된 Row수를 알기 위해 아래와 같이 호출 했다.
- Test.java 1 2 3 4 5 6  @PersistenceContext private EntityManager em; public void test() { int cnt = em.createNamedQuery(&amp;#34;Order.clearOrder&amp;#34;).executeUpdate(); logger.info(&amp;#34;Order.clearOrder updated={}&amp;#34;, cnt); }    @PersistenceContext private EntityManager em; 에서..
-@PersistenceContext @Autowired 둘다 작동 하는것 같다. 차이는 아직 잘 모르겠다.</description>
+repository를 이용하여 호출하면 getResultList로만 실행되는 것 같다. update 반영된 Row수를 알기 위해 아래와 같이 호출 했다.
+Test.java 1 2 3 4 5 6 @PersistenceContext private EntityManager em; public void test() { int cnt = em.createNamedQuery(&amp;#34;Order.clearOrder&amp;#34;).executeUpdate(); logger.info(&amp;#34;Order.clearOrder updated={}&amp;#34;, cnt); } @PersistenceContext private EntityManager em; 에서..
+@PersistenceContext @Autowired 둘다 작동 하는것 같다. 차이는 아직 잘 모르겠다.
+META-INF/orm.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 &amp;lt;?</description>
     </item>
     
     <item>
@@ -226,8 +244,8 @@ MS에서 얼마전에 공개한 mac용 VisualStudio Code에서 유니티를 지�
       <pubDate>Tue, 10 Nov 2015 17:36:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/spring/2015-11-11-spring-redis/</guid>
-      <description>pom.xml 에 아래 추가. 1 2 3 4 5 6 7 8 9 10  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-data-redis&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.1.0.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;redis.clients&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;jedis&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;    버전을 잘 맞춰야 한다. 안그러면 몇몇 class가 없어서 오류가 발생해요.
- context-redis.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;beans xmlns=&amp;#34;http://www.springframework.org/schema/beans&amp;#34; xmlns:p=&amp;#34;http://www.springframework.org/schema/p&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xsi:schemaLocation=&amp;#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd&amp;#34;&amp;gt; &amp;lt;bean id=&amp;#34;jedisConnFactory&amp;#34; class=&amp;#34;org.</description>
+      <description>pom.xml 에 아래 추가. 1 2 3 4 5 6 7 8 9 10 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-data-redis&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.1.0.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;redis.clients&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;jedis&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 버전을 잘 맞춰야 한다. 안그러면 몇몇 class가 없어서 오류가 발생해요.
+context-redis.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;beans xmlns=&amp;#34;http://www.springframework.org/schema/beans&amp;#34; xmlns:p=&amp;#34;http://www.springframework.org/schema/p&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xsi:schemaLocation=&amp;#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd&amp;#34;&amp;gt; &amp;lt;bean id=&amp;#34;jedisConnFactory&amp;#34; class=&amp;#34;org.springframework.data.redis.connection.jedis.JedisConnectionFactory&amp;#34; p:usePool=&amp;#34;true&amp;#34; p:hostName=&amp;#34;172.xxx.xxx.xxx&amp;#34; p:port=&amp;#34;6379&amp;#34; /&amp;gt; &amp;lt;!</description>
     </item>
     
     <item>
@@ -236,7 +254,7 @@ MS에서 얼마전에 공개한 mac용 VisualStudio Code에서 유니티를 지�
       <pubDate>Fri, 30 Oct 2015 18:13:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/centos/2015-10-30-flume-logback-sink/</guid>
-      <description>flume에 logback로 로그 파일 쓰기 flume에 logback 설치 방법  (http://logback.qos.ch/download.html) 에서 logback 다운로드 한다 . (현재 v1.1.3) 압축을 풀고. logback-classic-1.1.3.jar, logback-core-1.1.3.jar 를 $FLUME_HOME/lib에 복사해 넣는다. 기존 log4j는 ./lib/slf4j-log4j12-1.6.1.jar를 ./lib/slf4j-log4j12-1.6.1.jar.back로 이름을 바꾼다. log4j를 지우는 것은 선택사항이다 (놔두면 둘다 기록 한다) logback.xml 파일을 수정해서 $FLUME_HOME/conf/logback.xml에 넣는다.  logback.xml 샘플 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66  &amp;lt;?</description>
+      <description>flume에 logback로 로그 파일 쓰기 flume에 logback 설치 방법 (http://logback.qos.ch/download.html) 에서 logback 다운로드 한다 . (현재 v1.1.3) 압축을 풀고. logback-classic-1.1.3.jar, logback-core-1.1.3.jar 를 $FLUME_HOME/lib에 복사해 넣는다. 기존 log4j는 ./lib/slf4j-log4j12-1.6.1.jar를 ./lib/slf4j-log4j12-1.6.1.jar.back로 이름을 바꾼다. log4j를 지우는 것은 선택사항이다 (놔두면 둘다 기록 한다) logback.xml 파일을 수정해서 $FLUME_HOME/conf/logback.xml에 넣는다. logback.xml 샘플 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 &amp;lt;?</description>
     </item>
     
     <item>
@@ -246,7 +264,7 @@ MS에서 얼마전에 공개한 mac용 VisualStudio Code에서 유니티를 지�
       
       <guid>https://kimpaper.github.io/2015/10/30/logback-config/</guid>
       <description>logback을 이용하는 경우 오늘이 지나거나 용량이 100메가를 넘어가면 파일이 분리된다.
-logback.xml 에 아래 appender 추가 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  &amp;lt;appender name=&amp;#34;debug&amp;#34; class=&amp;#34;ch.qos.logback.core.rolling.RollingFileAppender&amp;#34;&amp;gt; &amp;lt;filter class=&amp;#34;ch.qos.logback.classic.filter.ThresholdFilter&amp;#34;&amp;gt; &amp;lt;level&amp;gt;DEBUG&amp;lt;/level&amp;gt; &amp;lt;/filter&amp;gt; &amp;lt;prudent&amp;gt;false&amp;lt;/prudent&amp;gt; &amp;lt;file&amp;gt;/logs/debug.log&amp;lt;/file&amp;gt; &amp;lt;rollingPolicy class=&amp;#34;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&amp;#34;&amp;gt; &amp;lt;fileNamePattern&amp;gt;/logs/old/debug.%d{yyyy-MM-dd}.%i.log&amp;lt;/fileNamePattern&amp;gt; &amp;lt;timeBasedFileNamingAndTriggeringPolicy class=&amp;#34;ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP&amp;#34;&amp;gt; &amp;lt;maxFileSize&amp;gt;100mb&amp;lt;/maxFileSize&amp;gt; &amp;lt;/timeBasedFileNamingAndTriggeringPolicy&amp;gt; &amp;lt;maxHistory&amp;gt;30&amp;lt;/maxHistory&amp;gt; &amp;lt;/rollingPolicy&amp;gt; &amp;lt;encoder&amp;gt; &amp;lt;pattern&amp;gt;[%-5level] %d{HH:mm:ss.SSS} %logger{36} - %msg%n&amp;lt;/pattern&amp;gt; &amp;lt;/encoder&amp;gt; &amp;lt;/appender&amp;gt;    &amp;lt;maxFileSize /&amp;gt; 는 분할할 용량이다 (kb, gb도 된다) &amp;lt;maxHistory /&amp;gt; 30일 지난 로그는 오래된 순서대로 지워준다.</description>
+logback.xml 에 아래 appender 추가 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 &amp;lt;appender name=&amp;#34;debug&amp;#34; class=&amp;#34;ch.qos.logback.core.rolling.RollingFileAppender&amp;#34;&amp;gt; &amp;lt;filter class=&amp;#34;ch.qos.logback.classic.filter.ThresholdFilter&amp;#34;&amp;gt; &amp;lt;level&amp;gt;DEBUG&amp;lt;/level&amp;gt; &amp;lt;/filter&amp;gt; &amp;lt;prudent&amp;gt;false&amp;lt;/prudent&amp;gt; &amp;lt;file&amp;gt;/logs/debug.log&amp;lt;/file&amp;gt; &amp;lt;rollingPolicy class=&amp;#34;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&amp;#34;&amp;gt; &amp;lt;fileNamePattern&amp;gt;/logs/old/debug.%d{yyyy-MM-dd}.%i.log&amp;lt;/fileNamePattern&amp;gt; &amp;lt;timeBasedFileNamingAndTriggeringPolicy class=&amp;#34;ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP&amp;#34;&amp;gt; &amp;lt;maxFileSize&amp;gt;100mb&amp;lt;/maxFileSize&amp;gt; &amp;lt;/timeBasedFileNamingAndTriggeringPolicy&amp;gt; &amp;lt;maxHistory&amp;gt;30&amp;lt;/maxHistory&amp;gt; &amp;lt;/rollingPolicy&amp;gt; &amp;lt;encoder&amp;gt; &amp;lt;pattern&amp;gt;[%-5level] %d{HH:mm:ss.SSS} %logger{36} - %msg%n&amp;lt;/pattern&amp;gt; &amp;lt;/encoder&amp;gt; &amp;lt;/appender&amp;gt; &amp;lt;maxFileSize /&amp;gt; 는 분할할 용량이다 (kb, gb도 된다) &amp;lt;maxHistory /&amp;gt; 30일 지난 로그는 오래된 순서대로 지워준다.</description>
     </item>
     
     <item>
@@ -255,8 +273,8 @@ logback.xml 에 아래 appender 추가 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17
       <pubDate>Thu, 29 Oct 2015 15:51:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/centos/2015-10-29-flume-setting-sample/</guid>
-      <description>Flume 란?  여러대(여러서비스..)에 기록되는 로그파일들을 실시간으로 한곳으로 모아주는 서비스  설치  http://flume.apache.org/download.html 에서 다운로드 한다. 적절한 곳에 압축을 풀어 준다 ~/dev/tool/flume JAVA_HOME이 지정되 있지 않으면. ~/.bash_profile 을 열어 환경 변수를 설정해 준다.  1  export JAVA_HOME = /usr (자바 경로.)    설치 및 테스트는 mac에서 했지만. centos에서도 잘되리라 믿는다.
- 기본 flume.conf 파일 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  # The configuration file needs to define the sources, # the channels and the sinks.</description>
+      <description>Flume 란? 여러대(여러서비스..)에 기록되는 로그파일들을 실시간으로 한곳으로 모아주는 서비스 설치 http://flume.apache.org/download.html 에서 다운로드 한다. 적절한 곳에 압축을 풀어 준다 ~/dev/tool/flume JAVA_HOME이 지정되 있지 않으면. ~/.bash_profile 을 열어 환경 변수를 설정해 준다. 1 export JAVA_HOME = /usr (자바 경로.) 설치 및 테스트는 mac에서 했지만. centos에서도 잘되리라 믿는다.
+기본 flume.conf 파일 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 # The configuration file needs to define the sources, # the channels and the sinks.</description>
     </item>
     
     <item>
@@ -266,7 +284,7 @@ logback.xml 에 아래 appender 추가 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17
       
       <guid>https://kimpaper.github.io/2015/10/28/spring-sitemesh-setting/</guid>
       <description>sitemesh를 설정을 해보겠습니다.
-pom.xml 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;opensymphony&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;sitemesh&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.4.2&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   WEB-INF/web.xml 에 아래 추가. 1 2 3 4 5 6 7 8  &amp;lt;filter&amp;gt; &amp;lt;filter-name&amp;gt;sitemesh&amp;lt;/filter-name&amp;gt; &amp;lt;filter-class&amp;gt;com.opensymphony.module.sitemesh.filter.PageFilter&amp;lt;/filter-class&amp;gt; &amp;lt;/filter&amp;gt; &amp;lt;filter-mapping&amp;gt; &amp;lt;filter-name&amp;gt;sitemesh&amp;lt;/filter-name&amp;gt; &amp;lt;url-pattern&amp;gt;/*&amp;lt;/url-pattern&amp;gt; &amp;lt;/filter-mapping&amp;gt;   WEB-INF/sitemesh.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  &amp;lt;?</description>
+pom.xml 1 2 3 4 5 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;opensymphony&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;sitemesh&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.4.2&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; WEB-INF/web.xml 에 아래 추가. 1 2 3 4 5 6 7 8 &amp;lt;filter&amp;gt; &amp;lt;filter-name&amp;gt;sitemesh&amp;lt;/filter-name&amp;gt; &amp;lt;filter-class&amp;gt;com.opensymphony.module.sitemesh.filter.PageFilter&amp;lt;/filter-class&amp;gt; &amp;lt;/filter&amp;gt; &amp;lt;filter-mapping&amp;gt; &amp;lt;filter-name&amp;gt;sitemesh&amp;lt;/filter-name&amp;gt; &amp;lt;url-pattern&amp;gt;/*&amp;lt;/url-pattern&amp;gt; &amp;lt;/filter-mapping&amp;gt; WEB-INF/sitemesh.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;sitemesh&amp;gt; &amp;lt;property name=&amp;#34;decorators-file&amp;#34; value=&amp;#34;/WEB-INF/decorators.xml&amp;#34; /&amp;gt; &amp;lt;excludes file=&amp;#34;${decorators-file}&amp;#34; /&amp;gt; &amp;lt;page-parsers&amp;gt; &amp;lt;parser content-type=&amp;#34;text/html&amp;#34; class=&amp;#34;com.</description>
     </item>
     
     <item>
@@ -277,7 +295,7 @@ pom.xml 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;opensymphon
       <guid>https://kimpaper.github.io/2015/10/21/jpa-save/</guid>
       <description>jpa에서는 저장시 repository.save 함수를 이용하여 저장합니다
 Member class처럼 @OneToMany나 @ManyToOne 필드들을 함께 저장 할 수 있습니다.
-Member.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  @Entity @Table(name = &amp;#34;tb_member&amp;#34;) public class Member { @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = &amp;#34;member_seq&amp;#34;) public Integer memberSeq; @Column public String nickname; @Expose @OneToMany( targetEntity = MemberInter.class , cascade = CascadeType.ALL , fetch = FetchType.</description>
+Member.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 @Entity @Table(name = &amp;#34;tb_member&amp;#34;) public class Member { @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = &amp;#34;member_seq&amp;#34;) public Integer memberSeq; @Column public String nickname; @Expose @OneToMany( targetEntity = MemberInter.class , cascade = CascadeType.ALL , fetch = FetchType.</description>
     </item>
     
     <item>
@@ -287,7 +305,7 @@ Member.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  @Entity @Table(name
       
       <guid>https://kimpaper.github.io/2015/10/15/csharp-lpcstr-parameter-call/</guid>
       <description>c++ 로 된 dll을 c#에서 호출할때 예제입니다.
-먼저 c++ 코드들을 간단히 짰습니다. test.h 1  extern &amp;#34;C&amp;#34; __declspec(dllexport) int test(LPCTSTR szFileName);   test.cpp 1 2 3  int test(LPCTSTR szFileName) { return 0; }   다음은 c#쪽 코드들입니다 1 2 3 4 5 6 7 8 9  [DllImport(&amp;#34;sampleLib.dll&amp;#34;, CallingConvention = CallingConvention.Cdecl)] private static extern int test( [MarshalAs(UnmanagedType.LPWStr)] string szFileName); private void button2_Click(object sender, EventArgs e) { string szFileName = @&amp;#34;c:\filename.</description>
+먼저 c++ 코드들을 간단히 짰습니다. test.h 1 extern &amp;#34;C&amp;#34; __declspec(dllexport) int test(LPCTSTR szFileName); test.cpp 1 2 3 int test(LPCTSTR szFileName) { return 0; } 다음은 c#쪽 코드들입니다 1 2 3 4 5 6 7 8 9 [DllImport(&amp;#34;sampleLib.dll&amp;#34;, CallingConvention = CallingConvention.Cdecl)] private static extern int test( [MarshalAs(UnmanagedType.LPWStr)] string szFileName); private void button2_Click(object sender, EventArgs e) { string szFileName = @&amp;#34;c:\filename.txt&amp;#34;; int result = test(ticketName); Debug.</description>
     </item>
     
     <item>
@@ -297,7 +315,7 @@ Member.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  @Entity @Table(name
       
       <guid>https://kimpaper.github.io/posts/dotnet/2015-10-16-wpf-control-save-to-png/</guid>
       <description>예전에 했던 대로 System.Drawing 을 써서 하려고 했는데.. wpf에 이런 기능이 있었네..
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  // uiPage.ren public void DoPageToPng(string fileName) { RenderTargetBitmap rtb = new RenderTargetBitmap((int)uiPage.ActualWidth, (int)uiPage.ActualHeight, 96, 96, PixelFormats.Pbgra32); rtb.Render(uiPage); PngBitmapEncoder png2 = new PngBitmapEncoder(); png2.Frames.Add(BitmapFrame.Create(rtb)); using (MemoryStream stream = new MemoryStream()) { png2.Save(stream); using (System.Drawing.Image image = System.Drawing.Image.FromStream(stream)) { image.Save(fileName); } } }   </description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 // uiPage.ren public void DoPageToPng(string fileName) { RenderTargetBitmap rtb = new RenderTargetBitmap((int)uiPage.ActualWidth, (int)uiPage.ActualHeight, 96, 96, PixelFormats.Pbgra32); rtb.Render(uiPage); PngBitmapEncoder png2 = new PngBitmapEncoder(); png2.Frames.Add(BitmapFrame.Create(rtb)); using (MemoryStream stream = new MemoryStream()) { png2.Save(stream); using (System.Drawing.Image image = System.Drawing.Image.FromStream(stream)) { image.Save(fileName); } } } </description>
     </item>
     
     <item>
@@ -307,7 +325,7 @@ Member.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  @Entity @Table(name
       
       <guid>https://kimpaper.github.io/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</guid>
       <description>jpa에서.. repository를 이용하여 findAll이나.. findOneBy&amp;hellip;. 시리즈를 써서 데이타를 조회 할수 있지만 아래와 같이 특정 쿼리를 직접 입력하여 이용도 가능합니다.
-/classes/META-INF/orm.xml 1 2 3 4 5 6 7 8 9 10 11 12 13  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;entity-mappings xmlns=&amp;#34;http://java.sun.com/xml/ns/persistence/orm&amp;#34; version=&amp;#34;2.0&amp;#34;&amp;gt; &amp;lt;named-query name=&amp;#34;Inter.findByAlal2&amp;#34;&amp;gt; &amp;lt;query&amp;gt;select i from Inter i where i.internameko = ?1&amp;lt;/query&amp;gt; &amp;lt;/named-query&amp;gt; &amp;lt;named-native-query name=&amp;#34;Inter.findByAlal&amp;#34; result-class=&amp;#34;sample.jpa.Inter&amp;#34;&amp;gt; &amp;lt;query&amp;gt;select a.inter_seq, a.inter_name_ko, a.inter_name_en from tb_inter a where a.inter_name_ko = ?&amp;lt;/query&amp;gt; &amp;lt;/named-native-query&amp;gt; &amp;lt;/entity-mappings&amp;gt;   또는.</description>
+/classes/META-INF/orm.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;entity-mappings xmlns=&amp;#34;http://java.sun.com/xml/ns/persistence/orm&amp;#34; version=&amp;#34;2.0&amp;#34;&amp;gt; &amp;lt;named-query name=&amp;#34;Inter.findByAlal2&amp;#34;&amp;gt; &amp;lt;query&amp;gt;select i from Inter i where i.internameko = ?1&amp;lt;/query&amp;gt; &amp;lt;/named-query&amp;gt; &amp;lt;named-native-query name=&amp;#34;Inter.findByAlal&amp;#34; result-class=&amp;#34;sample.jpa.Inter&amp;#34;&amp;gt; &amp;lt;query&amp;gt;select a.inter_seq, a.inter_name_ko, a.inter_name_en from tb_inter a where a.inter_name_ko = ?&amp;lt;/query&amp;gt; &amp;lt;/named-native-query&amp;gt; &amp;lt;/entity-mappings&amp;gt; 또는.. 아래와 같이 Entity 클래스에 선언해도 됩니다</description>
     </item>
     
     <item>
@@ -317,9 +335,9 @@ Member.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  @Entity @Table(name
       
       <guid>https://kimpaper.github.io/posts/spring/2015-10-08-spring-jpa/</guid>
       <description>entity 작업에 조회까지.. 테스트 해봤습니다.
- 테이블의 관계가 아래와 같을때 상황  1  tb_member -&amp;lt; tb_member_inter &amp;gt;- tb_inter   조회 조건
- Member를 가져오면.. member의 이미지들과&amp;hellip; inter의 목록을 함께 가져오도록 inter의 상세 정보는 tb_inter에 있음 (가져올때 조인해서..)  아래 class들 간략 설명
- MemberInter의 PK가 두개이므로. 위와 같이 클래스를 하나 만들어서 @IdClass를 지정해야 함 @Expose 는 Gson관련하여 화면에 뿌릴 필드를 정하는 옵션입니다. jpa와는 무관합니다. MemberInter.class에서 많이 헷갈렸습니다. (@ManyToOne)  @JoinColumn을 추가로.</description>
+테이블의 관계가 아래와 같을때 상황 1 tb_member -&amp;lt; tb_member_inter &amp;gt;- tb_inter 조회 조건
+Member를 가져오면.. member의 이미지들과&amp;hellip; inter의 목록을 함께 가져오도록 inter의 상세 정보는 tb_inter에 있음 (가져올때 조인해서..) 아래 class들 간략 설명
+MemberInter의 PK가 두개이므로. 위와 같이 클래스를 하나 만들어서 @IdClass를 지정해야 함 @Expose 는 Gson관련하여 화면에 뿌릴 필드를 정하는 옵션입니다. jpa와는 무관합니다. MemberInter.class에서 많이 헷갈렸습니다. (@ManyToOne) @JoinColumn을 추가로.. 써야 합니다. optional을 true로 하면 join시 outer join을 합니다.</description>
     </item>
     
     <item>
@@ -330,8 +348,8 @@ Member.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  @Entity @Table(name
       <guid>https://kimpaper.github.io/2015/10/05/spring-jpa-maven/</guid>
       <description>거의 대부분 mybatis 를 이용하여 개발을 하는데..
 JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.
-1. 라이브러리 import&amp;hellip;. maven pom.xml 1 2 3 4 5 6 7 8 9 10  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-data-jpa&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.9.0.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.hibernate&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;hibernate-entitymanager&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;4.3.8.Final&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   2. Entity class를 만들어 줍니다. 참고로 SerializedName, Expose는 jpa와 직접 관련은 없습니다.. (개체를 그대로 JsonView 할때 사용)
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72  import com.</description>
+1. 라이브러리 import&amp;hellip;. maven pom.xml 1 2 3 4 5 6 7 8 9 10 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-data-jpa&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.9.0.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.hibernate&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;hibernate-entitymanager&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;4.3.8.Final&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 2. Entity class를 만들어 줍니다. 참고로 SerializedName, Expose는 jpa와 직접 관련은 없습니다.. (개체를 그대로 JsonView 할때 사용)
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 import com.</description>
     </item>
     
     <item>
@@ -340,8 +358,8 @@ JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.
       <pubDate>Sun, 20 Sep 2015 21:47:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</guid>
-      <description>컴파일러를 먼저 설치해야 합니다. (설치돼 있다면 패스) 1  yum install gcc gcc-c++ autoconf automake   참고) http://www.redis.io/download
-설치 1 2 3 4 5 6 7  # 다운로드 및 설치 (컴파일) wget http://download.redis.io/releases/redis-3.2.3.tar.gz tar xzf redis-3.2.3.tar.gz cd redis-3.2.3 make &amp;amp;&amp;amp; make install cd utils ./install_server.sh   실행로그 확인 1  tail -f /var/log/redis_6379.log -n 1000   로그에서 Warning 없애기  vi /etc/sysctl.conf 파일에 아래 추가  1 2  vm.</description>
+      <description>컴파일러를 먼저 설치해야 합니다. (설치돼 있다면 패스) 1 yum install gcc gcc-c++ autoconf automake 참고) http://www.redis.io/download
+설치 1 2 3 4 5 6 7 # 다운로드 및 설치 (컴파일) wget http://download.redis.io/releases/redis-3.2.3.tar.gz tar xzf redis-3.2.3.tar.gz cd redis-3.2.3 make &amp;amp;&amp;amp; make install cd utils ./install_server.sh 실행로그 확인 1 tail -f /var/log/redis_6379.log -n 1000 로그에서 Warning 없애기 vi /etc/sysctl.conf 파일에 아래 추가 1 2 vm.overcommit_memory=1 fs.file-max = 1048576 vi /etc/rc.local 파일에 아래 추가 1 2 echo never &amp;gt; /sys/kernel/mm/transparent_hugepage/enabled sysctl -w net.</description>
     </item>
     
     <item>
@@ -354,7 +372,7 @@ JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.
 .NET 4.5부터 async 문법이 새로 들어갔다 해서.. 이왕 하는거 4.5.2로&amp;hellip; 만들기로 했다. 오&amp;hellip;&amp;hellip; 엄청나게 편리하다.!!
 async, await 두개가 중요하다. 특히 UI프로그램에서 background thread와 main thread와의 동기화를 쉽게 지원한다.
 아래는 id/pwd를 입력받아서 서버통신으로 인증을 진행하는 코드다.
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27  private async void btnLogin_Click(object sender, RoutedEventArgs e) { string id = tbEmail.</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 private async void btnLogin_Click(object sender, RoutedEventArgs e) { string id = tbEmail.</description>
     </item>
     
     <item>
@@ -364,9 +382,9 @@ async, await 두개가 중요하다. 특히 UI프로그램에서 background thre
       
       <guid>https://kimpaper.github.io/posts/centos/2015-09-16-centos-67/</guid>
       <description>친구랑 개발하는 간단한 쪽지앱의 서버로 사용할 서버를 구축했다. 물론 나는 잘 모른다 모든건 다 구글을 통해..
-1. SWAP 메모리 할당  https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-centos-6
- 1 2 3 4 5  dd if=/dev/zero of=/swapfile bs=1024 count=2048k mkswap /swapfile swapon /swapfile chown root:root /swapfile chmod 0600 /swapfile   아래 내용을 /etc/fstab 에 붙인다.
-1  /swapfile swap swap defaults 0 0   2. 서버 시간을 KST 로 바꿈 &amp;amp; rdate 설치 1 2  ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime yum install rdate   3.</description>
+1. SWAP 메모리 할당 https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-centos-6
+1 2 3 4 5 dd if=/dev/zero of=/swapfile bs=1024 count=2048k mkswap /swapfile swapon /swapfile chown root:root /swapfile chmod 0600 /swapfile 아래 내용을 /etc/fstab 에 붙인다.
+1 /swapfile swap swap defaults 0 0 2. 서버 시간을 KST 로 바꿈 &amp;amp; rdate 설치 1 2 ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime yum install rdate 3.</description>
     </item>
     
     <item>
@@ -391,7 +409,7 @@ reader, writer는 커스텀 하지 않고 mybatis에서 기본으로 제공하�
       <guid>https://kimpaper.github.io/posts/centos/2015-07-02-jfreechart-centos/</guid>
       <description>jfreeChart를 사용하는 중인데 tomcat위에서 돌리면 한글이 ㅁㅁㅁ 과 같이 나온다.
 /usr/share/fonts 폴더에 폰트파일을 넣고 fc-cache -fv 를 해주자!!
-1 2 3 4 5 6 7 8  // 코드 상에 아래와 같이 폰트를 지정한다. private static final Font _BASE_FONT = new Font(&amp;#34;나눔고딕&amp;#34;,Font.PLAIN,11); ... 중략 &amp;#39;&amp;#39;&amp;#39; // setFont를 적절하게 코드 내에 사용한다. lineAndShapeRenderer.setLegendTextFont(i, _BASE_FONT); ...   tomcat 재시작은 필요 없다.</description>
+1 2 3 4 5 6 7 8 // 코드 상에 아래와 같이 폰트를 지정한다. private static final Font _BASE_FONT = new Font(&amp;#34;나눔고딕&amp;#34;,Font.PLAIN,11); ... 중략 &amp;#39;&amp;#39;&amp;#39; // setFont를 적절하게 코드 내에 사용한다. lineAndShapeRenderer.setLegendTextFont(i, _BASE_FONT); ... tomcat 재시작은 필요 없다.</description>
     </item>
     
     <item>
@@ -401,7 +419,7 @@ reader, writer는 커스텀 하지 않고 mybatis에서 기본으로 제공하�
       
       <guid>https://kimpaper.github.io/posts/mac/2015-06-04-osx-10103-homebrew/</guid>
       <description>터미널 열고
-1  ruby -e &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;#34;   1 2  gimjonghuiui-MacBook-Pro:bin paper$ brew -v Homebrew 0.9.5   출처: http://coolestguidesontheplanet.com/installing-homebrew-os-x-yosemite-10-10-package-manager-unix-apps/</description>
+1 ruby -e &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;#34; 1 2 gimjonghuiui-MacBook-Pro:bin paper$ brew -v Homebrew 0.9.5 출처: http://coolestguidesontheplanet.com/installing-homebrew-os-x-yosemite-10-10-package-manager-unix-apps/</description>
     </item>
     
     <item>
@@ -410,7 +428,7 @@ reader, writer는 커스텀 하지 않고 mybatis에서 기본으로 제공하�
       <pubDate>Wed, 15 Apr 2015 00:39:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</guid>
-      <description>context-hadoop.xml에 아래 내용 추가. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  &amp;lt;hdp:configuration id=&amp;#34;hdConf&amp;#34;&amp;gt; fs.default.name=hdfs://localhost:9000 &amp;lt;/hdp:configuration&amp;gt; &amp;lt;hdp:job id=&amp;#34;wordCountJob&amp;#34; input-path=&amp;#34;/input/&amp;#34; output-path=&amp;#34;/output/&amp;#34; configuration-ref=&amp;#34;hdConf&amp;#34; mapper=&amp;#34;delim.app.service.WordCount$TokenizerMapper&amp;#34; reducer=&amp;#34;delim.app.service.WordCount$IntSumReducer&amp;#34; &amp;gt; &amp;lt;/hdp:job&amp;gt; &amp;lt;hdp:job-runner id=&amp;#34;wordCountJobRunner&amp;#34; job-ref=&amp;#34;wordCountJob&amp;#34; run-at-startup=&amp;#34;false&amp;#34;&amp;gt; &amp;lt;/hdp:job-runner&amp;gt;   WordCount.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49  import org.</description>
+      <description>context-hadoop.xml에 아래 내용 추가. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 &amp;lt;hdp:configuration id=&amp;#34;hdConf&amp;#34;&amp;gt; fs.default.name=hdfs://localhost:9000 &amp;lt;/hdp:configuration&amp;gt; &amp;lt;hdp:job id=&amp;#34;wordCountJob&amp;#34; input-path=&amp;#34;/input/&amp;#34; output-path=&amp;#34;/output/&amp;#34; configuration-ref=&amp;#34;hdConf&amp;#34; mapper=&amp;#34;delim.app.service.WordCount$TokenizerMapper&amp;#34; reducer=&amp;#34;delim.app.service.WordCount$IntSumReducer&amp;#34; &amp;gt; &amp;lt;/hdp:job&amp;gt; &amp;lt;hdp:job-runner id=&amp;#34;wordCountJobRunner&amp;#34; job-ref=&amp;#34;wordCountJob&amp;#34; run-at-startup=&amp;#34;false&amp;#34;&amp;gt; &amp;lt;/hdp:job-runner&amp;gt; WordCount.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 import org.</description>
     </item>
     
     <item>
@@ -421,7 +439,7 @@ reader, writer는 커스텀 하지 않고 mybatis에서 기본으로 제공하�
       <guid>https://kimpaper.github.io/2015/04/12/hadoop-26x-with-spring-40/</guid>
       <description>Hadoop 설치 및 설정은 아래와 같이 (osx 요세미티.) https://hadoop.apache.org/releases.html#Download ( 2.6.x 버전 )
 설치는 아래 블로그 보고 함 http://iamhereweare.blogspot.kr/2014/05/hadoop.html
-pom.xml 에 아래 dependency 추가. 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp;lt;groupid&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactid&amp;gt;spring-data-hadoop&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.1.1.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   context-hadoop.xml spring 설정에 파일 추가 1 2 3 4 5 6 7 8 9 10 11  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;beans xmlns=&amp;#34;http://www.springframework.org/schema/beans&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xmlns:hdp=&amp;#34;http://www.springframework.org/schema/hadoop&amp;#34; xsi:schemaLocation=&amp;#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/hadoop http://www.springframework.org/schema/hadoop/spring-hadoop.xsd&amp;#34;&amp;gt; &amp;lt;hdp:configuration id=&amp;#34;hdConf&amp;#34;&amp;gt; fs.default.name=hdfs://localhost:9000 &amp;lt;/hdp:configuration&amp;gt; &amp;lt;/beans&amp;gt;   아래와 같이 test코드 작성.</description>
+pom.xml 에 아래 dependency 추가. 1 2 3 4 5 &amp;lt;dependency&amp;gt; &amp;lt;groupid&amp;gt;org.springframework.data&amp;lt;/groupId&amp;gt; &amp;lt;artifactid&amp;gt;spring-data-hadoop&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.1.1.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; context-hadoop.xml spring 설정에 파일 추가 1 2 3 4 5 6 7 8 9 10 11 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;beans xmlns=&amp;#34;http://www.springframework.org/schema/beans&amp;#34; xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xmlns:hdp=&amp;#34;http://www.springframework.org/schema/hadoop&amp;#34; xsi:schemaLocation=&amp;#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/hadoop http://www.springframework.org/schema/hadoop/spring-hadoop.xsd&amp;#34;&amp;gt; &amp;lt;hdp:configuration id=&amp;#34;hdConf&amp;#34;&amp;gt; fs.default.name=hdfs://localhost:9000 &amp;lt;/hdp:configuration&amp;gt; &amp;lt;/beans&amp;gt; 아래와 같이 test코드 작성.</description>
     </item>
     
     <item>
@@ -431,8 +449,8 @@ pom.xml 에 아래 dependency 추가. 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp
       
       <guid>https://kimpaper.github.io/posts/centos/2015-03-27-403/</guid>
       <description>이것저것 했는데 403이 계속 나오면..
-1  chcon -R --reference=/var/www /www/webroot   또는
-1  chcon -R -h -t httpd_sys_content_t /www/webroot   </description>
+1 chcon -R --reference=/var/www /www/webroot 또는
+1 chcon -R -h -t httpd_sys_content_t /www/webroot </description>
     </item>
     
     <item>
@@ -441,7 +459,7 @@ pom.xml 에 아래 dependency 추가. 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp
       <pubDate>Tue, 24 Mar 2015 22:42:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/spring/2015-03-25-spring-junit-testcase/</guid>
-      <description>pom.xml에 아래 추가. 1 2 3 4 5 6  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-test&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;4.0.5.RELEASE&amp;lt;/version&amp;gt; &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt; &amp;lt;/dependency&amp;gt;   test java코드 MemberServiceTest.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  @RunWith(SpringJUnit4ClassRunner.class) @ContextConfiguration( { &amp;#34;classpath:servlet-context.xml&amp;#34;, &amp;#34;classpath:config/context-datasource.xml&amp;#34; } ) public class MemberServiceTest { @Autowired MemberService memberService; @Test public void testSr2002() throws Exception { RequestData req = new RequestData(null, new DbMap()); ResponseData res = new ResponseData(new DbMap()); memberService.</description>
+      <description>pom.xml에 아래 추가. 1 2 3 4 5 6 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-test&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;4.0.5.RELEASE&amp;lt;/version&amp;gt; &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt; &amp;lt;/dependency&amp;gt; test java코드 MemberServiceTest.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 @RunWith(SpringJUnit4ClassRunner.class) @ContextConfiguration( { &amp;#34;classpath:servlet-context.xml&amp;#34;, &amp;#34;classpath:config/context-datasource.xml&amp;#34; } ) public class MemberServiceTest { @Autowired MemberService memberService; @Test public void testSr2002() throws Exception { RequestData req = new RequestData(null, new DbMap()); ResponseData res = new ResponseData(new DbMap()); memberService.</description>
     </item>
     
     <item>
@@ -450,7 +468,7 @@ pom.xml 에 아래 dependency 추가. 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp
       <pubDate>Tue, 10 Mar 2015 18:55:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/spring/2015-03-11-spring-rabbitmq/</guid>
-      <description>설치는 그냥 rpm 으로 설치 1 2 3 4 5  # 서버 시작. sbin/rabbitmq-server start # 서버 중지 sbin/rabbitmqctl stop   spring-rabbit 연동 pom.xml 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp;lt;groupid&amp;gt;org.springframework.amqp&amp;lt;/groupId&amp;gt; &amp;lt;artifactid&amp;gt;spring-rabbit&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.4.1.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   context-rabbitmq.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  &amp;lt;!-- A reference to the org.springframework.amqp.rabbit.connection.ConnectionFactory --&amp;gt; &amp;lt;rabbit:connection-factory id=&amp;#34;connectionFactory&amp;#34; host=&amp;#34;localhost&amp;#34; username=&amp;#34;worker&amp;#34; password=&amp;#34;workerpassword&amp;#34; /&amp;gt; &amp;lt;!-- Creates a org.</description>
+      <description>설치는 그냥 rpm 으로 설치 1 2 3 4 5 # 서버 시작. sbin/rabbitmq-server start # 서버 중지 sbin/rabbitmqctl stop spring-rabbit 연동 pom.xml 1 2 3 4 5 &amp;lt;dependency&amp;gt; &amp;lt;groupid&amp;gt;org.springframework.amqp&amp;lt;/groupId&amp;gt; &amp;lt;artifactid&amp;gt;spring-rabbit&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.4.1.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; context-rabbitmq.xml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 &amp;lt;!-- A reference to the org.springframework.amqp.rabbit.connection.ConnectionFactory --&amp;gt; &amp;lt;rabbit:connection-factory id=&amp;#34;connectionFactory&amp;#34; host=&amp;#34;localhost&amp;#34; username=&amp;#34;worker&amp;#34; password=&amp;#34;workerpassword&amp;#34; /&amp;gt; &amp;lt;!-- Creates a org.springframework.amqp.rabbit.core.RabbitTemplate for access to the broker --&amp;gt; &amp;lt;rabbit:template id=&amp;#34;amqpTemplate&amp;#34; connection-factory=&amp;#34;connectionFactory&amp;#34; /&amp;gt; &amp;lt;!</description>
     </item>
     
     <item>
@@ -459,9 +477,9 @@ pom.xml 에 아래 dependency 추가. 1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp
       <pubDate>Wed, 04 Mar 2015 17:33:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/centos/2015-03-05-git/</guid>
-      <description>svn to git 마이그레이션 1 2  git svn clone --stdlayout --no-metadata -A users.txt svn://example.com/repository/projectname cd projectname    아래 users.txt 만드는건데 perl 이 없어서 그런지.. 안되네요&amp;hellip; ㅠ
+      <description>svn to git 마이그레이션 1 2 git svn clone --stdlayout --no-metadata -A users.txt svn://example.com/repository/projectname cd projectname 아래 users.txt 만드는건데 perl 이 없어서 그런지.. 안되네요&amp;hellip; ㅠ
 svn log ^/ --xml | grep -P &amp;quot;^&amp;lt;author&amp;quot; | sort -u | \ perl -pe &#39;s/&amp;lt;author&amp;gt;(.*?)&amp;lt;\/author&amp;gt;/$1 = /&#39; &amp;gt; users.txt
- ignore file처리 1  git svn show-ignore -i trunk &amp;gt; .gitignore   remote git 지정 1  git remote add origin git@git.</description>
+ignore file처리 1 git svn show-ignore -i trunk &amp;gt; .gitignore remote git 지정 1 git remote add origin git@git.example.com:group/projectname.git tags 처리 1 git for-each-ref refs/remotes/tags | cut -d / -f 4- | grep -v @ | while read tagname; do git tag &amp;#34;$tagname&amp;#34; &amp;#34;tags/$tagname&amp;#34;; git branch -r -d &amp;#34;tags/$tagname&amp;#34;; done branches 처리 1 git for-each-ref refs/remotes | cut -d / -f 3- | grep -v @ | while read branchname; do git branch &amp;#34;$branchname&amp;#34; &amp;#34;refs/remotes/$branchname&amp;#34;; git branch -r -d &amp;#34;$branchname&amp;#34;; done push한다.</description>
     </item>
     
     <item>
@@ -470,7 +488,7 @@ svn log ^/ --xml | grep -P &amp;quot;^&amp;lt;author&amp;quot; | sort -u | \ per
       <pubDate>Tue, 10 Feb 2015 20:48:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</guid>
-      <description>1. 현재 설정된 상태 확인 1 2 3 4 5 6 7 8 9 10 11 12 13  MariaDB [(none)]&amp;gt; show variables like &amp;#34;%character%&amp;#34;;show variables like &amp;#34;%collation%&amp;#34;; +--------------------------+---------------------------------+ | Variable_name | Value | +--------------------------+---------------------------------+ | character_set_client | utf8 | | character_set_connection | utf8 | | character_set_database | utf8 | | character_set_filesystem | binary | | character_set_results | utf8 | | character_set_server | utf8 | | character_set_system | utf8 | | character_sets_dir | /usr/local/mysql/share/charsets/| +--------------------------+---------------------------------+   2.</description>
+      <description>1. 현재 설정된 상태 확인 1 2 3 4 5 6 7 8 9 10 11 12 13 MariaDB [(none)]&amp;gt; show variables like &amp;#34;%character%&amp;#34;;show variables like &amp;#34;%collation%&amp;#34;; +--------------------------+---------------------------------+ | Variable_name | Value | +--------------------------+---------------------------------+ | character_set_client | utf8 | | character_set_connection | utf8 | | character_set_database | utf8 | | character_set_filesystem | binary | | character_set_results | utf8 | | character_set_server | utf8 | | character_set_system | utf8 | | character_sets_dir | /usr/local/mysql/share/charsets/| +--------------------------+---------------------------------+ 2.</description>
     </item>
     
     <item>
@@ -479,7 +497,7 @@ svn log ^/ --xml | grep -P &amp;quot;^&amp;lt;author&amp;quot; | sort -u | \ per
       <pubDate>Thu, 05 Feb 2015 17:42:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/centos/2015-02-06-blog-post_21/</guid>
-      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39  #프로그램 설치위치 찾기 which java /usr/bin/java #오래된 로그파일만 찾아서 삭제함 find /logs/httpd/ -type f -mtime +180 -exec rm -f {} \; #hosts 편집 vi /etc/hosts #dns서버 수정 vi /etc/resolv.conf #OS 비트 확인 getconf LONG_BIT #OS 버전 확인 cat /etc/issue #폰트목록 fc-list #폰트 반영 (/usr/share/fonts 에 폰트 넣고) fc-cache -fv #로그보기 tail -f file.</description>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 #프로그램 설치위치 찾기 which java /usr/bin/java #오래된 로그파일만 찾아서 삭제함 find /logs/httpd/ -type f -mtime +180 -exec rm -f {} \; #hosts 편집 vi /etc/hosts #dns서버 수정 vi /etc/resolv.conf #OS 비트 확인 getconf LONG_BIT #OS 버전 확인 cat /etc/issue #폰트목록 fc-list #폰트 반영 (/usr/share/fonts 에 폰트 넣고) fc-cache -fv #로그보기 tail -f file.</description>
     </item>
     
     <item>
@@ -501,7 +519,7 @@ svn log ^/ --xml | grep -P &amp;quot;^&amp;lt;author&amp;quot; | sort -u | \ per
       <description>항상 json으로만 뱉다가 xml로 뱉어야 하는 상황이 발생해서 만든 spring view 클래스
 결과가 map에 경우에만 해당됨
 아래 설정하고&amp;hellip;
-applicationServlet.xml 1 2 3 4  &amp;lt;beans:bean id=&amp;#34;xmlView2&amp;#34; class=&amp;#34;org.springframework.web.servlet.view.XmlViewResolver&amp;#34;&amp;gt; &amp;lt;beans:property name=&amp;#34;order&amp;#34; value=&amp;#34;1&amp;#34;/&amp;gt; &amp;lt;beans:property name=&amp;#34;location&amp;#34; value=&amp;#34;classpath:xml-views.xml&amp;#34;/&amp;gt; &amp;lt;/beans:bean&amp;gt;   xml-views.xml 내용. 1 2 3 4 5 6 7 8 9 10  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;!DOCTYPE beans PUBLIC &amp;#34;-//SPRING//DTD BEAN//EN&amp;#34; &amp;#34;http://www.springframework.org/dtd/spring-beans.dtd&amp;#34;&amp;gt; &amp;lt;beans&amp;gt; &amp;lt;bean name=&amp;#34;xmlView&amp;#34; class=&amp;#34;com.xxxxx.view.AjaxResponseXMLView&amp;#34;&amp;gt; &amp;lt;property name=&amp;#34;contentType&amp;#34;&amp;gt; &amp;lt;value&amp;gt;text/xml;charset=utf-8&amp;lt;/value&amp;gt; &amp;lt;/property&amp;gt; &amp;lt;/bean&amp;gt; &amp;lt;/beans&amp;gt;   AjaxResponseXMLView.</description>
+applicationServlet.xml 1 2 3 4 &amp;lt;beans:bean id=&amp;#34;xmlView2&amp;#34; class=&amp;#34;org.springframework.web.servlet.view.XmlViewResolver&amp;#34;&amp;gt; &amp;lt;beans:property name=&amp;#34;order&amp;#34; value=&amp;#34;1&amp;#34;/&amp;gt; &amp;lt;beans:property name=&amp;#34;location&amp;#34; value=&amp;#34;classpath:xml-views.xml&amp;#34;/&amp;gt; &amp;lt;/beans:bean&amp;gt; xml-views.xml 내용. 1 2 3 4 5 6 7 8 9 10 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;!DOCTYPE beans PUBLIC &amp;#34;-//SPRING//DTD BEAN//EN&amp;#34; &amp;#34;http://www.springframework.org/dtd/spring-beans.dtd&amp;#34;&amp;gt; &amp;lt;beans&amp;gt; &amp;lt;bean name=&amp;#34;xmlView&amp;#34; class=&amp;#34;com.xxxxx.view.AjaxResponseXMLView&amp;#34;&amp;gt; &amp;lt;property name=&amp;#34;contentType&amp;#34;&amp;gt; &amp;lt;value&amp;gt;text/xml;charset=utf-8&amp;lt;/value&amp;gt; &amp;lt;/property&amp;gt; &amp;lt;/bean&amp;gt; &amp;lt;/beans&amp;gt; AjaxResponseXMLView.java 아래 클래스를 이용함 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 public class AjaxResponseXMLView extends AbstractView { @Override protected void renderMergedOutputModel(Map map, HttpServletRequest request, HttpServletResponse response) throws Exception { String xmlHeader = &amp;#34;\r\n&amp;#34;; StringBuffer xmlSb = new StringBuffer(); xmlSb.</description>
     </item>
     
     <item>
@@ -510,8 +528,7 @@ applicationServlet.xml 1 2 3 4  &amp;lt;beans:bean id=&amp;#34;xmlView2&amp;#34;
       <pubDate>Thu, 05 Feb 2015 17:10:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/centos/2015-02-06-tomcat-outofmemory/</guid>
-      <description>catalina.sh 맨 상위에 아래를 추가해서 메모리를 크게 잡자. (주의 서버 메모리를 생각해서 적당히. ) 1  export CATALINA_OPTS=&amp;#34;-Djava.awt.headless=true -server -Xms2048m -Xmx2048m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled&amp;#34;    참고) http://stackoverflow.com/questions/88235/dealing-with-java-lang-outofmemoryerror-permgen-space-error
- </description>
+      <description>catalina.sh 맨 상위에 아래를 추가해서 메모리를 크게 잡자. (주의 서버 메모리를 생각해서 적당히. ) 1 export CATALINA_OPTS=&amp;#34;-Djava.awt.headless=true -server -Xms2048m -Xmx2048m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled&amp;#34; 참고) http://stackoverflow.com/questions/88235/dealing-with-java-lang-outofmemoryerror-permgen-space-error</description>
     </item>
     
   </channel>

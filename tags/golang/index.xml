@@ -16,7 +16,7 @@
       <pubDate>Mon, 28 Mar 2022 16:53:00 +0000</pubDate>
       
       <guid>https://kimpaper.github.io/posts/golang/2022-03-28-golang_profiler/</guid>
-      <description>http prof 를 이용해 프로파일 한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14  import ( &amp;#34;net/http&amp;#34; _ &amp;#34;net/http/pprof&amp;#34; ) func main() { go func() { log.Println(http.ListenAndServe(&amp;#34;0.0.0.0:6060&amp;#34;, nil)) }() ... do somthing ... }   cpu profile (30초동안 데이터를 모은다) 1  go tool pprof http://xxxx:6060/debug/pprof/profile   heap memory (현재 메모리 정보를 반환한다) 1  go tool pprof http://xxxx:6060/debug/pprof/heap    heap 을 실행하면 아래와 같이 command line (pprof)가 나오는데 프로파일 명령을 넣으면 된다.</description>
+      <description>http prof 를 이용해 프로파일 한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 import ( &amp;#34;net/http&amp;#34; _ &amp;#34;net/http/pprof&amp;#34; ) func main() { go func() { log.Println(http.ListenAndServe(&amp;#34;0.0.0.0:6060&amp;#34;, nil)) }() ... do somthing ... } cpu profile (30초동안 데이터를 모은다) 1 go tool pprof http://xxxx:6060/debug/pprof/profile heap memory (현재 메모리 정보를 반환한다) 1 go tool pprof http://xxxx:6060/debug/pprof/heap heap 을 실행하면 아래와 같이 command line (pprof)가 나오는데 프로파일 명령을 넣으면 된다.</description>
     </item>
     
   </channel>

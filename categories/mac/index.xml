@@ -9,7 +9,22 @@
       <link>https://kimpaper.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 04 Jun 2015 01:05:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/categories/mac/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Apr 2023 01:05:00 +0000</lastBuildDate><atom:link href="https://kimpaper.github.io/categories/mac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>아카이브유틸리티 동작 안되는 현상</title>
+      <link>https://kimpaper.github.io/posts/mac/2023-04-08-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EB%8F%99%EC%9E%91-%EC%95%88%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81/</link>
+      <pubDate>Sat, 08 Apr 2023 01:05:00 +0000</pubDate>
+      
+      <guid>https://kimpaper.github.io/posts/mac/2023-04-08-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EB%8F%99%EC%9E%91-%EC%95%88%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81/</guid>
+      <description>맥북에어 m2에서 겪었던 현상.
+아카이브 유틸리티 동작이 안되는 현상 왜 그러는지는 모르겠지만, zip을 클릭했을때 압축이 안풀리는 현상이 있었다 이유를 보니
+숫자가 앞에 있었다.
+1_test.zip 압축이 풀리지 않음 test.zip 압축풀림
+이름을 변경하니 더블클릭으로 압축이 풀렸다.
+1_test.zip 압축풀기 메뉴를 눌러 폴더 선택을 직접 하면 풀린다.
+연속 압축으로 인식한껄까.</description>
+    </item>
+    
     <item>
       <title>OSX 10.10.3 homebrew 설치하기</title>
       <link>https://kimpaper.github.io/posts/mac/2015-06-04-osx-10103-homebrew/</link>
@@ -17,7 +32,7 @@
       
       <guid>https://kimpaper.github.io/posts/mac/2015-06-04-osx-10103-homebrew/</guid>
       <description>터미널 열고
-1  ruby -e &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;#34;   1 2  gimjonghuiui-MacBook-Pro:bin paper$ brew -v Homebrew 0.9.5   출처: http://coolestguidesontheplanet.com/installing-homebrew-os-x-yosemite-10-10-package-manager-unix-apps/</description>
+1 ruby -e &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;#34; 1 2 gimjonghuiui-MacBook-Pro:bin paper$ brew -v Homebrew 0.9.5 출처: http://coolestguidesontheplanet.com/installing-homebrew-os-x-yosemite-10-10-package-manager-unix-apps/</description>
     </item>
     
     <item>

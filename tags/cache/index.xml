@@ -17,7 +17,7 @@
       
       <guid>https://kimpaper.github.io/posts/etc/2015-12-15-mysql-cache-reset/</guid>
       <description>쿼리 튜닝할때 아래를 실행하고 하면 cache 안된 결과를 볼 수 있다.
-1  RESETQUERYCACHE;  </description>
+1 RESET QUERY CACHE; </description>
     </item>
     
   </channel>
