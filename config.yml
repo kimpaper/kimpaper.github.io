@@ -26,6 +26,9 @@ languages:
                 - name: 일상
                   url: categories/diary/
                   weight: 6
+                - name: 소개
+                  url: about/
+                  weight: 7
                 - name: Search
                   url: search/
                   weight: 10
