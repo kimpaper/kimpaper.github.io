@@ -1,0 +1,18 @@
+{{- /* ============================================================
+       인아티클 광고 shortcode.
+       사용법(포스트 본문):  {{< adsense >}}
+                또는 슬롯 지정:  {{< adsense slot="1234567890" >}}
+       광고 슬롯 ID 는 AdSense 대시보드 > 광고 > 광고 단위에서 발급받습니다.
+       ============================================================ */ -}}
+{{- $ads := site.Params.adsenseClient -}}
+{{- if and $ads (not (in $ads "XXXX")) -}}
+<div class="ad-slot">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="{{ $ads }}"
+       {{ with .Get "slot" }}data-ad-slot="{{ . }}"{{ end }}
+       data-ad-format="{{ .Get "format" | default "auto" }}"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+{{- end -}}
