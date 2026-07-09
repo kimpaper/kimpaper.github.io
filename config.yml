@@ -10,7 +10,6 @@ buildFuture: false
 buildExpired: false
 enableEmoji: true
 pygmentsUseClasses: true
-googleAnalytics: UA-68818649-1
 
 minify:
     disableXML: true
@@ -25,6 +24,9 @@ languages:
                 - name: Archive
                   url: archives
                   weight: 5
+                - name: 일상
+                  url: categories/diary/
+                  weight: 6
                 - name: Search
                   url: search/
                   weight: 10
@@ -46,6 +48,15 @@ params:
     description: "kimpaper.github.io blog"
     author: kimpaper
     # author: ["Me", "You"] # multiple authors
+
+    # ─── 방문자 통계 / 광고 ───────────────────────────────
+    # Google Analytics 4 측정 ID (GA4 콘솔 > 관리 > 데이터 스트림에서 발급, G-로 시작)
+    # 아래 XXXX 를 실제 ID 로 바꾸면 방문자 통계 수집이 시작됩니다.
+    googleAnalyticsID: "G-XXXXXXXXXX"
+    # Google AdSense 게시자 ID (AdSense 콘솔 > 계정 > 계정 정보, ca-pub-로 시작)
+    # 값을 채우면 자동 광고 + {{< adsense >}} shortcode 가 활성화됩니다.
+    adsenseClient: "ca-pub-8048816011496920"
+    # ──────────────────────────────────────────────────
 
     defaultTheme: auto
     # disableThemeToggle: true
