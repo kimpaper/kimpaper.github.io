@@ -1,0 +1,281 @@
+/* =========================================================
+   기록 저장소 — Modern & Clean 커스텀 스타일
+   PaperMod 테마 위에 얹는 오버라이드. 테마 업데이트에 영향 없음.
+   ========================================================= */
+
+:root {
+    /* 브랜드 액센트 (은은한 인디고 계열) */
+    --accent: #4f6df5;
+    --accent-soft: rgba(79, 109, 245, 0.12);
+    --accent-2: #7c93ff;
+    --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+    --card-shadow-hover: 0 6px 14px rgba(0, 0, 0, 0.08), 0 18px 40px rgba(79, 109, 245, 0.14);
+    --radius: 14px;
+}
+
+.dark {
+    --accent: #7c93ff;
+    --accent-soft: rgba(124, 147, 255, 0.16);
+    --accent-2: #9db0ff;
+    --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+    --card-shadow-hover: 0 6px 14px rgba(0, 0, 0, 0.4), 0 18px 44px rgba(124, 147, 255, 0.18);
+}
+
+/* ---------- 타이포그래피 ---------- */
+body {
+    font-feature-settings: "kern" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.003em;
+}
+
+.post-content,
+.entry-content,
+.first-entry .entry-content {
+    line-height: 1.75;
+}
+
+/* ---------- 헤더 / 네비게이션 ---------- */
+.nav {
+    backdrop-filter: saturate(180%) blur(8px);
+}
+
+.logo a {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+#menu a {
+    border-radius: 999px;
+    padding: 6px 12px;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+#menu a:hover,
+#menu .active {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+#menu .active {
+    margin: inherit;
+}
+
+/* ---------- 홈 인포 / 첫 글 ---------- */
+.first-entry .entry-header h1 {
+    background: linear-gradient(120deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+}
+
+.home-info .entry-header h1 {
+    letter-spacing: -0.02em;
+}
+
+/* ---------- 포스트 목록 카드 ---------- */
+.post-entry {
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--card-shadow);
+    transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.22s ease, border-color 0.22s ease;
+    overflow: hidden;
+}
+
+.post-entry:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow-hover);
+    border-color: var(--accent);
+}
+
+.post-entry:active {
+    transform: translateY(-1px) scale(0.995);
+}
+
+.entry-header h2 {
+    letter-spacing: -0.015em;
+    transition: color 0.2s ease;
+}
+
+.post-entry:hover .entry-header h2 {
+    color: var(--accent);
+}
+
+/* 카드 위쪽 얇은 액센트 바 (호버 시 등장) */
+.post-entry::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.post-entry:hover::before {
+    transform: scaleX(1);
+}
+
+/* ---------- 태그 ---------- */
+.post-tags a,
+.terms-tags a {
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--code-bg);
+    transition: all 0.2s ease;
+}
+
+.post-tags a:hover,
+.terms-tags a:hover {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* ---------- 본문 ---------- */
+.post-content a {
+    color: var(--accent);
+    box-shadow: 0 1px 0 var(--accent-soft);
+    text-decoration: none;
+    transition: box-shadow 0.2s ease;
+}
+
+.post-content a:hover {
+    box-shadow: inset 0 -0.5em 0 var(--accent-soft);
+}
+
+.post-content h2,
+.post-content h3 {
+    letter-spacing: -0.02em;
+    scroll-margin-top: 80px;
+}
+
+.post-content h2 {
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--border);
+}
+
+.post-content blockquote {
+    border-inline-start: 4px solid var(--accent);
+    background: var(--accent-soft);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 12px 18px;
+    margin: 20px 0;
+}
+
+.post-content img {
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+}
+
+/* 인라인 코드 */
+.post-content :not(pre) > code {
+    border-radius: 6px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 2px 6px;
+    font-size: 0.9em;
+}
+
+/* 코드 블록 */
+.post-content pre {
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+}
+
+.post-content table th {
+    background: var(--accent-soft);
+}
+
+/* ---------- 목차(TOC) ---------- */
+.toc {
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--card-shadow);
+}
+
+.toc summary {
+    font-weight: 700;
+}
+
+.toc a:hover {
+    color: var(--accent);
+}
+
+/* ---------- 페이지네이션 / 버튼 ---------- */
+.pagination a {
+    border-radius: 999px;
+    transition: all 0.2s ease;
+}
+
+.pagination a:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.post-content .footnote-backref,
+.top-link {
+    color: var(--accent) !important;
+}
+
+/* 스크롤 최상단 버튼 */
+.top-link {
+    background: var(--entry);
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border);
+}
+
+/* ---------- 광고 컨테이너 ---------- */
+.ad-slot {
+    margin: 28px 0;
+    text-align: center;
+    min-height: 1px;
+}
+
+.ad-slot::before {
+    content: "AD";
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--tertiary);
+    margin-bottom: 6px;
+}
+
+/* ---------- 부드러운 진입 애니메이션 ---------- */
+@media (prefers-reduced-motion: no-preference) {
+    .main .post-entry,
+    .main .first-entry {
+        animation: fade-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+
+    @keyframes fade-up {
+        from {
+            opacity: 0;
+            transform: translateY(14px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* ---------- 선택 영역 ---------- */
+::selection {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+/* ---------- 스크롤바 ---------- */
+::-webkit-scrollbar-thumb {
+    background: var(--tertiary);
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}

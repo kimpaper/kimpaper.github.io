@@ -1,0 +1,29 @@
+{{- /* ============================================================
+       커스텀 <head> 확장: Google Analytics 4 + Google AdSense
+       config.yml 의 params.googleAnalyticsID / params.adsenseClient 값을
+       채우면 자동으로 활성화됩니다. (플레이스홀더 XXXX 상태면 출력 안 함)
+       ============================================================ */ -}}
+
+{{- $ga := site.Params.googleAnalyticsID -}}
+{{- $ads := site.Params.adsenseClient -}}
+{{- $isProd := eq (site.Params.env | default (hugo.Environment)) "production" -}}
+
+{{- /* ---------- Google Analytics 4 (방문자 통계) ---------- */ -}}
+{{- if and $isProd $ga (not (in $ga "XXXX")) }}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ $ga }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ $ga }}');
+</script>
+{{- end }}
+
+{{- /* ---------- Google AdSense (자동 광고) ---------- */ -}}
+{{- if and $ads (not (in $ads "XXXX")) }}
+<meta name="google-adsense-account" content="{{ $ads }}">
+{{- if $isProd }}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ $ads }}"
+        crossorigin="anonymous"></script>
+{{- end }}
+{{- end }}
