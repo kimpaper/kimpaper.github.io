@@ -1,0 +1,23 @@
+{{- /* 푸터 하단 링크: 소개 / 개인정보처리방침 */ -}}
+<div class="footer-links">
+    <a href="{{ "about/" | absURL }}">소개</a>
+    <span aria-hidden="true">·</span>
+    <a href="{{ "privacy/" | absURL }}">개인정보처리방침</a>
+</div>
+<style>
+    .footer-links {
+        text-align: center;
+        margin-top: 4px;
+        font-size: 13px;
+    }
+    .footer-links a {
+        color: var(--secondary);
+    }
+    .footer-links a:hover {
+        color: var(--accent, var(--primary));
+    }
+    .footer-links span {
+        margin: 0 6px;
+        color: var(--tertiary);
+    }
+</style>
