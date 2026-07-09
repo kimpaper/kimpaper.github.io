@@ -55,7 +55,7 @@ params:
     googleAnalyticsID: "G-XXXXXXXXXX"
     # Google AdSense 게시자 ID (AdSense 콘솔 > 계정 > 계정 정보, ca-pub-로 시작)
     # 값을 채우면 자동 광고 + {{< adsense >}} shortcode 가 활성화됩니다.
-    adsenseClient: "ca-pub-XXXXXXXXXXXXXXXX"
+    adsenseClient: "ca-pub-8048816011496920"
     # ──────────────────────────────────────────────────
 
     defaultTheme: auto
