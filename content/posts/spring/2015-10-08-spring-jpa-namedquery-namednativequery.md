@@ -5,7 +5,6 @@ date: '2015-10-08T01:32:00'
 author: 페이퍼
 categories: spring
 tags: [spring,java,jpa]
-categories: spring
 ---
 
 jpa에서.. repository를 이용하여 findAll이나.. findOneBy.... 시리즈를 써서 데이타를 조회 할수 있지만
