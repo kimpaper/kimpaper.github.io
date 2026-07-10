@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Lang }}" dir="ltr">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <div class="scrim" id="scrim"></div>
+  <div class="shell">
+    {{ partial "sidebar.html" . }}
+    <div class="main">
+      {{ partial "topbar.html" . }}
+      <div class="content">
+        {{ block "main" . }}{{ end }}
+      </div>
+    </div>
+  </div>
+  {{ partial "scripts.html" . }}
+</body>
+</html>

@@ -1,0 +1,36 @@
+{{ define "main" }}
+  {{- $posts := where site.RegularPages "Section" "posts" -}}
+  {{- $featured := index $posts 0 -}}
+  {{- with $featured }}
+  <article class="lead">
+    <div class="body">
+      <div class="tag-line">
+        <span class="cat-tag">Featured</span>
+        <span class="eyebrow">가장 최근 기록</span>
+      </div>
+      <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+      <p>{{ .Summary | plainify | htmlUnescape | truncate 150 }}</p>
+      <div class="meta-row num">
+        <span>{{ .Date.Format "2006 · 01 · 02" }}</span>
+        {{ with .GetTerms "categories" }}<span>{{ (index . 0).LinkTitle | title }}</span>{{ end }}
+        <span>{{ .ReadingTime }} min read</span>
+      </div>
+    </div>
+    <div class="plate">
+      <div class="big serif">{{ len $posts }}</div>
+      <div class="lbl">records kept</div>
+    </div>
+  </article>
+  {{- end }}
+
+  <div class="sec-head">
+    <h2>기록 색인</h2>
+    <span class="rule"></span>
+    <span class="count num">{{ len $posts }} entries</span>
+  </div>
+
+  {{- $rest := after 1 $posts -}}
+  {{- $paginator := .Paginate $rest -}}
+  {{ partial "ledger.html" (dict "pages" $paginator.Pages) }}
+  {{ partial "pager.html" (dict "Paginator" $paginator) }}
+{{ end }}

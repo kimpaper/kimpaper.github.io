@@ -5,6 +5,7 @@ date: '2016-02-25T14:35:00.001'
 author: 페이퍼
 tags: [git]
 header-img: "img/post-bg-01.jpg"
+categories: etc
 ---
 
 

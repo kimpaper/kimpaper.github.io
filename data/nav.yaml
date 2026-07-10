@@ -1,0 +1,26 @@
+# 사이드바 대메뉴 > 세부메뉴 구성. cat 값은 content front matter 의 categories 와 일치.
+groups:
+  - roman: I
+    label: 기술 블로그
+    open: true
+    items:
+      - { cat: spring,     label: "Spring · JPA" }
+      - { cat: golang,     label: "Golang" }
+      - { cat: kubernetes, label: "Kubernetes · 인프라" }
+      - { cat: python,     label: "Python" }
+      - { cat: opensource, label: "오픈소스 · 데이터" }
+      - { cat: linux,      label: "CentOS · 리눅스" }
+      - { cat: dotnet,     label: ".NET" }
+  - roman: II
+    label: 일상
+    items:
+      - { cat: diary,      label: "일기 · 소소한 기록" }
+  - roman: III
+    label: 기타 잡지식
+    items:
+      - { cat: etc,        label: "팁 · 트러블슈팅" }
+      - { cat: mac,        label: "Mac · 기타" }
+flat:
+  - { label: 전체 아카이브, url: "/archives/", icon: archive }
+  - { label: 태그,        url: "/tags/",     icon: tag }
+  - { label: 소개,        url: "/about/",    icon: user }

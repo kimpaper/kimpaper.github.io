@@ -4,7 +4,7 @@ title: AWS EC2서버에 패스워드로 로그인 하기
 date: '2016-04-08T11:33:00.002'
 author: 페이퍼
 tags: [aws,centos]
-categories: centos
+categories: linux
 url: /2016/04/08/amazon-ec2-root-pwd/
 ---
 

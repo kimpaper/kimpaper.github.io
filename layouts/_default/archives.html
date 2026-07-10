@@ -1,0 +1,16 @@
+{{ define "main" }}
+  {{- $posts := where site.RegularPages "Section" "posts" -}}
+  <div class="sec-head">
+    <h2>전체 아카이브</h2>
+    <span class="rule"></span>
+    <span class="count num">{{ len $posts }} entries</span>
+  </div>
+  {{- range $posts.GroupByDate "2006" }}
+  <div class="sec-head" style="margin-top:34px">
+    <h2 class="serif" style="font-style:italic;color:var(--brass)">{{ .Key }}</h2>
+    <span class="rule"></span>
+    <span class="count num">{{ len .Pages }}</span>
+  </div>
+  {{ partial "ledger.html" (dict "pages" .Pages) }}
+  {{- end }}
+{{ end }}
