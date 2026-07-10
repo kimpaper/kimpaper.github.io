@@ -5,6 +5,7 @@ date: '2015-10-30T11:18:00.001'
 author: 페이퍼
 tags: [logback]
 url: /2015/10/30/logback-config/
+categories: etc
 ---
 
 logback을 이용하는 경우 오늘이 지나거나 용량이 100메가를 넘어가면 파일이 분리된다.

@@ -4,7 +4,7 @@ title: jfreeChart에서 한글 폰트 사용 (centos 폰트 설정)
 date: '2015-07-01T20:33:00.001'
 author: 페이퍼
 tags: [jfreechart,centos,java]
-categories: centos
+categories: linux
 modified_time: '2016-04-19T15:00:00.000'
 ---
 

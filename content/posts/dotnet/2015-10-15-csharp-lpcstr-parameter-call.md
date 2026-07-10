@@ -3,7 +3,7 @@ layout: post
 title: c# 에서 c++(dll)로 LPCTSTR parameter 넘겨 호출 하기
 date: '2015-10-15T12:13:00.001'
 author: 페이퍼
-categories: .NET
+categories: dotnet
 tags: [마샬링,marshalling]
 url: /2015/10/15/csharp-lpcstr-parameter-call/
 ---

@@ -4,7 +4,7 @@ title: tomcat 에서 OutOfMemory 자주 나오면.
 date: '2015-02-05T17:10:00.000'
 author: 페이퍼
 tags: [centos,tomcat]
-categories: centos
+categories: linux
 modified_time: '2016-03-25T14:52:00.000'
 blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-1282899466440249794
 blogger_orig_url: http://kimpaper.blogspot.com/2015/02/tomcat-outofmemory.html
