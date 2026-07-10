@@ -1,0 +1,11 @@
+{{ define "main" }}
+  {{- $pages := .Paginate .Pages -}}
+  <div class="sec-head">
+    <h2>{{ if eq .Kind "term" }}{{ .Title | title }}{{ else }}{{ .Title }}{{ end }}</h2>
+    <span class="rule"></span>
+    <span class="count num">{{ len .Pages }} entries</span>
+  </div>
+  {{- with .Content }}<div class="prose" style="margin:0 0 24px">{{ . }}</div>{{ end }}
+  {{ partial "ledger.html" (dict "pages" $pages.Pages) }}
+  {{ partial "pager.html" (dict "Paginator" $pages) }}
+{{ end }}

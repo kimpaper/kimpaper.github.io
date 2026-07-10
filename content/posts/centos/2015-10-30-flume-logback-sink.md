@@ -4,7 +4,7 @@ title: Flume의 기본 로그를 log4j에서 logback으로 변경
 date: '2015-10-30T18:13:00.002'
 author: 페이퍼
 tags: [centos,flume,logback]
-categories: centos
+categories: linux
 header-img: "img/post-bg-01.jpg"
 ---
 

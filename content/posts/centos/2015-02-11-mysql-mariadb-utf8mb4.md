@@ -4,7 +4,7 @@ title: mysql, mariadb에서 유니코드(utf8mb4) 지원하기
 date: '2015-02-10T20:48:00.000'
 author: 페이퍼
 tags: [mysql,mariadb]
-categories: centos
+categories: linux
 modified_time: '2015-10-07T20:26:58.282'
 blogger_id: tag:blogger.com,1999:blog-335715462918866001.post-8973682977912771711
 blogger_orig_url: http://kimpaper.blogspot.com/2015/02/mysql-mariadb-utf8mb4.html
