@@ -1,281 +1,485 @@
-/* =========================================================
-   기록 저장소 — Modern & Clean 커스텀 스타일
-   PaperMod 테마 위에 얹는 오버라이드. 테마 업데이트에 영향 없음.
-   ========================================================= */
+/* ============================================================================
+   기록 저장소 — Editorial Modern Design System
+   Pretendard(본문) + Fraunces(디스플레이) + JetBrains Mono(코드)
+   PaperMod 위에 얹는 오버라이드. 테마 업데이트에 안전.
+   ========================================================================== */
 
+/* ---------- 1. 디자인 토큰 ---------- */
 :root {
-    /* 브랜드 액센트 (은은한 인디고 계열) */
-    --accent: #4f6df5;
-    --accent-soft: rgba(79, 109, 245, 0.12);
-    --accent-2: #7c93ff;
-    --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
-    --card-shadow-hover: 0 6px 14px rgba(0, 0, 0, 0.08), 0 18px 40px rgba(79, 109, 245, 0.14);
-    --radius: 14px;
+    /* 색: 라이트 */
+    --theme: #f6f6f9;
+    --entry: #ffffff;
+    --primary: #14141a;
+    --secondary: #6a6a78;
+    --tertiary: #d8d8e0;
+    --content: #2c2c38;
+    --border: #ececf1;
+    --code-bg: #f1f1f6;
+    --hljs-bg: #16161c;
+
+    /* 브랜드 액센트 */
+    --accent: #6d5efc;
+    --accent-2: #a78bfa;
+    --accent-soft: rgba(109, 94, 252, 0.10);
+    --accent-ring: rgba(109, 94, 252, 0.28);
+    --grad: linear-gradient(115deg, #6d5efc 0%, #a78bfa 55%, #f0abfc 100%);
+
+    /* 그림자 */
+    --shadow-sm: 0 1px 2px rgba(20, 20, 40, 0.05);
+    --shadow-md: 0 2px 6px rgba(20, 20, 40, 0.05), 0 12px 28px rgba(20, 20, 45, 0.07);
+    --shadow-lg: 0 8px 18px rgba(20, 20, 45, 0.08), 0 24px 56px rgba(80, 60, 200, 0.14);
+
+    --radius: 18px;
+    --radius-sm: 12px;
+    --main-width: 760px;
+
+    --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+        "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+    --font-display: "Fraunces", Georgia, "Pretendard Variable", serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "Cascadia Code", monospace;
 }
 
 .dark {
-    --accent: #7c93ff;
-    --accent-soft: rgba(124, 147, 255, 0.16);
-    --accent-2: #9db0ff;
-    --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
-    --card-shadow-hover: 0 6px 14px rgba(0, 0, 0, 0.4), 0 18px 44px rgba(124, 147, 255, 0.18);
+    --theme: #0d0d11;
+    --entry: #16161d;
+    --primary: #f3f3f7;
+    --secondary: #9a9aa8;
+    --tertiary: #34343f;
+    --content: #d0d0da;
+    --border: #24242e;
+    --code-bg: #1a1a22;
+    --hljs-bg: #14141b;
+
+    --accent: #8f80ff;
+    --accent-2: #c4b5fd;
+    --accent-soft: rgba(143, 128, 255, 0.14);
+    --accent-ring: rgba(143, 128, 255, 0.35);
+    --grad: linear-gradient(115deg, #8f80ff 0%, #c4b5fd 55%, #f5c6ff 100%);
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 30px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.5), 0 28px 60px rgba(120, 100, 255, 0.18);
 }
 
-/* ---------- 타이포그래피 ---------- */
+/* ---------- 2. 베이스 ---------- */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-feature-settings: "kern" 1, "liga" 1;
+    font-family: var(--font-sans);
+    background: var(--theme);
+    color: var(--content);
+    letter-spacing: -0.011em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    letter-spacing: -0.003em;
+    text-rendering: optimizeLegibility;
 }
 
-.post-content,
-.entry-content,
-.first-entry .entry-content {
-    line-height: 1.75;
+/* 상단 은은한 오로라 배경 */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 480px;
+    background:
+        radial-gradient(60% 100% at 15% 0%, var(--accent-soft), transparent 70%),
+        radial-gradient(50% 100% at 90% 0%, rgba(240, 171, 252, 0.10), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
 }
 
-/* ---------- 헤더 / 네비게이션 ---------- */
-.nav {
-    backdrop-filter: saturate(180%) blur(8px);
+.main { position: relative; z-index: 1; }
+
+::selection { background: var(--accent-ring); color: #fff; }
+
+/* ---------- 3. 헤더 / 네비게이션 ---------- */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: color-mix(in srgb, var(--theme) 72%, transparent);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
 }
+
+.nav { max-width: calc(var(--main-width) + 80px); }
 
 .logo a {
-    font-weight: 800;
-    letter-spacing: -0.02em;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--primary);
 }
 
+.logo a:hover { opacity: 0.75; }
+
 #menu a {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--secondary);
     border-radius: 999px;
-    padding: 6px 12px;
+    padding: 6px 13px;
     transition: color 0.2s ease, background 0.2s ease;
 }
 
-#menu a:hover,
-#menu .active {
-    background: var(--accent-soft);
-    color: var(--accent);
-}
+#menu a:hover { color: var(--primary); background: var(--accent-soft); }
 
 #menu .active {
+    color: var(--accent);
+    background: var(--accent-soft);
     margin: inherit;
 }
+#menu .active::after { display: none; }
 
-/* ---------- 홈 인포 / 첫 글 ---------- */
+.logo-switches .theme-toggle {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px;
+    background: var(--entry);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.logo-switches .theme-toggle:hover { transform: rotate(-12deg); border-color: var(--accent); }
+
+/* ---------- 4. 홈 히어로 ---------- */
+.main { padding-top: 44px; }
+
+.home-info .entry-header h1,
 .first-entry .entry-header h1 {
-    background: linear-gradient(120deg, var(--primary), var(--accent));
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    background: var(--grad);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: -0.02em;
 }
 
-.home-info .entry-header h1 {
-    letter-spacing: -0.02em;
+.home-info .entry-content {
+    font-size: 1.12rem;
+    line-height: 1.7;
+    color: var(--secondary);
+    margin-top: 14px;
+    max-width: 46ch;
 }
 
-/* ---------- 포스트 목록 카드 ---------- */
+.first-entry { min-height: 240px; gap: 6px; }
+
+/* ---------- 5. 포스트 목록 카드 ---------- */
 .post-entry {
-    border-radius: var(--radius);
+    position: relative;
+    padding: 26px 26px 24px;
+    background: var(--entry);
     border: 1px solid var(--border);
-    box-shadow: var(--card-shadow);
-    transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
-                box-shadow 0.22s ease, border-color 0.22s ease;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
     overflow: hidden;
+    transition: transform 0.28s cubic-bezier(0.2, 0.75, 0.2, 1),
+                box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
-.post-entry:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--card-shadow-hover);
-    border-color: var(--accent);
-}
-
-.post-entry:active {
-    transform: translateY(-1px) scale(0.995);
-}
-
-.entry-header h2 {
-    letter-spacing: -0.015em;
-    transition: color 0.2s ease;
-}
-
-.post-entry:hover .entry-header h2 {
-    color: var(--accent);
-}
-
-/* 카드 위쪽 얇은 액센트 바 (호버 시 등장) */
 .post-entry::before {
     content: "";
     position: absolute;
     inset: 0 0 auto 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    background: var(--grad);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.2, 0.75, 0.2, 1);
 }
 
-.post-entry:hover::before {
-    transform: scaleX(1);
+.post-entry:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
 }
+.post-entry:hover::before { transform: scaleX(1); }
+.post-entry:active { transform: translateY(-2px) scale(0.995); }
 
-/* ---------- 태그 ---------- */
-.post-tags a,
-.terms-tags a {
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--code-bg);
-    transition: all 0.2s ease;
-}
-
-.post-tags a:hover,
-.terms-tags a:hover {
-    background: var(--accent-soft);
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-2px);
-}
-
-/* ---------- 본문 ---------- */
-.post-content a {
-    color: var(--accent);
-    box-shadow: 0 1px 0 var(--accent-soft);
-    text-decoration: none;
-    transition: box-shadow 0.2s ease;
-}
-
-.post-content a:hover {
-    box-shadow: inset 0 -0.5em 0 var(--accent-soft);
-}
-
-.post-content h2,
-.post-content h3 {
+.entry-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.32;
     letter-spacing: -0.02em;
-    scroll-margin-top: 80px;
+    color: var(--primary);
+    transition: color 0.2s ease;
+}
+.post-entry:hover .entry-header h2 { color: var(--accent); }
+
+.entry-content {
+    margin: 12px 0;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--secondary);
+}
+
+.entry-footer { font-size: 0.82rem; color: var(--secondary); }
+
+.entry-cover img { border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); }
+
+/* ---------- 6. 포스트 본문 ---------- */
+.post-single { padding-top: 8px; }
+
+.post-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+    color: var(--primary);
+}
+
+.post-meta,
+.breadcrumbs { color: var(--secondary); font-size: 0.86rem; }
+
+.post-content {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--content);
+}
+
+.post-content p { margin: 1.1em 0; }
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--primary);
+    scroll-margin-top: 84px;
+    line-height: 1.3;
 }
 
 .post-content h2 {
-    padding-bottom: 0.3em;
+    font-size: 1.7rem;
+    margin: 2.2em 0 0.7em;
+    padding-bottom: 0.34em;
     border-bottom: 1px solid var(--border);
 }
+.post-content h2::before {
+    content: "";
+    display: inline-block;
+    width: 0.5em; height: 0.5em;
+    margin-right: 0.5em;
+    border-radius: 3px;
+    background: var(--grad);
+    vertical-align: middle;
+    transform: translateY(-0.08em);
+}
+.post-content h3 { font-size: 1.34rem; margin: 1.8em 0 0.6em; }
+
+.post-content a {
+    color: var(--accent);
+    text-decoration: none;
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.25s ease, color 0.2s ease;
+    padding-bottom: 1px;
+}
+.post-content a:hover { background-size: 100% 100%; color: #fff; border-radius: 3px; padding: 0 3px; }
 
 .post-content blockquote {
-    border-inline-start: 4px solid var(--accent);
+    margin: 1.6em 0;
+    padding: 2px 20px;
+    border-inline-start: 3px solid transparent;
+    border-image: var(--grad) 1;
     background: var(--accent-soft);
-    border-radius: 0 var(--radius) var(--radius) 0;
-    padding: 12px 18px;
-    margin: 20px 0;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    color: var(--content);
+    font-style: normal;
 }
 
-.post-content img {
-    border-radius: var(--radius);
-    box-shadow: var(--card-shadow);
+.post-content img { border-radius: var(--radius-sm); box-shadow: var(--shadow-md); }
+
+.post-content hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+    margin: 2.4em 0;
 }
 
 /* 인라인 코드 */
 .post-content :not(pre) > code {
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 0.15em 0.45em;
     border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    padding: 2px 6px;
-    font-size: 0.9em;
+    border: 1px solid color-mix(in srgb, var(--accent) 16%, transparent);
 }
 
-/* 코드 블록 */
+/* 코드 블록 — 라인번호 테이블(.highlight) 래퍼 하나만 라운딩/그림자 처리 */
 .post-content pre {
-    border-radius: var(--radius);
-    box-shadow: var(--card-shadow);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.6;
 }
+.post-content pre code { font-family: var(--font-mono); background: transparent; }
 
-.post-content table th {
-    background: var(--accent-soft);
-}
-
-/* ---------- 목차(TOC) ---------- */
-.toc {
-    border-radius: var(--radius);
+.post-content .highlight {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
     border: 1px solid var(--border);
-    box-shadow: var(--card-shadow);
+    background: var(--hljs-bg);
+    margin: 1.4em 0;
+}
+/* 래퍼 안의 pre(라인번호 + 코드)는 개별 박스 스타일 제거 */
+.post-content .highlight pre,
+.post-content .highlight .chroma {
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+}
+.post-content .highlight pre { padding: 16px 4px; }
+.post-content .highlight .lntd:first-child pre { padding-left: 16px; padding-right: 0; }
+.post-content .highlight .lntd:last-child pre { padding-right: 16px; }
+.post-content .highlight .lntable { margin: 0; }
+
+/* 라인번호 없는 단독 코드블록 */
+.post-content > pre,
+.post-content li > pre {
+    padding: 16px 18px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
 }
 
-.toc summary {
-    font-weight: 700;
+/* 코드 복사 버튼 */
+.post-content .highlight .copy-code,
+.post-content pre .copy-code {
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    opacity: 0.75;
 }
 
-.toc a:hover {
-    color: var(--accent);
-}
+/* 표 */
+.post-content table { border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); }
+.post-content table th { background: var(--accent-soft); color: var(--primary); font-weight: 700; }
+.post-content table th,
+.post-content table td { border: 1px solid var(--border); padding: 10px 14px; }
 
-/* ---------- 페이지네이션 / 버튼 ---------- */
-.pagination a {
+/* ---------- 7. 목차 ---------- */
+.toc {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--entry) 70%, transparent);
+    backdrop-filter: blur(6px);
+    box-shadow: var(--shadow-sm);
+}
+.toc .details { font-family: var(--font-sans); font-weight: 700; color: var(--primary); }
+.toc a { color: var(--secondary); transition: color 0.15s ease; }
+.toc a:hover { color: var(--accent); }
+.toc li::marker { color: var(--accent); }
+
+/* ---------- 8. 태그 ---------- */
+.post-tags a,
+.terms-tags a {
+    display: inline-block;
     border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--entry);
+    color: var(--secondary);
+    font-size: 0.82rem;
+    padding: 5px 14px;
+    box-shadow: none;
     transition: all 0.2s ease;
 }
+.post-tags a:hover,
+.terms-tags a:hover {
+    color: #fff;
+    background-image: var(--grad);
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
 
+/* ---------- 9. 페이지네이션 / 네비 ---------- */
+.pagination .page-item .page-link,
+.pagination a {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--entry);
+    transition: all 0.2s ease;
+}
 .pagination a:hover {
-    background: var(--accent-soft);
     color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
-.post-content .footnote-backref,
-.top-link {
-    color: var(--accent) !important;
-}
+.post-navigation .prev,
+.post-navigation .next { transition: color 0.2s ease; }
+.post-navigation .prev:hover,
+.post-navigation .next:hover { color: var(--accent); }
 
-/* 스크롤 최상단 버튼 */
+/* ---------- 10. 아카이브 ---------- */
+.archive-month { border-bottom: 1px solid var(--border); }
+.archive-entry-title { transition: color 0.2s ease; }
+.archive-entry:hover .archive-entry-title { color: var(--accent); }
+
+/* ---------- 11. 푸터 / 상단이동 ---------- */
+.footer { color: var(--secondary); font-size: 0.82rem; }
+.footer a { color: var(--accent); }
+
 .top-link {
     background: var(--entry);
-    box-shadow: var(--card-shadow);
     border: 1px solid var(--border);
+    color: var(--accent) !important;
+    box-shadow: var(--shadow-md);
+    border-radius: 14px;
+    transition: transform 0.2s ease;
 }
+.top-link:hover { transform: translateY(-3px); }
 
-/* ---------- 광고 컨테이너 ---------- */
-.ad-slot {
-    margin: 28px 0;
-    text-align: center;
-    min-height: 1px;
-}
-
+/* 광고 슬롯 */
+.ad-slot { margin: 34px 0; text-align: center; }
 .ad-slot::before {
-    content: "AD";
+    content: "SPONSORED";
     display: block;
     font-size: 10px;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.22em;
     color: var(--tertiary);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
-/* ---------- 부드러운 진입 애니메이션 ---------- */
+/* ---------- 12. 진입 애니메이션 ---------- */
 @media (prefers-reduced-motion: no-preference) {
+    .main .first-entry,
     .main .post-entry,
-    .main .first-entry {
-        animation: fade-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    .main .post-single {
+        animation: rise 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
     }
+    .main .post-entry:nth-child(2) { animation-delay: 0.04s; }
+    .main .post-entry:nth-child(3) { animation-delay: 0.08s; }
+    .main .post-entry:nth-child(4) { animation-delay: 0.12s; }
+    .main .post-entry:nth-child(5) { animation-delay: 0.16s; }
 
-    @keyframes fade-up {
-        from {
-            opacity: 0;
-            transform: translateY(14px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    @keyframes rise {
+        from { opacity: 0; transform: translateY(18px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
 }
 
-/* ---------- 선택 영역 ---------- */
-::selection {
-    background: var(--accent-soft);
-    color: var(--accent);
-}
-
-/* ---------- 스크롤바 ---------- */
+/* ---------- 13. 스크롤바 ---------- */
+* { scrollbar-width: thin; scrollbar-color: var(--tertiary) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-thumb {
     background: var(--tertiary);
     border-radius: 999px;
+    border: 2px solid var(--theme);
 }
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--accent);
-}
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
