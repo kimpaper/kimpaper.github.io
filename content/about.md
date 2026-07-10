@@ -26,6 +26,6 @@ Spring · Golang · Kubernetes · Python · 오픈소스 · 인프라 등 백엔
 ## 연락처
 
 - GitHub: [github.com/kimpaper](https://github.com/kimpaper)
-- Email: paper@ex-em.com
+- Email: kimpaper@gmail.com
 
 내용 중 잘못된 부분이 있으면 언제든 정정 요청 주세요. 확인 후 반영하겠습니다. 🙂

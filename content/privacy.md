@@ -54,7 +54,7 @@ comments: false
 
 개인정보처리방침에 관한 문의는 아래로 연락 주시기 바랍니다.
 
-- Email: paper@ex-em.com
+- Email: kimpaper@gmail.com
 
 ## 7. 변경 고지
 
