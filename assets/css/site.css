@@ -172,7 +172,7 @@ nav.toc { display:flex; flex-direction:column; gap:2px; }
 .tag-cloud a:hover { color:var(--accent); border-color:var(--accent); }
 
 /* ---------- Single (post) ---------- */
-.post { max-width:var(--measure); }
+.post { max-width:min(54rem, 100%); }
 .post-head { margin-bottom:26px; }
 .post-head .cat-tag { display:inline-block; margin-bottom:14px; }
 .post-title { margin:0 0 12px; font-size:clamp(1.7rem,3.4vw,2.4rem); line-height:1.16; font-weight:700; letter-spacing:-0.025em; text-wrap:balance; }
