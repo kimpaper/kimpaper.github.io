@@ -3,7 +3,7 @@ layout: post
 title: WPF(c#)에서 control을 png로 저장
 date: '2015-10-15T12:13:00.001'
 author: 페이퍼
-categories: .NET
+categories: dotnet
 tags: [.net, wpf]
 header-img: "img/post-bg-02.jpg"
 ---

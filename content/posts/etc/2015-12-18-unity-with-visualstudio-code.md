@@ -5,6 +5,7 @@ date: '2015-12-18T15:39:00.001'
 author: 페이퍼
 tags: [unity,vscode]
 header-img: "img/post-bg-04.jpg"
+categories: etc
 ---
 
 맥용 Unity로 개발할때 보통 MonoDevelopr를 이용하여 코딩 한다

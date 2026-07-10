@@ -1,0 +1,25 @@
+{{ define "main" }}
+  {{- $isTags := eq .Data.Plural "tags" -}}
+  <div class="sec-head">
+    <h2>{{ if $isTags }}태그{{ else }}카테고리{{ end }}</h2>
+    <span class="rule"></span>
+    <span class="count num">{{ len .Data.Terms }} {{ if $isTags }}tags{{ else }}categories{{ end }}</span>
+  </div>
+
+  {{- if $isTags }}
+  <div class="tag-cloud">
+    {{- range .Data.Terms.Alphabetical }}
+    <a href="{{ .Page.RelPermalink }}">#{{ .Name }} <span class="num">{{ .Count }}</span></a>
+    {{- end }}
+  </div>
+  {{- else }}
+  <div class="terms">
+    {{- range .Data.Terms.ByCount }}
+    <a class="term-card" href="{{ .Page.RelPermalink }}">
+      <span class="n">{{ .Name | title }}</span>
+      <span class="c serif">{{ .Count }}</span>
+    </a>
+    {{- end }}
+  </div>
+  {{- end }}
+{{ end }}

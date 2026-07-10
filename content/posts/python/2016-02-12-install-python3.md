@@ -5,6 +5,7 @@ date: '2016-02-12T16:53:00.002'
 author: 페이퍼
 tags: [centos,python]
 header-img: "img/post-bg-05.jpg"
+categories: python
 ---
 
 ## centos 6에 3.5.1 버전을 설치 하는 command line

@@ -5,6 +5,7 @@ date: '2016-03-24T16:36:00.000'
 author: 페이퍼
 tags: [git]
 header-img: "img/post-bg-02.jpg"
+categories: etc
 ---
 
 요즘엔 git을 많이 이용하는데 항상 `rebase`와 `merge`에 대해서 헷갈리곤 했다.  

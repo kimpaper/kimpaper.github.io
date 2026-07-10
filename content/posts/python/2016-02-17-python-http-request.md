@@ -5,6 +5,7 @@ date: '2016-02-17T11:41:00.000'
 author: 페이퍼
 tags: [python]
 header-img: "img/post-bg-04.jpg"
+categories: python
 ---
 
 요즘 파이썬 공부중인데 연습겸 10초마다 webserver가 죽었는지 체크하는 간단한 프로그램을 만들어 봤다.  

@@ -1,0 +1,40 @@
+{{ define "main" }}
+  {{- $isPost := eq .Section "posts" -}}
+  <article class="post">
+    <header class="post-head">
+      {{- with .GetTerms "categories" }}{{ $t := index . 0 }}
+      <a class="cat-tag" href="{{ $t.RelPermalink }}">{{ $t.LinkTitle }}</a>
+      {{- end }}
+      <h1 class="post-title">{{ .Title }}</h1>
+      <div class="post-meta num">
+        {{- if $isPost }}<span>{{ .Date.Format "2006 · 01 · 02" }}</span>
+        <span>{{ .ReadingTime }} min read</span>
+        <span>{{ .Params.author | default site.Params.author }}</span>{{ end }}
+        {{- with site.Params.editPost }}<a href="{{ .URL }}/{{ $.File.Path }}" target="_blank" rel="noopener">{{ .Text | default "Edit" }} ↗</a>{{ end }}
+      </div>
+    </header>
+
+    {{- if and (default true (.Params.ShowToc | default site.Params.ShowToc)) (gt (len .TableOfContents) 60) }}
+    <details class="toc-box" open>
+      <summary>목차</summary>
+      <nav>{{ .TableOfContents }}</nav>
+    </details>
+    {{- end }}
+
+    <div class="prose">
+      {{ .Content }}
+    </div>
+
+    <footer class="post-foot">
+      {{- with .Params.tags }}
+      <div class="tags">{{ range . }}<a href="{{ printf "/tags/%s/" (. | urlize) | relURL }}">#{{ . }}</a>{{ end }}</div>
+      {{- end }}
+      {{- if $isPost }}
+      <nav class="post-nav">
+        {{- with .PrevInSection }}<a class="prev" href="{{ .RelPermalink }}"><span class="lbl">이전 글</span><span class="t">{{ .Title }}</span></a>{{ else }}<span></span>{{ end }}
+        {{- with .NextInSection }}<a class="next" href="{{ .RelPermalink }}"><span class="lbl">다음 글</span><span class="t">{{ .Title }}</span></a>{{ else }}<span></span>{{ end }}
+      </nav>
+      {{- end }}
+    </footer>
+  </article>
+{{ end }}

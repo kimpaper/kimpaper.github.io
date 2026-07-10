@@ -1,0 +1,18 @@
+{{- $pages := .pages -}}
+<div class="ledger" id="ledger">
+  {{- range $pages }}
+  {{- $cat := "" }}{{ with .GetTerms "categories" }}{{ $cat = (index . 0).LinkTitle }}{{ end -}}
+  <a class="row" href="{{ .RelPermalink }}" data-cat="{{ $cat }}">
+    <div class="date num">{{ .Date.Format "2006" }}<b>{{ .Date.Format "01 · 02" }}</b></div>
+    <div class="rbody">
+      <h3 class="row-t">{{ .Title }}</h3>
+      <p>{{ .Summary | plainify | htmlUnescape | truncate 96 }}</p>
+      {{- with .Params.tags }}
+      <div class="tags">{{ range first 3 . }}<span>{{ . }}</span>{{ end }}</div>
+      {{- end }}
+    </div>
+    <div class="aside">{{ with $cat }}<span class="cat">{{ . }}</span>{{ end }}{{ .ReadingTime }} min</div>
+  </a>
+  {{- end }}
+</div>
+<div class="empty" id="empty" style="display:none">해당하는 기록이 없습니다.</div>

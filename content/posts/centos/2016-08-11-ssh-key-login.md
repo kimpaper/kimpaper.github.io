@@ -4,7 +4,7 @@ title: ssh key를 이용한 로그인
 date: '2016-08-11T16:07:00.001'
 author: 페이퍼
 tags: [centos,ssh,macos]
-categories: centos
+categories: linux
 header-img: "img/post-bg-02.jpg"
 ---
 

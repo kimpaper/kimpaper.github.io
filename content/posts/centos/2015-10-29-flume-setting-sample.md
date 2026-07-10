@@ -4,7 +4,7 @@ title: Flume 설치 및 테스트 (mac)
 date: '2015-10-29T15:51:00.002'
 author: 페이퍼
 tags: [centos,flume,mac]
-categories: centos
+categories: linux
 header-img: "img/post-bg-05.jpg"
 ---
 
