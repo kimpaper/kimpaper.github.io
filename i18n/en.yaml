@@ -1,0 +1,30 @@
+all_records:
+  other: All records
+search_placeholder:
+  other: Search this list…
+record_index:
+  other: Index
+latest_record:
+  other: Latest entry
+records_kept:
+  other: records kept
+toc:
+  other: Contents
+prev_post:
+  other: Previous
+next_post:
+  other: Next
+no_records:
+  other: No records found.
+pg_prev:
+  other: ← Prev
+pg_next:
+  other: Next →
+tags:
+  other: Tags
+categories:
+  other: Categories
+archive_all:
+  other: Archive
+sub_tagline:
+  other: 기록 저장소 · from Seoul, Korea

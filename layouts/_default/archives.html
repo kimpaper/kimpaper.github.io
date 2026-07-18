@@ -1,7 +1,7 @@
 {{ define "main" }}
   {{- $posts := where site.RegularPages "Section" "posts" -}}
   <div class="sec-head">
-    <h2>전체 아카이브</h2>
+    <h2>{{ i18n "archive_all" }}</h2>
     <span class="rule"></span>
     <span class="count num">{{ len $posts }} entries</span>
   </div>

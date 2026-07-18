@@ -18,6 +18,17 @@
 {{- $imgAbs := "" }}{{ with $img }}{{ $imgAbs = . | absURL }}{{ end -}}
 
 <meta charset="utf-8">
+{{- /* 브라우저 언어 자동 감지: 홈에서만. 저장된 선택(lang) 우선, 없으면 ko 브라우저→한글, 그 외→영어 */ -}}
+{{- if .IsHome }}
+<script>
+(function(){try{
+  var cur='{{ site.Language.Lang }}';
+  var pref=localStorage.getItem('lang');
+  var want=pref||(((navigator.language||'').toLowerCase().indexOf('ko')===0)?'ko':'en');
+  if(want!==cur){var homes={ko:'/',en:'/en/'};if(homes[want])location.replace(homes[want]);}
+}catch(e){}})();
+</script>
+{{- end }}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ $title }}</title>
 <meta name="description" content="{{ $desc }}">
@@ -26,6 +37,14 @@
 <meta name="author" content="{{ site.Params.author }}">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="{{ .Permalink }}">
+{{- if .IsTranslated }}
+{{- range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.LanguageCode | default .Language.Lang }}" href="{{ .Permalink }}">
+{{- end }}
+{{- range .AllTranslations }}{{ if eq .Language.Lang "ko" }}
+<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+{{- end }}{{ end }}
+{{- end }}
 {{- with .OutputFormats.Get "rss" }}
 <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">
 {{- end }}
@@ -42,7 +61,7 @@
 <meta property="og:title" content="{{ .Title | default site.Title }}">
 <meta property="og:description" content="{{ $desc }}">
 <meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:locale" content="ko_KR">
+<meta property="og:locale" content="{{ cond (eq site.Language.Lang "en") "en_US" "ko_KR" }}">
 {{- with $imgAbs }}
 <meta property="og:image" content="{{ . }}">
 <meta property="og:image:alt" content="{{ $title }}">
@@ -108,7 +127,7 @@
     "author" (dict "@type" "Person" "name" (.Params.author | default site.Params.author) "url" site.BaseURL)
     "publisher" (dict "@type" "Organization" "name" site.Title "logo" (dict "@type" "ImageObject" "url" $logo))
     "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
-    "inLanguage" "ko-KR"
+    "inLanguage" (site.Language.LanguageCode | default "ko-KR")
   -}}
   {{- with $imgAbs }}{{ $ld = merge $ld (dict "image" (slice .)) }}{{ end -}}
   {{- with .Params.tags }}{{ $ld = merge $ld (dict "keywords" (delimit . ", ")) }}{{ end -}}
@@ -120,7 +139,7 @@
     "name" site.Title
     "url" site.BaseURL
     "description" site.Params.description
-    "inLanguage" "ko-KR"
+    "inLanguage" (site.Language.LanguageCode | default "ko-KR")
     "author" (dict "@type" "Person" "name" site.Params.author)
   -}}
 <script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>

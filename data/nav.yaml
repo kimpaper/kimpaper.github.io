@@ -1,26 +1,30 @@
 # 사이드바 대메뉴 > 세부메뉴 구성. cat 값은 content front matter 의 categories 와 일치.
+# label = 한국어, label_en = 영어 (영어 사이트에서 사용)
 groups:
   - roman: I
     label: 기술 블로그
+    label_en: Tech Notes
     open: true
     items:
-      - { cat: spring,     label: "Spring · JPA" }
-      - { cat: golang,     label: "Golang" }
-      - { cat: kubernetes, label: "Kubernetes · 인프라" }
-      - { cat: python,     label: "Python" }
-      - { cat: opensource, label: "오픈소스 · 데이터" }
-      - { cat: linux,      label: "CentOS · 리눅스" }
-      - { cat: dotnet,     label: ".NET" }
+      - { cat: spring,     label: "Spring · JPA",       label_en: "Spring · JPA" }
+      - { cat: golang,     label: "Golang",             label_en: "Golang" }
+      - { cat: kubernetes, label: "Kubernetes · 인프라", label_en: "Kubernetes · Infra" }
+      - { cat: python,     label: "Python",             label_en: "Python" }
+      - { cat: opensource, label: "오픈소스 · 데이터",    label_en: "Open Source · Data" }
+      - { cat: linux,      label: "CentOS · 리눅스",     label_en: "CentOS · Linux" }
+      - { cat: dotnet,     label: ".NET",               label_en: ".NET" }
   - roman: II
     label: 일상
+    label_en: Life & K-Food
     items:
-      - { cat: diary,      label: "일기 · 소소한 기록" }
+      - { cat: diary,      label: "일기 · 소소한 기록",   label_en: "Daily life · Food" }
   - roman: III
     label: 기타 잡지식
+    label_en: Misc
     items:
-      - { cat: etc,        label: "팁 · 트러블슈팅" }
-      - { cat: mac,        label: "Mac · 기타" }
+      - { cat: etc,        label: "팁 · 트러블슈팅",     label_en: "Tips · Troubleshooting" }
+      - { cat: mac,        label: "Mac · 기타",         label_en: "Mac · Etc" }
 flat:
-  - { label: 전체 아카이브, url: "/archives/", icon: archive }
-  - { label: 태그,        url: "/tags/",     icon: tag }
-  - { label: 소개,        url: "/about/",    icon: user }
+  - { label: 전체 아카이브, label_en: Archive, url: "/archives/", icon: archive }
+  - { label: 태그,        label_en: Tags,    url: "/tags/",     icon: tag }
+  - { label: 소개,        label_en: About,   url: "/about/",    icon: user }

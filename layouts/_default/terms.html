@@ -1,7 +1,7 @@
 {{ define "main" }}
   {{- $isTags := eq .Data.Plural "tags" -}}
   <div class="sec-head">
-    <h2>{{ if $isTags }}태그{{ else }}카테고리{{ end }}</h2>
+    <h2>{{ if $isTags }}{{ i18n "tags" }}{{ else }}{{ i18n "categories" }}{{ end }}</h2>
     <span class="rule"></span>
     <span class="count num">{{ len .Data.Terms }} {{ if $isTags }}tags{{ else }}categories{{ end }}</span>
   </div>

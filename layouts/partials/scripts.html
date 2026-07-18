@@ -21,6 +21,11 @@
   });
   paintIcon();
 
+  var langBtn = document.getElementById('lang-toggle');
+  if (langBtn) langBtn.addEventListener('click', function(){
+    try { localStorage.setItem('lang', langBtn.getAttribute('data-lang')); } catch(e){}
+  });
+
   var burger = document.getElementById('burger');
   var scrim = document.getElementById('scrim');
   if (burger) burger.addEventListener('click', function(){ root.setAttribute('data-nav','open'); });

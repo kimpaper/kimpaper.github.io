@@ -1,20 +1,20 @@
 {{- $label := "" -}}
 {{- $total := len (where site.RegularPages "Section" "posts") -}}
 {{- if .IsHome -}}
-  {{- $label = "전체 기록" -}}
+  {{- $label = i18n "all_records" -}}
 {{- else if eq .Kind "term" -}}
   {{- $label = .Title | title -}}
 {{- else if eq .Kind "taxonomy" -}}
-  {{- $label = cond (eq .Data.Plural "tags") "태그" "카테고리" -}}
+  {{- $label = cond (eq .Data.Plural "tags") (i18n "tags") (i18n "categories") -}}
 {{- else if .IsPage -}}
   {{- with .GetTerms "categories" }}{{ $label = (index . 0).LinkTitle | title }}{{ else }}{{ $label = $.Title }}{{ end -}}
 {{- else -}}
   {{- $label = .Title -}}
 {{- end -}}
 <header class="topbar">
-  <button class="icon-btn hamburger" id="burger" aria-label="메뉴 열기"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <button class="icon-btn hamburger" id="burger" aria-label="menu"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
   <div class="crumb">
-    <a href="{{ "/" | relURL }}">기록 저장소</a><span class="sep">/</span><b>{{ $label }}</b>
+    <a href="{{ cond (eq site.Language.Lang "en") "/en/" "/" }}">{{ site.Title }}</a><span class="sep">/</span><b>{{ $label }}</b>
   </div>
   {{- if .IsHome }}
   <span class="meta num">{{ $total }} ENTRIES · {{ len site.Taxonomies.categories }} CATEGORIES</span>
@@ -22,6 +22,6 @@
   <span class="spacer"></span>
   <label class="search">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-    <input id="q" type="search" placeholder="이 목록에서 검색…" aria-label="검색">
+    <input id="q" type="search" placeholder="{{ i18n "search_placeholder" }}" aria-label="search">
   </label>
 </header>

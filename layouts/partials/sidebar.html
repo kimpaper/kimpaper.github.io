@@ -1,38 +1,55 @@
 {{- $cur := .RelPermalink -}}
+{{- $isEN := eq site.Language.Lang "en" -}}
+{{- $langPrefix := cond $isEN "/en" "" -}}
+{{- /* 현재 페이지의 반대 언어 버전 (번역 있으면 그 페이지, 없으면 반대 언어 홈) */ -}}
+{{- $otherLang := cond $isEN "ko" "en" -}}
+{{- $otherURL := cond $isEN "/" "/en/" -}}
+{{- range .AllTranslations }}{{ if eq .Language.Lang $otherLang }}{{ $otherURL = .RelPermalink }}{{ end }}{{ end -}}
 <aside class="index" id="sidebar">
   <div class="masthead">
-    <a href="{{ "/" | relURL }}" class="wordmark">기록<b>.</b>저장소</a>
-    <div class="sub">a developer’s archive</div>
+    <a href="{{ cond $isEN "/en/" "/" | relURL }}" class="wordmark">{{ if $isEN }}paper<b>.</b>archive{{ else }}기록<b>.</b>저장소{{ end }}</a>
+    <div class="sub">{{ i18n "sub_tagline" }}</div>
     <div class="range num">2015 — {{ now.Year }} · {{ len (where site.RegularPages "Section" "posts") }} entries</div>
   </div>
 
-  <nav class="toc" aria-label="카테고리">
+  <nav class="toc" aria-label="categories">
     {{- range site.Data.nav.groups }}
+    {{- $groupHasAny := false -}}
+    {{- range .items }}{{ if gt (len (index site.Taxonomies.categories .cat)) 0 }}{{ $groupHasAny = true }}{{ end }}{{ end -}}
+    {{- if $groupHasAny }}
     <details class="grp"{{ if .open }} open{{ end }}>
-      <summary><span class="idx">{{ .roman }}</span> {{ .label }} <span class="chev"></span></summary>
+      <summary><span class="idx">{{ .roman }}</span> {{ if $isEN }}{{ .label_en | default .label }}{{ else }}{{ .label }}{{ end }} <span class="chev"></span></summary>
       <div class="sub-list">
         {{- range .items }}
-        {{- $url := printf "/categories/%s/" .cat -}}
         {{- $n := len (index site.Taxonomies.categories .cat) -}}
-        <a href="{{ $url | relURL }}"{{ if eq $cur $url }} class="on"{{ end }}>{{ .label }} <span class="c num">{{ $n }}</span></a>
+        {{- if gt $n 0 }}
+        {{- $url := printf "%s/categories/%s/" $langPrefix .cat -}}
+        <a href="{{ $url }}"{{ if eq $cur $url }} class="on"{{ end }}>{{ if $isEN }}{{ .label_en | default .label }}{{ else }}{{ .label }}{{ end }} <span class="c num">{{ $n }}</span></a>
+        {{- end }}
         {{- end }}
       </div>
     </details>
     {{- end }}
+    {{- end }}
 
     <div class="toc-flat">
       {{- range site.Data.nav.flat }}
-      <a href="{{ .url | relURL }}"{{ if eq $cur .url }} class="on"{{ end }}>
+      {{- $url := printf "%s%s" $langPrefix .url -}}
+      <a href="{{ $url }}"{{ if eq $cur $url }} class="on"{{ end }}>
         {{- if eq .icon "archive" }}<svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
         {{- else if eq .icon "tag" }}<svg viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/><circle cx="12" cy="12" r="2"/></svg>
-        {{- else }}<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>{{ end }} {{ .label }}
+        {{- else }}<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>{{ end }} {{ if $isEN }}{{ .label_en | default .label }}{{ else }}{{ .label }}{{ end }}
       </a>
       {{- end }}
+      <a href="{{ $otherURL }}" id="lang-toggle" data-lang="{{ $otherLang }}" title="{{ if $isEN }}한국어로 보기{{ else }}Read in English{{ end }}">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+        {{ if $isEN }}한국어{{ else }}English{{ end }}
+      </a>
     </div>
   </nav>
 
   <div class="index-foot">
-    <button class="icon-btn" id="theme" title="테마 전환" aria-label="테마 전환">
+    <button class="icon-btn" id="theme" title="theme" aria-label="theme">
       <svg id="theme-ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
     </button>
     {{- range site.Params.socialIcons }}
@@ -40,7 +57,7 @@
       <a class="icon-btn" href="{{ .url }}" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 00-1.3-3.2 4.2 4.2 0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2 0C7 4.9 5.9 5.2 5.9 5.2a4.2 4.2 0 00-.1 3.2A4.6 4.6 0 004.5 11.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V23"/></svg></a>
       {{- end }}
     {{- end }}
-    <a class="icon-btn" href="{{ "/index.xml" | relURL }}" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+    <a class="icon-btn" href="{{ $langPrefix }}/index.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></a>
     <span class="spacer"></span>
     <span class="copy">© {{ site.Params.author }}</span>
   </div>
