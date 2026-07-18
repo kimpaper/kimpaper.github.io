@@ -40,7 +40,7 @@ params:
     # 'HTML 태그' 방식의 content 값만 붙여넣으세요. (예: abcd1234...)
     googleSiteVerification: ""
     # 네이버 서치어드바이저(searchadvisor.naver.com) '사이트 소유확인' meta content 값.
-    naverSiteVerification: ""
+    naverSiteVerification: "535791f117859cd623dbefcc827eb5a6db94e081"
     # ──────────────────────────────────────────────────
 
     # ─── 방문자 통계 / 광고 ───────────────────────────────
