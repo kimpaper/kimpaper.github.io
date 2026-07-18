@@ -19,8 +19,16 @@ minify:
 
 languages:
     ko:
-        languageName: "한국어"
         weight: 1
+        languageCode: "ko-KR"
+        title: 기록 저장소
+    en:
+        weight: 2
+        languageCode: "en-US"
+        title: "paper.archive"
+        params:
+            description: "A Korean developer's archive — backend/infra notes and everyday Korean food (K-food) records from Seoul: what we eat, where, and how."
+            keywords: ["korean food", "k-food", "seoul restaurants", "dev blog", "backend", "korea travel"]
 
 outputs:
     home:

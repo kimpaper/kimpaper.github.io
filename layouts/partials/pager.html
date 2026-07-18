@@ -1,11 +1,11 @@
 {{- $p := .Paginator -}}
 {{- if gt $p.TotalPages 1 }}
 <nav class="pager" aria-label="페이지">
-  {{- if $p.HasPrev }}<a href="{{ $p.Prev.URL }}">← 이전</a>{{ end }}
+  {{- if $p.HasPrev }}<a href="{{ $p.Prev.URL }}">{{ i18n "pg_prev" }}</a>{{ end }}
   {{- range $p.Pagers }}
     {{- if eq . $p }}<span class="cur num">{{ .PageNumber }}</span>
     {{- else }}<a class="num" href="{{ .URL }}">{{ .PageNumber }}</a>{{ end }}
   {{- end }}
-  {{- if $p.HasNext }}<a href="{{ $p.Next.URL }}">다음 →</a>{{ end }}
+  {{- if $p.HasNext }}<a href="{{ $p.Next.URL }}">{{ i18n "pg_next" }}</a>{{ end }}
 </nav>
 {{- end }}

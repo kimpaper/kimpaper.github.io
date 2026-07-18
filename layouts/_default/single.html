@@ -16,7 +16,7 @@
 
     {{- if and (default true (.Params.ShowToc | default site.Params.ShowToc)) (gt (len .TableOfContents) 60) }}
     <details class="toc-box" open>
-      <summary>목차</summary>
+      <summary>{{ i18n "toc" }}</summary>
       <nav>{{ .TableOfContents }}</nav>
     </details>
     {{- end }}
@@ -31,8 +31,8 @@
       {{- end }}
       {{- if $isPost }}
       <nav class="post-nav">
-        {{- with .PrevInSection }}<a class="prev" href="{{ .RelPermalink }}"><span class="lbl">이전 글</span><span class="t">{{ .Title }}</span></a>{{ else }}<span></span>{{ end }}
-        {{- with .NextInSection }}<a class="next" href="{{ .RelPermalink }}"><span class="lbl">다음 글</span><span class="t">{{ .Title }}</span></a>{{ else }}<span></span>{{ end }}
+        {{- with .PrevInSection }}<a class="prev" href="{{ .RelPermalink }}"><span class="lbl">{{ i18n "prev_post" }}</span><span class="t">{{ .Title }}</span></a>{{ else }}<span></span>{{ end }}
+        {{- with .NextInSection }}<a class="next" href="{{ .RelPermalink }}"><span class="lbl">{{ i18n "next_post" }}</span><span class="t">{{ .Title }}</span></a>{{ else }}<span></span>{{ end }}
       </nav>
       {{- end }}
     </footer>

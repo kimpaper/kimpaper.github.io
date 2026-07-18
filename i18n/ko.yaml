@@ -1,0 +1,30 @@
+all_records:
+  other: 전체 기록
+search_placeholder:
+  other: 이 목록에서 검색…
+record_index:
+  other: 기록 색인
+latest_record:
+  other: 가장 최근 기록
+records_kept:
+  other: records kept
+toc:
+  other: 목차
+prev_post:
+  other: 이전 글
+next_post:
+  other: 다음 글
+no_records:
+  other: 해당하는 기록이 없습니다.
+pg_prev:
+  other: ← 이전
+pg_next:
+  other: 다음 →
+tags:
+  other: 태그
+categories:
+  other: 카테고리
+archive_all:
+  other: 전체 아카이브
+sub_tagline:
+  other: a developer’s archive
