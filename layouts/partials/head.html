@@ -1,41 +1,86 @@
-{{- $title := .Title | default site.Title -}}
-{{- if .IsHome }}{{ $title = site.Title }}{{ else }}{{ $title = printf "%s · %s" .Title site.Title }}{{ end -}}
+{{- $isHome := .IsHome -}}
+{{- $title := cond $isHome site.Title (printf "%s · %s" .Title site.Title) -}}
+
+{{- /* 설명(description) 결정 */ -}}
+{{- $desc := "" -}}
+{{- with .Description }}{{ $desc = . }}
+{{- else }}{{ if .IsPage }}{{ $desc = .Summary }}{{ else }}{{ $desc = site.Params.description }}{{ end }}{{ end -}}
+{{- $desc = $desc | plainify | htmlUnescape | chomp -}}
+{{- if gt (len $desc) 300 }}{{ $desc = printf "%s…" (substr $desc 0 300) }}{{ end -}}
+
+{{- /* OG 이미지: 프론트매터 images → 본문 첫 이미지 → (홈)최신글 이미지 → 사이트 기본 */ -}}
+{{- $img := "" -}}
+{{- $imgRe := `/images/[^)"'\s]+\.(?:jpe?g|png|webp|gif)` -}}
+{{- with .Params.images }}{{ $img = index . 0 }}{{ end -}}
+{{- if not $img }}{{ with findRE $imgRe .RawContent 1 }}{{ $img = index . 0 }}{{ end }}{{ end -}}
+{{- if and (not $img) $isHome }}{{ range first 1 (where site.RegularPages "Section" "posts") }}{{ with findRE $imgRe .RawContent 1 }}{{ $img = index . 0 }}{{ end }}{{ end }}{{ end -}}
+{{- if not $img }}{{ with site.Params.images }}{{ $img = index . 0 }}{{ end }}{{ end -}}
+{{- $imgAbs := "" }}{{ with $img }}{{ $imgAbs = . | absURL }}{{ end -}}
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ $title }}</title>
-<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }}">
+<meta name="description" content="{{ $desc }}">
+{{- $kw := .Params.tags | default site.Params.keywords -}}
+{{- with $kw }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
 <meta name="author" content="{{ site.Params.author }}">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="{{ .Permalink }}">
 {{- with .OutputFormats.Get "rss" }}
 <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">
 {{- end }}
 
-{{- /* 플래시 방지: 저장된 테마 선반영 */ -}}
-<script>
-  (function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
-</script>
+{{- /* ---------- 검색엔진 소유확인 ---------- */ -}}
+{{- with site.Params.googleSiteVerification }}{{ if not (in . "XXXX") }}
+<meta name="google-site-verification" content="{{ . }}">{{ end }}{{ end }}
+{{- with site.Params.naverSiteVerification }}{{ if not (in . "XXXX") }}
+<meta name="naver-site-verification" content="{{ . }}">{{ end }}{{ end }}
 
-{{- /* 웹폰트 */ -}}
+{{- /* ---------- Open Graph ---------- */ -}}
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:type" content="{{ cond .IsPage "article" "website" }}">
+<meta property="og:title" content="{{ .Title | default site.Title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:locale" content="ko_KR">
+{{- with $imgAbs }}
+<meta property="og:image" content="{{ . }}">
+<meta property="og:image:alt" content="{{ $title }}">
+{{- end }}
+{{- if .IsPage }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}">
+{{- range .Params.tags }}<meta property="article:tag" content="{{ . }}">{{ end }}
+{{- end }}
+
+{{- /* ---------- Twitter Card ---------- */ -}}
+<meta name="twitter:card" content="{{ cond (ne $imgAbs "") "summary_large_image" "summary" }}">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $desc }}">
+{{- with $imgAbs }}<meta name="twitter:image" content="{{ . }}">{{ end }}
+
+{{- /* ---------- 플래시 방지: 저장된 테마 선반영 ---------- */ -}}
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+
+{{- /* ---------- 웹폰트 ---------- */ -}}
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&display=swap">
 
-{{- /* 사이트 스타일 */ -}}
+{{- /* ---------- 사이트 스타일 ---------- */ -}}
 {{- with resources.Get "css/site.css" }}
   {{- if hugo.IsProduction }}
     {{- $css := . | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
-  {{- else }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{- end }}
+  {{- else }}<link rel="stylesheet" href="{{ .RelPermalink }}">{{ end }}
 {{- end }}
 
-{{- /* 파비콘 */ -}}
+{{- /* ---------- 파비콘 ---------- */ -}}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%84%EF%B8%8F%3C/text%3E%3C/svg%3E">
 
-{{- /* 방문자 통계 / 광고 */ -}}
+{{- /* ---------- 방문자 통계 / 광고 ---------- */ -}}
 {{- $ga := site.Params.googleAnalyticsID -}}
 {{- $ads := site.Params.adsenseClient -}}
 {{- $isProd := hugo.IsProduction -}}
@@ -48,4 +93,35 @@
 {{- if $isProd }}
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ $ads }}" crossorigin="anonymous"></script>
 {{- end }}
+{{- end }}
+
+{{- /* ---------- 구조화 데이터 (JSON-LD) ---------- */ -}}
+{{- $logo := "images/2026-07-17-daebit-1.jpg" | absURL -}}
+{{- if and .IsPage (eq .Section "posts") }}
+  {{- $ld := dict
+    "@context" "https://schema.org"
+    "@type" "BlogPosting"
+    "headline" .Title
+    "description" $desc
+    "datePublished" (.Date.Format "2006-01-02T15:04:05-07:00")
+    "dateModified" (.Lastmod.Format "2006-01-02T15:04:05-07:00")
+    "author" (dict "@type" "Person" "name" (.Params.author | default site.Params.author) "url" site.BaseURL)
+    "publisher" (dict "@type" "Organization" "name" site.Title "logo" (dict "@type" "ImageObject" "url" $logo))
+    "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+    "inLanguage" "ko-KR"
+  -}}
+  {{- with $imgAbs }}{{ $ld = merge $ld (dict "image" (slice .)) }}{{ end -}}
+  {{- with .Params.tags }}{{ $ld = merge $ld (dict "keywords" (delimit . ", ")) }}{{ end -}}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{- else if $isHome }}
+  {{- $ld := dict
+    "@context" "https://schema.org"
+    "@type" "WebSite"
+    "name" site.Title
+    "url" site.BaseURL
+    "description" site.Params.description
+    "inLanguage" "ko-KR"
+    "author" (dict "@type" "Person" "name" site.Params.author)
+  -}}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
 {{- end }}
