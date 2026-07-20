@@ -1,4 +1,4 @@
-name: Export source snapshot
+name: Export source history
 
 on:
   pull_request:
@@ -12,19 +12,33 @@ jobs:
   export:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source
+      - name: Checkout source with history
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
           submodules: false
 
-      - name: Create source archive
-        run: git archive --format=tar.gz --output=source-snapshot.tar.gz HEAD
+      - name: Fetch all public branches and tags
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --force origin \
+            '+refs/heads/*:refs/remotes/origin/*' \
+            '+refs/tags/*:refs/tags/*'
 
-      - name: Upload source archive
+          while IFS= read -r branch; do
+            if [[ "$branch" != "HEAD" ]]; then
+              git branch --force "$branch" "refs/remotes/origin/$branch"
+            fi
+          done < <(git for-each-ref --format='%(refname:strip=3)' refs/remotes/origin)
+
+      - name: Create history bundle
+        run: git bundle create source-history.bundle --branches --tags
+
+      - name: Upload history bundle
         uses: actions/upload-artifact@v4
         with:
-          name: source-snapshot
-          path: source-snapshot.tar.gz
+          name: source-history
+          path: source-history.bundle
           if-no-files-found: error
           retention-days: 1
