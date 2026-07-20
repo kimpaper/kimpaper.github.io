@@ -6,12 +6,16 @@ on:
       - main
     paths:
       - .github/workflows/publish-history-bundle.yml
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   publish:
+    if: github.head_ref == 'agent/run-source-export' || github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout all source history
@@ -37,6 +41,7 @@ jobs:
 
           git bundle create source-history.bundle --branches --tags
           test -s source-history.bundle
+          ls -lh source-history.bundle
 
       - name: Publish bundle to temporary branch
         shell: bash
