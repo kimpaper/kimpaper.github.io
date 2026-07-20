@@ -1,0 +1,62 @@
+name: Publish temporary history bundle
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/publish-history-bundle.yml
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout all source history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+
+      - name: Create full history bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --force origin \
+            '+refs/heads/*:refs/remotes/origin/*' \
+            '+refs/tags/*:refs/tags/*'
+
+          while IFS= read -r branch; do
+            case "$branch" in
+              HEAD|migration-bundle) continue ;;
+            esac
+            git branch --force "$branch" "refs/remotes/origin/$branch"
+          done < <(git for-each-ref --format='%(refname:strip=3)' refs/remotes/origin)
+
+          git bundle create source-history.bundle --branches --tags
+          test -s source-history.bundle
+
+      - name: Publish bundle to temporary branch
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/migration-bundle
+          cd /tmp/migration-bundle
+          git init
+          git checkout --orphan migration-bundle
+          cp "$GITHUB_WORKSPACE/source-history.bundle" ./source-history.bundle
+          cat > README.md <<'EOF'
+          # Temporary migration bundle
+
+          This branch is used only while migrating the public Hugo source history to the private source repository.
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md source-history.bundle
+          git commit -m "chore: publish temporary source history bundle"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push --force origin HEAD:refs/heads/migration-bundle
