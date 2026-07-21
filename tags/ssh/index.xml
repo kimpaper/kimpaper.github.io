@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Ssh on 기록 저장소</title>
+    <link>https://kimpaper.github.io/tags/ssh/</link>
+    <description>Recent content in Ssh on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</url>
+      <link>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 11 Aug 2016 16:07:00 +0000</lastBuildDate>
+    <atom:link href="https://kimpaper.github.io/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ssh key를 이용한 로그인</title>
+      <link>https://kimpaper.github.io/posts/centos/2016-08-11-ssh-key-login/</link>
+      <pubDate>Thu, 11 Aug 2016 16:07:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/posts/centos/2016-08-11-ssh-key-login/</guid>
+      <description>&lt;p&gt;macOS 에서 ssh key를 지정하여 서버로 비밀번호 타이핑 없이 바로 로그인 하게 하자&lt;br&gt;
+&lt;del&gt;평소엔 보안때문에 안해놓는다.&lt;/del&gt;&lt;/p&gt;
+&lt;h3 id=&#34;macos&#34;&gt;macOS&lt;/h3&gt;
+&lt;h4 id=&#34;--키-생성&#34;&gt;- 키 생성&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-keygen -t rsa -C &lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;--public-key를-조회&#34;&gt;- public key를 조회&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat ~/.ssh/id_rsa.pub
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;대상-server-centos&#34;&gt;대상 Server (CentOS)&lt;/h3&gt;
+&lt;h4 id=&#34;--public-key를-sshauthorized_keys-파일에-추가&#34;&gt;- public key를 &lt;code&gt;~/.ssh/authorized_keys&lt;/code&gt; 파일에 추가&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vi ~/.ssh/authorized_keys
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Git on 기록 저장소</title>
+    <link>https://kimpaper.github.io/tags/git/</link>
+    <description>Recent content in Git on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</url>
+      <link>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 24 Mar 2016 16:36:00 +0000</lastBuildDate>
+    <atom:link href="https://kimpaper.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>git에서 rebase와 merge</title>
+      <link>https://kimpaper.github.io/posts/etc/2016-03-24-git-rebase-merge/</link>
+      <pubDate>Thu, 24 Mar 2016 16:36:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/posts/etc/2016-03-24-git-rebase-merge/</guid>
+      <description>&lt;p&gt;요즘엔 git을 많이 이용하는데 항상 &lt;code&gt;rebase&lt;/code&gt;와 &lt;code&gt;merge&lt;/code&gt;에 대해서 헷갈리곤 했다.&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;잘 모를때 rebase로 하다가 소스를 날려먹은 후로는.. merge만 써왔다&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;최근에 몇군데 찾아봤는데 rebase 는 branch의 base를 재배치 한다는 의미라고 한다.
+gitflow를 쓰면서 feature를 새로 만들어서 작업을 하다 그동안 쌓인 develop를 rebase를 해봤는데.
+feature에서 작업하던 도중 쌓인 develop의 commit들이 local feature밑으로 들어가지는걸 확인했다.&lt;/p&gt;
+&lt;p&gt;히스토리가 꼬이지 않아 좋지만 한가지 문제는 feature를 서버로 push한 상태라면.. feature브런치가 두개가 생겨버린다
+물론 로컬이 최신이므로 remote/origin을 feature를 삭제하고 신규로 push하면 해결되는것 같다.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>git local commit revert 시키기</title>
+      <link>https://kimpaper.github.io/posts/etc/2016-02-25-git-revert-local-commit/</link>
+      <pubDate>Thu, 25 Feb 2016 14:35:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/posts/etc/2016-02-25-git-revert-local-commit/</guid>
+      <description>&lt;p&gt;아래와 같이 복구 대상 저장소를 지정한다 (현재 checkout이 develop인 경우)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git reset --hard remotes/origin/develop
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;저장소를 지정하지 않으면 현재 checkout된 remote를 기준으로 revert하는것 같다&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git reset --hard
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>git 관련 명령어 모음</title>
+      <link>https://kimpaper.github.io/posts/centos/2015-03-05-git/</link>
+      <pubDate>Wed, 04 Mar 2015 17:33:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/posts/centos/2015-03-05-git/</guid>
+      <description>&lt;h4 id=&#34;svn-to-git-마이그레이션&#34;&gt;svn to git 마이그레이션&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git svn clone --stdlayout --no-metadata -A users.txt svn://example.com/repository/projectname
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; projectname
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;아래 users.txt 만드는건데 perl 이 없어서 그런지.. 안되네요&amp;hellip; ㅠ&lt;br&gt;
+&lt;code&gt;svn log ^/ --xml | grep -P &amp;quot;^&amp;lt;author&amp;quot; | sort -u | \ perl -pe &#39;s/&amp;lt;author&amp;gt;(.*?)&amp;lt;\/author&amp;gt;/$1 = /&#39; &amp;gt; users.txt&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;ignore-file처리&#34;&gt;ignore file처리&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git svn show-ignore -i trunk &amp;gt; .gitignore
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;remote-git-지정&#34;&gt;remote git 지정&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git remote add origin git@git.example.com:group/projectname.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;tags-처리&#34;&gt;tags 처리&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;-each-ref refs/remotes/tags &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; cut -d / -f 4- &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v @ &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;read&lt;/span&gt; tagname&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; git tag &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$tagname&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;tags/&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$tagname&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; git branch -r -d &lt;span class=&#34;s2&#34;&gt;&amp;#34;tags/&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$tagname&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;branches-처리&#34;&gt;branches 처리&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;-each-ref refs/remotes &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; cut -d / -f 3- &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v @ &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;read&lt;/span&gt; branchname&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; git branch &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$branchname&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;refs/remotes/&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$branchname&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; git branch -r -d &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$branchname&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;push한다&#34;&gt;push한다.&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push origin --all
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push origin --tags
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;revert-local-commit&#34;&gt;revert local commit&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git reset —hard remotes/origin/HEAD
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h4 id=&#34;backup&#34;&gt;backup&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo gitlab-rake gitlab:backup:create
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;restore-가장-최근꺼-복원&#34;&gt;restore (가장 최근꺼 복원)&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo gitlab-rake gitlab:backup:restore
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;restore OPTION (아래 지정한 타임스탬프로 복원시켜준다는건가.. 안해봄..)&lt;br&gt;
+&lt;code&gt;BACKUP=timestamp_of_backup (required if more than one backup exists)&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

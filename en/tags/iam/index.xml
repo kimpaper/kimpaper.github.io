@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Iam on paper.archive</title>
+    <link>https://kimpaper.github.io/en/tags/iam/</link>
+    <description>Recent content in Iam on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</url>
+      <link>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 20 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kimpaper.github.io/en/tags/iam/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Least-Privilege AWS Account Setup for Harness in a SaaS Environment</title>
+      <link>https://kimpaper.github.io/en/2026/07/20/harness-aws-limited-account/</link>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/en/2026/07/20/harness-aws-limited-account/</guid>
+      <description>&lt;p&gt;When deploying a SaaS service on AWS and connecting Harness for CI/CD, one of the first questions is &lt;strong&gt;how Harness should access the AWS account&lt;/strong&gt;.
+The easiest option is to create an Access Key and attach &lt;code&gt;AdministratorAccess&lt;/code&gt;, but that creates an unnecessarily large blast radius if the credential is ever compromised.&lt;/p&gt;
+&lt;p&gt;This post describes a setup that allows Harness to deploy AWS resources while granting only the permissions it actually needs.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Blog on paper.archive</title>
+    <link>https://kimpaper.github.io/en/tags/blog/</link>
+    <description>Recent content in Blog on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</url>
+      <link>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 09 Jul 2026 10:00:00 +0900</lastBuildDate>
+    <atom:link href="https://kimpaper.github.io/en/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blog Redesign</title>
+      <link>https://kimpaper.github.io/en/posts/diary/2026-07-09-blog-renewal/</link>
+      <pubDate>Thu, 09 Jul 2026 10:00:00 +0900</pubDate>
+      <guid>https://kimpaper.github.io/en/posts/diary/2026-07-09-blog-renewal/</guid>
+      <description>&lt;p&gt;Finally gave this old dev blog a facelift.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;New design — card layout, dark mode&lt;/li&gt;
+&lt;li&gt;Added visitor analytics, curious which posts actually get read&lt;/li&gt;
+&lt;li&gt;New &amp;ldquo;Life&amp;rdquo; category&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Tech posts will still be the main thing, but from now on I&amp;rsquo;ll also drop
+everyday records here — mostly Korean food I eat around Seoul and on trips.
+Think of it as a small K-food diary from a local developer.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

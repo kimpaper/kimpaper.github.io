@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Devops on 기록 저장소</title>
+    <link>https://kimpaper.github.io/tags/devops/</link>
+    <description>Recent content in Devops on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</url>
+      <link>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Mon, 20 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kimpaper.github.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SaaS 서비스를 위한 Harness AWS 권한 최소화 계정 구성</title>
+      <link>https://kimpaper.github.io/2026/07/20/harness-aws-limited-account/</link>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/2026/07/20/harness-aws-limited-account/</guid>
+      <description>&lt;p&gt;SaaS 서비스를 AWS 위에 올리고 Harness로 CI/CD를 붙이려면 제일 먼저 고민해야 하는 부분이 &lt;strong&gt;AWS 계정을 어떻게 연결할 것인가&lt;/strong&gt;이다.&lt;br&gt;
+가장 쉬운 방법은 Access Key를 하나 만들고 &lt;code&gt;AdministratorAccess&lt;/code&gt;를 붙이는 것이지만, 운영 서비스에서는 나중에 사고가 났을 때 영향 범위가 너무 커진다.&lt;/p&gt;
+&lt;p&gt;이번 글에서는 Harness가 AWS 리소스를 배포할 수 있도록 하되, 권한은 필요한 만큼만 주는 구성을 정리해 본다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;기준: Harness Delegate 또는 Harness Platform에서 AWS Connector를 만들고, SaaS 서비스 배포 대상 계정에 제한된 IAM Role을 제공하는 상황&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

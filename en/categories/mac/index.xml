@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Mac on paper.archive</title>
+    <link>https://kimpaper.github.io/en/categories/mac/</link>
+    <description>Recent content in Mac on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</url>
+      <link>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 08 Apr 2023 01:05:00 +0000</lastBuildDate>
+    <atom:link href="https://kimpaper.github.io/en/categories/mac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Archive Utility not working on macOS</title>
+      <link>https://kimpaper.github.io/en/posts/mac/2023-04-08-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EB%8F%99%EC%9E%91-%EC%95%88%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81/</link>
+      <pubDate>Sat, 08 Apr 2023 01:05:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/en/posts/mac/2023-04-08-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EB%8F%99%EC%9E%91-%EC%95%88%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81/</guid>
+      <description>&lt;p&gt;Ran into this on a MacBook Air M2.&lt;/p&gt;
+&lt;p&gt;Archive Utility wouldn&amp;rsquo;t extract a zip on double-click. No idea why at first,
+but the pattern was:&lt;/p&gt;
+&lt;p&gt;A leading digit in the filename.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;1_test.zip&lt;/code&gt; — would not extract
+&lt;code&gt;test.zip&lt;/code&gt; — extracts fine&lt;/p&gt;
+&lt;p&gt;Renaming the file made double-click extraction work again.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;1_test.zip&lt;/code&gt; also extracts if you use the &amp;ldquo;Extract&amp;rdquo; menu and pick a destination
+folder manually.&lt;/p&gt;
+&lt;p&gt;Maybe it was being detected as a multi-part archive?&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Installing homebrew on OSX 10.10.3</title>
+      <link>https://kimpaper.github.io/en/posts/mac/2015-06-04-osx-10103-homebrew/</link>
+      <pubDate>Thu, 04 Jun 2015 01:05:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/en/posts/mac/2015-06-04-osx-10103-homebrew/</guid>
+      <description>&lt;p&gt;Open a terminal and&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ruby -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gimjonghuiui-MacBook-Pro:bin paper$ brew -v
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Homebrew 0.9.5
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Source: &lt;a href=&#34;http://coolestguidesontheplanet.com/installing-homebrew-os-x-yosemite-10-10-package-manager-unix-apps/&#34;&gt;http://coolestguidesontheplanet.com/installing-homebrew-os-x-yosemite-10-10-package-manager-unix-apps/&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Switching Korean/English input with Command&#43;Space in Parallels</title>
+      <link>https://kimpaper.github.io/en/posts/mac/2015-02-06-parallels-8-9-commandspace/</link>
+      <pubDate>Thu, 05 Feb 2015 17:29:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/en/posts/mac/2015-02-06-parallels-8-9-commandspace/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been using the settings below from version 8 through 11.&lt;/p&gt;
+&lt;h4 id=&#34;1-in-keyboard-settings-swap-the-shortcuts-for-select-the-previous-input-source-and-select-next-source-in-input-menu&#34;&gt;1. In keyboard settings, swap the shortcuts for &amp;ldquo;Select the previous input source&amp;rdquo; and &amp;ldquo;Select next source in Input menu&amp;rdquo;&lt;/h4&gt;
+&lt;p&gt;&lt;img alt=&#34;2015020501.png&#34; loading=&#34;lazy&#34; src=&#34;https://kimpaper.github.io/images/2015020501.png&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;2-in-parallels-preferences-add-the-shortcut-mapping-below-commandspace---altgr&#34;&gt;2. In Parallels preferences, add the shortcut mapping below (Command+Space -&amp;gt; AltGr)&lt;/h4&gt;
+&lt;p&gt;&lt;img alt=&#34;2015020502.png&#34; loading=&#34;lazy&#34; src=&#34;https://kimpaper.github.io/images/2015020502.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Done. This worked for me.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

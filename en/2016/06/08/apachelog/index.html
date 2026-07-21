@@ -1,0 +1,150 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Getting average response time, call count, Min, Max on a restful api server · paper.archive</title><meta name=description content="There’s an api server that handles data traffic from an app
+I computed the average response time per interface using the apache logs
+The server is apache+tomcat, implemented with spring
+For the hadoop, spark, and python setup see
+Analyzing log files with Python and Spark (with hadoop)
+1. Log the res…"><meta name=keywords content="spark,hadoop,python,apache"><meta name=author content="페이퍼"><meta name=robots content="index, follow, max-image-preview:large"><link rel=canonical href=https://kimpaper.github.io/en/2016/06/08/apachelog/><link rel=alternate hreflang=ko-KR href=https://kimpaper.github.io/2016/06/08/apachelog/><link rel=alternate hreflang=en-US href=https://kimpaper.github.io/en/2016/06/08/apachelog/><link rel=alternate hreflang=x-default href=https://kimpaper.github.io/en/2016/06/08/apachelog/><meta name=naver-site-verification content="535791f117859cd623dbefcc827eb5a6db94e081"><meta property="og:site_name" content="paper.archive"><meta property="og:type" content="article"><meta property="og:title" content="Getting average response time, call count, Min, Max on a restful api server"><meta property="og:description" content="There’s an api server that handles data traffic from an app
+I computed the average response time per interface using the apache logs
+The server is apache+tomcat, implemented with spring
+For the hadoop, spark, and python setup see
+Analyzing log files with Python and Spark (with hadoop)
+1. Log the res…"><meta property="og:url" content="https://kimpaper.github.io/en/2016/06/08/apachelog/"><meta property="og:locale" content="en_US"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:image" content="https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"><meta property="og:image:alt" content="Getting average response time, call count, Min, Max on a restful api server · paper.archive"><meta property="article:published_time" content="2016-06-08T15:32:00+00:00"><meta property="article:modified_time" content="2016-06-08T15:32:00+00:00"><meta property="article:tag" content="spark"><meta property="article:tag" content="hadoop"><meta property="article:tag" content="python"><meta property="article:tag" content="apache"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Getting average response time, call count, Min, Max on a restful api server · paper.archive"><meta name=twitter:description content="There’s an api server that handles data traffic from an app
+I computed the average response time per interface using the apache logs
+The server is apache+tomcat, implemented with spring
+For the hadoop, spark, and python setup see
+Analyzing log files with Python and Spark (with hadoop)
+1. Log the res…"><meta name=twitter:image content="https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"><script>(function(){try{var e=localStorage.getItem("theme");e&&document.documentElement.setAttribute("data-theme",e)}catch{}})()</script><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&display=swap"><link rel=stylesheet href=/css/site.min.6582456c081aa0ce24866bc183bc2718f037a40451edb26a9f804553adc470e5.css integrity="sha256-ZYJFbAgaoM4khmvBg7wnGPA3pARR7bJqn4BFU63EcOU="><link rel=icon href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5eE77iPPC90ZXh0Pjwvc3ZnPg=="><script async src="https://www.googletagmanager.com/gtag/js?id=G-ECTTT48V9Y"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ECTTT48V9Y")</script><meta name=google-adsense-account content="ca-pub-8048816011496920"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8048816011496920" crossorigin=anonymous></script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Paper","url":"https://kimpaper.github.io/"},"dateModified":"2016-06-08T15:32:00+00:00","datePublished":"2016-06-08T15:32:00+00:00","description":"There’s an api server that handles data traffic from an app\nI computed the average response time per interface using the apache logs\nThe server is apache+tomcat, implemented with spring\nFor the hadoop, spark, and python setup see\nAnalyzing log files with Python and Spark (with hadoop)\n1. Log the res…","headline":"Getting average response time, call count, Min, Max on a restful api server","image":["https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"],"inLanguage":"en-US","keywords":"spark, hadoop, python, apache","mainEntityOfPage":{"@id":"https://kimpaper.github.io/en/2016/06/08/apachelog/","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"},"name":"paper.archive"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://kimpaper.github.io/en/","name":"paper.archive","position":1},{"@type":"ListItem","item":"https://kimpaper.github.io/en/categories/opensource/","name":"Opensource","position":2},{"@type":"ListItem","item":"https://kimpaper.github.io/en/2016/06/08/apachelog/","name":"Getting average response time, call count, Min, Max on a restful api server","position":3}]}</script></head><body><div class=scrim id=scrim></div><div class=shell><aside class=index id=sidebar><div class=masthead><a href=/en/ class=wordmark>paper<b>.</b>archive</a><div class=sub>기록 저장소 · from Seoul, Korea</div><div class="range num">2015 — 2026 · 61 entries</div></div><nav class=toc aria-label=categories><details class=grp open><summary><span class=idx>I</span> Tech Notes <span class=chev></span></summary><div class=sub-list><a href=/en/categories/aws/>AWS · Cloud <span class="c num">1</span></a><a href=/en/categories/spring/>Spring · JPA <span class="c num">13</span></a><a href=/en/categories/golang/>Golang <span class="c num">1</span></a><a href=/en/categories/kubernetes/>Kubernetes · Infra <span class="c num">3</span></a><a href=/en/categories/python/>Python <span class="c num">2</span></a><a href=/en/categories/opensource/>Open Source · Data <span class="c num">5</span></a><a href=/en/categories/linux/>CentOS · Linux <span class="c num">11</span></a><a href=/en/categories/dotnet/>.NET <span class="c num">3</span></a></div></details><details class=grp><summary><span class=idx>II</span> Life & K-Food <span class=chev></span></summary><div class=sub-list><a href=/en/categories/diary/>Daily life · Food <span class="c num">13</span></a></div></details><details class=grp><summary><span class=idx>III</span> Misc <span class=chev></span></summary><div class=sub-list><a href=/en/categories/etc/>Tips · Troubleshooting <span class="c num">6</span></a><a href=/en/categories/mac/>Mac · Etc <span class="c num">3</span></a></div></details><div class=toc-flat><a href=/en/archives/><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg> Archive
+</a><a href=/en/tags/><svg viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/><circle cx="12" cy="12" r="2"/></svg> Tags
+</a><a href=/en/about/><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> About
+</a><a href=/2016/06/08/apachelog/ id=lang-toggle data-lang=ko title="한국어로 보기"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+한국어</a></div></nav><div class=index-foot><button class=icon-btn id=theme title=theme aria-label=theme>
+<svg id="theme-ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+</button>
+<a class=icon-btn href=https://github.com/kimpaper title=GitHub aria-label=GitHub><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2.0C7 4.9 5.9 5.2 5.9 5.2a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004.5 11.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V23"/></svg></a>
+<a class=icon-btn href=/en/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<span class=spacer></span>
+<span class=copy>© 페이퍼</span></div></aside><div class=main><header class=topbar><button class="icon-btn hamburger" id=burger aria-label=menu><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class=crumb><a href=/en/>paper.archive</a><span class=sep>/</span><b>Opensource</b></div><span class=spacer></span>
+<label class=search><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+<input id=q type=search placeholder="Search this list…" aria-label=search></label></header><div class=content><article class=post><header class=post-head><a class=cat-tag href=/en/categories/opensource/>Opensource</a><h1 class=post-title>Getting average response time, call count, Min, Max on a restful api server</h1><div class="post-meta num"><span>2016 · 06 · 08</span>
+<span>2 min read</span>
+<span>Paper</span></div></header><details class=toc-box open><summary>Contents</summary><nav><nav id=TableOfContents><ul><li><ul><li><a href=#1-log-the-response-time-in-the-apache-transferlog>1. Log the response time in the apache TransferLog</a></li><li><a href=#2-write-the-python-code-apachelogpy>2. Write the python code (apachelog.py)</a></li></ul></li></ul></nav></nav></details><div class=prose><p>There&rsquo;s an api server that handles data traffic from an app<br>I computed the average response time per interface using the apache logs</p><blockquote><p>The server is apache+tomcat, implemented with spring</p></blockquote><p>For the hadoop, spark, and python setup see<br><a href=/2016/05/30/spark-hadoop/>Analyzing log files with Python and Spark (with hadoop)</a></p><h3 id=1-log-the-response-time-in-the-apache-transferlog>1. Log the response time in the apache TransferLog</h3><p>Before analyzing, make apache record the response time in its log</p><p>I edited the following at <code>/etc/httpd/conf.d/ssl.conf</code>.<br>Of course. the path and name of the config file may differ per server</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>&lt;VirtualHost _default_:443&gt;
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>CustomLog logs/ssl_access_log <span class=se>\
+</span></span></span><span class=line><span class=cl>          <span class=s2>&#34;%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \&#34;%r\&#34; %b %D&#34;</span>
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>&lt;/VirtualHost&gt;
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>Instead of writing to the existing TransferLog, I added one more CustomLog.</p></blockquote><p>Appending %D at the end logs the response time in microseconds. See the link below for details<br><a href=https://httpd.apache.org/docs/2.2/ko/mod/mod_log_config.html>https://httpd.apache.org/docs/2.2/ko/mod/mod_log_config.html</a></p><p>So you can see logs pile up like this. The number after the last space is the response time</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>[08/Jun/2016:13:37:11 +0900] xx.xx.xx.xx TLSv1 ECDHE-RSA-AES128-SHA &#34;POST /interface/if1 HTTP/1.1&#34; 571 23687
+</span></span><span class=line><span class=cl>[08/Jun/2016:13:37:14 +0900] xx.xx.xx.xx TLSv1 ECDHE-RSA-AES128-SHA &#34;POST /interface/if2 HTTP/1.1&#34; 711 17120
+</span></span><span class=line><span class=cl>[08/Jun/2016:13:38:22 +0900] xx.xx.xx.xx TLSv1 ECDHE-RSA-AES128-SHA &#34;POST /interface/if3 HTTP/1.1&#34; 571 36293
+</span></span><span class=line><span class=cl>[08/Jun/2016:13:38:26 +0900] xx.xx.xx.xx TLSv1 ECDHE-RSA-AES128-SHA &#34;POST /interface/if4 HTTP/1.1&#34; 93 15992
+</span></span></code></pre></td></tr></table></div></div><h3 id=2-write-the-python-code-apachelogpy>2. Write the python code (apachelog.py)</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#-*-coding: utf-8 -*-</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>re</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>pymysql</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>pyspark.context</span> <span class=kn>import</span> <span class=n>SparkContext</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>pat</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>compile</span><span class=p>(</span><span class=s2>&#34;/interface/(\w+)&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>mapLine</span><span class=p>(</span><span class=n>line</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>m</span> <span class=o>=</span> <span class=n>pat</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=n>line</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>m</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>name</span> <span class=o>=</span> <span class=s2>&#34;other&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>name</span> <span class=o>=</span> <span class=n>m</span><span class=o>.</span><span class=n>group</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>    <span class=n>microtime</span> <span class=o>=</span> <span class=n>line</span><span class=p>[</span><span class=n>line</span><span class=o>.</span><span class=n>rfind</span><span class=p>(</span><span class=s2>&#34; &#34;</span><span class=p>):]</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=c1># 마이크로초이므로 백만을 나눠준다</span>
+</span></span><span class=line><span class=cl>    <span class=n>val</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=n>val</span><span class=p>[</span><span class=s2>&#34;avg&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>microtime</span><span class=p>)</span> <span class=o>/</span> <span class=mi>1000</span>
+</span></span><span class=line><span class=cl>    <span class=n>val</span><span class=p>[</span><span class=s2>&#34;min&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>microtime</span><span class=p>)</span> <span class=o>/</span> <span class=mi>1000</span>
+</span></span><span class=line><span class=cl>    <span class=n>val</span><span class=p>[</span><span class=s2>&#34;max&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>microtime</span><span class=p>)</span> <span class=o>/</span> <span class=mi>1000</span>
+</span></span><span class=line><span class=cl>    <span class=n>val</span><span class=p>[</span><span class=s2>&#34;used&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=n>val</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>reduceLine</span><span class=p>(</span><span class=n>a</span><span class=p>,</span> <span class=n>b</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>val</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=n>val</span><span class=p>[</span><span class=s2>&#34;avg&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=p>(</span><span class=n>a</span><span class=p>[</span><span class=s2>&#34;avg&#34;</span><span class=p>]</span> <span class=o>+</span> <span class=n>b</span><span class=p>[</span><span class=s2>&#34;avg&#34;</span><span class=p>])</span> <span class=o>/</span> <span class=mi>2</span>
+</span></span><span class=line><span class=cl>    <span class=n>val</span><span class=p>[</span><span class=s2>&#34;max&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=nb>max</span><span class=p>(</span><span class=n>a</span><span class=p>[</span><span class=s2>&#34;max&#34;</span><span class=p>],</span> <span class=n>b</span><span class=p>[</span><span class=s2>&#34;max&#34;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=n>val</span><span class=p>[</span><span class=s2>&#34;min&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=nb>min</span><span class=p>(</span><span class=n>a</span><span class=p>[</span><span class=s2>&#34;min&#34;</span><span class=p>],</span> <span class=n>b</span><span class=p>[</span><span class=s2>&#34;min&#34;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=n>val</span><span class=p>[</span><span class=s2>&#34;used&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=n>a</span><span class=p>[</span><span class=s2>&#34;used&#34;</span><span class=p>]</span> <span class=o>+</span> <span class=n>b</span><span class=p>[</span><span class=s2>&#34;used&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>val</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>sc</span> <span class=o>=</span> <span class=n>SparkContext</span><span class=p>(</span><span class=n>appName</span><span class=o>=</span><span class=s2>&#34;apache_log&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>t</span> <span class=o>=</span> <span class=n>sc</span><span class=o>.</span><span class=n>textFile</span><span class=p>(</span><span class=s2>&#34;/input2/*&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>t</span> <span class=o>=</span> <span class=n>t</span><span class=o>.</span><span class=n>map</span><span class=p>(</span><span class=n>mapLine</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>t</span> <span class=o>=</span> <span class=n>t</span><span class=o>.</span><span class=n>reduceByKey</span><span class=p>(</span><span class=n>reduceLine</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>l</span> <span class=o>=</span> <span class=n>t</span><span class=o>.</span><span class=n>collect</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>l</span><span class=o>.</span><span class=n>sort</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;name</span><span class=se>\t</span><span class=s2>avg</span><span class=se>\t</span><span class=s2>max</span><span class=se>\t</span><span class=s2>min</span><span class=se>\t</span><span class=s2>calls&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>data</span> <span class=ow>in</span> <span class=n>l</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=c1># name, avg, max, min, used</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;</span><span class=si>%s</span><span class=se>\t</span><span class=si>%d</span><span class=se>\t</span><span class=si>%d</span><span class=se>\t</span><span class=si>%d</span><span class=se>\t</span><span class=si>%d</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=n>data</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span> <span class=n>data</span><span class=p>[</span><span class=mi>1</span><span class=p>][</span><span class=s2>&#34;avg&#34;</span><span class=p>],</span> <span class=n>data</span><span class=p>[</span><span class=mi>1</span><span class=p>][</span><span class=s2>&#34;max&#34;</span><span class=p>],</span> <span class=n>data</span><span class=p>[</span><span class=mi>1</span><span class=p>][</span><span class=s2>&#34;min&#34;</span><span class=p>],</span> <span class=n>data</span><span class=p>[</span><span class=mi>1</span><span class=p>][</span><span class=s2>&#34;used&#34;</span><span class=p>]))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;완료&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>Run it like this</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nv>$SPARK_HOME</span>/bin/spark-submit --master local<span class=o>[</span>4<span class=o>]</span> apachelog.py
+</span></span></code></pre></td></tr></table></div></div></div><footer class=post-foot><div class=tags><a href=/tags/spark/>#spark</a><a href=/tags/hadoop/>#hadoop</a><a href=/tags/python/>#python</a><a href=/tags/apache/>#apache</a></div><nav class=post-nav><a class=prev href=/en/posts/opensource/2016-05-30-spark-hadoop/><span class=lbl>Previous</span><span class=t>Analyzing log files with Python and Spark (with hadoop)</span></a><a class=next href=/en/posts/opensource/2016-06-21-fluentd/><span class=lbl>Next</span><span class=t>Collecting logs with fluentd</span></a></nav></footer></article></div></div></div><script>(function(){var t,n,s,o,i,a,l,e=document.documentElement,d="M12 3v2M12 19v2M5 5l1.5 1.5M17.5 17.5L19 19M3 12h2M19 12h2M5 19l1.5-1.5M17.5 6.5L19 5",u="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z";function r(){var t=e.getAttribute("data-theme");return t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches}function c(){var e=document.getElementById("theme-ic");e&&e.setAttribute("d",r()?d:u)}s=document.getElementById("theme"),s&&s.addEventListener("click",function(){var t=r()?"light":"dark";e.setAttribute("data-theme",t);try{localStorage.setItem("theme",t)}catch{}c()}),c(),t=document.getElementById("lang-toggle"),t&&t.addEventListener("click",function(){try{localStorage.setItem("lang",t.getAttribute("data-lang"))}catch{}}),o=document.getElementById("burger"),i=document.getElementById("scrim"),o&&o.addEventListener("click",function(){e.setAttribute("data-nav","open")}),i&&i.addEventListener("click",function(){e.removeAttribute("data-nav")}),n=document.getElementById("q"),n&&(l=[].slice.call(document.querySelectorAll(".row")),a=document.getElementById("empty"),n.addEventListener("input",function(){var t=n.value.trim().toLowerCase(),e=0;l.forEach(function(n){var s=n.textContent.toLowerCase().indexOf(t)!==-1;n.style.display=s?"":"none",s&&e++}),a&&(a.style.display=e?"none":"block")}))})()</script></body></html>

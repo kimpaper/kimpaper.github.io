@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Opensource on 기록 저장소</title>
+    <link>https://kimpaper.github.io/categories/opensource/</link>
+    <description>Recent content in Opensource on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</url>
+      <link>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Wed, 27 Jul 2016 14:32:00 +0000</lastBuildDate>
+    <atom:link href="https://kimpaper.github.io/categories/opensource/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>redis data type 종류</title>
+      <link>https://kimpaper.github.io/2016/07/27/redis-datatype/</link>
+      <pubDate>Wed, 27 Jul 2016 14:32:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/2016/07/27/redis-datatype/</guid>
+      <description>&lt;h2 id=&#34;redis-data-type-요약&#34;&gt;Redis Data Type 요약&lt;/h2&gt;
+&lt;p&gt;인터넷상에 수많은 좋은 자료가 있음에도 공부 차원에서 정리를 한다&lt;/p&gt;
+&lt;p&gt;테스트는 &lt;code&gt;redis-cli&lt;/code&gt;를 이용해서 하지만 실제 사용은 언어에 맞는 &lt;code&gt;api library&lt;/code&gt;를 사용 할듯&lt;/p&gt;
+&lt;h4 id=&#34;개요&#34;&gt;개요&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://redis.io/topics/data-types-intro&#34;&gt;http://redis.io/topics/data-types-intro&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;예제&#34;&gt;예제&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://redis.io/topics/data-types&#34;&gt;http://redis.io/topics/data-types&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;strings&#34;&gt;Strings&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;value에 문자 숫자 등을 저장한다&lt;/li&gt;
+&lt;li&gt;저장시 별도로 형이 없다 (숫자 문자 구분이 없음)&lt;/li&gt;
+&lt;li&gt;숫자도 저장가능 하다 그리고 숫자에 &lt;code&gt;incr&lt;/code&gt;, &lt;code&gt;incrby&lt;/code&gt;, &lt;code&gt;decr&lt;/code&gt;, &lt;code&gt;decrby&lt;/code&gt; 같은 atomic counter 연산이 가능&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;incrby&lt;/code&gt;, &lt;code&gt;decrby&lt;/code&gt; 는 특정 수를 더하거나 뺄때 사용 &lt;code&gt;incrby &amp;quot;test_strings&amp;quot; 10&lt;/code&gt; 처럼 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# redis-cli&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;test_strings&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OK
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; get &lt;span class=&#34;s2&#34;&gt;&amp;#34;test_strings&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; incr &lt;span class=&#34;s2&#34;&gt;&amp;#34;test_strings&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; get &lt;span class=&#34;s2&#34;&gt;&amp;#34;test_strings&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;2&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;lists&#34;&gt;Lists&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;value에 list를 저장한다&lt;/li&gt;
+&lt;li&gt;lrange: 값을 조회 이때 -1은 모두 가져오라는 뜻&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; lpush &lt;span class=&#34;s2&#34;&gt;&amp;#34;test_lists&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; lpush test_lists &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; lrange test_lists &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; -1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;2&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; rpush test_lists &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; lrange test_lists &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; -1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;2&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rpop&lt;/code&gt;를 이용하여 queue 구현이 가능할꺼 같다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; rpop test_lists
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; lrange test_lists &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; -1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;2&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rbpop&lt;/code&gt;을 이용하면 순차적인 분산 작업도 구현 가능할꺼 같다 &lt;code&gt;rpop&lt;/code&gt;과 비슷하나 데이타가 없다면 데이타가 들어올때까지 &lt;code&gt;block&lt;/code&gt; 상태로 대기한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;sets&#34;&gt;Sets&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;value을 set형태로 가지고 있음&lt;/li&gt;
+&lt;li&gt;list는 중복이 되나 set은 중복이 안됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; sadd test_sets &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; smembers test_sets
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; sadd test_sets &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; smembers test_sets
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;2&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;4&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;4&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;hashes&#34;&gt;Hashes&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Hashs key/value 목록을 값으로 가진다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; hset htest username hi
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; hset htest userpwd asdf
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; hget htest username
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;hi&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; hgetall htest
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;username&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;hi&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;userpwd&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;4&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;asdf&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;hget시에 값이 없다면 (nil)을 반환&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; hget htest temp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;nil&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;hashkey에 대한 값을 바꿈&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; hget htest userpwd
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;asdf&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; hset htest userpwd &lt;span class=&#34;m&#34;&gt;1234&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; hget htest userpwd
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;1234&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;sorted-sets&#34;&gt;Sorted sets&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;value를 set형태로 가지고 있음&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Sets&lt;/code&gt;과 마찬가지로 중복은 안됨&lt;/li&gt;
+&lt;li&gt;score와 함께 저장되며 score를 기준으로 정렬됨&lt;/li&gt;
+&lt;li&gt;list처럼 사용이 될꺼 같으나 정렬된다는 장점이 있는 것 같다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; zadd test_ssets &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; zadd test_ssets &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; zrange test_ssets &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; -1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;2&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;score를 문자형으로 쓰면 안된다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; zadd test_ssets &lt;span class=&#34;s2&#34;&gt;&amp;#34;a&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;error&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; ERR value is not a valid float
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;중복이 안되면 동일한 value를 넣으면 기존 데이타의 score를 덮어서 데이타 순서가 바뀐다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; zadd test_ssets &lt;span class=&#34;s2&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; zrange test_ssets &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; -1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;2&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;bitmaps&#34;&gt;Bitmaps&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;bit값을 저장해준다&lt;/li&gt;
+&lt;li&gt;512MB 용량으로 2^32(42억)개의 bit값들을 저장할 수 있다&lt;/li&gt;
+&lt;li&gt;boolean 옵션값을 저장하는 용도로 사용하면 좋을거 같다 (회원마다 공지 조회여부 등)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; setbit test_bits &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; getbit test_bits &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; setbit test_bits &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1:6379&amp;gt; getbit test_bits &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>fluentd로 로그를 모으기</title>
+      <link>https://kimpaper.github.io/posts/opensource/2016-06-21-fluentd/</link>
+      <pubDate>Wed, 22 Jun 2016 15:47:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/posts/opensource/2016-06-21-fluentd/</guid>
+      <description>&lt;p&gt;예전에 flume로 에러 로그들을 모으고 있었는데 fluentd로 갈아타려고 한다. &lt;br&gt;
+&lt;del&gt;사실 모으는 목적이 아니라 모니터링이 목적&lt;/del&gt;&lt;/p&gt;
+&lt;h2 id=&#34;설치&#34;&gt;설치&lt;/h2&gt;
+&lt;p&gt;아래 사이트에 나오는 command만 실행해주면 chkconfig 등록까지 다 해준다.
+참고 공식 사이트&lt;br&gt;
+&lt;a href=&#34;http://docs.fluentd.org/articles/install-by-rpm#step-0-before-installation&#34;&gt;http://docs.fluentd.org/articles/install-by-rpm#step-0-before-installation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;구성은 flume와 비슷한것 같다&lt;br&gt;
+client -&amp;gt; server 구성으로 해놓고 client에서 수집된 로그를 server로 전달.&lt;/p&gt;
+&lt;h3 id=&#34;아래-커맨드-실행&#34;&gt;아래 커맨드 실행&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;서비스-구동&#34;&gt;서비스 구동&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;service td-agent start
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;당연히 &lt;code&gt;service td-agent stop&lt;/code&gt; 가 중지다&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;설정&#34;&gt;설정&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;/etc/td-agent/td-agent.conf&lt;/code&gt; 파일이 설정 파일이다&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>restful api 서버에서 평균 응답시간, 호출횟수, Min, Max 구하기</title>
+      <link>https://kimpaper.github.io/2016/06/08/apachelog/</link>
+      <pubDate>Wed, 08 Jun 2016 15:32:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/2016/06/08/apachelog/</guid>
+      <description>&lt;p&gt;app에서 데이타 통신을하는 api서버가 있다&lt;br&gt;
+각 인터페이스별 평균 응답시간을 아파치 로그를 활용하여 구해봤다&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;서버는 apache+tomcat, spring으로 구현한 서버이다&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;hadoop과 spark, python 설정은&lt;br&gt;
+&lt;a href=&#34;https://kimpaper.github.io/2016/05/30/spark-hadoop/&#34;&gt;Python and Spark로 로그 파일 분석 (with hadoop)&lt;/a&gt;
+을 참고 하자&lt;/p&gt;
+&lt;h3 id=&#34;1-아파치-transferlog-로그파일에-응답-시간-남기기&#34;&gt;1. 아파치 TransferLog 로그파일에 응답 시간 남기기&lt;/h3&gt;
+&lt;p&gt;우선 분석하기 전에 아파치 로그에 응답 시간을 추가로 기록하도록 하자&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/etc/httpd/conf.d/ssl.conf&lt;/code&gt; 경로에서 아래를 편집했다.&lt;br&gt;
+물론. 설정 파일이 있는 경로와 이름은 서버마다 틀릴 수 있다&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;VirtualHost _default_:443&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CustomLog logs/ssl_access_log &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;s2&#34;&gt;&amp;#34;%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \&amp;#34;%r\&amp;#34; %b %D&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;/VirtualHost&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;기존 TransferLog에 남기지 않고 CustomLog를 하나 더 추가 했다.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Python and Spark로 로그 파일 분석 (with hadoop)</title>
+      <link>https://kimpaper.github.io/posts/opensource/2016-05-30-spark-hadoop/</link>
+      <pubDate>Mon, 30 May 2016 16:35:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/posts/opensource/2016-05-30-spark-hadoop/</guid>
+      <description>&lt;h1 id=&#34;spark를-이용한-파일-분석&#34;&gt;Spark를 이용한 파일 분석&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;spark도 잘 모르고 hadoop도 잘 모르는 상태에서 진행해서 틀린 부분이 있을 것이다.&lt;br&gt;
+참고로 OSX에서 진행된 작업이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;설정&#34;&gt;설정&lt;/h1&gt;
+&lt;h3 id=&#34;1-hadoop를-설치-하고-실행한다&#34;&gt;1. Hadoop를 설치 하고 실행한다&lt;/h3&gt;
+&lt;h3 id=&#34;2-hdfs상에-파일을-올린다&#34;&gt;2. hdfs상에 파일을 올린다.&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /logs
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hdfs dfs -put test.log /input/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;아래와 같이 파일 브라우징이 가능하다 아래에서 올라간 파일을 확인!
+&lt;code&gt;http://localhost:50070/explorer.html#/input&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;3-spark의-python-커맨드-테스트&#34;&gt;3. spark의 python 커맨드 테스트..&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;$SPARK_HOME/bin/pyspark&lt;/code&gt;
+하둡을 켜고 pyspark를 실행하면 아래와 같이 나온다&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Python&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;2.7&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Oct&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;23&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2015&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;19&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;19&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;21&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;GCC&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;4.2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Compatible&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Apple&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;LLVM&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;7.0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clang&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;700.0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;59.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;on&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;darwin&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Type&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;help&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;copyright&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;credits&amp;#34;&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;or&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;license&amp;#34;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;more&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;information&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;05&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;30&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;INFO&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;spark&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SparkContext&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Running&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Spark&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;version&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;1.6&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;2016&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;05&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;30&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;17.194&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;java&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5956&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1259148&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Unable&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;load&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;realm&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;info&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SCDynamicStore&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;...&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;중략&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;....&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;05&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;30&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;19&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;INFO&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;storage&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BlockManagerMasterEndpoint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Registering&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;manager&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;50791&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;511.0&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MB&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;RAM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;BlockManagerId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;driver&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;50791&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;05&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;30&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;19&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;INFO&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;storage&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BlockManagerMaster&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Registered&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;BlockManager&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Welcome&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;to&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;n&#34;&gt;____&lt;/span&gt;              &lt;span class=&#34;n&#34;&gt;__&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;__&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;__&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;___&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;_____&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;__&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;_&lt;/span&gt;\ \&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;_&lt;/span&gt; \&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;_&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;__&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;  &lt;span class=&#34;s1&#34;&gt;&amp;#39;_/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;__&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;__&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;_&lt;/span&gt;\   &lt;span class=&#34;n&#34;&gt;version&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;1.6&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Using&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Python&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;version&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;2.7&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Oct&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;23&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2015&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;19&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;19&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;21&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;SparkContext&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;available&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;HiveContext&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;available&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sqlContext&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;4-python-환경-잡기-spark-submit-환경임&#34;&gt;4. python 환경 잡기 (spark-submit 환경임)&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;c1&#34;&gt;# 환경변수 설정을 위해 아래 파일을 연다 (물론 OSX 기준)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; vi ~/.bash_profile
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;.bash_profile&lt;/code&gt;파일에 아래와 같이 추가 한다&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>redis 3.2.3 설치</title>
+      <link>https://kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</link>
+      <pubDate>Sun, 20 Sep 2015 21:47:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/posts/opensource/2015-09-21-redis-304/</guid>
+      <description>&lt;h3 id=&#34;컴파일러를-먼저-설치해야-합니다-설치돼-있다면-패스&#34;&gt;컴파일러를 먼저 설치해야 합니다. (설치돼 있다면 패스)&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum install gcc gcc-c++ autoconf automake
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;참고) &lt;a href=&#34;http://www.redis.io/download&#34;&gt;http://www.redis.io/download&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;설치&#34;&gt;설치&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 다운로드 및 설치 (컴파일)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget http://download.redis.io/releases/redis-3.2.3.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar xzf redis-3.2.3.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; redis-3.2.3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;make &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make install
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; utils
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./install_server.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;실행로그-확인&#34;&gt;실행로그 확인&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;tail&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;redis_6379&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;log&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;로그에서-warning-없애기&#34;&gt;로그에서 Warning 없애기&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;vi /etc/sysctl.conf&lt;/code&gt; 파일에 아래 추가&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vm.overcommit_memory=1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;fs.file-max = 1048576
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;vi /etc/rc.local&lt;/code&gt; 파일에 아래 추가&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;echo never &amp;gt; /sys/kernel/mm/transparent_hugepage/enabled
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl -w net.core.somaxconn=65535
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;vi /etc/security/limits.conf&lt;/code&gt; 파일에 아래 추가&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* soft nofile 65536
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* hard nofile 65536
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* soft nproc 131072
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* hard nproc 131072
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+  </channel>
+</rss>

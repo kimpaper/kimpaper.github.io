@@ -1,0 +1,305 @@
+<!doctype html><html lang=ko dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>spring jpa 설정 및 테스트 (maven 설정) · 기록 저장소</title><meta name=description content="거의 대부분 mybatis 를 이용하여 개발을 하는데..
+JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.
+1. 라이브러리 import…. maven pom.xml 1 2 3 4 5 6 7 8 9 10 <dependency> <groupId>org.springframework.data</groupId> <artifactId>spring-data-jpa</artifactId> <version>1.9.0.RELEASE</version> </dependency> <dependency> <groupId>org.hibernate<…"><meta name=keywords content="spring,jpa"><meta name=author content="페이퍼"><meta name=robots content="index, follow, max-image-preview:large"><link rel=canonical href=https://kimpaper.github.io/2015/10/05/spring-jpa-maven/><link rel=alternate hreflang=ko-KR href=https://kimpaper.github.io/2015/10/05/spring-jpa-maven/><link rel=alternate hreflang=en-US href=https://kimpaper.github.io/en/2015/10/05/spring-jpa-maven/><link rel=alternate hreflang=x-default href=https://kimpaper.github.io/en/2015/10/05/spring-jpa-maven/><meta name=naver-site-verification content="535791f117859cd623dbefcc827eb5a6db94e081"><meta property="og:site_name" content="기록 저장소"><meta property="og:type" content="article"><meta property="og:title" content="spring jpa 설정 및 테스트 (maven 설정)"><meta property="og:description" content="거의 대부분 mybatis 를 이용하여 개발을 하는데..
+JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.
+1. 라이브러리 import…. maven pom.xml 1 2 3 4 5 6 7 8 9 10 <dependency> <groupId>org.springframework.data</groupId> <artifactId>spring-data-jpa</artifactId> <version>1.9.0.RELEASE</version> </dependency> <dependency> <groupId>org.hibernate<…"><meta property="og:url" content="https://kimpaper.github.io/2015/10/05/spring-jpa-maven/"><meta property="og:locale" content="ko_KR"><meta property="og:locale:alternate" content="en_US"><meta property="og:image" content="https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"><meta property="og:image:alt" content="spring jpa 설정 및 테스트 (maven 설정) · 기록 저장소"><meta property="article:published_time" content="2015-10-05T00:41:00+00:00"><meta property="article:modified_time" content="2015-10-05T00:41:00+00:00"><meta property="article:tag" content="spring"><meta property="article:tag" content="jpa"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="spring jpa 설정 및 테스트 (maven 설정) · 기록 저장소"><meta name=twitter:description content="거의 대부분 mybatis 를 이용하여 개발을 하는데..
+JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.
+1. 라이브러리 import…. maven pom.xml 1 2 3 4 5 6 7 8 9 10 <dependency> <groupId>org.springframework.data</groupId> <artifactId>spring-data-jpa</artifactId> <version>1.9.0.RELEASE</version> </dependency> <dependency> <groupId>org.hibernate<…"><meta name=twitter:image content="https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"><script>(function(){try{var e=localStorage.getItem("theme");e&&document.documentElement.setAttribute("data-theme",e)}catch{}})()</script><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&display=swap"><link rel=stylesheet href=/css/site.min.6582456c081aa0ce24866bc183bc2718f037a40451edb26a9f804553adc470e5.css integrity="sha256-ZYJFbAgaoM4khmvBg7wnGPA3pARR7bJqn4BFU63EcOU="><link rel=icon href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5eE77iPPC90ZXh0Pjwvc3ZnPg=="><script async src="https://www.googletagmanager.com/gtag/js?id=G-ECTTT48V9Y"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ECTTT48V9Y")</script><meta name=google-adsense-account content="ca-pub-8048816011496920"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8048816011496920" crossorigin=anonymous></script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"페이퍼","url":"https://kimpaper.github.io/"},"dateModified":"2015-10-05T00:41:00+00:00","datePublished":"2015-10-05T00:41:00+00:00","description":"거의 대부분 mybatis 를 이용하여 개발을 하는데..\nJPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.\n1. 라이브러리 import…. maven pom.xml 1 2 3 4 5 6 7 8 9 10 \u003cdependency\u003e \u003cgroupId\u003eorg.springframework.data\u003c/groupId\u003e \u003cartifactId\u003espring-data-jpa\u003c/artifactId\u003e \u003cversion\u003e1.9.0.RELEASE\u003c/version\u003e \u003c/dependency\u003e \u003cdependency\u003e \u003cgroupId\u003eorg.hibernate\u003c…","headline":"spring jpa 설정 및 테스트 (maven 설정)","image":["https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"],"inLanguage":"ko-KR","keywords":"spring, jpa","mainEntityOfPage":{"@id":"https://kimpaper.github.io/2015/10/05/spring-jpa-maven/","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"},"name":"기록 저장소"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://kimpaper.github.io/","name":"기록 저장소","position":1},{"@type":"ListItem","item":"https://kimpaper.github.io/categories/spring/","name":"Spring","position":2},{"@type":"ListItem","item":"https://kimpaper.github.io/2015/10/05/spring-jpa-maven/","name":"spring jpa 설정 및 테스트 (maven 설정)","position":3}]}</script></head><body><div class=scrim id=scrim></div><div class=shell><aside class=index id=sidebar><div class=masthead><a href=/ class=wordmark>기록<b>.</b>저장소</a><div class=sub>a developer’s archive</div><div class="range num">2015 — 2026 · 62 entries</div></div><nav class=toc aria-label=categories><details class=grp open><summary><span class=idx>I</span> 기술 블로그 <span class=chev></span></summary><div class=sub-list><a href=/categories/aws/>AWS · 클라우드 <span class="c num">1</span></a><a href=/categories/spring/>Spring · JPA <span class="c num">13</span></a><a href=/categories/golang/>Golang <span class="c num">1</span></a><a href=/categories/kubernetes/>Kubernetes · 인프라 <span class="c num">3</span></a><a href=/categories/python/>Python <span class="c num">2</span></a><a href=/categories/opensource/>오픈소스 · 데이터 <span class="c num">5</span></a><a href=/categories/linux/>CentOS · 리눅스 <span class="c num">11</span></a><a href=/categories/dotnet/>.NET <span class="c num">3</span></a></div></details><details class=grp><summary><span class=idx>II</span> 일상 <span class=chev></span></summary><div class=sub-list><a href=/categories/diary/>일기 · 소소한 기록 <span class="c num">15</span></a></div></details><details class=grp><summary><span class=idx>III</span> 기타 잡지식 <span class=chev></span></summary><div class=sub-list><a href=/categories/etc/>팁 · 트러블슈팅 <span class="c num">6</span></a><a href=/categories/mac/>Mac · 기타 <span class="c num">3</span></a></div></details><div class=toc-flat><a href=/archives/><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg> 전체 아카이브
+</a><a href=/tags/><svg viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/><circle cx="12" cy="12" r="2"/></svg> 태그
+</a><a href=/about/><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> 소개
+</a><a href=/en/2015/10/05/spring-jpa-maven/ id=lang-toggle data-lang=en title="Read in English"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+English</a></div></nav><div class=index-foot><button class=icon-btn id=theme title=theme aria-label=theme>
+<svg id="theme-ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+</button>
+<a class=icon-btn href=https://github.com/kimpaper title=GitHub aria-label=GitHub><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2.0C7 4.9 5.9 5.2 5.9 5.2a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004.5 11.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V23"/></svg></a>
+<a class=icon-btn href=/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<span class=spacer></span>
+<span class=copy>© 페이퍼</span></div></aside><div class=main><header class=topbar><button class="icon-btn hamburger" id=burger aria-label=menu><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class=crumb><a href=/>기록 저장소</a><span class=sep>/</span><b>Spring</b></div><span class=spacer></span>
+<label class=search><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+<input id=q type=search placeholder="이 목록에서 검색…" aria-label=search></label></header><div class=content><article class=post><header class=post-head><a class=cat-tag href=/categories/spring/>Spring</a><h1 class=post-title>spring jpa 설정 및 테스트 (maven 설정)</h1><div class="post-meta num"><span>2015 · 10 · 05</span>
+<span>3 min read</span>
+<span>페이퍼</span></div></header><details class=toc-box open><summary>목차</summary><nav><nav id=TableOfContents><ul><li><ul><li></li></ul></li></ul></nav></nav></details><div class=prose><p>거의 대부분 mybatis 를 이용하여 개발을 하는데..</p><p>JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다.</p><h4 id=1-라이브러리-import-maven-pomxml>1. 라이브러리 import&mldr;. maven pom.xml</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=line><span class=cl><span class=nt>&lt;dependency&gt;</span>
+</span></span><span class=line><span class=cl>   <span class=nt>&lt;groupId&gt;</span>org.springframework.data<span class=nt>&lt;/groupId&gt;</span>
+</span></span><span class=line><span class=cl>   <span class=nt>&lt;artifactId&gt;</span>spring-data-jpa<span class=nt>&lt;/artifactId&gt;</span>
+</span></span><span class=line><span class=cl>   <span class=nt>&lt;version&gt;</span>1.9.0.RELEASE<span class=nt>&lt;/version&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;/dependency&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;dependency&gt;</span>
+</span></span><span class=line><span class=cl>   <span class=nt>&lt;groupId&gt;</span>org.hibernate<span class=nt>&lt;/groupId&gt;</span>
+</span></span><span class=line><span class=cl>   <span class=nt>&lt;artifactId&gt;</span>hibernate-entitymanager<span class=nt>&lt;/artifactId&gt;</span>
+</span></span><span class=line><span class=cl>   <span class=nt>&lt;version&gt;</span>4.3.8.Final<span class=nt>&lt;/version&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=2-entity-class를-만들어-줍니다>2. Entity class를 만들어 줍니다.</h4><p>참고로 SerializedName, Expose는 jpa와 직접 관련은 없습니다.. (개체를 그대로 JsonView 할때 사용)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=nn>com.google.gson.annotations.Expose</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=nn>com.google.gson.annotations.SerializedName</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=nn>javax.persistence.*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nd>@Entity</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nd>@Table</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s>&#34;tb_notice&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>Notice</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Id</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@GeneratedValue</span><span class=p>(</span><span class=n>strategy</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>GenerationType</span><span class=p>.</span><span class=na>AUTO</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;notice_id&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@SerializedName</span><span class=p>(</span><span class=n>value</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;notice_id&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=n>noticeId</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s>&#34;title&#34;</span><span class=p>,</span><span class=w> </span><span class=n>nullable</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=n>title</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s>&#34;content&#34;</span><span class=p>,</span><span class=w> </span><span class=n>nullable</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=n>content</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s>&#34;reg_date&#34;</span><span class=p>,</span><span class=w> </span><span class=n>nullable</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@SerializedName</span><span class=p>(</span><span class=n>value</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;reg_date&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=n>regDate</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s>&#34;del_yn&#34;</span><span class=p>,</span><span class=w> </span><span class=n>nullable</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Expose</span><span class=p>(</span><span class=n>serialize</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>,</span><span class=w> </span><span class=n>deserialize</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=n>delYn</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=nf>getNoticeId</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>noticeId</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>setNoticeId</span><span class=p>(</span><span class=n>Integer</span><span class=w> </span><span class=n>noticeId</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>this</span><span class=p>.</span><span class=na>noticeId</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>noticeId</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=nf>getTitle</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>title</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>setTitle</span><span class=p>(</span><span class=n>String</span><span class=w> </span><span class=n>title</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>this</span><span class=p>.</span><span class=na>title</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>title</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=nf>getContent</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>content</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>setContent</span><span class=p>(</span><span class=n>String</span><span class=w> </span><span class=n>content</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>this</span><span class=p>.</span><span class=na>content</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>content</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=nf>getRegDate</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>regDate</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>setRegDate</span><span class=p>(</span><span class=n>String</span><span class=w> </span><span class=n>regDate</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>this</span><span class=p>.</span><span class=na>regDate</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>regDate</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=nf>getDelYn</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>delYn</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>setDelYn</span><span class=p>(</span><span class=n>String</span><span class=w> </span><span class=n>delYn</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>this</span><span class=p>.</span><span class=na>delYn</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>delYn</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h4 id=3-repository-를-만들어줍니다-아무것도-없어도-된다>3. repository 를 만들어줍니다. (아무것도 없어도 된다)</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>interface</span> <span class=nc>NoticeRepository</span><span class=w> </span><span class=kd>extends</span><span class=w> </span><span class=n>JpaRepository</span><span class=o>&lt;</span><span class=n>Notice</span><span class=p>,</span><span class=w> </span><span class=n>Integer</span><span class=o>&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h4 id=4-context-jpaxml-설정합니다-txmanager2인-이유는-기존에-mybatis에-영향을-주지-않기-위해서입니다--mybatis를-한번에-다-걷어낼-자신이-없>4. context-jpa.xml 설정합니다. txManager2인 이유는 기존에 mybatis에 영향을 주지 않기 위해서입니다. , <del>mybatis를 한번에 다 걷어낼 자신이 없&mldr;</del></h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=line><span class=cl><span class=cp>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;beans</span> <span class=na>xmlns=</span><span class=s>&#34;http://www.springframework.org/schema/beans&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>xmlns:xsi=</span><span class=s>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>xmlns:jpa=</span><span class=s>&#34;http://www.springframework.org/schema/data/jpa&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>xmlns:tx=</span><span class=s>&#34;http://www.springframework.org/schema/tx&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>xmlns:aop=</span><span class=s>&#34;http://www.springframework.org/schema/aop&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>xmlns:p=</span><span class=s>&#34;http://www.springframework.org/schema/util&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>xsi:schemaLocation=</span><span class=s>&#34;http://www.springframework.org/schema/beans
+</span></span></span><span class=line><span class=cl><span class=s>    http://www.springframework.org/schema/beans/spring-beans.xsd
+</span></span></span><span class=line><span class=cl><span class=s>    http://www.springframework.org/schema/data/jpa
+</span></span></span><span class=line><span class=cl><span class=s>    http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+</span></span></span><span class=line><span class=cl><span class=s>    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+</span></span></span><span class=line><span class=cl><span class=s>    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+</span></span></span><span class=line><span class=cl><span class=s>    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+</span></span></span><span class=line><span class=cl><span class=s>    &#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c>&lt;!-- Configure the transaction manager bean --&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;bean</span> <span class=na>class=</span><span class=s>&#34;org.springframework.orm.jpa.JpaTransactionManager&#34;</span> <span class=na>id=</span><span class=s>&#34;txManager2&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;entityManagerFactory&#34;</span> <span class=na>ref=</span><span class=s>&#34;entityManagerFactory&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/bean&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;tx:advice</span> <span class=na>id=</span><span class=s>&#34;txAdvice2&#34;</span> <span class=na>transaction-manager=</span><span class=s>&#34;txManager2&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;tx:attributes&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;tx:method</span> <span class=na>name=</span><span class=s>&#34;*&#34;</span> <span class=na>rollback-for=</span><span class=s>&#34;Exception&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;/tx:attributes&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/tx:advice&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;aop:config&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;aop:pointcut</span> <span class=na>expression=</span><span class=s>&#34;execution(* sample..service..*.sr*(..))&#34;</span> <span class=na>id=</span><span class=s>&#34;requiredTx2&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;aop:advisor</span> <span class=na>advice-ref=</span><span class=s>&#34;txAdvice2&#34;</span> <span class=na>pointcut-ref=</span><span class=s>&#34;requiredTx2&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/aop:config&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;bean</span> <span class=na>class=</span><span class=s>&#34;org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter&#34;</span> <span class=na>id=</span><span class=s>&#34;hibernateJpaVendorAdapter&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;showSql&#34;</span> <span class=na>value=</span><span class=s>&#34;true&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/bean&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c>&lt;!-- Configure the entity manager factory bean --&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;bean</span> <span class=na>class=</span><span class=s>&#34;org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean&#34;</span> <span class=na>id=</span><span class=s>&#34;entityManagerFactory&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;dataSource&#34;</span> <span class=na>ref=</span><span class=s>&#34;dataSource&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;jpaVendorAdapter&#34;</span> <span class=na>ref=</span><span class=s>&#34;hibernateJpaVendorAdapter&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;packagesToScan&#34;</span> <span class=na>value=</span><span class=s>&#34;sample.app&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/bean&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;jpa:repositories</span> <span class=na>base-package=</span><span class=s>&#34;sample.app&#34;</span> <span class=na>transaction-manager-ref=</span><span class=s>&#34;txManager2&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;/beans&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=5-사용-예제>5. 사용 예제</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@Service</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>NoticeService</span><span class=w> </span><span class=kd>extends</span><span class=w> </span><span class=n>ServiceBase</span><span class=w>  </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=kd>static</span><span class=w> </span><span class=kd>final</span><span class=w> </span><span class=n>Logger</span><span class=w> </span><span class=n>logger</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>LoggerFactory</span><span class=p>.</span><span class=na>getLogger</span><span class=p>(</span><span class=n>NoticeService</span><span class=p>.</span><span class=na>class</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Autowired</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>NoticeRepository</span><span class=w> </span><span class=n>noticeRepository</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>srXX</span><span class=p>(</span><span class=n>RequestData</span><span class=w> </span><span class=n>req</span><span class=p>,</span><span class=w> </span><span class=n>ResponseData</span><span class=w> </span><span class=n>res</span><span class=p>)</span><span class=w> </span><span class=kd>throws</span><span class=w> </span><span class=n>Exception</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>List</span><span class=o>&lt;</span><span class=n>Notice</span><span class=o>&gt;</span><span class=w> </span><span class=n>list</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>noticeRepository</span><span class=p>.</span><span class=na>findAll</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>res</span><span class=p>.</span><span class=na>put</span><span class=p>(</span><span class=s>&#34;notice_list&#34;</span><span class=p>,</span><span class=w> </span><span class=n>list</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>인터넷상에 자료가 많아서 설정은 어렵지 않았습니다.</p><p>하지만 실제로 사용에 요령이 필요하다고 하네요.. (제대로 이해를 하지 않고 사용하면 성능에도 영향을 준다고 함)</p></div><footer class=post-foot><div class=tags><a href=/tags/spring/>#spring</a><a href=/tags/jpa/>#jpa</a></div><nav class=post-nav><a class=prev href=/posts/opensource/2015-09-21-redis-304/><span class=lbl>이전 글</span><span class=t>redis 3.2.3 설치</span></a><a class=next href=/posts/spring/2015-10-08-spring-jpa/><span class=lbl>다음 글</span><span class=t>spring jpa 조회 연습</span></a></nav></footer></article></div></div></div><script>(function(){var t,n,s,o,i,a,l,e=document.documentElement,d="M12 3v2M12 19v2M5 5l1.5 1.5M17.5 17.5L19 19M3 12h2M19 12h2M5 19l1.5-1.5M17.5 6.5L19 5",u="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z";function r(){var t=e.getAttribute("data-theme");return t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches}function c(){var e=document.getElementById("theme-ic");e&&e.setAttribute("d",r()?d:u)}s=document.getElementById("theme"),s&&s.addEventListener("click",function(){var t=r()?"light":"dark";e.setAttribute("data-theme",t);try{localStorage.setItem("theme",t)}catch{}c()}),c(),t=document.getElementById("lang-toggle"),t&&t.addEventListener("click",function(){try{localStorage.setItem("lang",t.getAttribute("data-lang"))}catch{}}),o=document.getElementById("burger"),i=document.getElementById("scrim"),o&&o.addEventListener("click",function(){e.setAttribute("data-nav","open")}),i&&i.addEventListener("click",function(){e.removeAttribute("data-nav")}),n=document.getElementById("q"),n&&(l=[].slice.call(document.querySelectorAll(".row")),a=document.getElementById("empty"),n.addEventListener("input",function(){var t=n.value.trim().toLowerCase(),e=0;l.forEach(function(n){var s=n.textContent.toLowerCase().indexOf(t)!==-1;n.style.display=s?"":"none",s&&e++}),a&&(a.style.display=e?"none":"block")}))})()</script></body></html>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Flume on paper.archive</title>
+    <link>https://kimpaper.github.io/en/tags/flume/</link>
+    <description>Recent content in Flume on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</url>
+      <link>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 30 Oct 2015 18:13:00 +0000</lastBuildDate>
+    <atom:link href="https://kimpaper.github.io/en/tags/flume/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Switching Flume&#39;s default logging from log4j to logback</title>
+      <link>https://kimpaper.github.io/en/posts/centos/2015-10-30-flume-logback-sink/</link>
+      <pubDate>Fri, 30 Oct 2015 18:13:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/en/posts/centos/2015-10-30-flume-logback-sink/</guid>
+      <description>&lt;h1 id=&#34;writing-flume-log-files-with-logback&#34;&gt;Writing Flume log files with logback&lt;/h1&gt;
+&lt;h2 id=&#34;how-to-install-logback-in-flume&#34;&gt;How to install logback in Flume&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Download logback from (&lt;a href=&#34;http://logback.qos.ch/download.html%29&#34;&gt;http://logback.qos.ch/download.html)&lt;/a&gt;. (currently v1.1.3)&lt;/li&gt;
+&lt;li&gt;Extract it and copy &lt;code&gt;logback-classic-1.1.3.jar&lt;/code&gt; and &lt;code&gt;logback-core-1.1.3.jar&lt;/code&gt; into $FLUME_HOME/lib.&lt;/li&gt;
+&lt;li&gt;For the existing log4j, rename &lt;code&gt;./lib/slf4j-log4j12-1.6.1.jar&lt;/code&gt; to &lt;code&gt;./lib/slf4j-log4j12-1.6.1.jar.back&lt;/code&gt;.
+Removing log4j is optional (if you leave it, both will write logs)&lt;/li&gt;
+&lt;li&gt;Edit logback.xml and put it at &lt;code&gt;$FLUME_HOME/conf/logback.xml&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;logbackxml-sample&#34;&gt;logback.xml sample&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;66
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;c&#34;&gt;&amp;lt;!-- Appenders --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;appender&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;console&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;ch.qos.logback.core.ConsoleAppender&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      	&lt;span class=&#34;nt&#34;&gt;&amp;lt;encoder&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        	&lt;span class=&#34;nt&#34;&gt;&amp;lt;pattern&amp;gt;&lt;/span&gt;[%-5level] %d{HH:mm:ss.SSS} [%thread] %logger{36} - %msg%n&lt;span class=&#34;nt&#34;&gt;&amp;lt;/pattern&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       	&lt;span class=&#34;nt&#34;&gt;&amp;lt;/encoder&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/appender&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;appender&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;daily&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;ch.qos.logback.core.rolling.RollingFileAppender&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;prudent&amp;gt;&lt;/span&gt;false&lt;span class=&#34;nt&#34;&gt;&amp;lt;/prudent&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;file&amp;gt;&lt;/span&gt;./logs/flume1.log&lt;span class=&#34;nt&#34;&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;rollingPolicy&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;lt;fileNamePattern&amp;gt;&lt;/span&gt;./logs/old/flume1.%d{yyyy-MM-dd}.%i.log&lt;span class=&#34;nt&#34;&gt;&amp;lt;/fileNamePattern&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;lt;timeBasedFileNamingAndTriggeringPolicy&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nt&#34;&gt;&amp;lt;maxFileSize&amp;gt;&lt;/span&gt;100mb&lt;span class=&#34;nt&#34;&gt;&amp;lt;/maxFileSize&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;lt;/timeBasedFileNamingAndTriggeringPolicy&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;lt;maxHistory&amp;gt;&lt;/span&gt;30&lt;span class=&#34;nt&#34;&gt;&amp;lt;/maxHistory&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;/rollingPolicy&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;encoder&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;lt;pattern&amp;gt;&lt;/span&gt;[%-5level] %d{HH:mm:ss.SSS} %logger{36} - %msg%n&lt;span class=&#34;nt&#34;&gt;&amp;lt;/pattern&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;/encoder&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/appender&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;appender&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;event&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;ch.qos.logback.core.rolling.RollingFileAppender&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;prudent&amp;gt;&lt;/span&gt;false&lt;span class=&#34;nt&#34;&gt;&amp;lt;/prudent&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;file&amp;gt;&lt;/span&gt;./logs/collect.log&lt;span class=&#34;nt&#34;&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;rollingPolicy&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;lt;fileNamePattern&amp;gt;&lt;/span&gt;./logs/old/collect.%d{yyyy-MM-dd}.%i.log&lt;span class=&#34;nt&#34;&gt;&amp;lt;/fileNamePattern&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;lt;timeBasedFileNamingAndTriggeringPolicy&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nt&#34;&gt;&amp;lt;maxFileSize&amp;gt;&lt;/span&gt;100mb&lt;span class=&#34;nt&#34;&gt;&amp;lt;/maxFileSize&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;lt;/timeBasedFileNamingAndTriggeringPolicy&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;lt;maxHistory&amp;gt;&lt;/span&gt;30&lt;span class=&#34;nt&#34;&gt;&amp;lt;/maxHistory&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;/rollingPolicy&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;encoder&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;lt;pattern&amp;gt;&lt;/span&gt;%msg%n&lt;span class=&#34;nt&#34;&gt;&amp;lt;/pattern&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;/encoder&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/appender&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;logger&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;kimpaper&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;level=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;debug&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;appender-ref&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;ref=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;event&amp;#34;&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;/logger&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c&#34;&gt;&amp;lt;!-- 3rdparty Loggers --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;logger&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;org.apache.flume.lifecycle&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;level=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;info&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;/logger&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;logger&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;org.jboss&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;level=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;warn&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;/logger&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;logger&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;org.mortbay&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;level=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;info&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;/logger&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;logger&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;org.apache.avro.ipc.NettyTransceiver&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;level=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;warn&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;/logger&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;logger&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;org.apache.hadoop&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;level=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;info&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;/logger&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;logger&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;org.apache.hadoop.hive&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;level=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;/logger&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;c&#34;&gt;&amp;lt;!-- Root Logger --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;root&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;level=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;info&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nt&#34;&gt;&amp;lt;appender-ref&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;ref=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;console&amp;#34;&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nt&#34;&gt;&amp;lt;appender-ref&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;ref=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;daily&amp;#34;&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;/root&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;configure-logback-to-record-events&#34;&gt;Configure logback to record events&lt;/h2&gt;
+&lt;p&gt;I was going to use file_roll as the sink that collects and stores logs on the master server, but it has downsides.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Flume install and test (mac)</title>
+      <link>https://kimpaper.github.io/en/posts/centos/2015-10-29-flume-setting-sample/</link>
+      <pubDate>Thu, 29 Oct 2015 15:51:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/en/posts/centos/2015-10-29-flume-setting-sample/</guid>
+      <description>&lt;h2 id=&#34;what-is-flume&#34;&gt;What is Flume?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;A service that collects log files written across multiple machines (multiple services..) into one place in real time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;install&#34;&gt;Install&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Download from &lt;a href=&#34;http://flume.apache.org/download.html&#34;&gt;http://flume.apache.org/download.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Extract it somewhere suitable ~/dev/tool/flume&lt;/li&gt;
+&lt;li&gt;If JAVA_HOME is not set, open ~/.bash_profile and set the environment variable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;JAVA_HOME&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; /usr &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;자바 경로.&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;I installed and tested on mac, but I trust it works fine on centos too.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;basic-flumeconf-file&#34;&gt;Basic flume.conf file&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# The configuration file needs to define the sources,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# the channels and the sinks.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Sources, channels and sinks are defined per agent,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# in this case called &amp;#39;agent&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;agent.sources &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; seqGenSrc
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;agent.channels &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; memoryChannel
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;agent.sinks &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; loggerSink
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# For each one of the sources, the type is defined&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;agent.sources.seqGenSrc.type &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; seq
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# The channel can be defined as follows.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;agent.sources.seqGenSrc.channels &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; memoryChannel
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Each sink&amp;#39;s type must be defined&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;agent.sinks.loggerSink.type &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; logger
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Specify the channel the sink should use&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;agent.sinks.loggerSink.channel &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; memoryChannel
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Each channel&amp;#39;s type is defined.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;agent.channels.memoryChannel.type &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; memory
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Other config values specific to each type of channel(sink or source)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# can be defined as well&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# In this case, it specifies the capacity of the memory channel&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;agent.channels.memoryChannel.capacity &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Reference) &lt;a href=&#34;https://flume.apache.org/FlumeUserGuide.html&#34;&gt;https://flume.apache.org/FlumeUserGuide.html&lt;/a&gt;
+The config file is divided into sources, channels, and sinks.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

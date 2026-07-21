@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Fluentd on 기록 저장소</title>
+    <link>https://kimpaper.github.io/tags/fluentd/</link>
+    <description>Recent content in Fluentd on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</url>
+      <link>https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Wed, 22 Jun 2016 15:47:00 +0000</lastBuildDate>
+    <atom:link href="https://kimpaper.github.io/tags/fluentd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>fluentd로 로그를 모으기</title>
+      <link>https://kimpaper.github.io/posts/opensource/2016-06-21-fluentd/</link>
+      <pubDate>Wed, 22 Jun 2016 15:47:00 +0000</pubDate>
+      <guid>https://kimpaper.github.io/posts/opensource/2016-06-21-fluentd/</guid>
+      <description>&lt;p&gt;예전에 flume로 에러 로그들을 모으고 있었는데 fluentd로 갈아타려고 한다. &lt;br&gt;
+&lt;del&gt;사실 모으는 목적이 아니라 모니터링이 목적&lt;/del&gt;&lt;/p&gt;
+&lt;h2 id=&#34;설치&#34;&gt;설치&lt;/h2&gt;
+&lt;p&gt;아래 사이트에 나오는 command만 실행해주면 chkconfig 등록까지 다 해준다.
+참고 공식 사이트&lt;br&gt;
+&lt;a href=&#34;http://docs.fluentd.org/articles/install-by-rpm#step-0-before-installation&#34;&gt;http://docs.fluentd.org/articles/install-by-rpm#step-0-before-installation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;구성은 flume와 비슷한것 같다&lt;br&gt;
+client -&amp;gt; server 구성으로 해놓고 client에서 수집된 로그를 server로 전달.&lt;/p&gt;
+&lt;h3 id=&#34;아래-커맨드-실행&#34;&gt;아래 커맨드 실행&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;서비스-구동&#34;&gt;서비스 구동&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;service td-agent start
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;당연히 &lt;code&gt;service td-agent stop&lt;/code&gt; 가 중지다&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;설정&#34;&gt;설정&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;/etc/td-agent/td-agent.conf&lt;/code&gt; 파일이 설정 파일이다&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

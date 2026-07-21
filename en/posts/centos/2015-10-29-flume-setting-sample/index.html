@@ -1,0 +1,183 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Flume install and test (mac) · paper.archive</title><meta name=description content="What is Flume? A service that collects log files written across multiple machines (multiple services..) into one place in real time Install Download from http://flume.apache.org/download.html Extract it somewhere suitable ~/dev/tool/flume If JAVA_HOME is not set, open ~/.bash_profile and set the env…"><meta name=keywords content="centos,flume,mac"><meta name=author content="페이퍼"><meta name=robots content="index, follow, max-image-preview:large"><link rel=canonical href=https://kimpaper.github.io/en/posts/centos/2015-10-29-flume-setting-sample/><link rel=alternate hreflang=ko-KR href=https://kimpaper.github.io/posts/centos/2015-10-29-flume-setting-sample/><link rel=alternate hreflang=en-US href=https://kimpaper.github.io/en/posts/centos/2015-10-29-flume-setting-sample/><link rel=alternate hreflang=x-default href=https://kimpaper.github.io/en/posts/centos/2015-10-29-flume-setting-sample/><meta name=naver-site-verification content="535791f117859cd623dbefcc827eb5a6db94e081"><meta property="og:site_name" content="paper.archive"><meta property="og:type" content="article"><meta property="og:title" content="Flume install and test (mac)"><meta property="og:description" content="What is Flume? A service that collects log files written across multiple machines (multiple services..) into one place in real time Install Download from http://flume.apache.org/download.html Extract it somewhere suitable ~/dev/tool/flume If JAVA_HOME is not set, open ~/.bash_profile and set the env…"><meta property="og:url" content="https://kimpaper.github.io/en/posts/centos/2015-10-29-flume-setting-sample/"><meta property="og:locale" content="en_US"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:image" content="https://kimpaper.github.io/images/2015-10-29-flume-setting-sample-UserGuide_image00.png"><meta property="og:image:alt" content="Flume install and test (mac) · paper.archive"><meta property="article:published_time" content="2015-10-29T15:51:00+00:00"><meta property="article:modified_time" content="2015-10-29T15:51:00+00:00"><meta property="article:tag" content="centos"><meta property="article:tag" content="flume"><meta property="article:tag" content="mac"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Flume install and test (mac) · paper.archive"><meta name=twitter:description content="What is Flume? A service that collects log files written across multiple machines (multiple services..) into one place in real time Install Download from http://flume.apache.org/download.html Extract it somewhere suitable ~/dev/tool/flume If JAVA_HOME is not set, open ~/.bash_profile and set the env…"><meta name=twitter:image content="https://kimpaper.github.io/images/2015-10-29-flume-setting-sample-UserGuide_image00.png"><script>(function(){try{var e=localStorage.getItem("theme");e&&document.documentElement.setAttribute("data-theme",e)}catch{}})()</script><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&display=swap"><link rel=stylesheet href=/css/site.min.6582456c081aa0ce24866bc183bc2718f037a40451edb26a9f804553adc470e5.css integrity="sha256-ZYJFbAgaoM4khmvBg7wnGPA3pARR7bJqn4BFU63EcOU="><link rel=icon href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5eE77iPPC90ZXh0Pjwvc3ZnPg=="><script async src="https://www.googletagmanager.com/gtag/js?id=G-ECTTT48V9Y"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ECTTT48V9Y")</script><meta name=google-adsense-account content="ca-pub-8048816011496920"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8048816011496920" crossorigin=anonymous></script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Paper","url":"https://kimpaper.github.io/"},"dateModified":"2015-10-29T15:51:00+00:00","datePublished":"2015-10-29T15:51:00+00:00","description":"What is Flume? A service that collects log files written across multiple machines (multiple services..) into one place in real time Install Download from http://flume.apache.org/download.html Extract it somewhere suitable ~/dev/tool/flume If JAVA_HOME is not set, open ~/.bash_profile and set the env…","headline":"Flume install and test (mac)","image":["https://kimpaper.github.io/images/2015-10-29-flume-setting-sample-UserGuide_image00.png"],"inLanguage":"en-US","keywords":"centos, flume, mac","mainEntityOfPage":{"@id":"https://kimpaper.github.io/en/posts/centos/2015-10-29-flume-setting-sample/","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"},"name":"paper.archive"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://kimpaper.github.io/en/","name":"paper.archive","position":1},{"@type":"ListItem","item":"https://kimpaper.github.io/en/categories/linux/","name":"Linux","position":2},{"@type":"ListItem","item":"https://kimpaper.github.io/en/posts/centos/2015-10-29-flume-setting-sample/","name":"Flume install and test (mac)","position":3}]}</script></head><body><div class=scrim id=scrim></div><div class=shell><aside class=index id=sidebar><div class=masthead><a href=/en/ class=wordmark>paper<b>.</b>archive</a><div class=sub>기록 저장소 · from Seoul, Korea</div><div class="range num">2015 — 2026 · 61 entries</div></div><nav class=toc aria-label=categories><details class=grp open><summary><span class=idx>I</span> Tech Notes <span class=chev></span></summary><div class=sub-list><a href=/en/categories/aws/>AWS · Cloud <span class="c num">1</span></a><a href=/en/categories/spring/>Spring · JPA <span class="c num">13</span></a><a href=/en/categories/golang/>Golang <span class="c num">1</span></a><a href=/en/categories/kubernetes/>Kubernetes · Infra <span class="c num">3</span></a><a href=/en/categories/python/>Python <span class="c num">2</span></a><a href=/en/categories/opensource/>Open Source · Data <span class="c num">5</span></a><a href=/en/categories/linux/>CentOS · Linux <span class="c num">11</span></a><a href=/en/categories/dotnet/>.NET <span class="c num">3</span></a></div></details><details class=grp><summary><span class=idx>II</span> Life & K-Food <span class=chev></span></summary><div class=sub-list><a href=/en/categories/diary/>Daily life · Food <span class="c num">13</span></a></div></details><details class=grp><summary><span class=idx>III</span> Misc <span class=chev></span></summary><div class=sub-list><a href=/en/categories/etc/>Tips · Troubleshooting <span class="c num">6</span></a><a href=/en/categories/mac/>Mac · Etc <span class="c num">3</span></a></div></details><div class=toc-flat><a href=/en/archives/><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg> Archive
+</a><a href=/en/tags/><svg viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/><circle cx="12" cy="12" r="2"/></svg> Tags
+</a><a href=/en/about/><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> About
+</a><a href=/posts/centos/2015-10-29-flume-setting-sample/ id=lang-toggle data-lang=ko title="한국어로 보기"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+한국어</a></div></nav><div class=index-foot><button class=icon-btn id=theme title=theme aria-label=theme>
+<svg id="theme-ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+</button>
+<a class=icon-btn href=https://github.com/kimpaper title=GitHub aria-label=GitHub><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2.0C7 4.9 5.9 5.2 5.9 5.2a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004.5 11.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V23"/></svg></a>
+<a class=icon-btn href=/en/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<span class=spacer></span>
+<span class=copy>© 페이퍼</span></div></aside><div class=main><header class=topbar><button class="icon-btn hamburger" id=burger aria-label=menu><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class=crumb><a href=/en/>paper.archive</a><span class=sep>/</span><b>Linux</b></div><span class=spacer></span>
+<label class=search><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+<input id=q type=search placeholder="Search this list…" aria-label=search></label></header><div class=content><article class=post><header class=post-head><a class=cat-tag href=/en/categories/linux/>Linux</a><h1 class=post-title>Flume install and test (mac)</h1><div class="post-meta num"><span>2015 · 10 · 29</span>
+<span>4 min read</span>
+<span>Paper</span></div></header><details class=toc-box open><summary>Contents</summary><nav><nav id=TableOfContents><ul><li><a href=#what-is-flume>What is Flume?</a><ul><li><a href=#install>Install</a></li><li><a href=#run-the-services>Run the services</a></li></ul></li></ul></nav></nav></details><div class=prose><h2 id=what-is-flume>What is Flume?</h2><ul><li>A service that collects log files written across multiple machines (multiple services..) into one place in real time</li></ul><h3 id=install>Install</h3><ul><li>Download from <a href=http://flume.apache.org/download.html>http://flume.apache.org/download.html</a></li><li>Extract it somewhere suitable ~/dev/tool/flume</li><li>If JAVA_HOME is not set, open ~/.bash_profile and set the environment variable.</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>  <span class=nb>export</span> <span class=nv>JAVA_HOME</span> <span class=o>=</span> /usr <span class=o>(</span>자바 경로.<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>I installed and tested on mac, but I trust it works fine on centos too.</p></blockquote><h4 id=basic-flumeconf-file>Basic flume.conf file</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># The configuration file needs to define the sources,</span>
+</span></span><span class=line><span class=cl><span class=c1># the channels and the sinks.</span>
+</span></span><span class=line><span class=cl><span class=c1># Sources, channels and sinks are defined per agent,</span>
+</span></span><span class=line><span class=cl><span class=c1># in this case called &#39;agent&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>agent.sources <span class=o>=</span> seqGenSrc
+</span></span><span class=line><span class=cl>agent.channels <span class=o>=</span> memoryChannel
+</span></span><span class=line><span class=cl>agent.sinks <span class=o>=</span> loggerSink
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># For each one of the sources, the type is defined</span>
+</span></span><span class=line><span class=cl>agent.sources.seqGenSrc.type <span class=o>=</span> seq
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># The channel can be defined as follows.</span>
+</span></span><span class=line><span class=cl>agent.sources.seqGenSrc.channels <span class=o>=</span> memoryChannel
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Each sink&#39;s type must be defined</span>
+</span></span><span class=line><span class=cl>agent.sinks.loggerSink.type <span class=o>=</span> logger
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#Specify the channel the sink should use</span>
+</span></span><span class=line><span class=cl>agent.sinks.loggerSink.channel <span class=o>=</span> memoryChannel
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Each channel&#39;s type is defined.</span>
+</span></span><span class=line><span class=cl>agent.channels.memoryChannel.type <span class=o>=</span> memory
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Other config values specific to each type of channel(sink or source)</span>
+</span></span><span class=line><span class=cl><span class=c1># can be defined as well</span>
+</span></span><span class=line><span class=cl><span class=c1># In this case, it specifies the capacity of the memory channel</span>
+</span></span><span class=line><span class=cl>agent.channels.memoryChannel.capacity <span class=o>=</span> <span class=m>100</span>
+</span></span></code></pre></td></tr></table></div></div><p>Reference) <a href=https://flume.apache.org/FlumeUserGuide.html>https://flume.apache.org/FlumeUserGuide.html</a>
+The config file is divided into sources, channels, and sinks.</p><ul><li>sources: what to read from (can also receive from remote servers)</li><li>channels: probably.. some kind of buffer before writing to sinks? I think <del>honestly no idea</del></li><li>sinks: where to store, or where to forward?</li></ul><p>The picture below makes it a bit clearer. (In the picture the storage target is Hadoop.. I won&rsquo;t be using Hadoop.)</p><p><img alt=img loading=lazy src=/images/2015-10-29-flume-setting-sample-UserGuide_image00.png></p><p>Image source) <a href=https://flume.apache.org/FlumeUserGuide.html>https://flume.apache.org/FlumeUserGuide.html</a></p><p>There are many source types, but I collect from log files using the tail command.</p><ul><li>agent1 receives the logs collected by agent2</li><li>agent2 sends its collected logs to agent1</li></ul><h4 id=the-storing-server-agent1-flumeconfflume-agent1conf>The storing server, agent1 (flume/conf/flume-agent1.conf)</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>agent1.sources <span class=o>=</span> r1
+</span></span><span class=line><span class=cl>agent1.channels <span class=o>=</span> c1
+</span></span><span class=line><span class=cl>agent1.sinks <span class=o>=</span> k1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 원격의 서버들로부터 데이타를 수신한다 (port는 4545) </span>
+</span></span><span class=line><span class=cl>agent1.sources.r1.type <span class=o>=</span> avro
+</span></span><span class=line><span class=cl>agent1.sources.r1.bind <span class=o>=</span> 0.0.0.0
+</span></span><span class=line><span class=cl>agent1.sources.r1.port <span class=o>=</span> <span class=m>4545</span>
+</span></span><span class=line><span class=cl>agent1.sources.r1.channels <span class=o>=</span> c1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>agent1.channels.c1.type <span class=o>=</span> memory
+</span></span><span class=line><span class=cl>agent1.channels.c1.capacity <span class=o>=</span> <span class=m>10000</span>
+</span></span><span class=line><span class=cl>agent1.channels.c1.transactionCapacity <span class=o>=</span> <span class=m>1000</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># /logs/flume에 저장한다 </span>
+</span></span><span class=line><span class=cl>agent1.sinks.k1.type <span class=o>=</span> file_roll
+</span></span><span class=line><span class=cl>agent1.sinks.k1.sink.directory <span class=o>=</span> /logs/flume
+</span></span><span class=line><span class=cl><span class=c1># 하루(24 hour) 단위로 파일.. rolling.</span>
+</span></span><span class=line><span class=cl>agent1.sinks.k1.sink.rollInterval <span class=o>=</span> <span class=m>86400</span>
+</span></span><span class=line><span class=cl>agent1.sinks.k1.channel <span class=o>=</span> c1
+</span></span></code></pre></td></tr></table></div></div><h4 id=the-server-that-sends-logs-to-the-storing-server-there-will-be-many-of-these-agent2-flumeconfflume-agent2conf>The server that sends logs to the storing server (there will be many of these), agent2 (flume/conf/flume-agent2.conf)</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>agent2.sources <span class=o>=</span> r1 r2
+</span></span><span class=line><span class=cl>agent2.channels <span class=o>=</span> c1
+</span></span><span class=line><span class=cl>agent2.sinks <span class=o>=</span> k1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 파일로 부터 로그를 읽어 온다.</span>
+</span></span><span class=line><span class=cl>agent2.sources.r1.type <span class=o>=</span> <span class=nb>exec</span>
+</span></span><span class=line><span class=cl>agent2.sources.r1.command <span class=o>=</span> tail -F /logs/debug.log
+</span></span><span class=line><span class=cl>agent2.sources.r1.channels <span class=o>=</span> c1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>agent2.sources.r2.type <span class=o>=</span> <span class=nb>exec</span>
+</span></span><span class=line><span class=cl>agent2.sources.r2.command <span class=o>=</span> tail -F /logs/info.log
+</span></span><span class=line><span class=cl>agent2.sources.r2.channels <span class=o>=</span> c1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>agent2.channels.c1.type <span class=o>=</span> memory
+</span></span><span class=line><span class=cl>agent2.channels.c1.capacity <span class=o>=</span> <span class=m>10000</span>
+</span></span><span class=line><span class=cl>agent2.channels.c1.transactionCapacity <span class=o>=</span> <span class=m>1000</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 원격의 서버로 전달 한다. (난 로컬에서 테스트 하니까 127.0.0.1:4545)</span>
+</span></span><span class=line><span class=cl>agent2.sinks.k1.type <span class=o>=</span> avro
+</span></span><span class=line><span class=cl>agent2.sinks.k1.channel <span class=o>=</span> c1
+</span></span><span class=line><span class=cl>agent2.sinks.k1.hostname <span class=o>=</span> 127.0.0.1
+</span></span><span class=line><span class=cl>agent2.sinks.k1.port <span class=o>=</span> <span class=m>4545</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>You can specify two sources as above (when the files are different)</strong></p><h3 id=run-the-services>Run the services</h3><p>Run the two configured services separately.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>./bin/flume-ng agent -c ./conf -f ./conf/flume-agent1.conf -n agent1
+</span></span><span class=line><span class=cl>./bin/flume-ng agent -c ./conf -f ./conf/flume-agent2.conf -n agent2
+</span></span></code></pre></td></tr></table></div></div><ul><li><code>-c</code>, <code>--conf</code> config directory</li><li><code>-f</code>, <code>--conf-file</code> config file</li><li><code>-n</code>, <code>--name</code> agent name</li></ul><p>With agent1&rsquo;s sink set to file_roll, files pile up like below.
+The interval can be adjusted with the <code>sink.rollInterval</code> property. (Below is with 30 seconds.)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>gimjonghuiui-MacBook-Pro:flume paper$ ls -l
+</span></span><span class=line><span class=cl>total <span class=m>24</span>
+</span></span><span class=line><span class=cl>-rw-r--r--  <span class=m>1</span> paper  wheel    <span class=m>0</span> <span class=m>10</span> <span class=m>29</span> 15:40 1446100807777-1
+</span></span><span class=line><span class=cl>-rw-r--r--  <span class=m>1</span> paper  wheel   <span class=m>95</span> <span class=m>10</span> <span class=m>29</span> 15:40 1446100818312-1
+</span></span><span class=line><span class=cl>-rw-r--r--  <span class=m>1</span> paper  wheel  <span class=m>519</span> <span class=m>10</span> <span class=m>29</span> 15:41 1446100818312-2
+</span></span><span class=line><span class=cl>-rw-r--r--  <span class=m>1</span> paper  wheel    <span class=m>0</span> <span class=m>10</span> <span class=m>29</span> 15:41 1446100818312-3
+</span></span><span class=line><span class=cl>-rw-r--r--  <span class=m>1</span> paper  wheel  <span class=m>378</span> <span class=m>10</span> <span class=m>29</span> 15:42 1446100818312-4
+</span></span><span class=line><span class=cl>-rw-r--r--  <span class=m>1</span> paper  wheel    <span class=m>0</span> <span class=m>10</span> <span class=m>29</span> 15:42 1446100818312-5
+</span></span><span class=line><span class=cl>-rw-r--r--  <span class=m>1</span> paper  wheel    <span class=m>0</span> <span class=m>10</span> <span class=m>29</span> 15:42 1446100818312-6
+</span></span><span class=line><span class=cl>-rw-r--r--  <span class=m>1</span> paper  wheel    <span class=m>0</span> <span class=m>10</span> <span class=m>29</span> 15:43 1446100818312-7
+</span></span></code></pre></td></tr></table></div></div></div><footer class=post-foot><div class=tags><a href=/tags/centos/>#centos</a><a href=/tags/flume/>#flume</a><a href=/tags/mac/>#mac</a></div><nav class=post-nav><a class=prev href=/en/2015/10/28/spring-sitemesh-setting/><span class=lbl>Previous</span><span class=t>building a website with spring + sitemesh</span></a><a class=next href=/en/2015/10/30/logback-config/><span class=lbl>Next</span><span class=t>Splitting log files by time + size in logback</span></a></nav></footer></article></div></div></div><script>(function(){var t,n,s,o,i,a,l,e=document.documentElement,d="M12 3v2M12 19v2M5 5l1.5 1.5M17.5 17.5L19 19M3 12h2M19 12h2M5 19l1.5-1.5M17.5 6.5L19 5",u="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z";function r(){var t=e.getAttribute("data-theme");return t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches}function c(){var e=document.getElementById("theme-ic");e&&e.setAttribute("d",r()?d:u)}s=document.getElementById("theme"),s&&s.addEventListener("click",function(){var t=r()?"light":"dark";e.setAttribute("data-theme",t);try{localStorage.setItem("theme",t)}catch{}c()}),c(),t=document.getElementById("lang-toggle"),t&&t.addEventListener("click",function(){try{localStorage.setItem("lang",t.getAttribute("data-lang"))}catch{}}),o=document.getElementById("burger"),i=document.getElementById("scrim"),o&&o.addEventListener("click",function(){e.setAttribute("data-nav","open")}),i&&i.addEventListener("click",function(){e.removeAttribute("data-nav")}),n=document.getElementById("q"),n&&(l=[].slice.call(document.querySelectorAll(".row")),a=document.getElementById("empty"),n.addEventListener("input",function(){var t=n.value.trim().toLowerCase(),e=0;l.forEach(function(n){var s=n.textContent.toLowerCase().indexOf(t)!==-1;n.style.display=s?"":"none",s&&e++}),a&&(a.style.display=e?"none":"block")}))})()</script></body></html>

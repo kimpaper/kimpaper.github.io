@@ -1,0 +1,190 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Least-Privilege AWS Account Setup for Harness in a SaaS Environment · paper.archive</title><meta name=description content="When deploying a SaaS service on AWS and connecting Harness for CI/CD, one of the first questions is how Harness should access the AWS account. The easiest option is to create an Access Key and attach AdministratorAccess, but that creates an unnecessarily large blast radius if the credential is ever…"><meta name=keywords content="aws,iam,harness,saas,devops,security"><meta name=author content="페이퍼"><meta name=robots content="index, follow, max-image-preview:large"><link rel=canonical href=https://kimpaper.github.io/en/2026/07/20/harness-aws-limited-account/><link rel=alternate hreflang=ko-KR href=https://kimpaper.github.io/2026/07/20/harness-aws-limited-account/><link rel=alternate hreflang=en-US href=https://kimpaper.github.io/en/2026/07/20/harness-aws-limited-account/><link rel=alternate hreflang=x-default href=https://kimpaper.github.io/en/2026/07/20/harness-aws-limited-account/><meta name=naver-site-verification content="535791f117859cd623dbefcc827eb5a6db94e081"><meta property="og:site_name" content="paper.archive"><meta property="og:type" content="article"><meta property="og:title" content="Least-Privilege AWS Account Setup for Harness in a SaaS Environment"><meta property="og:description" content="When deploying a SaaS service on AWS and connecting Harness for CI/CD, one of the first questions is how Harness should access the AWS account. The easiest option is to create an Access Key and attach AdministratorAccess, but that creates an unnecessarily large blast radius if the credential is ever…"><meta property="og:url" content="https://kimpaper.github.io/en/2026/07/20/harness-aws-limited-account/"><meta property="og:locale" content="en_US"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:image" content="https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"><meta property="og:image:alt" content="Least-Privilege AWS Account Setup for Harness in a SaaS Environment · paper.archive"><meta property="article:published_time" content="2026-07-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-07-20T00:00:00+00:00"><meta property="article:tag" content="aws"><meta property="article:tag" content="iam"><meta property="article:tag" content="harness"><meta property="article:tag" content="saas"><meta property="article:tag" content="devops"><meta property="article:tag" content="security"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Least-Privilege AWS Account Setup for Harness in a SaaS Environment · paper.archive"><meta name=twitter:description content="When deploying a SaaS service on AWS and connecting Harness for CI/CD, one of the first questions is how Harness should access the AWS account. The easiest option is to create an Access Key and attach AdministratorAccess, but that creates an unnecessarily large blast radius if the credential is ever…"><meta name=twitter:image content="https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"><script>(function(){try{var e=localStorage.getItem("theme");e&&document.documentElement.setAttribute("data-theme",e)}catch{}})()</script><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&display=swap"><link rel=stylesheet href=/css/site.min.6582456c081aa0ce24866bc183bc2718f037a40451edb26a9f804553adc470e5.css integrity="sha256-ZYJFbAgaoM4khmvBg7wnGPA3pARR7bJqn4BFU63EcOU="><link rel=icon href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5eE77iPPC90ZXh0Pjwvc3ZnPg=="><script async src="https://www.googletagmanager.com/gtag/js?id=G-ECTTT48V9Y"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ECTTT48V9Y")</script><meta name=google-adsense-account content="ca-pub-8048816011496920"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8048816011496920" crossorigin=anonymous></script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Paper","url":"https://kimpaper.github.io/"},"dateModified":"2026-07-20T00:00:00+00:00","datePublished":"2026-07-20T00:00:00+00:00","description":"When deploying a SaaS service on AWS and connecting Harness for CI/CD, one of the first questions is how Harness should access the AWS account. The easiest option is to create an Access Key and attach AdministratorAccess, but that creates an unnecessarily large blast radius if the credential is ever…","headline":"Least-Privilege AWS Account Setup for Harness in a SaaS Environment","image":["https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"],"inLanguage":"en-US","keywords":"aws, iam, harness, saas, devops, security","mainEntityOfPage":{"@id":"https://kimpaper.github.io/en/2026/07/20/harness-aws-limited-account/","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"},"name":"paper.archive"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://kimpaper.github.io/en/","name":"paper.archive","position":1},{"@type":"ListItem","item":"https://kimpaper.github.io/en/categories/aws/","name":"Aws","position":2},{"@type":"ListItem","item":"https://kimpaper.github.io/en/2026/07/20/harness-aws-limited-account/","name":"Least-Privilege AWS Account Setup for Harness in a SaaS Environment","position":3}]}</script></head><body><div class=scrim id=scrim></div><div class=shell><aside class=index id=sidebar><div class=masthead><a href=/en/ class=wordmark>paper<b>.</b>archive</a><div class=sub>기록 저장소 · from Seoul, Korea</div><div class="range num">2015 — 2026 · 61 entries</div></div><nav class=toc aria-label=categories><details class=grp open><summary><span class=idx>I</span> Tech Notes <span class=chev></span></summary><div class=sub-list><a href=/en/categories/aws/>AWS · Cloud <span class="c num">1</span></a><a href=/en/categories/spring/>Spring · JPA <span class="c num">13</span></a><a href=/en/categories/golang/>Golang <span class="c num">1</span></a><a href=/en/categories/kubernetes/>Kubernetes · Infra <span class="c num">3</span></a><a href=/en/categories/python/>Python <span class="c num">2</span></a><a href=/en/categories/opensource/>Open Source · Data <span class="c num">5</span></a><a href=/en/categories/linux/>CentOS · Linux <span class="c num">11</span></a><a href=/en/categories/dotnet/>.NET <span class="c num">3</span></a></div></details><details class=grp><summary><span class=idx>II</span> Life & K-Food <span class=chev></span></summary><div class=sub-list><a href=/en/categories/diary/>Daily life · Food <span class="c num">13</span></a></div></details><details class=grp><summary><span class=idx>III</span> Misc <span class=chev></span></summary><div class=sub-list><a href=/en/categories/etc/>Tips · Troubleshooting <span class="c num">6</span></a><a href=/en/categories/mac/>Mac · Etc <span class="c num">3</span></a></div></details><div class=toc-flat><a href=/en/archives/><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg> Archive
+</a><a href=/en/tags/><svg viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/><circle cx="12" cy="12" r="2"/></svg> Tags
+</a><a href=/en/about/><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> About
+</a><a href=/2026/07/20/harness-aws-limited-account/ id=lang-toggle data-lang=ko title="한국어로 보기"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+한국어</a></div></nav><div class=index-foot><button class=icon-btn id=theme title=theme aria-label=theme>
+<svg id="theme-ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+</button>
+<a class=icon-btn href=https://github.com/kimpaper title=GitHub aria-label=GitHub><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2.0C7 4.9 5.9 5.2 5.9 5.2a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004.5 11.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V23"/></svg></a>
+<a class=icon-btn href=/en/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<span class=spacer></span>
+<span class=copy>© 페이퍼</span></div></aside><div class=main><header class=topbar><button class="icon-btn hamburger" id=burger aria-label=menu><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class=crumb><a href=/en/>paper.archive</a><span class=sep>/</span><b>Aws</b></div><span class=spacer></span>
+<label class=search><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+<input id=q type=search placeholder="Search this list…" aria-label=search></label></header><div class=content><article class=post><header class=post-head><a class=cat-tag href=/en/categories/aws/>Aws</a><h1 class=post-title>Least-Privilege AWS Account Setup for Harness in a SaaS Environment</h1><div class="post-meta num"><span>2026 · 07 · 20</span>
+<span>6 min read</span>
+<span>Paper</span></div></header><details class=toc-box open><summary>Contents</summary><nav><nav id=TableOfContents><ul><li><a href=#the-short-answer>The short answer</a></li><li><a href=#recommended-architecture>Recommended architecture</a><ul><li><a href=#why-use-a-role>Why use a role?</a></li></ul></li><li><a href=#account-and-role-design>Account and role design</a></li><li><a href=#trust-policy-example>Trust policy example</a></li><li><a href=#permission-policy-example-ecs-deployment>Permission policy example: ECS deployment</a></li><li><a href=#permission-policy-example-terraform-and-iac>Permission policy example: Terraform and IaC</a></li><li><a href=#harness-connector-setup>Harness Connector setup</a></li><li><a href=#operations-checklist>Operations checklist</a></li><li><a href=#the-rules-i-use>The rules I use</a></li><li><a href=#references>References</a></li></ul></nav></nav></details><div class=prose><p>When deploying a SaaS service on AWS and connecting Harness for CI/CD, one of the first questions is <strong>how Harness should access the AWS account</strong>.
+The easiest option is to create an Access Key and attach <code>AdministratorAccess</code>, but that creates an unnecessarily large blast radius if the credential is ever compromised.</p><p>This post describes a setup that allows Harness to deploy AWS resources while granting only the permissions it actually needs.</p><blockquote><p>Assumption: an AWS Connector is configured through Harness Delegate or Harness Platform, and a restricted IAM Role is provided in the target SaaS deployment account.</p></blockquote><h2 id=the-short-answer>The short answer</h2><p>Use the following approach where possible.</p><ol><li><strong>Do not use an IAM User Access Key as the default authentication method.</strong></li><li>Prefer <strong>IAM Role + STS AssumeRole</strong> for Harness access to AWS.</li><li>When the external Harness SaaS assumes the role, include an <strong>External ID</strong> in the trust policy.</li><li>Separate roles by deployment environment.<ul><li><code>harness-dev-deploy-role</code></li><li><code>harness-stg-deploy-role</code></li><li><code>harness-prod-deploy-role</code></li></ul></li><li>Do not try to produce a perfect least-privilege policy immediately. Start small, observe Access Analyzer and CloudTrail, then refine the policy.</li></ol><p>AWS recommends temporary credentials and roles over long-lived IAM user Access Keys. IAM policies should also follow the least-privilege principle by allowing only the actions required for the workload.</p><h2 id=recommended-architecture>Recommended architecture</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>Harness
+</span></span><span class=line><span class=cl>  └─ AWS Connector
+</span></span><span class=line><span class=cl>      ├─ Harness Delegate or Harness Platform credential
+</span></span><span class=line><span class=cl>      └─ STS AssumeRole
+</span></span><span class=line><span class=cl>          └─ AWS target account
+</span></span><span class=line><span class=cl>              └─ harness-*-deploy-role
+</span></span><span class=line><span class=cl>                  ├─ ECR push/pull
+</span></span><span class=line><span class=cl>                  ├─ ECS or EKS deployment
+</span></span><span class=line><span class=cl>                  ├─ S3 artifact access
+</span></span><span class=line><span class=cl>                  ├─ CloudWatch Logs read access
+</span></span><span class=line><span class=cl>                  └─ Only the required IAM PassRole permissions
+</span></span></code></pre></td></tr></table></div></div><h3 id=why-use-a-role>Why use a role?</h3><p>An Access Key is a long-lived credential that remains usable until it is revoked. STS authentication through an IAM Role issues temporary credentials with a limited session duration.</p><p>The target account can also separate two concerns:</p><ul><li>the trust policy controls <strong>who can assume the role</strong></li><li>the permission policy controls <strong>what the assumed role can do</strong></li></ul><p>Harness AWS Connector supports a cross-account role ARN and External ID. The connector&rsquo;s base credential assumes a role in the target account, and that assumed role receives only the permissions required for services such as S3, ECS, EC2, or EKS.</p><h2 id=account-and-role-design>Account and role design</h2><p>For a SaaS environment, I prefer at least the following separation.</p><table><thead><tr><th>Environment</th><th>Purpose</th><th>Harness permissions</th></tr></thead><tbody><tr><td><code>shared</code></td><td>ECR, shared artifacts, CI infrastructure</td><td>Image push/pull and artifact read/write</td></tr><tr><td><code>dev</code></td><td>Development deployments</td><td>Can be broader, but avoid administrator access</td></tr><tr><td><code>stg</code></td><td>Pre-production validation</td><td>Restricted similarly to production</td></tr><tr><td><code>prod</code></td><td>Live customer traffic</td><td>Narrowest permissions and mandatory approval</td></tr></tbody></table><p>Even before adopting AWS Organizations, keep the dev, staging, and production roles separate by name and policy. This reduces migration cost later when accounts are split or Control Tower is introduced.</p><h2 id=trust-policy-example>Trust policy example</h2><p>A role assumed by Harness from outside the target account can begin with a trust policy like this.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;Version&#34;</span><span class=p>:</span> <span class=s2>&#34;2012-10-17&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;Statement&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Effect&#34;</span><span class=p>:</span> <span class=s2>&#34;Allow&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Principal&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;AWS&#34;</span><span class=p>:</span> <span class=s2>&#34;arn:aws:iam::&lt;HARNESS_OR_DELEGATE_ACCOUNT_ID&gt;:role/&lt;HARNESS_BASE_ROLE&gt;&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Action&#34;</span><span class=p>:</span> <span class=s2>&#34;sts:AssumeRole&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Condition&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;StringEquals&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;sts:ExternalId&#34;</span><span class=p>:</span> <span class=s2>&#34;harness:&lt;HARNESS_ACCOUNT_ID&gt;:&lt;SERVICE_NAME&gt;:prod&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>Two points matter here.</p><ul><li>Restrict <code>Principal</code> to a specific AWS account and role whenever possible.</li><li>Use <code>sts:ExternalId</code> to reduce the confused deputy risk.</li></ul><p>An External ID is not a secret like a password. It is an additional control that helps distinguish whether an AssumeRole request made by a third-party service is intended for this specific customer account.</p><h2 id=permission-policy-example-ecs-deployment>Permission policy example: ECS deployment</h2><p>For an ECS/Fargate deployment, the Harness deployment role can start with permissions similar to the following.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;Version&#34;</span><span class=p>:</span> <span class=s2>&#34;2012-10-17&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;Statement&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Sid&#34;</span><span class=p>:</span> <span class=s2>&#34;EcrReadWriteForServiceRepositories&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Effect&#34;</span><span class=p>:</span> <span class=s2>&#34;Allow&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Action&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;ecr:GetAuthorizationToken&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;ecr:BatchCheckLayerAvailability&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;ecr:CompleteLayerUpload&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;ecr:UploadLayerPart&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;ecr:InitiateLayerUpload&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;ecr:PutImage&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;ecr:BatchGetImage&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;ecr:DescribeRepositories&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>],</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Resource&#34;</span><span class=p>:</span> <span class=s2>&#34;*&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Sid&#34;</span><span class=p>:</span> <span class=s2>&#34;EcsDeploy&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Effect&#34;</span><span class=p>:</span> <span class=s2>&#34;Allow&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Action&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;ecs:DescribeClusters&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;ecs:DescribeServices&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;ecs:DescribeTaskDefinition&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;ecs:RegisterTaskDefinition&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;ecs:UpdateService&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;ecs:ListTasks&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;ecs:DescribeTasks&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>],</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Resource&#34;</span><span class=p>:</span> <span class=s2>&#34;*&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Sid&#34;</span><span class=p>:</span> <span class=s2>&#34;PassOnlyTaskRoles&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Effect&#34;</span><span class=p>:</span> <span class=s2>&#34;Allow&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Action&#34;</span><span class=p>:</span> <span class=s2>&#34;iam:PassRole&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Resource&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;arn:aws:iam::&lt;ACCOUNT_ID&gt;:role/&lt;SERVICE_TASK_ROLE&gt;&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;arn:aws:iam::&lt;ACCOUNT_ID&gt;:role/&lt;SERVICE_TASK_EXECUTION_ROLE&gt;&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>],</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Condition&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;StringEquals&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;iam:PassedToService&#34;</span><span class=p>:</span> <span class=s2>&#34;ecs-tasks.amazonaws.com&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Sid&#34;</span><span class=p>:</span> <span class=s2>&#34;CloudWatchLogsRead&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Effect&#34;</span><span class=p>:</span> <span class=s2>&#34;Allow&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Action&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;logs:DescribeLogGroups&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;logs:DescribeLogStreams&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;logs:GetLogEvents&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;logs:FilterLogEvents&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>],</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Resource&#34;</span><span class=p>:</span> <span class=s2>&#34;*&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>In production, reduce <code>Resource: "*"</code> wherever possible. Some actions, such as ECR <code>GetAuthorizationToken</code>, cannot be restricted to a repository resource. A practical approach is to verify the deployment first and then narrow repository, cluster, and service ARNs incrementally.</p><h2 id=permission-policy-example-terraform-and-iac>Permission policy example: Terraform and IaC</h2><p>When Harness uses Terraform to create VPC, ECS, RDS, and other infrastructure, the required permission scope becomes much larger. Do not place every permission into one role. Split the responsibilities instead.</p><table><thead><tr><th>Role</th><th>Responsibility</th></tr></thead><tbody><tr><td><code>harness-iac-plan-role</code></td><td>Read-oriented permissions for <code>terraform plan</code></td></tr><tr><td><code>harness-iac-apply-role</code></td><td>Permissions for <code>terraform apply</code>, used only after approval</td></tr><tr><td><code>harness-app-deploy-role</code></td><td>Application image and service deployment</td></tr></tbody></table><p>Avoid granting broad permissions such as <code>iam:*</code>, <code>organizations:*</code>, <code>account:*</code>, or <code>kms:*</code> from the beginning. When they are required, constrain them with specific paths, prefixes, resources, and tag conditions.</p><h2 id=harness-connector-setup>Harness Connector setup</h2><ol><li>Create <code>harness-prod-deploy-role</code> in the target AWS account.</li><li>Add the Harness-side principal and External ID to the role trust policy.</li><li>Attach a least-privilege permission policy for the deployment type, such as ECS, EKS, Lambda, or Terraform.</li><li>Create an AWS Connector in Harness.</li><li>Select a cross-account role ARN or a Delegate-based AssumeRole authentication method.</li><li>Enter the External ID.</li><li>Run Test connection.</li><li>Review only the failed actions in CloudTrail or Harness logs and add permissions as needed.</li></ol><p>Harness documentation notes that the AWS Connector connection test may require <code>ec2:DescribeRegions</code>. When the test fails even though the actual deployment permissions look correct, check whether this action is missing.</p><h2 id=operations-checklist>Operations checklist</h2><ul><li><input disabled type=checkbox> Enable MFA for the root account</li><li><input disabled type=checkbox> Define expiration and rotation rules for any long-lived Access Key used by Harness</li><li><input disabled type=checkbox> Allow only deployment-related actions in the production role</li><li><input disabled type=checkbox> Restrict <code>iam:PassRole</code> to specific task and task execution roles</li><li><input disabled type=checkbox> Use an External ID</li><li><input disabled type=checkbox> Enable CloudTrail</li><li><input disabled type=checkbox> Use IAM Access Analyzer to inspect external access and unused permissions</li><li><input disabled type=checkbox> Add Harness approval or Change Management stages to production pipelines</li><li><input disabled type=checkbox> Separate connectors for dev, staging, and production</li><li><input disabled type=checkbox> Keep the break-glass administrator account separate and unused during normal operations</li></ul><h2 id=the-rules-i-use>The rules I use</h2><p>CI/CD permissions for a SaaS service need to balance deployment convenience with a small blast radius. I start with these rules.</p><ul><li>Do not give Harness administrator access.</li><li>Separate human identities from automation roles.</li><li>Separate deployment roles by environment.</li><li>Treat <code>PassRole</code> and KMS permissions conservatively.</li><li>First make the deployment work, then immediately reduce permissions using Access Analyzer and CloudTrail evidence.</li></ul><h2 id=references>References</h2><ul><li><a href=https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html>AWS IAM security best practices</a></li><li><a href=https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html>AWS IAM least-privilege policies</a></li><li><a href=https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html>AWS confused deputy problem and External ID</a></li><li><a href=https://developer.harness.io/docs/platform/connectors/cloud-providers/add-aws-connector/>Configure a Harness AWS Connector</a></li><li><a href=https://developer.harness.io/docs/platform/connectors/cloud-providers/ref-cloud-providers/aws-connector-settings-reference>Harness AWS Connector settings reference</a></li></ul></div><footer class=post-foot><div class=tags><a href=/tags/aws/>#aws</a><a href=/tags/iam/>#iam</a><a href=/tags/harness/>#harness</a><a href=/tags/saas/>#saas</a><a href=/tags/devops/>#devops</a><a href=/tags/security/>#security</a></div><nav class=post-nav><a class=prev href=/en/posts/diary/2026-07-19-deungchon-shabu/><span class=lbl>Previous</span><span class=t>Korean Shabu-Shabu at Home — the Three-Act Dinner</span></a><a class=next href=/en/posts/diary/2026-07-21-joinfolia-paju/><span class=lbl>Next</span><span class=t>Plant Shopping at Joinfolia in Paju</span></a></nav></footer></article></div></div></div><script>(function(){var t,n,s,o,i,a,l,e=document.documentElement,d="M12 3v2M12 19v2M5 5l1.5 1.5M17.5 17.5L19 19M3 12h2M19 12h2M5 19l1.5-1.5M17.5 6.5L19 5",u="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z";function r(){var t=e.getAttribute("data-theme");return t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches}function c(){var e=document.getElementById("theme-ic");e&&e.setAttribute("d",r()?d:u)}s=document.getElementById("theme"),s&&s.addEventListener("click",function(){var t=r()?"light":"dark";e.setAttribute("data-theme",t);try{localStorage.setItem("theme",t)}catch{}c()}),c(),t=document.getElementById("lang-toggle"),t&&t.addEventListener("click",function(){try{localStorage.setItem("lang",t.getAttribute("data-lang"))}catch{}}),o=document.getElementById("burger"),i=document.getElementById("scrim"),o&&o.addEventListener("click",function(){e.setAttribute("data-nav","open")}),i&&i.addEventListener("click",function(){e.removeAttribute("data-nav")}),n=document.getElementById("q"),n&&(l=[].slice.call(document.querySelectorAll(".row")),a=document.getElementById("empty"),n.addEventListener("input",function(){var t=n.value.trim().toLowerCase(),e=0;l.forEach(function(n){var s=n.textContent.toLowerCase().indexOf(t)!==-1;n.style.display=s?"":"none",s&&e++}),a&&(a.style.display=e?"none":"block")}))})()</script></body></html>

@@ -1,0 +1,279 @@
+<!doctype html><html lang=ko dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>kubernetes cert-manager · 기록 저장소</title><meta name=description content="kubernetes 에서 ingress 상에서 https를 서비스하는데 지원을 해주는 좋은.. 모듈
+cert manager 설치 (1) 참고 https://cert-manager.io/docs/installation/kubernetes/
+1 2 kubectl create namespace cert-manager kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.13.1/cert-manager.yaml cert m…"><meta name=keywords content="kubernetes,cert-manager,letsencrypt"><meta name=author content="페이퍼"><meta name=robots content="index, follow, max-image-preview:large"><link rel=canonical href=https://kimpaper.github.io/2020/05/13/kubernetes-certmanager/><link rel=alternate hreflang=ko-KR href=https://kimpaper.github.io/2020/05/13/kubernetes-certmanager/><link rel=alternate hreflang=en-US href=https://kimpaper.github.io/en/2020/05/13/kubernetes-certmanager/><link rel=alternate hreflang=x-default href=https://kimpaper.github.io/en/2020/05/13/kubernetes-certmanager/><meta name=naver-site-verification content="535791f117859cd623dbefcc827eb5a6db94e081"><meta property="og:site_name" content="기록 저장소"><meta property="og:type" content="article"><meta property="og:title" content="kubernetes cert-manager"><meta property="og:description" content="kubernetes 에서 ingress 상에서 https를 서비스하는데 지원을 해주는 좋은.. 모듈
+cert manager 설치 (1) 참고 https://cert-manager.io/docs/installation/kubernetes/
+1 2 kubectl create namespace cert-manager kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.13.1/cert-manager.yaml cert m…"><meta property="og:url" content="https://kimpaper.github.io/2020/05/13/kubernetes-certmanager/"><meta property="og:locale" content="ko_KR"><meta property="og:locale:alternate" content="en_US"><meta property="og:image" content="https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"><meta property="og:image:alt" content="kubernetes cert-manager · 기록 저장소"><meta property="article:published_time" content="2020-05-13T11:18:00+00:00"><meta property="article:modified_time" content="2020-05-13T11:18:00+00:00"><meta property="article:tag" content="kubernetes"><meta property="article:tag" content="cert-manager"><meta property="article:tag" content="letsencrypt"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="kubernetes cert-manager · 기록 저장소"><meta name=twitter:description content="kubernetes 에서 ingress 상에서 https를 서비스하는데 지원을 해주는 좋은.. 모듈
+cert manager 설치 (1) 참고 https://cert-manager.io/docs/installation/kubernetes/
+1 2 kubectl create namespace cert-manager kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.13.1/cert-manager.yaml cert m…"><meta name=twitter:image content="https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"><script>(function(){try{var e=localStorage.getItem("theme");e&&document.documentElement.setAttribute("data-theme",e)}catch{}})()</script><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&display=swap"><link rel=stylesheet href=/css/site.min.6582456c081aa0ce24866bc183bc2718f037a40451edb26a9f804553adc470e5.css integrity="sha256-ZYJFbAgaoM4khmvBg7wnGPA3pARR7bJqn4BFU63EcOU="><link rel=icon href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5eE77iPPC90ZXh0Pjwvc3ZnPg=="><script async src="https://www.googletagmanager.com/gtag/js?id=G-ECTTT48V9Y"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ECTTT48V9Y")</script><meta name=google-adsense-account content="ca-pub-8048816011496920"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8048816011496920" crossorigin=anonymous></script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"페이퍼","url":"https://kimpaper.github.io/"},"dateModified":"2020-05-13T11:18:00+00:00","datePublished":"2020-05-13T11:18:00+00:00","description":"kubernetes 에서 ingress 상에서 https를 서비스하는데 지원을 해주는 좋은.. 모듈\ncert manager 설치 (1) 참고 https://cert-manager.io/docs/installation/kubernetes/\n1 2 kubectl create namespace cert-manager kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.13.1/cert-manager.yaml cert m…","headline":"kubernetes cert-manager","image":["https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"],"inLanguage":"ko-KR","keywords":"kubernetes, cert-manager, letsencrypt","mainEntityOfPage":{"@id":"https://kimpaper.github.io/2020/05/13/kubernetes-certmanager/","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://kimpaper.github.io/images/2026-07-17-daebit-1.jpg"},"name":"기록 저장소"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://kimpaper.github.io/","name":"기록 저장소","position":1},{"@type":"ListItem","item":"https://kimpaper.github.io/categories/kubernetes/","name":"Kubernetes","position":2},{"@type":"ListItem","item":"https://kimpaper.github.io/2020/05/13/kubernetes-certmanager/","name":"kubernetes cert-manager","position":3}]}</script></head><body><div class=scrim id=scrim></div><div class=shell><aside class=index id=sidebar><div class=masthead><a href=/ class=wordmark>기록<b>.</b>저장소</a><div class=sub>a developer’s archive</div><div class="range num">2015 — 2026 · 62 entries</div></div><nav class=toc aria-label=categories><details class=grp open><summary><span class=idx>I</span> 기술 블로그 <span class=chev></span></summary><div class=sub-list><a href=/categories/aws/>AWS · 클라우드 <span class="c num">1</span></a><a href=/categories/spring/>Spring · JPA <span class="c num">13</span></a><a href=/categories/golang/>Golang <span class="c num">1</span></a><a href=/categories/kubernetes/>Kubernetes · 인프라 <span class="c num">3</span></a><a href=/categories/python/>Python <span class="c num">2</span></a><a href=/categories/opensource/>오픈소스 · 데이터 <span class="c num">5</span></a><a href=/categories/linux/>CentOS · 리눅스 <span class="c num">11</span></a><a href=/categories/dotnet/>.NET <span class="c num">3</span></a></div></details><details class=grp><summary><span class=idx>II</span> 일상 <span class=chev></span></summary><div class=sub-list><a href=/categories/diary/>일기 · 소소한 기록 <span class="c num">15</span></a></div></details><details class=grp><summary><span class=idx>III</span> 기타 잡지식 <span class=chev></span></summary><div class=sub-list><a href=/categories/etc/>팁 · 트러블슈팅 <span class="c num">6</span></a><a href=/categories/mac/>Mac · 기타 <span class="c num">3</span></a></div></details><div class=toc-flat><a href=/archives/><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg> 전체 아카이브
+</a><a href=/tags/><svg viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/><circle cx="12" cy="12" r="2"/></svg> 태그
+</a><a href=/about/><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> 소개
+</a><a href=/en/2020/05/13/kubernetes-certmanager/ id=lang-toggle data-lang=en title="Read in English"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+English</a></div></nav><div class=index-foot><button class=icon-btn id=theme title=theme aria-label=theme>
+<svg id="theme-ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+</button>
+<a class=icon-btn href=https://github.com/kimpaper title=GitHub aria-label=GitHub><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2.0C7 4.9 5.9 5.2 5.9 5.2a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004.5 11.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V23"/></svg></a>
+<a class=icon-btn href=/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<span class=spacer></span>
+<span class=copy>© 페이퍼</span></div></aside><div class=main><header class=topbar><button class="icon-btn hamburger" id=burger aria-label=menu><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class=crumb><a href=/>기록 저장소</a><span class=sep>/</span><b>Kubernetes</b></div><span class=spacer></span>
+<label class=search><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+<input id=q type=search placeholder="이 목록에서 검색…" aria-label=search></label></header><div class=content><article class=post><header class=post-head><a class=cat-tag href=/categories/kubernetes/>Kubernetes</a><h1 class=post-title>kubernetes cert-manager</h1><div class="post-meta num"><span>2020 · 05 · 13</span>
+<span>4 min read</span>
+<span>페이퍼</span></div></header><details class=toc-box open><summary>목차</summary><nav><nav id=TableOfContents><ul><li><a href=#cert-manager-설치-1>cert manager 설치 (1)</a></li><li><a href=#cert-manager-설치-with-helm>cert manager 설치 (with helm)</a></li><li><a href=#설치-확인>설치 확인</a></li><li><a href=#cert-manager-issuser-example>cert manager issuser example</a></li><li><a href=#kubernetes-dashboard에-적용>kubernetes-dashboard에 적용</a></li><li><a href=#확인>확인..</a></li></ul></nav></nav></details><div class=prose><p>kubernetes 에서 ingress 상에서 https를 서비스하는데 지원을 해주는 좋은.. 모듈</p><h2 id=cert-manager-설치-1>cert manager 설치 (1)</h2><p>참고 <a href=https://cert-manager.io/docs/installation/kubernetes/>https://cert-manager.io/docs/installation/kubernetes/</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl create namespace cert-manager
+</span></span><span class=line><span class=cl>kubectl apply --validate<span class=o>=</span><span class=nb>false</span> -f https://github.com/jetstack/cert-manager/releases/download/v0.13.1/cert-manager.yaml
+</span></span></code></pre></td></tr></table></div></div><h2 id=cert-manager-설치-with-helm>cert manager 설치 (with helm)</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ kubectl apply --validate<span class=o>=</span><span class=nb>false</span> -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.13.1/deploy/manifests/00-crds.yaml
+</span></span><span class=line><span class=cl>$ kubectl create namespace cert-manager
+</span></span><span class=line><span class=cl>$ helm repo add jetstack https://charts.jetstack.io
+</span></span><span class=line><span class=cl>$ helm repo update
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Helm v3+</span>
+</span></span><span class=line><span class=cl>$ helm install <span class=se>\
+</span></span></span><span class=line><span class=cl>  cert-manager jetstack/cert-manager <span class=se>\
+</span></span></span><span class=line><span class=cl>  --namespace cert-manager <span class=se>\
+</span></span></span><span class=line><span class=cl>  --version v0.13.1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Helm v2</span>
+</span></span><span class=line><span class=cl>$ helm install <span class=se>\
+</span></span></span><span class=line><span class=cl>  --name cert-manager <span class=se>\
+</span></span></span><span class=line><span class=cl>  --namespace cert-manager <span class=se>\
+</span></span></span><span class=line><span class=cl>  --version v0.13.1 <span class=se>\
+</span></span></span><span class=line><span class=cl>  jetstack/cert-manager
+</span></span></code></pre></td></tr></table></div></div><h2 id=설치-확인>설치 확인</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl get pods --namespace cert-manager
+</span></span></code></pre></td></tr></table></div></div><ul><li>사실 내용 자체는 <a href=https://cert-manager.io/docs/installation/kubernetes/>https://cert-manager.io/docs/installation/kubernetes/</a> 사이트를 보고 그대로 따라했다.</li><li>중요한건 staging 과 prod가 나뉘어 있다는거고, Issuer 와 ClusterIssuer 가 구분되어 있다는건데 Issuer는 namespace간 발급이 안되므로, 가능하면 ClusterIssuer를 사용하자</li><li>staging 는 환경 테스트에만 사용하고, 성공하면 prod로 바꾸어서 실제 인증서를 발급받아야 한다.</li></ul><h2 id=cert-manager-issuser-example>cert manager issuser example</h2><ul><li>email: <a href=mailto:test@test.com>test@test.com</a> 부분을 실제 email로 교체하라</li><li>다른 부분은 건들 부분이 크게 없다.</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apiVersion: cert-manager.io/v1alpha2
+</span></span><span class=line><span class=cl>kind: ClusterIssuer
+</span></span><span class=line><span class=cl>metadata:
+</span></span><span class=line><span class=cl>  name: letsencrypt-staging
+</span></span><span class=line><span class=cl>spec:
+</span></span><span class=line><span class=cl>  acme:
+</span></span><span class=line><span class=cl>    <span class=c1># The ACME server URL</span>
+</span></span><span class=line><span class=cl>    server: https://acme-staging-v02.api.letsencrypt.org/directory
+</span></span><span class=line><span class=cl>    <span class=c1># Email address used for ACME registration</span>
+</span></span><span class=line><span class=cl>    email: test@test.com
+</span></span><span class=line><span class=cl>    <span class=c1># Name of a secret used to store the ACME account private key</span>
+</span></span><span class=line><span class=cl>    privateKeySecretRef:
+</span></span><span class=line><span class=cl>      name: letsencrypt-staging
+</span></span><span class=line><span class=cl>    <span class=c1># Enable the HTTP-01 challenge provider</span>
+</span></span><span class=line><span class=cl>    solvers:
+</span></span><span class=line><span class=cl>    <span class=c1># An empty &#39;selector&#39; means that this solver matches all domains</span>
+</span></span><span class=line><span class=cl>    - selector: <span class=o>{}</span>
+</span></span><span class=line><span class=cl>      http01:
+</span></span><span class=line><span class=cl>        ingress:
+</span></span><span class=line><span class=cl>          class: nginx
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>---
+</span></span><span class=line><span class=cl>apiVersion: cert-manager.io/v1alpha2
+</span></span><span class=line><span class=cl>kind: ClusterIssuer
+</span></span><span class=line><span class=cl>metadata:
+</span></span><span class=line><span class=cl>  name: letsencrypt-prod
+</span></span><span class=line><span class=cl>spec:
+</span></span><span class=line><span class=cl>  acme:
+</span></span><span class=line><span class=cl>    <span class=c1># The ACME server URL</span>
+</span></span><span class=line><span class=cl>    server: https://acme-v02.api.letsencrypt.org/directory
+</span></span><span class=line><span class=cl>    <span class=c1># Email address used for ACME registration</span>
+</span></span><span class=line><span class=cl>    email: test@test.com
+</span></span><span class=line><span class=cl>    <span class=c1># Name of a secret used to store the ACME account private key</span>
+</span></span><span class=line><span class=cl>    privateKeySecretRef:
+</span></span><span class=line><span class=cl>      name: letsencrypt-prod
+</span></span><span class=line><span class=cl>    <span class=c1># Enable the HTTP-01 challenge provider</span>
+</span></span><span class=line><span class=cl>    solvers:
+</span></span><span class=line><span class=cl>    - http01:
+</span></span><span class=line><span class=cl>        ingress:
+</span></span><span class=line><span class=cl>          class: nginx
+</span></span></code></pre></td></tr></table></div></div><h2 id=kubernetes-dashboard에-적용>kubernetes-dashboard에 적용</h2><ul><li><a href=https://www.test.com>www.test.com</a>; 부분을 원하는 도메인으로 바꾼다.</li><li>발급 테스트가 완료되면</li></ul><p><code>cert-manager.io/cluster-issuer: "letsencrypt-staging"</code></p><p><code>cert-manager.io/cluster-issuer: "letsencrypt-prod"</code></p><ul><li>로 바꾸어 실제 인증서를 발급 받는다.</li><li>주의사항이 있는데 아래 annotoations 에서 <code>nginx.ingress.kubernetes.io/backend-protocol: HTTPS</code> 는 kubernetes/nginx-ingress 에서만 된다. nginx/nginx-ingress 는.. 안된다. 주의하자 (ingress를 다른거 설치해서 굉장히 삽질했다.)</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kind: Ingress
+</span></span><span class=line><span class=cl>apiVersion: extensions/v1beta1
+</span></span><span class=line><span class=cl>metadata:
+</span></span><span class=line><span class=cl>  name: kubernetes-dashboard
+</span></span><span class=line><span class=cl>  namespace: kubernetes-dashboard
+</span></span><span class=line><span class=cl>  labels:
+</span></span><span class=line><span class=cl>    app: kubernetes-dashboard
+</span></span><span class=line><span class=cl>  annotations:
+</span></span><span class=line><span class=cl>    kubernetes.io/ingress.class: nginx
+</span></span><span class=line><span class=cl>    cert-manager.io/cluster-issuer: <span class=s2>&#34;letsencrypt-staging&#34;</span>
+</span></span><span class=line><span class=cl>    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+</span></span><span class=line><span class=cl>spec:
+</span></span><span class=line><span class=cl>  tls:
+</span></span><span class=line><span class=cl>    - hosts:
+</span></span><span class=line><span class=cl>        - www.test.com
+</span></span><span class=line><span class=cl>      secretName: www-test-com-tls
+</span></span><span class=line><span class=cl>  rules:
+</span></span><span class=line><span class=cl>    - host: www.test.com
+</span></span><span class=line><span class=cl>      http:
+</span></span><span class=line><span class=cl>        paths:
+</span></span><span class=line><span class=cl>          - path: /
+</span></span><span class=line><span class=cl>            backend:
+</span></span><span class=line><span class=cl>              serviceName: kubernetes-dashboard
+</span></span><span class=line><span class=cl>              servicePort: <span class=m>443</span>
+</span></span><span class=line><span class=cl>status:
+</span></span><span class=line><span class=cl>  loadBalancer:
+</span></span><span class=line><span class=cl>    ingress:
+</span></span><span class=line><span class=cl>      - <span class=o>{}</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>삽질 과정에서 내부망과 외부망의 도메인 접근이 바뀌어서 고생했는데 일반적인 환경에서는 크게 무리 없을것 같다. (저걸 구축할때 내부망 dns를 사용하는 바람에 실제 verify가 되지 않아 고생했으나 나중에 눈치채고 dns ip를 외부로 바꾸니 잘된다.)</li></ul><h2 id=확인>확인..</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>root@kube1 11<span class=o>]</span><span class=c1># kubectl describe certificate -n nginx-ingress</span>
+</span></span><span class=line><span class=cl>Name:         www.test.com
+</span></span><span class=line><span class=cl>Namespace:    nginx-ingress
+</span></span><span class=line><span class=cl>Labels:       &lt;none&gt;
+</span></span><span class=line><span class=cl>Annotations:  &lt;none&gt;
+</span></span><span class=line><span class=cl>API Version:  cert-manager.io/v1alpha2
+</span></span><span class=line><span class=cl>Kind:         Certificate
+</span></span><span class=line><span class=cl>Metadata:
+</span></span><span class=line><span class=cl>  Creation Timestamp:  2020-03-13T06:02:23Z
+</span></span><span class=line><span class=cl>  Generation:          <span class=m>1</span>
+</span></span><span class=line><span class=cl>  Owner References:
+</span></span><span class=line><span class=cl>    API Version:           extensions/v1beta1
+</span></span><span class=line><span class=cl>    Block Owner Deletion:  <span class=nb>true</span>
+</span></span><span class=line><span class=cl>    Controller:            <span class=nb>true</span>
+</span></span><span class=line><span class=cl>    Kind:                  Ingress
+</span></span><span class=line><span class=cl>    Name:                  www.test.com
+</span></span><span class=line><span class=cl>    UID:                   a7d05229-a8cb-405a-80f7-424b0d00a71b
+</span></span><span class=line><span class=cl>  Resource Version:        <span class=m>44540390</span>
+</span></span><span class=line><span class=cl>  Self Link:               /apis/cert-manager.io/v1alpha2/namespaces/nginx-ingress/certificates/<span class=nv>$$$$$$$$</span>$
+</span></span><span class=line><span class=cl>  UID:                     2e762fbc-2111-4b72-ae75-319f8d018be9
+</span></span><span class=line><span class=cl>Spec:
+</span></span><span class=line><span class=cl>  Dns Names:
+</span></span><span class=line><span class=cl>    www.test.com
+</span></span><span class=line><span class=cl>  Issuer Ref:
+</span></span><span class=line><span class=cl>    Group:      cert-manager.io
+</span></span><span class=line><span class=cl>    Kind:       ClusterIssuer
+</span></span><span class=line><span class=cl>    Name:       letsencrypt-prod
+</span></span><span class=line><span class=cl>  Secret Name:  <span class=c1>###########</span>
+</span></span><span class=line><span class=cl>Status:
+</span></span><span class=line><span class=cl>  Conditions:
+</span></span><span class=line><span class=cl>    Last Transition Time:  2020-03-13T06:03:27Z
+</span></span><span class=line><span class=cl>    Message:               Certificate is up to date and has not expired
+</span></span><span class=line><span class=cl>    Reason:                Ready
+</span></span><span class=line><span class=cl>    Status:                True
+</span></span><span class=line><span class=cl>    Type:                  Ready
+</span></span><span class=line><span class=cl>  Not After:               2020-06-11T05:03:26Z
+</span></span><span class=line><span class=cl>Events:
+</span></span><span class=line><span class=cl>  Type    Reason     Age        From          Message
+</span></span><span class=line><span class=cl>  ----    ------     ----       ----          -------
+</span></span><span class=line><span class=cl>  Normal  Requested  52s        cert-manager  Created new CertificateRequest resource <span class=s2>&#34;cgitlab-p-exem-xyz-3450475095&#34;</span>
+</span></span><span class=line><span class=cl>  Normal  Issued     &lt;invalid&gt;  cert-manager  Certificate issued successfully
+</span></span></code></pre></td></tr></table></div></div><ul><li><code>Normal Issued &lt;invalid> cert-manager Certificate issued successfully</code> successfully가 뜨면 성공이다.</li></ul></div><footer class=post-foot><div class=tags><a href=/tags/kubernetes/>#kubernetes</a><a href=/tags/cert-manager/>#cert-manager</a><a href=/tags/letsencrypt/>#letsencrypt</a></div><nav class=post-nav><a class=prev href=/posts/kube/2020-05-13-kubernetes-glusterfs/><span class=lbl>이전 글</span><span class=t>kubernetes glusterfs 연동</span></a><a class=next href=/posts/golang/2022-03-28-golang_profiler/><span class=lbl>다음 글</span><span class=t>golang profiler 사용</span></a></nav></footer></article></div></div></div><script>(function(){var t,n,s,o,i,a,l,e=document.documentElement,d="M12 3v2M12 19v2M5 5l1.5 1.5M17.5 17.5L19 19M3 12h2M19 12h2M5 19l1.5-1.5M17.5 6.5L19 5",u="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z";function r(){var t=e.getAttribute("data-theme");return t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches}function c(){var e=document.getElementById("theme-ic");e&&e.setAttribute("d",r()?d:u)}s=document.getElementById("theme"),s&&s.addEventListener("click",function(){var t=r()?"light":"dark";e.setAttribute("data-theme",t);try{localStorage.setItem("theme",t)}catch{}c()}),c(),t=document.getElementById("lang-toggle"),t&&t.addEventListener("click",function(){try{localStorage.setItem("lang",t.getAttribute("data-lang"))}catch{}}),o=document.getElementById("burger"),i=document.getElementById("scrim"),o&&o.addEventListener("click",function(){e.setAttribute("data-nav","open")}),i&&i.addEventListener("click",function(){e.removeAttribute("data-nav")}),n=document.getElementById("q"),n&&(l=[].slice.call(document.querySelectorAll(".row")),a=document.getElementById("empty"),n.addEventListener("input",function(){var t=n.value.trim().toLowerCase(),e=0;l.forEach(function(n){var s=n.textContent.toLowerCase().indexOf(t)!==-1;n.style.display=s?"":"none",s&&e++}),a&&(a.style.display=e?"none":"block")}))})()</script></body></html>
