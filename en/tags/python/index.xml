@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Python on paper.archive</title>
+    <link>https://paper.kim/en/tags/python/</link>
+    <description>Recent content in Python on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 08 Jun 2016 15:32:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Getting average response time, call count, Min, Max on a restful api server</title>
+      <link>https://paper.kim/en/2016/06/08/apachelog/</link>
+      <pubDate>Wed, 08 Jun 2016 15:32:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2016/06/08/apachelog/</guid>
+      <description>There&amp;#39;s an api server that handles data traffic from an app I computed the average response time per interface using the apache logs For the hadoop,…</description>
+    </item>
+    <item>
+      <title>Analyzing log files with Python and Spark (with hadoop)</title>
+      <link>https://paper.kim/en/posts/opensource/2016-05-30-spark-hadoop/</link>
+      <pubDate>Mon, 30 May 2016 16:35:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/opensource/2016-05-30-spark-hadoop/</guid>
+      <description>Installing and running Hadoop, then analyzing files with Spark. Done on OSX, written up in order from configuration to execution.</description>
+    </item>
+    <item>
+      <title>A simple webserver check with Python</title>
+      <link>https://paper.kim/en/posts/python/2016-02-17-python-http-request/</link>
+      <pubDate>Wed, 17 Feb 2016 11:41:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/python/2016-02-17-python-http-request/</guid>
+      <description>I&amp;#39;ve been studying python lately, so as practice I made a simple program that checks every 10 seconds whether a webserver is dead.</description>
+    </item>
+    <item>
+      <title>Installing Python3 on CentOS 6</title>
+      <link>https://paper.kim/en/posts/python/2016-02-12-install-python3/</link>
+      <pubDate>Fri, 12 Feb 2016 16:53:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/python/2016-02-12-install-python3/</guid>
+      <description>Installing Python3 on CentOS 6. Command line to install 3.5.1 on centos 6.</description>
+    </item>
+  </channel>
+</rss>

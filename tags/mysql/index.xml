@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Mysql on 기록 저장소</title>
+    <link>https://paper.kim/tags/mysql/</link>
+    <description>Recent content in Mysql on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Tue, 15 Dec 2015 14:55:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mariadb Query test할때 cache 안먹게 하기</title>
+      <link>https://paper.kim/posts/etc/2015-12-15-mysql-cache-reset/</link>
+      <pubDate>Tue, 15 Dec 2015 14:55:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/etc/2015-12-15-mysql-cache-reset/</guid>
+      <description>MySQL 쿼리 튜닝할 때 RESET QUERY CACHE로 캐시를 비우고 캐시가 걸리지 않은 실제 실행 결과를 확인하는 방법.</description>
+    </item>
+    <item>
+      <title>mysql, mariadb에서 유니코드(utf8mb4) 지원하기</title>
+      <link>https://paper.kim/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</link>
+      <pubDate>Tue, 10 Feb 2015 20:48:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</guid>
+      <description>MySQL과 MariaDB에서 이모지까지 저장하려고 문자셋을 utf8에서 utf8mb4로 바꾼 과정. 서버 설정과 실제 컬럼 타입 변경까지.</description>
+    </item>
+  </channel>
+</rss>

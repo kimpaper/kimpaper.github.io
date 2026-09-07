@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>.Net on 기록 저장소</title>
+    <link>https://paper.kim/tags/.net/</link>
+    <description>Recent content in .Net on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 15 Oct 2015 12:13:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/.net/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WPF(c#)에서 control을 png로 저장</title>
+      <link>https://paper.kim/posts/dotnet/2015-10-16-wpf-control-save-to-png/</link>
+      <pubDate>Thu, 15 Oct 2015 12:13:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/dotnet/2015-10-16-wpf-control-save-to-png/</guid>
+      <description>예전에 했던 대로 System.Drawing 을 써서 하려고 했는데.. wpf에 이런 기능이 있었네..</description>
+    </item>
+    <item>
+      <title>.NET Framework 4.5.2로 개발했다가. 4.0로... 내림 </title>
+      <link>https://paper.kim/posts/dotnet/2015-09-17-net-framework-452-40/</link>
+      <pubDate>Wed, 16 Sep 2015 20:21:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/dotnet/2015-09-17-net-framework-452-40/</guid>
+      <description>최근에 윈도우 어플을 개발할 일이 생겼다. .NET 4.5부터 async 문법이 새로 들어갔다 해서.. 이왕 하는거 4.5.2로... 만들기로 했다. 오...... 엄청나게 편리하다.!! async, await 두개가 중요하다.</description>
+    </item>
+  </channel>
+</rss>

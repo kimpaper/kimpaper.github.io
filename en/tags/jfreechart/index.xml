@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Jfreechart on paper.archive</title>
+    <link>https://paper.kim/en/tags/jfreechart/</link>
+    <description>Recent content in Jfreechart on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 01 Jul 2015 20:33:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/jfreechart/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Korean fonts in JFreeChart (CentOS font setup)</title>
+      <link>https://paper.kim/en/posts/centos/2015-07-02-jfreechart-centos/</link>
+      <pubDate>Wed, 01 Jul 2015 20:33:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-07-02-jfreechart-centos/</guid>
+      <description>I&amp;#39;m using JFreeChart, and when it runs on Tomcat, Korean text renders as broken boxes. Put the font files in /usr/share/fonts and run fc-cache -fv.</description>
+    </item>
+  </channel>
+</rss>

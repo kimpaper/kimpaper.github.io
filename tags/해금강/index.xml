@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>해금강 on 기록 저장소</title>
+    <link>https://paper.kim/tags/%ED%95%B4%EA%B8%88%EA%B0%95/</link>
+    <description>Recent content in 해금강 on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Sat, 11 Jul 2026 14:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/%ED%95%B4%EA%B8%88%EA%B0%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>거제도 해금강 유람선 — 갈매기와 절벽 사이</title>
+      <link>https://paper.kim/posts/diary/2026-07-11-geoje-haegeumgang/</link>
+      <pubDate>Sat, 11 Jul 2026 14:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-11-geoje-haegeumgang/</guid>
+      <description>거제도에 가서 해금강 유람선을 탔다. 배가 출발하자 갈매기들이 기다렸다는 듯 주변으로 몰려들었다. 새우깡을 든 손 가까이까지 날아오는 모습이 신기해서 한동안 바다보다 갈매기를 더 많이 바라봤다.</description>
+    </item>
+  </channel>
+</rss>

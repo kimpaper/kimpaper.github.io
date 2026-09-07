@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Svn on paper.archive</title>
+    <link>https://paper.kim/en/tags/svn/</link>
+    <description>Recent content in Svn on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 04 Mar 2015 17:33:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/svn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>git command collection</title>
+      <link>https://paper.kim/en/posts/centos/2015-03-05-git/</link>
+      <pubDate>Wed, 04 Mar 2015 17:33:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-03-05-git/</guid>
+      <description>A collection of git commands: migrating from svn, handling ignore files, setting remotes, dealing with tags and branches, reverting local commits, and backup and restore.</description>
+    </item>
+  </channel>
+</rss>

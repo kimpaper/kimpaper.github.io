@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Linux on paper.archive</title>
+    <link>https://paper.kim/en/categories/linux/</link>
+    <description>Recent content in Linux on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 11 Aug 2016 16:07:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Login with an ssh key</title>
+      <link>https://paper.kim/en/posts/centos/2016-08-11-ssh-key-login/</link>
+      <pubDate>Thu, 11 Aug 2016 16:07:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2016-08-11-ssh-key-login/</guid>
+      <description>Set up an ssh key on macOS so you can log into the server without typing a password Normally I don&amp;#39;t do this, for security.</description>
+    </item>
+    <item>
+      <title>Logging into an AWS EC2 server with a password</title>
+      <link>https://paper.kim/en/2016/04/08/amazon-ec2-root-pwd/</link>
+      <pubDate>Fri, 08 Apr 2016 11:33:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2016/04/08/amazon-ec2-root-pwd/</guid>
+      <description>AWS ec2 servers block ssh access with a password by default. Let&amp;#39;s edit the file below to allow it.</description>
+    </item>
+    <item>
+      <title>Switching Flume&#39;s default logging from log4j to logback</title>
+      <link>https://paper.kim/en/posts/centos/2015-10-30-flume-logback-sink/</link>
+      <pubDate>Fri, 30 Oct 2015 18:13:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-10-30-flume-logback-sink/</guid>
+      <description>These turned out to be bigger downsides than expected, so I made a simple sink project.</description>
+    </item>
+    <item>
+      <title>Flume install and test (mac)</title>
+      <link>https://paper.kim/en/posts/centos/2015-10-29-flume-setting-sample/</link>
+      <pubDate>Thu, 29 Oct 2015 15:51:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-10-29-flume-setting-sample/</guid>
+      <description>Installing Flume and a basic flume.conf sample, from setting JAVA_HOME to configuring sources, channels and sinks.</description>
+    </item>
+    <item>
+      <title>Setting up a server on DigitalOcean (CentOS 6.7)</title>
+      <link>https://paper.kim/en/posts/centos/2015-09-16-centos-67/</link>
+      <pubDate>Tue, 15 Sep 2015 20:40:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-09-16-centos-67/</guid>
+      <description>Set up a server for a simple messaging app I&amp;#39;m building with a friend. Of course I don&amp;#39;t really know what I&amp;#39;m doing. Everything comes from Google..</description>
+    </item>
+    <item>
+      <title>Korean fonts in JFreeChart (CentOS font setup)</title>
+      <link>https://paper.kim/en/posts/centos/2015-07-02-jfreechart-centos/</link>
+      <pubDate>Wed, 01 Jul 2015 20:33:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-07-02-jfreechart-centos/</guid>
+      <description>I&amp;#39;m using JFreeChart, and when it runs on Tomcat, Korean text renders as broken boxes. Put the font files in /usr/share/fonts and run fc-cache -fv.</description>
+    </item>
+    <item>
+      <title>When Apache returns 403 errors</title>
+      <link>https://paper.kim/en/posts/centos/2015-03-27-403/</link>
+      <pubDate>Fri, 27 Mar 2015 01:47:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-03-27-403/</guid>
+      <description>If you&amp;#39;ve tried everything and still keep getting 403..</description>
+    </item>
+    <item>
+      <title>git command collection</title>
+      <link>https://paper.kim/en/posts/centos/2015-03-05-git/</link>
+      <pubDate>Wed, 04 Mar 2015 17:33:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-03-05-git/</guid>
+      <description>A collection of git commands: migrating from svn, handling ignore files, setting remotes, dealing with tags and branches, reverting local commits, and backup and restore.</description>
+    </item>
+    <item>
+      <title>Unicode (utf8mb4) support in MySQL and MariaDB</title>
+      <link>https://paper.kim/en/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</link>
+      <pubDate>Tue, 10 Feb 2015 20:48:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</guid>
+      <description>Switching MySQL and MariaDB from utf8 to utf8mb4 so emoji can be stored, covering both the server settings and the actual column type changes.</description>
+    </item>
+    <item>
+      <title>CentOS command collection</title>
+      <link>https://paper.kim/en/posts/centos/2015-02-06-blog-post_21/</link>
+      <pubDate>Thu, 05 Feb 2015 17:42:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-02-06-blog-post_21/</guid>
+      <description>A collection of CentOS commands: locating installed programs, deleting old logs, editing hosts and DNS, checking OS bits and version, installing fonts, editing crond, and finding and killing Tomcat processes.</description>
+    </item>
+    <item>
+      <title>When Tomcat keeps throwing OutOfMemory</title>
+      <link>https://paper.kim/en/posts/centos/2015-02-06-tomcat-outofmemory/</link>
+      <pubDate>Thu, 05 Feb 2015 17:10:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-02-06-tomcat-outofmemory/</guid>
+      <description>Fixing frequent Tomcat OutOfMemory errors by setting CATALINA_OPTS at the top of catalina.sh to raise heap and PermGen size.</description>
+    </item>
+  </channel>
+</rss>

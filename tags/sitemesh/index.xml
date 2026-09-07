@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Sitemesh on 기록 저장소</title>
+    <link>https://paper.kim/tags/sitemesh/</link>
+    <description>Recent content in Sitemesh on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Wed, 28 Oct 2015 17:08:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/sitemesh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>spring &#43; sitemesh 웹사이트 구축</title>
+      <link>https://paper.kim/2015/10/28/spring-sitemesh-setting/</link>
+      <pubDate>Wed, 28 Oct 2015 17:08:00 +0000</pubDate>
+      <guid>https://paper.kim/2015/10/28/spring-sitemesh-setting/</guid>
+      <description>sitemesh를 설정을 해보겠습니다. sitemesh.xml파일은 수정할 부분이 거의 없습니다 (decorators.xml파일 경로) 셋팅은 위와 같이 xml만 넣어주면 완료됩니다. - 에는 decorator를 적용하지 않을 url패턴을 입력합니다.</description>
+    </item>
+  </channel>
+</rss>

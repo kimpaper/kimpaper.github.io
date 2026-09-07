@@ -1,0 +1,1104 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>redis data types · paper.archive</title><meta name=description content="Strings, Lists, Sets, Hashes, Sorted sets and Bitmaps, plus HyperLogLog, Geo and Streams. Every example run against redis-cli, with notes on which type to reach for"><meta name=keywords content="redis"><meta name=author content="페이퍼"><meta name=robots content="index, follow, max-image-preview:large"><link rel=canonical href=https://paper.kim/en/2016/07/27/redis-datatype/><link rel=alternate hreflang=ko-KR href=https://paper.kim/2016/07/27/redis-datatype/><link rel=alternate hreflang=en-US href=https://paper.kim/en/2016/07/27/redis-datatype/><link rel=alternate hreflang=x-default href=https://paper.kim/en/2016/07/27/redis-datatype/><meta name=google-site-verification content="y1M38dn7tn_g66ZU4sW9oodCBS79uDleUIpnFABhR_I"><meta name=naver-site-verification content="d4c08a44984bf4ebeb4b26f639fedfb26163b6e3"><meta property="og:site_name" content="paper.archive"><meta property="og:type" content="article"><meta property="og:title" content="redis data types"><meta property="og:description" content="Strings, Lists, Sets, Hashes, Sorted sets and Bitmaps, plus HyperLogLog, Geo and Streams. Every example run against redis-cli, with notes on which type to reach for"><meta property="og:url" content="https://paper.kim/en/2016/07/27/redis-datatype/"><meta property="og:locale" content="en_US"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:image" content="https://paper.kim/images/default-thumb.jpg"><meta property="og:image:alt" content="redis data types"><meta property="article:published_time" content="2016-07-27T14:32:00+00:00"><meta property="article:modified_time" content="2016-07-27T14:32:00+00:00"><meta property="article:tag" content="redis"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="redis data types"><meta name=twitter:description content="Strings, Lists, Sets, Hashes, Sorted sets and Bitmaps, plus HyperLogLog, Geo and Streams. Every example run against redis-cli, with notes on which type to reach for"><meta name=twitter:domain content="paper.kim"><meta name=twitter:image content="https://paper.kim/images/default-thumb.jpg"><script>(function(){try{var e=localStorage.getItem("theme");e&&document.documentElement.setAttribute("data-theme",e)}catch{}})()</script><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css onload='this.onload=null,this.rel="stylesheet"'><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap"></noscript><link rel=stylesheet href=/css/site.min.4016cb5265290cd3e09ce8cb43c26d23e143347225282a595297fe9ed9e17c2f.css integrity="sha256-QBbLUmUpDNPgnOjLQ8JtI+FDNHIlKCpZUpf+ntnhfC8="><link rel=icon href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5eE77iPPC90ZXh0Pjwvc3ZnPg=="><script async src="https://www.googletagmanager.com/gtag/js?id=G-ECTTT48V9Y"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ECTTT48V9Y")</script><meta name=google-adsense-account content="ca-pub-8048816011496920"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8048816011496920" crossorigin=anonymous></script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Paper","url":"https://paper.kim/"},"dateModified":"2016-07-27T14:32:00+00:00","datePublished":"2016-07-27T14:32:00+00:00","description":"Strings, Lists, Sets, Hashes, Sorted sets and Bitmaps, plus HyperLogLog, Geo and Streams. Every example run against redis-cli, with notes on which type to reach for","headline":"redis data types","image":["https://paper.kim/images/default-thumb.jpg"],"inLanguage":"en-US","keywords":"redis","mainEntityOfPage":{"@id":"https://paper.kim/en/2016/07/27/redis-datatype/","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://paper.kim/images/site-logo.png"},"name":"paper.archive"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://paper.kim/en/","name":"paper.archive","position":1},{"@type":"ListItem","item":"https://paper.kim/en/categories/opensource/","name":"Opensource","position":2},{"@type":"ListItem","item":"https://paper.kim/en/2016/07/27/redis-datatype/","name":"redis data types","position":3}]}</script></head><body><div class=scrim id=scrim></div><div class=shell><aside class=index id=sidebar><div class=masthead><a href=/en/ class=wordmark>paper<b>.</b>archive</a><div class=sub>기록 저장소 · from Seoul, Korea</div><div class="range num">2015 — 2026 · 70 entries</div></div><nav class=toc aria-label=categories><details class=grp open><summary><span class=idx>I</span> Tech Notes <span class=chev></span></summary><div class=sub-list><a href=/en/categories/ai/>AI · LLM <span class="c num">5</span></a><a href=/en/categories/aws/>AWS · Cloud <span class="c num">1</span></a><a href=/en/categories/spring/>Spring · JPA <span class="c num">13</span></a><a href=/en/categories/golang/>Golang <span class="c num">1</span></a><a href=/en/categories/kubernetes/>Kubernetes · Infra <span class="c num">3</span></a><a href=/en/categories/python/>Python <span class="c num">2</span></a><a href=/en/categories/opensource/>Open Source · Data <span class="c num">5</span></a><a href=/en/categories/linux/>CentOS · Linux <span class="c num">11</span></a><a href=/en/categories/dotnet/>.NET <span class="c num">3</span></a></div></details><details class=grp><summary><span class=idx>II</span> Life & K-Food <span class=chev></span></summary><div class=sub-list><a href=/en/categories/diary/>Daily life · Food <span class="c num">17</span></a></div></details><details class=grp><summary><span class=idx>III</span> Misc <span class=chev></span></summary><div class=sub-list><a href=/en/categories/etc/>Tips · Troubleshooting <span class="c num">6</span></a><a href=/en/categories/mac/>Mac · Etc <span class="c num">3</span></a></div></details><div class=toc-flat><a href=/en/archives/><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg> Archive
+</a><a href=/en/tags/><svg viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/><circle cx="12" cy="12" r="2"/></svg> Tags
+</a><a href=/en/about/><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> About
+</a><a href=/2016/07/27/redis-datatype/ id=lang-toggle data-lang=ko title="한국어로 보기"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+한국어</a></div></nav><div class=index-foot><button class=icon-btn id=theme title=theme aria-label=theme>
+<svg id="theme-ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+</button>
+<a class=icon-btn href=https://github.com/kimpaper title=GitHub aria-label=GitHub><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2.0C7 4.9 5.9 5.2 5.9 5.2a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004.5 11.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V23"/></svg></a>
+<a class=icon-btn href=/en/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<span class=spacer></span>
+<span class=copy>© 페이퍼</span></div></aside><div class=main><header class=topbar><button class="icon-btn hamburger" id=burger aria-label=menu><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class=crumb><a href=/en/>paper.archive</a><span class=sep>/</span><b>Opensource</b></div><span class=spacer></span>
+<label class=search><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+<input id=q type=search placeholder="Search this list…" aria-label=search></label></header><main class=content id=content><article class=post><header class=post-head><a class=cat-tag href=/en/categories/opensource/>Opensource</a><h1 class=post-title>redis data types</h1><div class="post-meta num"><span>2016 · 07 · 27</span>
+<span>21 min read</span>
+<span>Paper</span></div></header><details class=toc-box open><summary>Contents</summary><nav><nav id=TableOfContents><ul><li><a href=#redis-data-type-summary>Redis Data Type Summary</a></li><li><a href=#before-the-types-themselves>Before the types themselves</a><ul><li><a href=#one-key-one-type>One key, one type</a></li><li><a href=#type--exists--del>type / exists / del</a></li><li><a href=#expiry-expire--ttl>Expiry (expire / ttl)</a></li><li><a href=#scan-not-keys>scan, not keys</a></li></ul></li><li><a href=#strings>Strings</a><ul><li><a href=#counters>Counters</a></li><li><a href=#storing-with-expiry-sessions>Storing with expiry (sessions)</a></li><li><a href=#nx-as-a-rough-lock>nx as a rough lock</a></li><li><a href=#several-at-once>Several at once</a></li><li><a href=#string-manipulation>String manipulation</a></li></ul></li><li><a href=#lists>Lists</a><ul><li><a href=#queues>Queues</a></li><li><a href=#blocking-with-brpop>Blocking with brpop</a></li><li><a href=#ltrim-to-keep-only-the-last-n>ltrim to keep only the last N</a></li><li><a href=#removing-values-inserting-in-the-middle>Removing values, inserting in the middle</a></li><li><a href=#lmove-for-a-queue-that-doesnt-drop-work>lmove for a queue that doesn&rsquo;t drop work</a></li></ul></li><li><a href=#sets>Sets</a><ul><li><a href=#cardinality-membership-removal>Cardinality, membership, removal</a></li><li><a href=#set-operations>Set operations</a></li><li><a href=#random-members>Random members</a></li></ul></li><li><a href=#hashes>Hashes</a><ul><li><a href=#multiple-fields-at-once>Multiple fields at once</a></li><li><a href=#per-field-counters>Per-field counters</a></li><li><a href=#why-a-hash-instead-of-several-strings>Why a hash instead of several strings</a></li><li><a href=#only-cheap-while-small>Only cheap while small</a></li></ul></li><li><a href=#sorted-sets>Sorted sets</a><ul><li><a href=#leaderboards>Leaderboards</a></li><li><a href=#selecting-by-score-range>Selecting by score range</a></li><li><a href=#a-timestamp-as-the-score-gives-you-a-delayed-queue>A timestamp as the score gives you a delayed queue</a></li><li><a href=#keeping-only-the-best-score>Keeping only the best score</a></li></ul></li><li><a href=#bitmaps>Bitmaps</a><ul><li><a href=#daily-visits>Daily visits</a></li><li><a href=#how-much-it-actually-saves>How much it actually saves</a></li></ul></li><li><a href=#hyperloglog>HyperLogLog</a></li><li><a href=#geo>Geo</a></li><li><a href=#streams>Streams</a><ul><li><a href=#consumer-groups>Consumer groups</a></li><li><a href=#capping-growth>Capping growth</a></li></ul></li><li><a href=#which-type-for-what>Which type for what</a></li><li><a href=#references>References</a></li></ul></nav></nav></details><div class=prose><h2 id=redis-data-type-summary>Redis Data Type Summary</h2><p>There are plenty of good resources on the internet, but I&rsquo;m writing this up as study</p><p>Testing is done with <code>redis-cli</code>, but for real use I&rsquo;d probably use an <code>api library</code> for the language</p><blockquote><p>Note. Coming back to this about ten years later, a lot was missing. I re-ran every
+example and filled in the gaps. The output below is from Redis 7.0, so it may differ
+slightly from older versions.</p></blockquote><p>The official docs to read are these two:</p><ul><li>Overview: <a href=http://redis.io/topics/data-types-intro>http://redis.io/topics/data-types-intro</a></li><li>Examples: <a href=http://redis.io/topics/data-types>http://redis.io/topics/data-types</a></li></ul><hr><h2 id=before-the-types-themselves>Before the types themselves</h2><p>A few things apply to every key regardless of type. Not knowing these causes
+confusion later.</p><h3 id=one-key-one-type>One key, one type</h3><p>A key holds exactly one type. Create it as a string and run a list command on it
+and you get an error right away.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> k hello
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lpush k world
+</span></span><span class=line><span class=cl><span class=o>(</span>error<span class=o>)</span> WRONGTYPE Operation against a key holding the wrong kind of value
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hget k f
+</span></span><span class=line><span class=cl><span class=o>(</span>error<span class=o>)</span> WRONGTYPE Operation against a key holding the wrong kind of value
+</span></span></code></pre></td></tr></table></div></div><p><code>WRONGTYPE</code> almost always means key names collided. That&rsquo;s why the convention is
+to namespace key names with colons, like <code>user:1000:name</code>.</p><h3 id=type--exists--del>type / exists / del</h3><p>When you don&rsquo;t know what type a key holds, use <code>type</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> mykey hello
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>type</span> mykey
+</span></span><span class=line><span class=cl>string
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; exists mykey
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; del mykey
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; exists mykey
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=expiry-expire--ttl>Expiry (expire / ttl)</h3><p>The most important one if you&rsquo;re using Redis as a cache. <code>expire</code> sets seconds,
+<code>ttl</code> reads it back.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> mykey hello
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; expire mykey <span class=m>60</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ttl mykey
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>60</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; persist mykey
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ttl mykey
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> -1
+</span></span></code></pre></td></tr></table></div></div><p><code>ttl</code> has three kinds of return value, which trips people up:</p><ul><li>positive: seconds remaining</li><li><code>-1</code>: the key exists but has no expiry</li><li><code>-2</code>: the key doesn&rsquo;t exist at all</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; ttl nokey
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> -2
+</span></span></code></pre></td></tr></table></div></div><p>Also, <strong>expiry is per key, not per field.</strong> There&rsquo;s no way to expire a single
+field of a hash 30 seconds from now. Deleting a field leaves the key&rsquo;s TTL alone.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; hset cart:1 item1 <span class=m>2</span> item2 <span class=m>3</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; expire cart:1 <span class=m>100</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ttl cart:1
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>100</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hdel cart:1 item1
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ttl cart:1
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>100</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=scan-not-keys>scan, not keys</h3><p><code>keys *</code> is convenient, but Redis is single threaded, so with many keys the whole
+server stalls while it runs. In production use <code>scan</code> and walk a cursor.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; scan <span class=m>0</span> match <span class=s2>&#34;user:*&#34;</span> count <span class=m>100</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;0&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;user:1&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> <span class=s2>&#34;user:3&#34;</span>
+</span></span><span class=line><span class=cl>   3<span class=o>)</span> <span class=s2>&#34;user:2&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>The first value is the next cursor; <code>0</code> means you&rsquo;ve been all the way around.
+<code>count</code> is a hint rather than an exact size, so you can&rsquo;t predict how many come back.</p><hr><h2 id=strings>Strings</h2><ul><li>Stores characters, numbers, etc. as values</li><li>No separate type on save (no distinction between numbers and strings)</li><li>Numbers can be stored too, and atomic counter operations like <code>incr</code>, <code>incrby</code>, <code>decr</code>, <code>decrby</code> are possible on them</li><li><code>incrby</code>, <code>decrby</code> add or subtract a specific number, used like <code>incrby "test_strings" 10</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># redis-cli</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> <span class=s2>&#34;test_strings&#34;</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; get <span class=s2>&#34;test_strings&#34;</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;1&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; incr <span class=s2>&#34;test_strings&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; get <span class=s2>&#34;test_strings&#34;</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;2&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=counters>Counters</h3><p>Good enough for things like view counts. The <code>incr</code> family is atomic, so nothing
+is lost when several processes hit it at once. The point is not having to read,
+add one, and write back.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> page:view:home <span class=m>0</span>
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; incr page:view:home
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; incrby page:view:home <span class=m>10</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>11</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; decrby page:view:home <span class=m>3</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>8</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; get page:view:home
+</span></span><span class=line><span class=cl><span class=s2>&#34;8&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>For decimals there&rsquo;s <code>incrbyfloat</code>. Trailing zeros get dropped.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; incrbyfloat price 19.99
+</span></span><span class=line><span class=cl><span class=s2>&#34;19.99&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; incrbyfloat price 0.01
+</span></span><span class=line><span class=cl><span class=s2>&#34;20&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>A non-numeric value is an error, naturally.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> name paper
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; incr name
+</span></span><span class=line><span class=cl><span class=o>(</span>error<span class=o>)</span> ERR value is not an integer or out of range
+</span></span></code></pre></td></tr></table></div></div><h3 id=storing-with-expiry-sessions>Storing with expiry (sessions)</h3><p><code>setex</code> does <code>set</code> + <code>expire</code> in one shot. Useful for sessions or verification codes.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; setex session:abc <span class=m>30</span> <span class=s2>&#34;user_1&#34;</span>
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ttl session:abc
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>30</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=nx-as-a-rough-lock>nx as a rough lock</h3><p><code>set key value nx ex 10</code> writes <strong>only if the key doesn&rsquo;t exist</strong> and sets a
+10 second expiry. If it&rsquo;s already there you get <code>(nil)</code>. Since that&rsquo;s atomic it
+works as a simple distributed lock.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> lock:job1 worker-a nx ex <span class=m>10</span>
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> lock:job1 worker-b nx ex <span class=m>10</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>nil<span class=o>)</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ttl lock:job1
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>10</span>
+</span></span></code></pre></td></tr></table></div></div><p>Releasing it with a plain <code>del</code> is wrong: your lock may have already expired and
+you&rsquo;d delete someone else&rsquo;s. The usual approach is to store an identifier in the
+value and compare-then-delete in Lua. For a proper implementation you want the
+Redlock document.</p><h3 id=several-at-once>Several at once</h3><p>To cut round trips, <code>mset</code> / <code>mget</code>. Missing keys come back as <code>(nil)</code> in place.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; mset user:1:name paper user:1:city seoul
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; mget user:1:name user:1:city user:1:none
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;paper&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;seoul&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=o>(</span>nil<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=string-manipulation>String manipulation</h3><p>You can append to a value or read a slice of it. Handy for accumulating logs.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; append log <span class=s2>&#34;hello&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>5</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; append log <span class=s2>&#34; world&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>11</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; get log
+</span></span><span class=line><span class=cl><span class=s2>&#34;hello world&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; strlen log
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>11</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; getrange log <span class=m>0</span> <span class=m>4</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;hello&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=lists>Lists</h2><ul><li>Stores a list as the value</li><li>lrange: reads values, where -1 means fetch everything</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; lpush <span class=s2>&#34;test_lists&#34;</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lpush test_lists <span class=m>2</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange test_lists <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;2&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; rpush test_lists <span class=m>3</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange test_lists <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;2&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;3&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>lpush</code> pushes on the left (head), <code>rpush</code> on the right (tail). That&rsquo;s why
+pushing 1 then 2 with <code>lpush</code> puts 2 in front.</p><p>Length and positional access are available too. Negative indexes count from the end.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; llen test_lists
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lindex test_lists <span class=m>0</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;2&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lindex test_lists -1
+</span></span><span class=line><span class=cl><span class=s2>&#34;3&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=queues>Queues</h3><ul><li>Seems like you could implement a queue with <code>rpop</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; rpop test_lists
+</span></span><span class=line><span class=cl><span class=s2>&#34;3&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange test_lists <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;2&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>lpush</code> in and <code>rpop</code> out gives a FIFO queue; <code>lpush</code> / <code>lpop</code> gives a stack.</p><h3 id=blocking-with-brpop>Blocking with brpop</h3><p>With <code>brpop</code> it seems you could even implement sequential distributed work.
+Similar to <code>rpop</code> but if there&rsquo;s no data it waits in a <code>block</code> state until data
+comes in, so you don&rsquo;t have to poll an empty list.</p><p>Run this in one terminal and it just sits there:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; brpop test_lists <span class=m>0</span>
+</span></span></code></pre></td></tr></table></div></div><p>Push from another terminal and it returns. You get the key it came from as well:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; rpush test_lists hello
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># the waiting side</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;test_lists&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;hello&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>The last argument is a timeout in seconds; <code>0</code> waits forever. On timeout you get <code>(nil)</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; brpop empty_list <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>nil<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=ltrim-to-keep-only-the-last-n>ltrim to keep only the last N</h3><p>For things like &ldquo;3 recently viewed items&rdquo;. <code>lpush</code> then <code>ltrim</code> so the list
+doesn&rsquo;t grow without bound.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; lpush recent:user:1 page1 page2 page3 page4 page5
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>5</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ltrim recent:user:1 <span class=m>0</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange recent:user:1 <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;page5&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;page4&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;page3&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lpush recent:user:1 page6
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ltrim recent:user:1 <span class=m>0</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange recent:user:1 <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;page6&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;page5&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;page4&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>ltrim</code> takes the range to <strong>keep</strong>, not the range to remove. Easy to get backwards.</p><h3 id=removing-values-inserting-in-the-middle>Removing values, inserting in the middle</h3><p><code>lrem key count value</code> removes up to count occurrences from the front. Zero means all.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; rpush q a b a c a
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>5</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrem q <span class=m>2</span> a
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange q <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;b&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;c&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;a&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; linsert q before c x
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange q <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;b&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;x&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;c&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;a&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=lmove-for-a-queue-that-doesnt-drop-work>lmove for a queue that doesn&rsquo;t drop work</h3><p>If a worker dies after <code>rpop</code>, that job is simply gone. <code>lmove</code> pops and pushes
+onto another list atomically, so the job stays in a processing list and can be
+recovered.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; rpush <span class=nb>jobs</span> job1 job2
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lmove <span class=nb>jobs</span> processing left right
+</span></span><span class=line><span class=cl><span class=s2>&#34;job1&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange <span class=nb>jobs</span> <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;job2&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange processing <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;job1&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>When the job finishes, <code>lrem</code> it from <code>processing</code>. The old command was
+<code>rpoplpush</code>, whose direction was fixed, which is why <code>lmove</code> was added (6.2+).
+The blocking version is <code>blmove</code>.</p><hr><h2 id=sets>Sets</h2><ul><li>Holds the value as a set</li><li>Lists allow duplicates but sets don&rsquo;t</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; sadd test_sets <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; smembers test_sets
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sadd test_sets <span class=m>1</span> <span class=m>2</span> <span class=m>3</span> <span class=m>4</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; smembers test_sets
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;2&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;3&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;4&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>Note that <code>sadd</code> returns 3, not 4. It counts <strong>only the members actually added</strong>;
+1 was already there.</p><p>Order isn&rsquo;t guaranteed. It looking sorted above is a coincidence.</p><h3 id=cardinality-membership-removal>Cardinality, membership, removal</h3><p>Don&rsquo;t pull everything with <code>smembers</code> to count or search. There are dedicated
+commands.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; scard test_sets
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sismember test_sets <span class=m>3</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sismember test_sets <span class=m>99</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; srem test_sets <span class=m>4</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>sismember</code> is O(1), which makes it a good fit for checks like &ldquo;has this user
+seen this&rdquo;.</p><h3 id=set-operations>Set operations</h3><p>This is the real reason to use a set. Intersection, union and difference are
+done server side.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; sadd tag:redis post1 post2 post3
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sadd tag:java post2 post3 post4
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sinter tag:redis tag:java
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;post3&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;post2&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sunion tag:redis tag:java
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;post2&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;post3&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;post1&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;post4&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sdiff tag:redis tag:java
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;post1&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>To store the result under a key, use <code>sinterstore</code>. It returns the number stored.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; sinterstore tag:both tag:redis tag:java
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; smembers tag:both
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;post2&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;post3&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>If you only need the count, <code>sintercard</code> (7.0+) is cheaper because it never
+materializes the result. With <code>limit</code> it stops counting there.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; sintercard <span class=m>2</span> A B
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sintercard <span class=m>2</span> A B limit <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span></code></pre></td></tr></table></div></div><p>Set operations get heavy with many members, so running them live across large
+sets is best avoided.</p><h3 id=random-members>Random members</h3><p><code>srandmember</code> only reads; <code>spop</code> removes what it returns. Useful for draws.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; srandmember tag:redis
+</span></span><span class=line><span class=cl><span class=s2>&#34;post1&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; srandmember tag:redis <span class=m>2</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;post3&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;post1&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; spop tag:java
+</span></span><span class=line><span class=cl><span class=s2>&#34;post3&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=hashes>Hashes</h2><ul><li>Hashes hold a key/value list as the value</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; hset htest username hi
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hset htest userpwd asdf
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hget htest username
+</span></span><span class=line><span class=cl><span class=s2>&#34;hi&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hgetall htest
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;username&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;hi&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;userpwd&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;asdf&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>hgetall</code> returns fields and values alternating. Client libraries fold that into
+a map for you.</p><ul><li>hget returns (nil) if there&rsquo;s no value</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; hget htest temp
+</span></span><span class=line><span class=cl><span class=o>(</span>nil<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>Changing the value for a hashkey</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; hget htest userpwd
+</span></span><span class=line><span class=cl><span class=s2>&#34;asdf&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hset htest userpwd <span class=m>1234</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hget htest userpwd
+</span></span><span class=line><span class=cl><span class=s2>&#34;1234&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>That <code>0</code> isn&rsquo;t a failure — it means <strong>the field already existed and was overwritten</strong>
+rather than newly created.</p><h3 id=multiple-fields-at-once>Multiple fields at once</h3><p><code>hset</code> takes any number of field/value pairs (4.0+). The old <code>hmset</code> is deprecated.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; hset user:1000 name paper city seoul age <span class=m>20</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hmget user:1000 name city
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;paper&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;seoul&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hkeys user:1000
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;name&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;city&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;age&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hvals user:1000
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;paper&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;seoul&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;20&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hlen user:1000
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hexists user:1000 email
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hdel user:1000 age
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=per-field-counters>Per-field counters</h3><p><code>hincrby</code> increments a single field. Good for things like a login count.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; hincrby user:1000 login_count <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hincrby user:1000 login_count <span class=m>5</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>6</span>
+</span></span></code></pre></td></tr></table></div></div><p>A missing field starts from 0, so there&rsquo;s no need to initialize it.</p><p><code>hsetnx</code> writes only when the field is absent.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; hsetnx user:1000 name other
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hsetnx user:1000 email a@b.c
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=why-a-hash-instead-of-several-strings>Why a hash instead of several strings</h3><p>Instead of scattering <code>user:1:name</code>, <code>user:1:city</code> and so on as separate strings,
+grouping them into one hash saves a fair amount of memory. Measuring five fields
+directly:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># five strings</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage s:user:1:name
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>72</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage s:user:1:age
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>56</span>
+</span></span><span class=line><span class=cl><span class=c1># 344 bytes for all five</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># one hash</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage h:user:1
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>120</span>
+</span></span></code></pre></td></tr></table></div></div><p>Same data, 344 vs 120. The per-key overhead disappears. At a million users that
+difference adds up.</p><h3 id=only-cheap-while-small>Only cheap while small</h3><p>With few fields a hash is stored as a <code>listpack</code>, a flat array. Past a threshold
+it converts to a real hash table and memory jumps.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; config get hash-max-listpack-entries
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;hash-max-listpack-entries&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;512&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>Measuring 512 fields against 600:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 512 fields</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; object encoding big
+</span></span><span class=line><span class=cl><span class=s2>&#34;listpack&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage big
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>6192</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 600 fields</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; object encoding big
+</span></span><span class=line><span class=cl><span class=s2>&#34;hashtable&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage big
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>32296</span>
+</span></span></code></pre></td></tr></table></div></div><p>17% more fields, 5x the memory. If you&rsquo;re thinking of packing thousands of fields
+into one hash, splitting keys is probably better.
+(Older versions called this encoding <code>ziplist</code>, with the setting
+<code>hash-max-ziplist-entries</code>.)</p><hr><h2 id=sorted-sets>Sorted sets</h2><ul><li>Holds the value as a set</li><li>Like <code>Sets</code>, no duplicates</li><li>Stored together with a score, and sorted by score</li><li>Seems usable like a list, with the advantage of being sorted</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zadd test_ssets <span class=m>1</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zadd test_ssets <span class=m>2</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrange test_ssets <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;2&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>Don&rsquo;t use a string for the score</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zadd test_ssets <span class=s2>&#34;a&#34;</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>error<span class=o>)</span> ERR value is not a valid float
+</span></span></code></pre></td></tr></table></div></div><ul><li>Since duplicates aren&rsquo;t allowed, inserting the same value overwrites the existing data&rsquo;s score and the order changes</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zadd test_ssets <span class=s2>&#34;0&#34;</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrange test_ssets <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;2&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>Add <code>withscores</code> to see the scores too, which you need when checking how things
+got ordered.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zrange test_ssets <span class=m>0</span> -1 withscores
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;2&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;0&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>The argument order is <code>zadd key score member</code>, score first. Coming from <code>sadd</code>
+you&rsquo;ll keep writing it backwards.</p><h3 id=leaderboards>Leaderboards</h3><p>The obvious use. Add scores, slice in reverse.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zadd rank <span class=m>100</span> paper <span class=m>250</span> kim <span class=m>175</span> lee <span class=m>90</span> park
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrevrange rank <span class=m>0</span> <span class=m>2</span> withscores
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;kim&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;250&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;lee&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;175&#34;</span>
+</span></span><span class=line><span class=cl>5<span class=o>)</span> <span class=s2>&#34;paper&#34;</span>
+</span></span><span class=line><span class=cl>6<span class=o>)</span> <span class=s2>&#34;100&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>zrange</code> goes low to high, <code>zrevrange</code> high to low. For rank and score on their own:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zscore rank lee
+</span></span><span class=line><span class=cl><span class=s2>&#34;175&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrank rank lee
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrevrank rank lee
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zcard rank
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>zrank</code> is zero based, so add one before displaying it.</p><p>To add to a score, <code>zincrby</code>. Same idea as <code>incrby</code> on a string, except the
+ordering follows automatically.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zincrby rank <span class=m>200</span> park
+</span></span><span class=line><span class=cl><span class=s2>&#34;290&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrevrange rank <span class=m>0</span> -1 withscores
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;park&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;290&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;kim&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;250&#34;</span>
+</span></span><span class=line><span class=cl>5<span class=o>)</span> <span class=s2>&#34;lee&#34;</span>
+</span></span><span class=line><span class=cl>6<span class=o>)</span> <span class=s2>&#34;175&#34;</span>
+</span></span><span class=line><span class=cl>7<span class=o>)</span> <span class=s2>&#34;paper&#34;</span>
+</span></span><span class=line><span class=cl>8<span class=o>)</span> <span class=s2>&#34;100&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=selecting-by-score-range>Selecting by score range</h3><p>Where <code>zrange</code> works on rank (index), <code>zrangebyscore</code> works on score. A leading
+<code>(</code> makes the bound exclusive.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zrangebyscore rank <span class=m>100</span> <span class=m>250</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;paper&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;lee&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;kim&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrangebyscore rank <span class=s2>&#34;(100&#34;</span> <span class=m>250</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;lee&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;kim&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zcount rank <span class=m>100</span> <span class=m>250</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span></code></pre></td></tr></table></div></div><p>Open the range with <code>-inf</code> / <code>+inf</code>, and page with <code>limit</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zrangebyscore rank -inf +inf limit <span class=m>0</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;park&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;paper&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrangebyscore rank -inf +inf limit <span class=m>2</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;lee&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;kim&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>Deletion comes in both flavors: by score (<code>zremrangebyscore</code>) and by rank
+(<code>zremrangebyrank</code>).</p><h3 id=a-timestamp-as-the-score-gives-you-a-delayed-queue>A timestamp as the score gives you a delayed queue</h3><p>Use the score as a timestamp instead of a score and you can pull out &ldquo;jobs due
+now&rdquo;. Sorted sets get used for this as much as for rankings.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zadd delayed <span class=m>1700000000</span> job:a <span class=m>1700000060</span> job:b <span class=m>1700003600</span> job:c
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrangebyscore delayed -inf <span class=m>1700000100</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;job:a&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;job:b&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zremrangebyrank delayed <span class=m>0</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrange delayed <span class=m>0</span> -1 withscores
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;job:c&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;1700003600&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>Reading and removing are separate steps, so multiple workers can collide. Wrap it
+in Lua or use <code>zpopmin</code>.</p><h3 id=keeping-only-the-best-score>Keeping only the best score</h3><p>A plain <code>zadd</code> always overwrites, which can lower a score. <code>gt</code> updates only when
+the new score is greater (6.2+). <code>ch</code> makes the return value count changes rather
+than insertions.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zadd best <span class=m>100</span> paper
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zadd best gt ch <span class=m>50</span> paper
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zscore best paper
+</span></span><span class=line><span class=cl><span class=s2>&#34;100&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zadd best gt ch <span class=m>300</span> paper
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zscore best paper
+</span></span><span class=line><span class=cl><span class=s2>&#34;300&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>nx</code> writes only when absent, <code>xx</code> only when present.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zadd best nx <span class=m>999</span> paper
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zscore best paper
+</span></span><span class=line><span class=cl><span class=s2>&#34;300&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=bitmaps>Bitmaps</h2><ul><li>Stores bit values</li><li>Can store 2^32 (4.2 billion) bit values in 512MB</li><li>Seems good for storing boolean option values (like whether each member has viewed a notice)</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; setbit test_bits <span class=m>0</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; getbit test_bits <span class=m>0</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; setbit test_bits <span class=m>0</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; getbit test_bits <span class=m>0</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>setbit</code> returns the <strong>previous</strong> value. It isn&rsquo;t really a separate type — it&rsquo;s a
+string viewed bit by bit.</p><h3 id=daily-visits>Daily visits</h3><p>Make a key per day and use the user id as the bit offset. <code>bitcount</code> gives that
+day&rsquo;s visitor count directly.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; setbit visit:20160727 <span class=m>100</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; setbit visit:20160727 <span class=m>200</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; setbit visit:20160727 <span class=m>300</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; setbit visit:20160728 <span class=m>200</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; setbit visit:20160728 <span class=m>400</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; bitcount visit:20160727
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; bitcount visit:20160728
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span></code></pre></td></tr></table></div></div><p>Visitors on both days is <code>bitop and</code>; on either day is <code>bitop or</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; bitop and visit:both visit:20160727 visit:20160728
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>51</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; bitcount visit:both
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; bitop or visit:any visit:20160727 visit:20160728
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>51</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; bitcount visit:any
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4</span>
+</span></span></code></pre></td></tr></table></div></div><p>The 51 that <code>bitop</code> returns is the byte length of the result string, not a count
+of people. Count with <code>bitcount</code> separately.</p><p>The first set bit is <code>bitpos</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; bitpos visit:20160727 <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>100</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=how-much-it-actually-saves>How much it actually saves</h3><p>One day of visit flags for a million users:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; setbit big <span class=m>999999</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; strlen big
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>125000</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage big
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>131120</span>
+</span></span></code></pre></td></tr></table></div></div><p>122KB. The same thing as a Set has to hold a million members, which runs to tens
+of MB. The tradeoff is that you can&rsquo;t list who visited without walking the bits,
+and ids have to be dense integers for this to pay off. With UUIDs it doesn&rsquo;t work.</p><hr><h2 id=hyperloglog>HyperLogLog</h2><p>The rest wasn&rsquo;t in the original post, but it belongs here.</p><p>Use it when you only need a distinct count (cardinality). It doesn&rsquo;t store the
+members; it estimates probabilistically and uses almost no memory. In exchange
+the number isn&rsquo;t exact and you can&rsquo;t read members back out.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; pfadd uv:20160727 user1 user2 user3
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; pfadd uv:20160727 user1
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; pfcount uv:20160727
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; pfadd uv:20160728 user3 user4
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; pfmerge uv:total uv:20160727 uv:20160728
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; pfcount uv:total
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>pfmerge</code> combining daily counters into weekly or monthly UV is the nice part.
+With a Set you&rsquo;d have to keep all the originals around.</p><p>I put 100,000 members in and compared against a Set:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># HyperLogLog</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; pfcount uv:big
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>100420</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage uv:big
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>14384</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># same data as a Set</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; scard uv:set
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>100000</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage uv:set
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4772968</span>
+</span></span></code></pre></td></tr></table></div></div><p>The real count was 100,000 and it reported 100,420 — off by 0.42%. In return,
+14KB against 4.6MB, a 330x memory difference. The documented standard error is
+0.81%, so that&rsquo;s about right.</p><p>Good for metrics like UV where &ldquo;roughly how many&rdquo; is enough. Don&rsquo;t use it for
+billing or settlement.</p><hr><h2 id=geo>Geo</h2><p>Store coordinates and query distance or radius. Added in 3.2.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; geoadd stores 126.9784 37.5665 cityhall 127.0276 37.4979 gangnam 126.9245 37.5563 hongdae
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; geodist stores cityhall gangnam km
+</span></span><span class=line><span class=cl><span class=s2>&#34;8.7777&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; geopos stores gangnam
+</span></span><span class=line><span class=cl>1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;127.02759772539138794&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> <span class=s2>&#34;37.4979006128308967&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>Longitude comes first, latitude second. Map APIs usually do the reverse, which is
+confusing.</p><p>Radius search is <code>geosearch</code> (6.2+). The older <code>georadius</code> is deprecated.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; geosearch stores frommember cityhall byradius <span class=m>6</span> km asc withdist
+</span></span><span class=line><span class=cl>1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;cityhall&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> <span class=s2>&#34;0.0000&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;hongdae&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> <span class=s2>&#34;4.8860&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; geosearch stores fromlonlat 127.0276 37.4979 byradius <span class=m>20</span> km asc withdist withcoord
+</span></span><span class=line><span class=cl>1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;gangnam&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> <span class=s2>&#34;0.0002&#34;</span>
+</span></span><span class=line><span class=cl>   3<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;127.02759772539138794&#34;</span>
+</span></span><span class=line><span class=cl>      2<span class=o>)</span> <span class=s2>&#34;37.4979006128308967&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;cityhall&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> <span class=s2>&#34;8.7779&#34;</span>
+</span></span><span class=line><span class=cl>   3<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;126.97840064764022827&#34;</span>
+</span></span><span class=line><span class=cl>      2<span class=o>)</span> <span class=s2>&#34;37.56650030628724579&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;hongdae&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> <span class=s2>&#34;11.1760&#34;</span>
+</span></span><span class=line><span class=cl>   3<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;126.92449897527694702&#34;</span>
+</span></span><span class=line><span class=cl>      2<span class=o>)</span> <span class=s2>&#34;37.55630058834207574&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>Notice the coordinates that come back differ slightly from what went in — geohash
+encoding loses precision. Not a fit if you need meter-level accuracy.</p><p>It isn&rsquo;t a new type; underneath it&rsquo;s a sorted set with a geohash as the score.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>type</span> stores
+</span></span><span class=line><span class=cl>zset
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrange stores <span class=m>0</span> -1 withscores
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;gangnam&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;4077553489665188&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;hongdae&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;4077564662109830&#34;</span>
+</span></span><span class=line><span class=cl>5<span class=o>)</span> <span class=s2>&#34;cityhall&#34;</span>
+</span></span><span class=line><span class=cl>6<span class=o>)</span> <span class=s2>&#34;4077564854920134&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>Which is why you remove entries with <code>zrem</code> — there&rsquo;s no geo-specific delete command.</p><p>Non-ASCII members are displayed escaped by <code>redis-cli</code>, like <code>"\xed\x99\x8d..."</code>.
+The data isn&rsquo;t corrupted, only the display; <code>redis-cli --raw</code> shows it properly.</p><hr><h2 id=streams>Streams</h2><p>A log-shaped type added in 5.0, much later than the six above. A List used as a
+queue loses the item the moment you pop it; a Stream keeps entries like a log and
+lets several consumers each track their own position. Roughly Kafka shaped.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; xadd events <span class=s2>&#34;*&#34;</span> <span class=nb>type</span> login user <span class=m>1000</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;1788327172134-0&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; xadd events <span class=s2>&#34;*&#34;</span> <span class=nb>type</span> <span class=nb>logout</span> user <span class=m>1000</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;1788327172139-0&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; xlen events
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; xrange events - +
+</span></span><span class=line><span class=cl>1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;1788327172134-0&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;type&#34;</span>
+</span></span><span class=line><span class=cl>      2<span class=o>)</span> <span class=s2>&#34;login&#34;</span>
+</span></span><span class=line><span class=cl>      3<span class=o>)</span> <span class=s2>&#34;user&#34;</span>
+</span></span><span class=line><span class=cl>      4<span class=o>)</span> <span class=s2>&#34;1000&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;1788327172139-0&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;type&#34;</span>
+</span></span><span class=line><span class=cl>      2<span class=o>)</span> <span class=s2>&#34;logout&#34;</span>
+</span></span><span class=line><span class=cl>      3<span class=o>)</span> <span class=s2>&#34;user&#34;</span>
+</span></span><span class=line><span class=cl>      4<span class=o>)</span> <span class=s2>&#34;1000&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>*</code> auto-generates the id. The <code>milliseconds-sequence</code> format means several
+entries in the same millisecond still don&rsquo;t collide. Each entry holds field/value
+pairs like a hash.</p><h3 id=consumer-groups>Consumer groups</h3><p>Workers in the same group split the messages. What a worker reads stays &ldquo;pending&rdquo;
+until it calls <code>xack</code>. If a worker dies the entry is still pending, so another
+worker can claim it.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; xgroup create events workers <span class=m>0</span>
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; xreadgroup group workers worker-1 count <span class=m>1</span> streams events <span class=s2>&#34;&gt;&#34;</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;events&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> 1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;1788327172134-0&#34;</span>
+</span></span><span class=line><span class=cl>         2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;type&#34;</span>
+</span></span><span class=line><span class=cl>            2<span class=o>)</span> <span class=s2>&#34;login&#34;</span>
+</span></span><span class=line><span class=cl>            3<span class=o>)</span> <span class=s2>&#34;user&#34;</span>
+</span></span><span class=line><span class=cl>            4<span class=o>)</span> <span class=s2>&#34;1000&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; xpending events workers
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;1788327172134-0&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;1788327172134-0&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> 1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;worker-1&#34;</span>
+</span></span><span class=line><span class=cl>      2<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>></code> means &ldquo;entries nobody has claimed yet&rdquo;. After <code>xack</code> the pending list empties.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; xack events workers 1788327172134-0
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; xpending events workers
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=o>(</span>nil<span class=o>)</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=o>(</span>nil<span class=o>)</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=o>(</span>nil<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>This is the main difference from a List queue: entries don&rsquo;t vanish on read, they
+require an ack.</p><h3 id=capping-growth>Capping growth</h3><p>Being a log, it grows forever if you let it. <code>maxlen</code> sets an upper bound. With
+<code>~</code> it trims to approximately that many rather than exactly, which is much cheaper.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; xadd events maxlen <span class=s2>&#34;~&#34;</span> <span class=m>1000</span> <span class=s2>&#34;*&#34;</span> <span class=nb>type</span> ping
+</span></span><span class=line><span class=cl><span class=s2>&#34;1788327172184-0&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=which-type-for-what>Which type for what</h2><table><thead><tr><th>Type</th><th>Good for</th><th>Watch out</th></tr></thead><tbody><tr><td>Strings</td><td>Cache, counters, sessions, simple locks</td><td>Large values move whole</td></tr><tr><td>Lists</td><td>Queues, recent-item lists</td><td>Middle access is O(N)</td></tr><tr><td>Sets</td><td>Tags, dedup, intersections</td><td>Set ops get heavy with many members</td></tr><tr><td>Hashes</td><td>Grouping one object</td><td>Memory jumps past thousands of fields</td></tr><tr><td>Sorted sets</td><td>Rankings, delayed queues, range queries</td><td>Scores are doubles, large integers lose precision</td></tr><tr><td>Bitmaps</td><td>Bulk booleans (visits, seen flags)</td><td>Only pays off with dense integer ids</td></tr><tr><td>HyperLogLog</td><td>Approximate distinct counts like UV</td><td>0.81% error, members not retrievable</td></tr><tr><td>Geo</td><td>Radius search</td><td>Coordinate precision loss, really a zset</td></tr><tr><td>Streams</td><td>Event logs, queues needing ack</td><td>Grows forever without maxlen</td></tr></tbody></table><p>Roughly, reason about it in this order:</p><ul><li>One value: String</li><li>Several fields as one unit: Hash</li><li>Order matters: List. Rank or range matters: Sorted set</li><li>Deduplication is the point: Set. Only the count, and approximate is fine: HyperLogLog</li><li>One on/off flag per user: Bitmap</li><li>Failures have to be recoverable: Stream, not List</li></ul><h2 id=references>References</h2><ul><li><a href=https://redis.io/docs/latest/develop/data-types/>https://redis.io/docs/latest/develop/data-types/</a></li><li><a href=https://redis.io/docs/latest/commands/>https://redis.io/docs/latest/commands/</a></li><li><a href=https://redis.io/docs/latest/develop/use/patterns/distributed-locks/>https://redis.io/docs/latest/develop/use/patterns/distributed-locks/</a></li></ul></div><footer class=post-foot><div class=tags><a href=/tags/redis/>#redis</a></div><section class=related><h2>Related posts</h2><ul><li><a href=/en/posts/opensource/2015-09-21-redis-304/><span class=t>Installing redis 3.2.3</span>
+<span class="d num">2015 · 09 · 20</span></a></li><li><a href=/en/posts/spring/2015-11-11-spring-redis/><span class=t>spring redis integration </span><span class="d num">2015 · 11 · 10</span></a></li><li><a href=/en/posts/opensource/2016-06-21-fluentd/><span class=t>Collecting logs with fluentd</span>
+<span class="d num">2016 · 06 · 22</span></a></li><li><a href=/en/2016/06/08/apachelog/><span class=t>Getting average response time, call count, Min, Max on a restful api server</span>
+<span class="d num">2016 · 06 · 08</span></a></li></ul></section><nav class=post-nav><a class=prev href=/en/2016/07/14/gradle/><span class=lbl>Previous</span><span class=t>Converting from maven to gradle...</span></a><a class=next href=/en/posts/centos/2016-08-11-ssh-key-login/><span class=lbl>Next</span><span class=t>Login with an ssh key</span></a></nav></footer></article></main></div></div><script>(function(){var t,n,s,o,i,a,l,e=document.documentElement,d="M12 3v2M12 19v2M5 5l1.5 1.5M17.5 17.5L19 19M3 12h2M19 12h2M5 19l1.5-1.5M17.5 6.5L19 5",u="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z";function r(){var t=e.getAttribute("data-theme");return t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches}function c(){var e=document.getElementById("theme-ic");e&&e.setAttribute("d",r()?d:u)}s=document.getElementById("theme"),s&&s.addEventListener("click",function(){var t=r()?"light":"dark";e.setAttribute("data-theme",t);try{localStorage.setItem("theme",t)}catch{}c()}),c(),t=document.getElementById("lang-toggle"),t&&t.addEventListener("click",function(){try{localStorage.setItem("lang",t.getAttribute("data-lang"))}catch{}}),o=document.getElementById("burger"),i=document.getElementById("scrim"),o&&o.addEventListener("click",function(){e.setAttribute("data-nav","open")}),i&&i.addEventListener("click",function(){e.removeAttribute("data-nav")}),n=document.getElementById("q"),n&&(l=[].slice.call(document.querySelectorAll(".row")),a=document.getElementById("empty"),n.addEventListener("input",function(){var t=n.value.trim().toLowerCase(),e=0;l.forEach(function(n){var s=n.textContent.toLowerCase().indexOf(t)!==-1;n.style.display=s?"":"none",s&&e++}),a&&(a.style.display=e?"none":"block")}))})()</script></body></html>

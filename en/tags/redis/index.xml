@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Redis on paper.archive</title>
+    <link>https://paper.kim/en/tags/redis/</link>
+    <description>Recent content in Redis on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 27 Jul 2016 14:32:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>redis data types</title>
+      <link>https://paper.kim/en/2016/07/27/redis-datatype/</link>
+      <pubDate>Wed, 27 Jul 2016 14:32:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2016/07/27/redis-datatype/</guid>
+      <description>Strings, Lists, Sets, Hashes, Sorted sets and Bitmaps, plus HyperLogLog, Geo and Streams. Every example run against redis-cli, with notes on which type to reach for</description>
+    </item>
+    <item>
+      <title>spring redis integration </title>
+      <link>https://paper.kim/en/posts/spring/2015-11-11-spring-redis/</link>
+      <pubDate>Tue, 10 Nov 2015 17:36:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-11-11-spring-redis/</guid>
+      <description>Integrating Redis with Spring using spring-data-redis, from the dependency through configuration and the result.</description>
+    </item>
+    <item>
+      <title>Installing redis 3.2.3</title>
+      <link>https://paper.kim/en/posts/opensource/2015-09-21-redis-304/</link>
+      <pubDate>Sun, 20 Sep 2015 21:47:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/opensource/2015-09-21-redis-304/</guid>
+      <description>Building and installing Redis 3.0.4 from source, from preparing gcc and the build tools through compiling and running it.</description>
+    </item>
+  </channel>
+</rss>

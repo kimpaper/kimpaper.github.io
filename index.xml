@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>기록 저장소</title>
+    <link>https://paper.kim/</link>
+    <description>Recent content on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Sun, 06 Sep 2026 22:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GPT-6 Astra — Fable 5.1 · Opus 5 · GPT-5.6 Sol 비교</title>
+      <link>https://paper.kim/posts/ai/2026-09-06-gpt6-astra-model-comparison/</link>
+      <pubDate>Sun, 06 Sep 2026 22:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-09-06-gpt6-astra-model-comparison/</guid>
+      <description>9/3 에 나온 GPT-6 Astra 를 Claude Fable 5.1, Opus 5, GPT-5.6 Sol 과 비교했다. 2.5배 오른 단가, 토큰 효율이라는 반전, ARC-AGI-3 하네스 문제, 그리고 발표 표에 빠진 줄까지.</description>
+    </item>
+    <item>
+      <title>Claude Fable 5.1 — Opus 5 · Fable 5 · GPT-5.6 Sol 비교</title>
+      <link>https://paper.kim/posts/ai/2026-09-01-fable51-model-comparison/</link>
+      <pubDate>Tue, 01 Sep 2026 21:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-09-01-fable51-model-comparison/</guid>
+      <description>오늘 나온 Claude Fable 5.1 을 Opus 5, Fable 5, GPT-5.6 Sol 과 비교했다. 캐시 읽기 75% 인하, 세 가지 breaking change, 벤더 표와 제3자 측정이 어긋나는 지점까지.</description>
+    </item>
+    <item>
+      <title>부천 작동 의성마늘황토메기 — 메기 매운탕</title>
+      <link>https://paper.kim/posts/diary/2026-08-16-megi-maeuntang/</link>
+      <pubDate>Sun, 16 Aug 2026 11:20:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-08-16-megi-maeuntang/</guid>
+      <description>부천 작동 의성마늘황토메기에서 먹은 메기 매운탕. 민물새우가 잔뜩 들어가 국물이 진하다. 라면사리는 필수.</description>
+    </item>
+    <item>
+      <title>육사시미, 셀프 마라탕</title>
+      <link>https://paper.kim/posts/diary/2026-08-05-yuksashimi-malatang/</link>
+      <pubDate>Wed, 05 Aug 2026 20:23:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-08-05-yuksashimi-malatang/</guid>
+      <description>오늘 저녁은 육사시미랑 집에서 끓인 셀프 마라탕. 참기름장에 마늘 올려 먹는 육사시미는 실패가 없다. 마라탕은 재료는 좋았는데 국물이 부족했다.</description>
+    </item>
+    <item>
+      <title>점심부터 삼겹살 — 소고기 등심도 같이</title>
+      <link>https://paper.kim/posts/diary/2026-07-30-samgyeopsal/</link>
+      <pubDate>Thu, 30 Jul 2026 13:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-30-samgyeopsal/</guid>
+      <description>점심부터 집에서 삼겹살이랑 소고기 등심을 구웠다. 불판 절반이 미나리다. 양파랑 감자도 같이 올리고 찌개까지. 오늘은 술 없이 밥만.</description>
+    </item>
+    <item>
+      <title>LLM Wiki — 지식을 쌓아두는 방식</title>
+      <link>https://paper.kim/posts/ai/2026-07-28-llm-wiki/</link>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-07-28-llm-wiki/</guid>
+      <description>Karpathy 가 제안한 LLM Wiki 패턴을 정리했다. 3계층 구조와 ingest·query·lint 루프, 실제 활용 사례, 그리고 효율 주장이 어디까지 측정된 것인지까지.</description>
+    </item>
+    <item>
+      <title>샌프란시스코 AI 선언 정리</title>
+      <link>https://paper.kim/posts/ai/2026-07-25-sf-ai-declaration/</link>
+      <pubDate>Sat, 25 Jul 2026 09:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-07-25-sf-ai-declaration/</guid>
+      <description>2026년 7월 24일 샌프란시스코 AI 서밋에서 발표된 샌프란 AI 선언의 네 가지 축과, 같이 체결된 NVIDIA·SK 등 계약을 사실 위주로 정리했다. AI 기본법이 개발자에게 실제로 요구하는 의무도 함께 정리.</description>
+    </item>
+    <item>
+      <title>Claude Opus 5 — GPT-5.6 Sol · Fable 5 · Sonnet 5 비교</title>
+      <link>https://paper.kim/posts/ai/2026-07-25-opus5-model-comparison/</link>
+      <pubDate>Sat, 25 Jul 2026 08:30:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-07-25-opus5-model-comparison/</guid>
+      <description>Claude Opus 5 를 GPT-5.6 Sol, Fable 5, Sonnet 5 와 코딩·에이전틱·롱컨텍스트·비용 등 작업 영역별로 비교했다. Opus 4.8 대비 무엇이 달라졌는지와 마이그레이션 시 주의점까지.</description>
+    </item>
+    <item>
+      <title>파주 조인폴리아 — 식물 쇼핑</title>
+      <link>https://paper.kim/posts/diary/2026-07-21-joinfolia-paju/</link>
+      <pubDate>Tue, 21 Jul 2026 12:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-21-joinfolia-paju/</guid>
+      <description>파주 조인폴리아에 다녀왔다. 식물 구경도 하고 몇 개 사왔다. 안으로 들어가니 생각보다 훨씬 넓다. 길 양쪽에 식물이 빼곡하고 천장에도 행잉 식물이 가득하다. 그냥 식물원 구경하는 기분으로 한참 돌아다녔다. 틸란드시아 코너는 종류가 정말 많다.</description>
+    </item>
+    <item>
+      <title>SaaS 서비스를 위한 Harness AWS 권한 최소화 계정 구성</title>
+      <link>https://paper.kim/2026/07/20/harness-aws-limited-account/</link>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://paper.kim/2026/07/20/harness-aws-limited-account/</guid>
+      <description>SaaS 서비스를 AWS 위에 올리고 Harness로 CI/CD를 붙이려면 제일 먼저 고민해야 하는 부분이 AWS 계정을 어떻게 연결할 것인가이다.</description>
+    </item>
+    <item>
+      <title>저녁은 등촌샤브샤브 — 배달 &#43; 마트 고기 조합</title>
+      <link>https://paper.kim/posts/diary/2026-07-19-deungchon-shabu/</link>
+      <pubDate>Sun, 19 Jul 2026 19:10:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-19-deungchon-shabu/</guid>
+      <description>오늘 저녁은 등촌샤브샤브 배달로 해결! 고기는 내가 마트에서 사왔다. 배달 국물에 마트 고기 조합.. 이게 은근 가성비 최강인듯 버섯, 미나리, 숙주 가득한 얼큰한 국물에 고기를 넣고 끓인다.</description>
+    </item>
+    <item>
+      <title>야식 홈술 — 소라무침, 오징어숙회</title>
+      <link>https://paper.kim/posts/diary/2026-07-18-yasik-sora-ojingeo/</link>
+      <pubDate>Sat, 18 Jul 2026 22:47:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-18-yasik-sora-ojingeo/</guid>
+      <description>야식 겸 홈술! 나가기 귀찮아서 배달로 시켰다. 소라무침. 초고추장 양념에 미나리, 깻잎이 같이 버무려져 있는데 새콤달콤 매콤한게 캬.. 젓가락이 안 멈춘다. 소면은 직접 삶아서 추가했다. 남은 양념에 소면 비벼 먹는게 사실 메인인듯.</description>
+    </item>
+    <item>
+      <title>파주 밥사랑 — 백반</title>
+      <link>https://paper.kim/posts/diary/2026-07-18-bapsarang-paju/</link>
+      <pubDate>Sat, 18 Jul 2026 12:44:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-18-bapsarang-paju/</guid>
+      <description>파주 갔다가 점심으로 들른 백반집. 밥사랑. 뚝배기 국에 오징어볶음, 모듬 반찬까지 한 상 가득 나온다. 와 이 비주얼 보소 이런 집은 반찬이 핵심인데, 마른새우볶음, 도토리묵, 메추리알조림, 나물무침, 겉절이.. 딱 집반찬 느낌이라 계속 손이 간다.</description>
+    </item>
+    <item>
+      <title>개봉동 대빛식당 — 꽃삼겹</title>
+      <link>https://paper.kim/posts/diary/2026-07-17-daebit-sikdang-gaebong/</link>
+      <pubDate>Fri, 17 Jul 2026 18:37:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-17-daebit-sikdang-gaebong/</guid>
+      <description>집 근처 대빛식당. 돌판(솥뚜껑)에 구워 먹는 꽃삼겹 집이다. 꽃삼겹은 삼겹살을 장미처럼 말아놓은 건데, 돌판에 김치랑 고사리·미나리 같은 나물이랑 같이 굽는다. 비주얼부터 먹음직스럽다! 기름이 빠지면서 겉은 바삭! 나물에 싸먹으면 느끼하지 않아서 계속 들어간다.</description>
+    </item>
+    <item>
+      <title>홈술 — 깔루아 밀크, 쭈꾸미볶음, 육회</title>
+      <link>https://paper.kim/posts/diary/2026-07-16-home-drink-kahlua/</link>
+      <pubDate>Thu, 16 Jul 2026 21:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-16-home-drink-kahlua/</guid>
+      <description>오늘은 집에서 한잔! 안주는 전부 포장해왔다. 술은 깔루아에 우유 부어서 깔루아 밀크로. 커피 리큐르라 달큰씁쓸한데 우유랑 섞으면 어우, 부드러워서 계속 들어간다. 독한 거 마시기 싫은 날 딱이다 디저트인지 술인지 포장 안주 펼쳐놓고 편한 옷 입고 마시는 홈술..</description>
+    </item>
+    <item>
+      <title>개봉동 닭장맥주</title>
+      <link>https://paper.kim/posts/diary/2026-07-15-dakjang-beer-gaebong/</link>
+      <pubDate>Wed, 15 Jul 2026 20:19:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-15-dakjang-beer-gaebong/</guid>
+      <description>집앞 술집 닭장맥주. 걸어갈 수 있는 거리에 있어서 종종 온다. 아주 좋음! 오늘 안주는 왕대창 닭볶음탕 (32,000원). 닭, 감자, 떡에 왕대창까지 들어가서 얼큰하게 끓는다. 맵기는 고를 수 있는데 중간맛으로 했다. 국물 머금은 감자.. 크 이게 진짜다.</description>
+    </item>
+    <item>
+      <title>거제 파노라마 케이블카 — 노자산 전망대</title>
+      <link>https://paper.kim/posts/diary/2026-07-12-geoje-cablecar/</link>
+      <pubDate>Sun, 12 Jul 2026 15:39:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-12-geoje-cablecar/</guid>
+      <description>거제 파노라마 케이블카를 타고 해발 565m 노자산 전망대에 올라 본 다도해 풍경. 학동고개에서 정상까지 한 번에 오른다.</description>
+    </item>
+    <item>
+      <title>거제 윤식당 — 한치물회, 돌문어덮밥</title>
+      <link>https://paper.kim/posts/diary/2026-07-12-yoonsikdang-geoje/</link>
+      <pubDate>Sun, 12 Jul 2026 13:22:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-12-yoonsikdang-geoje/</guid>
+      <description>거제 여행 점심! 윤식당에서 한치물회랑 돌문어덮밥을 하나씩 시켰다. 초고추장 양념에 버무린 한치에 육수를 부어 먹는다. 한치가 오독오독 씹히는게 아, 이게 여름이지 싶었다. 더운 날이라 그런지 더 맛있게 느껴진듯 매콤달콤한 양념에 볶은 돌문어를 밥에 얹어 먹는다.</description>
+    </item>
+    <item>
+      <title>거제 숙소 앞 동태탕</title>
+      <link>https://paper.kim/posts/diary/2026-07-12-dongtaetang-geoje/</link>
+      <pubDate>Sun, 12 Jul 2026 08:20:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-12-dongtaetang-geoje/</guid>
+      <description>거제 여행 둘째 날. 아침은 숙소 바로 앞에 있는 동태탕 집에서 해결했다. 뚝배기에 팽이버섯, 두부, 무, 대파가 들어가서 얼큰하게 끓어 나온다. 아침부터 이 국물이라니..</description>
+    </item>
+    <item>
+      <title>거제도 해금강 유람선 — 갈매기와 절벽 사이</title>
+      <link>https://paper.kim/posts/diary/2026-07-11-geoje-haegeumgang/</link>
+      <pubDate>Sat, 11 Jul 2026 14:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-11-geoje-haegeumgang/</guid>
+      <description>거제도에 가서 해금강 유람선을 탔다. 배가 출발하자 갈매기들이 기다렸다는 듯 주변으로 몰려들었다. 새우깡을 든 손 가까이까지 날아오는 모습이 신기해서 한동안 바다보다 갈매기를 더 많이 바라봤다.</description>
+    </item>
+    <item>
+      <title>거제도 밀면 — 우면가</title>
+      <link>https://paper.kim/posts/diary/2026-07-11-milmyeon-woomyeonga/</link>
+      <pubDate>Sat, 11 Jul 2026 12:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-11-milmyeon-woomyeonga/</guid>
+      <description>거제도 여행에서 먹은 밀면. 우면가 라는 집인데, 와 이건 정말 맛있었다! 물밀면을 시켰는데 첫입부터 감탄이 나왔다. 육수가 맑은데 밍밍하지 않고 진하다. 면은 밀면 특유의 쫄깃하고 매끈한 식감. 여행으로 지친 몸이 확 풀리는 느낌! 육수 부어서 다시 시원하게.</description>
+    </item>
+    <item>
+      <title>개봉동 역전순대국 곱창전골</title>
+      <link>https://paper.kim/posts/diary/2026-07-10-gopchang-jeongol/</link>
+      <pubDate>Fri, 10 Jul 2026 13:30:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-10-gopchang-jeongol/</guid>
+      <description>오늘의 술안주는 곱창전골! 개봉동 역전순대국에 또 왔다. 크.. 여기 곱창전골은 몇 번을 먹어도 질리지가 않는다. 최애 메뉴. 국물이 칼칼한데 끓일수록 진해져서 소주가 그냥 술술 들어간다. 곱창도 잡내 없이 쫄깃쫄깃! 오늘도 역시나 만족스러웠다.</description>
+    </item>
+    <item>
+      <title>블로그 새단장</title>
+      <link>https://paper.kim/posts/diary/2026-07-09-blog-renewal/</link>
+      <pubDate>Thu, 09 Jul 2026 10:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-09-blog-renewal/</guid>
+      <description>기술 글 정리해두던 블로그를 오랜만에 손봤다. 오랜만에 보니 새삼 반갑네 기술 글이 주가 되겠지만 가끔 이렇게 일상도 남길 예정. 막상 새단장 하고 나니 글 쓰고 싶은 기분이 든다 과연 꾸준히 쓸 수 있을까</description>
+    </item>
+    <item>
+      <title>아카이브유틸리티 동작 안되는 현상</title>
+      <link>https://paper.kim/posts/mac/2023-04-08-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EB%8F%99%EC%9E%91-%EC%95%88%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81/</link>
+      <pubDate>Sat, 08 Apr 2023 01:05:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/mac/2023-04-08-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EB%8F%99%EC%9E%91-%EC%95%88%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81/</guid>
+      <description>아카이브 유틸리티 동작이 안되는 현상 왜 그러는지는 모르겠지만, zip을 클릭했을때 압축이 안풀리는 현상이 있었다 이유를 보니 1test.zip 압축이 풀리지 않음 test.zip 압축풀림 이름을 변경하니 더블클릭으로 압축이 풀렸다.</description>
+    </item>
+    <item>
+      <title>golang profiler 사용</title>
+      <link>https://paper.kim/posts/golang/2022-03-28-golang_profiler/</link>
+      <pubDate>Mon, 28 Mar 2022 16:53:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/golang/2022-03-28-golang_profiler/</guid>
+      <description>golang profiler 사용. http prof 를 이용해 프로파일 한다, cpu profile (30초동안 데이터를 모은다), heap memory (현재 메모리 정보를 반환한다).</description>
+    </item>
+    <item>
+      <title>kubernetes cert-manager</title>
+      <link>https://paper.kim/2020/05/13/kubernetes-certmanager/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/2020/05/13/kubernetes-certmanager/</guid>
+      <description>쿠버네티스 ingress에 https를 붙일 때 쓰는 cert-manager 설치와 설정. 인증서 발급을 자동으로 처리한다.</description>
+    </item>
+    <item>
+      <title>kubernetes glusterfs 연동</title>
+      <link>https://paper.kim/posts/kube/2020-05-13-kubernetes-glusterfs/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/kube/2020-05-13-kubernetes-glusterfs/</guid>
+      <description>쿠버네티스에 GlusterFS를 붙이는 과정. gk-deploy 스크립트가 deprecated 옵션을 써서 고쳐야 했던 부분까지.</description>
+    </item>
+    <item>
+      <title>kubernetes ingress - 특정 url로 proxy 걸기</title>
+      <link>https://paper.kim/2020/05/13/kubernetes-ingress-urlproxy/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/2020/05/13/kubernetes-ingress-urlproxy/</guid>
+      <description>쿠버네티스 클러스터 밖에 있는 서버로 특정 URL만 proxy를 걸어 넘기는 ingress 설정.</description>
+    </item>
+    <item>
+      <title>ssh key를 이용한 로그인</title>
+      <link>https://paper.kim/posts/centos/2016-08-11-ssh-key-login/</link>
+      <pubDate>Thu, 11 Aug 2016 16:07:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2016-08-11-ssh-key-login/</guid>
+      <description>macOS 에서 ssh key를 지정하여 서버로 비밀번호 타이핑 없이 바로 로그인 하게 하자 평소엔 보안때문에 안해놓는다.</description>
+    </item>
+    <item>
+      <title>redis data type 종류</title>
+      <link>https://paper.kim/2016/07/27/redis-datatype/</link>
+      <pubDate>Wed, 27 Jul 2016 14:32:00 +0000</pubDate>
+      <guid>https://paper.kim/2016/07/27/redis-datatype/</guid>
+      <description>Strings, Lists, Sets, Hashes, Sorted sets, Bitmaps 에 HyperLogLog, Geo, Streams 까지. redis-cli 로 하나씩 찍어보면서 어디에 뭘 쓰면 될지 정리했다</description>
+    </item>
+    <item>
+      <title>maven에서 gradle로 변환...</title>
+      <link>https://paper.kim/2016/07/14/gradle/</link>
+      <pubDate>Thu, 14 Jul 2016 14:15:00 +0000</pubDate>
+      <guid>https://paper.kim/2016/07/14/gradle/</guid>
+      <description>macOS에서 brew로 gradle을 설치하고 기본 빌드 설정을 잡는 과정 정리.</description>
+    </item>
+    <item>
+      <title>fluentd로 로그를 모으기</title>
+      <link>https://paper.kim/posts/opensource/2016-06-21-fluentd/</link>
+      <pubDate>Wed, 22 Jun 2016 15:47:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/opensource/2016-06-21-fluentd/</guid>
+      <description>예전에 flume로 에러 로그들을 모으고 있었는데 fluentd로 갈아타려고 한다. 사실 모으는 목적이 아니라 모니터링이 목적 구성은 flume와 비슷한것 같다 client -&amp;gt; server 구성으로 해놓고 client에서 수집된 로그를 server로 전달.</description>
+    </item>
+    <item>
+      <title>restful api 서버에서 평균 응답시간, 호출횟수, Min, Max 구하기</title>
+      <link>https://paper.kim/2016/06/08/apachelog/</link>
+      <pubDate>Wed, 08 Jun 2016 15:32:00 +0000</pubDate>
+      <guid>https://paper.kim/2016/06/08/apachelog/</guid>
+      <description>app에서 데이타 통신을하는 api서버가 있다 각 인터페이스별 평균 응답시간을 아파치 로그를 활용하여 구해봤다 hadoop과 spark, python 설정은 Python and Spark로 로그 파일 분석 (with hadoop) 을 참고 하자…</description>
+    </item>
+    <item>
+      <title>Python and Spark로 로그 파일 분석 (with hadoop)</title>
+      <link>https://paper.kim/posts/opensource/2016-05-30-spark-hadoop/</link>
+      <pubDate>Mon, 30 May 2016 16:35:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/opensource/2016-05-30-spark-hadoop/</guid>
+      <description>Hadoop을 설치해 띄우고 Spark로 파일을 분석해본 기록. OSX에서 진행했고 설정부터 실행까지 순서대로 적었다.</description>
+    </item>
+    <item>
+      <title>AWS EC2서버에 패스워드로 로그인 하기</title>
+      <link>https://paper.kim/2016/04/08/amazon-ec2-root-pwd/</link>
+      <pubDate>Fri, 08 Apr 2016 11:33:00 +0000</pubDate>
+      <guid>https://paper.kim/2016/04/08/amazon-ec2-root-pwd/</guid>
+      <description>AWS ec2 서버에는 password로 ssh접근이 안되도록 되어 있다. 아래 파일을 수정하여 접근이 되도록 해보자. centos 6.5에서 작업한 것이다</description>
+    </item>
+    <item>
+      <title>git에서 rebase와 merge</title>
+      <link>https://paper.kim/posts/etc/2016-03-24-git-rebase-merge/</link>
+      <pubDate>Thu, 24 Mar 2016 16:36:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/etc/2016-03-24-git-rebase-merge/</guid>
+      <description>요즘엔 git을 많이 이용하는데 항상 rebase와 merge에 대해서 헷갈리곤 했다. 잘 모를때 rebase로 하다가 소스를 날려먹은 후로는.. merge만 써왔다 최근에 몇군데 찾아봤는데 rebase 는 branch의 base를 재배치 한다는 의미라고 한다.</description>
+    </item>
+    <item>
+      <title>git local commit revert 시키기</title>
+      <link>https://paper.kim/posts/etc/2016-02-25-git-revert-local-commit/</link>
+      <pubDate>Thu, 25 Feb 2016 14:35:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/etc/2016-02-25-git-revert-local-commit/</guid>
+      <description>로컬에 쌓인 커밋을 되돌리고 remote 기준으로 되감는 방법. git reset --hard로 복구 대상 저장소를 지정해서 처리한다.</description>
+    </item>
+    <item>
+      <title>Python으로 간단한 webserver 체크</title>
+      <link>https://paper.kim/posts/python/2016-02-17-python-http-request/</link>
+      <pubDate>Wed, 17 Feb 2016 11:41:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/python/2016-02-17-python-http-request/</guid>
+      <description>요즘 파이썬 공부중인데 연습겸 10초마다 webserver가 죽었는지 체크하는 간단한 프로그램을 만들어 봤다. 아래코드에는 아래 나열된 사항들에 대한 코딩이 적용되어 있다 근데 타이머를 저런식으로 해도 될런지 모르겠네 ...</description>
+    </item>
+    <item>
+      <title>CentOS 6에서 Python3 설치 하기</title>
+      <link>https://paper.kim/posts/python/2016-02-12-install-python3/</link>
+      <pubDate>Fri, 12 Feb 2016 16:53:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/python/2016-02-12-install-python3/</guid>
+      <description>CentOS 6에서 Python3 설치 하기. centos 6에 3.5.1 버전을 설치 하는 command line.</description>
+    </item>
+    <item>
+      <title>맥에서 Unity3D 기본 에디터로 VisualStudio Code 사용하기</title>
+      <link>https://paper.kim/posts/etc/2015-12-18-unity-with-visualstudio-code/</link>
+      <pubDate>Fri, 18 Dec 2015 15:39:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/etc/2015-12-18-unity-with-visualstudio-code/</guid>
+      <description>맥용 Unity로 개발할때 보통 MonoDevelopr를 이용하여 코딩 한다 그런데 한글을 지원안해서. 아주 불편했는데. MS에서 얼마전에 공개한 mac용 VisualStudio Code에서 유니티를 지원한다고 해서 한번 설정해봤다. 2. 커맨드&#43;P를 누르고.</description>
+    </item>
+    <item>
+      <title>Mariadb Query test할때 cache 안먹게 하기</title>
+      <link>https://paper.kim/posts/etc/2015-12-15-mysql-cache-reset/</link>
+      <pubDate>Tue, 15 Dec 2015 14:55:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/etc/2015-12-15-mysql-cache-reset/</guid>
+      <description>MySQL 쿼리 튜닝할 때 RESET QUERY CACHE로 캐시를 비우고 캐시가 걸리지 않은 실제 실행 결과를 확인하는 방법.</description>
+    </item>
+    <item>
+      <title>spring jpa namedQuery 직접 호출하기</title>
+      <link>https://paper.kim/posts/spring/2015-11-13-spring-jpa-createnamedquery/</link>
+      <pubDate>Fri, 13 Nov 2015 17:57:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/spring/2015-11-13-spring-jpa-createnamedquery/</guid>
+      <description>Test.java에서 처럼 EntityManager를 이용하여 orm.xml에 정의한 NamedQuery를 바로 실행 할 수 있다.. &amp;gt; repository를 이용하여 호출하면 getResultList로만 실행되는 것 같다.</description>
+    </item>
+    <item>
+      <title>spring redis 연동 </title>
+      <link>https://paper.kim/posts/spring/2015-11-11-spring-redis/</link>
+      <pubDate>Tue, 10 Nov 2015 17:36:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/spring/2015-11-11-spring-redis/</guid>
+      <description>Spring에 Redis를 연동한 기록. spring-data-redis 의존성 추가부터 설정과 실행 결과까지.</description>
+    </item>
+    <item>
+      <title>Flume의 기본 로그를 log4j에서 logback으로 변경</title>
+      <link>https://paper.kim/posts/centos/2015-10-30-flume-logback-sink/</link>
+      <pubDate>Fri, 30 Oct 2015 18:13:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-10-30-flume-logback-sink/</guid>
+      <description>Flume 기본 sink의 한계 때문에 직접 만든 slf4j sink. logback.xml 설정으로 각 서버 로그를 한곳에 모으는 구성.</description>
+    </item>
+    <item>
+      <title>logback에서 시간 &#43; 용량 기준으로 로그파일 분할하기</title>
+      <link>https://paper.kim/2015/10/30/logback-config/</link>
+      <pubDate>Fri, 30 Oct 2015 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/2015/10/30/logback-config/</guid>
+      <description>logback을 이용하는 경우 오늘이 지나거나 용량이 100메가를 넘어가면 파일이 분리된다.</description>
+    </item>
+    <item>
+      <title>Flume 설치 및 테스트 (mac)</title>
+      <link>https://paper.kim/posts/centos/2015-10-29-flume-setting-sample/</link>
+      <pubDate>Thu, 29 Oct 2015 15:51:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-10-29-flume-setting-sample/</guid>
+      <description>Flume 설치와 기본 flume.conf 설정 샘플. JAVA_HOME 지정부터 source·channel·sink 구성까지 정리했다.</description>
+    </item>
+    <item>
+      <title>spring &#43; sitemesh 웹사이트 구축</title>
+      <link>https://paper.kim/2015/10/28/spring-sitemesh-setting/</link>
+      <pubDate>Wed, 28 Oct 2015 17:08:00 +0000</pubDate>
+      <guid>https://paper.kim/2015/10/28/spring-sitemesh-setting/</guid>
+      <description>sitemesh를 설정을 해보겠습니다. sitemesh.xml파일은 수정할 부분이 거의 없습니다 (decorators.xml파일 경로) 셋팅은 위와 같이 xml만 넣어주면 완료됩니다. - 에는 decorator를 적용하지 않을 url패턴을 입력합니다.</description>
+    </item>
+    <item>
+      <title>spring jpa 저장</title>
+      <link>https://paper.kim/2015/10/21/jpa-save/</link>
+      <pubDate>Wed, 21 Oct 2015 16:20:00 +0000</pubDate>
+      <guid>https://paper.kim/2015/10/21/jpa-save/</guid>
+      <description>jpa에서는 저장시 repository.save 함수를 이용하여 저장합니다 class처럼 @OneToMany나 @ManyToOne 필드들을 함께 저장 할 수 있습니다.</description>
+    </item>
+    <item>
+      <title>c# 에서 c&#43;&#43;(dll)로 LPCTSTR parameter 넘겨 호출 하기</title>
+      <link>https://paper.kim/2015/10/15/csharp-lpcstr-parameter-call/</link>
+      <pubDate>Thu, 15 Oct 2015 12:13:00 +0000</pubDate>
+      <guid>https://paper.kim/2015/10/15/csharp-lpcstr-parameter-call/</guid>
+      <description>c&#43;&#43; 로 된 dll을 c#에서 호출할때 예제입니다. CallingConvention = CallingConvention.Cdecl와 [MarshalAs(UnmanagedType.LPWStr)] 가 중요합니다.</description>
+    </item>
+    <item>
+      <title>WPF(c#)에서 control을 png로 저장</title>
+      <link>https://paper.kim/posts/dotnet/2015-10-16-wpf-control-save-to-png/</link>
+      <pubDate>Thu, 15 Oct 2015 12:13:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/dotnet/2015-10-16-wpf-control-save-to-png/</guid>
+      <description>예전에 했던 대로 System.Drawing 을 써서 하려고 했는데.. wpf에 이런 기능이 있었네..</description>
+    </item>
+    <item>
+      <title>spring jpa의 @NamedQuery, @NamedNativeQuery 연습</title>
+      <link>https://paper.kim/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</link>
+      <pubDate>Thu, 08 Oct 2015 01:32:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</guid>
+      <description>jpa에서.. repository를 이용하여 findAll이나.. findOneBy.... 시리즈를 써서 데이타를 조회 할수 있지만 아래와 같이 특정 쿼리를 직접 입력하여 이용도 가능합니다. 또는..</description>
+    </item>
+    <item>
+      <title>spring jpa 조회 연습 </title>
+      <link>https://paper.kim/posts/spring/2015-10-08-spring-jpa/</link>
+      <pubDate>Wed, 07 Oct 2015 18:04:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/spring/2015-10-08-spring-jpa/</guid>
+      <description>entity 작업에 조회까지.. 테스트 해봤습니다. 조회 조건 1. Member를 가져오면.. member의 이미지들과... inter의 목록을 함께 가져오도록 2.</description>
+    </item>
+    <item>
+      <title>spring jpa 설정 및 테스트 (maven 설정)</title>
+      <link>https://paper.kim/2015/10/05/spring-jpa-maven/</link>
+      <pubDate>Mon, 05 Oct 2015 00:41:00 +0000</pubDate>
+      <guid>https://paper.kim/2015/10/05/spring-jpa-maven/</guid>
+      <description>거의 대부분 mybatis 를 이용하여 개발을 하는데.. JPA가 대세라고 해서 가벼운 프로젝트에 연동을 해봤습니다. 인터넷상에 자료가 많아서 설정은 어렵지 않았습니다. 하지만 실제로 사용에 요령이 필요하다고 하네요..</description>
+    </item>
+    <item>
+      <title>redis 3.2.3 설치</title>
+      <link>https://paper.kim/posts/opensource/2015-09-21-redis-304/</link>
+      <pubDate>Sun, 20 Sep 2015 21:47:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/opensource/2015-09-21-redis-304/</guid>
+      <description>Redis 3.0.4를 소스로 컴파일해 설치하는 과정. gcc 등 컴파일러 준비부터 빌드와 실행까지.</description>
+    </item>
+    <item>
+      <title>.NET Framework 4.5.2로 개발했다가. 4.0로... 내림 </title>
+      <link>https://paper.kim/posts/dotnet/2015-09-17-net-framework-452-40/</link>
+      <pubDate>Wed, 16 Sep 2015 20:21:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/dotnet/2015-09-17-net-framework-452-40/</guid>
+      <description>최근에 윈도우 어플을 개발할 일이 생겼다. .NET 4.5부터 async 문법이 새로 들어갔다 해서.. 이왕 하는거 4.5.2로... 만들기로 했다. 오...... 엄청나게 편리하다.!! async, await 두개가 중요하다.</description>
+    </item>
+    <item>
+      <title>디지탈오션에 서버 셋팅기 (centos 6.7)</title>
+      <link>https://paper.kim/posts/centos/2015-09-16-centos-67/</link>
+      <pubDate>Tue, 15 Sep 2015 20:40:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-09-16-centos-67/</guid>
+      <description>친구랑 개발하는 간단한 쪽지앱의 서버로 사용할 서버를 구축했다. 물론 나는 잘 모른다 모든건 다 구글을 통해.. 아래 내용을 /etc/fstab 에 붙인다.</description>
+    </item>
+    <item>
+      <title>spring batch 사용 </title>
+      <link>https://paper.kim/posts/spring/2015-08-28-spring-batch/</link>
+      <pubDate>Thu, 27 Aug 2015 22:44:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/spring/2015-08-28-spring-batch/</guid>
+      <description>최근에 spring-batch를 사용해 봤는데.. 결과는 성공적 특히 트랜잭션commit size와 read size를 따로 지정할 수 있다는게 좋은것 같다. 쿼리나 기타 로직보다 아래 설정이 중요한 듯 하여 아래 설정을 기록으로 남긴다.</description>
+    </item>
+    <item>
+      <title>jfreeChart에서 한글 폰트 사용 (centos 폰트 설정)</title>
+      <link>https://paper.kim/posts/centos/2015-07-02-jfreechart-centos/</link>
+      <pubDate>Wed, 01 Jul 2015 20:33:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-07-02-jfreechart-centos/</guid>
+      <description>jfreeChart를 사용하는 중인데 tomcat위에서 돌리면 한글이 ㅁㅁㅁ 과 같이 나온다. /usr/share/fonts 폴더에 폰트파일을 넣고 fc-cache -fv 를 해주자!!</description>
+    </item>
+    <item>
+      <title>OSX 10.10.3 homebrew 설치하기</title>
+      <link>https://paper.kim/posts/mac/2015-06-04-osx-10103-homebrew/</link>
+      <pubDate>Thu, 04 Jun 2015 01:05:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/mac/2015-06-04-osx-10103-homebrew/</guid>
+      <description>OSX 10.10.3에서 homebrew를 설치하는 과정. 터미널에서 설치 스크립트 실행부터 기본 확인까지.</description>
+    </item>
+    <item>
+      <title>하둡 스프링 연동 테스트2 - hadoop 2.6.x with spring 4.0 (MapReduce WordCount example)</title>
+      <link>https://paper.kim/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</link>
+      <pubDate>Wed, 15 Apr 2015 00:39:00 +0000</pubDate>
+      <guid>https://paper.kim/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</guid>
+      <description>하둡 스프링 연동 테스트2 - hadoop 2.6.x with spring 4.0 (MapReduce WordCount example)</description>
+    </item>
+    <item>
+      <title>하둡 스프링 연동 테스트 - hadoop 2.6.x with spring 4.0</title>
+      <link>https://paper.kim/2015/04/12/hadoop-26x-with-spring-40/</link>
+      <pubDate>Sun, 12 Apr 2015 19:46:00 +0000</pubDate>
+      <guid>https://paper.kim/2015/04/12/hadoop-26x-with-spring-40/</guid>
+      <description>Spring 4.0에서 Hadoop 2.6.x를 붙여 쓴 기록. OSX 요세미티에 하둡을 설치하고 pom.xml 의존성을 맞추는 과정.</description>
+    </item>
+    <item>
+      <title>아파치에서 403 오류 나올때.</title>
+      <link>https://paper.kim/posts/centos/2015-03-27-403/</link>
+      <pubDate>Fri, 27 Mar 2015 01:47:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-03-27-403/</guid>
+      <description>아파치에서 설정을 다 맞췄는데도 403이 계속 나올 때. SELinux 컨텍스트를 chcon으로 webroot에 맞춰주면 해결된다.</description>
+    </item>
+    <item>
+      <title>spring junit testcase 작성</title>
+      <link>https://paper.kim/posts/spring/2015-03-25-spring-junit-testcase/</link>
+      <pubDate>Tue, 24 Mar 2015 22:42:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/spring/2015-03-25-spring-junit-testcase/</guid>
+      <description>Spring에서 JUnit 테스트케이스를 작성하는 방법. pom.xml에 spring-test 추가하고 컨텍스트를 올려 테스트한다.</description>
+    </item>
+    <item>
+      <title>spring-rabbitmq 연동 </title>
+      <link>https://paper.kim/posts/spring/2015-03-11-spring-rabbitmq/</link>
+      <pubDate>Tue, 10 Mar 2015 18:55:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/spring/2015-03-11-spring-rabbitmq/</guid>
+      <description>Spring에 RabbitMQ를 연동한 기록. rpm 설치와 서버 기동부터 스프링 설정까지.</description>
+    </item>
+    <item>
+      <title>git 관련 명령어 모음</title>
+      <link>https://paper.kim/posts/centos/2015-03-05-git/</link>
+      <pubDate>Wed, 04 Mar 2015 17:33:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-03-05-git/</guid>
+      <description>git 명령어 모음. svn에서 git으로 마이그레이션, ignore 파일 처리, remote 지정, tags와 branches 처리, 로컬 커밋 revert, 백업과 복원.</description>
+    </item>
+    <item>
+      <title>mysql, mariadb에서 유니코드(utf8mb4) 지원하기</title>
+      <link>https://paper.kim/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</link>
+      <pubDate>Tue, 10 Feb 2015 20:48:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</guid>
+      <description>MySQL과 MariaDB에서 이모지까지 저장하려고 문자셋을 utf8에서 utf8mb4로 바꾼 과정. 서버 설정과 실제 컬럼 타입 변경까지.</description>
+    </item>
+    <item>
+      <title>CentOS 명령어 모음</title>
+      <link>https://paper.kim/posts/centos/2015-02-06-blog-post_21/</link>
+      <pubDate>Thu, 05 Feb 2015 17:42:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-02-06-blog-post_21/</guid>
+      <description>CentOS에서 자주 쓰던 명령어 모음. 프로그램 설치 위치 찾기, 오래된 로그 삭제, hosts와 DNS 수정, OS 비트·버전 확인, 폰트 반영, crond 편집, 톰캣 프로세스 확인과 kill.</description>
+    </item>
+    <item>
+      <title>Parallels에서 Command&#43;Space로 한영변환 하기</title>
+      <link>https://paper.kim/posts/mac/2015-02-06-parallels-8-9-commandspace/</link>
+      <pubDate>Thu, 05 Feb 2015 17:29:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/mac/2015-02-06-parallels-8-9-commandspace/</guid>
+      <description>Parallels에서 Command&#43;Space 한영 전환이 게스트로 먹히지 않을 때. 키보드 입력 소스 설정과 단축키 매핑으로 해결한 방법.</description>
+    </item>
+    <item>
+      <title>spring map to xml viewresolver</title>
+      <link>https://paper.kim/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</link>
+      <pubDate>Thu, 05 Feb 2015 17:16:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</guid>
+      <description>항상 json으로만 뱉다가 xml로 뱉어야 하는 상황이 발생해서 만든 spring view 클래스 결과가 map에 경우에만 해당됨 아래 설정하고... #### applicationServlet.xml</description>
+    </item>
+    <item>
+      <title>tomcat 에서 OutOfMemory 자주 나오면.</title>
+      <link>https://paper.kim/posts/centos/2015-02-06-tomcat-outofmemory/</link>
+      <pubDate>Thu, 05 Feb 2015 17:10:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-02-06-tomcat-outofmemory/</guid>
+      <description>톰캣에서 OutOfMemory가 자주 날 때 catalina.sh 상단에 CATALINA_OPTS로 힙과 PermGen 크기를 올려 잡는 설정.</description>
+    </item>
+    <item>
+      <title>개인정보처리방침</title>
+      <link>https://paper.kim/privacy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://paper.kim/privacy/</guid>
+      <description>&lt;p&gt;본 블로그(&lt;code&gt;paper.kim&lt;/code&gt;, 이하 &amp;ldquo;사이트&amp;rdquo;)는 방문자의 개인정보를 소중히 여기며,
+아래와 같이 개인정보 및 쿠키 사용에 관한 방침을 안내합니다.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>소개</title>
+      <link>https://paper.kim/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://paper.kim/about/</guid>
+      <description>개발하며 배운 것들과 일상을 기록하는 블로그. 백엔드와 인프라 작업 기록, 그리고 서울에서 먹고 다닌 것들을 남긴다.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Policy on paper.archive</title>
+    <link>https://paper.kim/en/tags/policy/</link>
+    <description>Recent content in Policy on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 25 Jul 2026 09:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/policy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The San Francisco AI Declaration, Summarized</title>
+      <link>https://paper.kim/en/posts/ai/2026-07-25-sf-ai-declaration/</link>
+      <pubDate>Sat, 25 Jul 2026 09:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/ai/2026-07-25-sf-ai-declaration/</guid>
+      <description>What the San Francisco AI Declaration of July 24, 2026 actually says, which deals were signed alongside it, and what Korea&amp;#39;s AI Framework Act requires from developers today.</description>
+    </item>
+  </channel>
+</rss>

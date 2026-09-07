@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Redis on 기록 저장소</title>
+    <link>https://paper.kim/tags/redis/</link>
+    <description>Recent content in Redis on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Wed, 27 Jul 2016 14:32:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>redis data type 종류</title>
+      <link>https://paper.kim/2016/07/27/redis-datatype/</link>
+      <pubDate>Wed, 27 Jul 2016 14:32:00 +0000</pubDate>
+      <guid>https://paper.kim/2016/07/27/redis-datatype/</guid>
+      <description>Strings, Lists, Sets, Hashes, Sorted sets, Bitmaps 에 HyperLogLog, Geo, Streams 까지. redis-cli 로 하나씩 찍어보면서 어디에 뭘 쓰면 될지 정리했다</description>
+    </item>
+    <item>
+      <title>spring redis 연동 </title>
+      <link>https://paper.kim/posts/spring/2015-11-11-spring-redis/</link>
+      <pubDate>Tue, 10 Nov 2015 17:36:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/spring/2015-11-11-spring-redis/</guid>
+      <description>Spring에 Redis를 연동한 기록. spring-data-redis 의존성 추가부터 설정과 실행 결과까지.</description>
+    </item>
+    <item>
+      <title>redis 3.2.3 설치</title>
+      <link>https://paper.kim/posts/opensource/2015-09-21-redis-304/</link>
+      <pubDate>Sun, 20 Sep 2015 21:47:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/opensource/2015-09-21-redis-304/</guid>
+      <description>Redis 3.0.4를 소스로 컴파일해 설치하는 과정. gcc 등 컴파일러 준비부터 빌드와 실행까지.</description>
+    </item>
+  </channel>
+</rss>

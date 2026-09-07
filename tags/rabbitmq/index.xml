@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Rabbitmq on 기록 저장소</title>
+    <link>https://paper.kim/tags/rabbitmq/</link>
+    <description>Recent content in Rabbitmq on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Tue, 15 Sep 2015 20:40:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>디지탈오션에 서버 셋팅기 (centos 6.7)</title>
+      <link>https://paper.kim/posts/centos/2015-09-16-centos-67/</link>
+      <pubDate>Tue, 15 Sep 2015 20:40:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-09-16-centos-67/</guid>
+      <description>친구랑 개발하는 간단한 쪽지앱의 서버로 사용할 서버를 구축했다. 물론 나는 잘 모른다 모든건 다 구글을 통해.. 아래 내용을 /etc/fstab 에 붙인다.</description>
+    </item>
+    <item>
+      <title>spring-rabbitmq 연동 </title>
+      <link>https://paper.kim/posts/spring/2015-03-11-spring-rabbitmq/</link>
+      <pubDate>Tue, 10 Mar 2015 18:55:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/spring/2015-03-11-spring-rabbitmq/</guid>
+      <description>Spring에 RabbitMQ를 연동한 기록. rpm 설치와 서버 기동부터 스프링 설정까지.</description>
+    </item>
+  </channel>
+</rss>

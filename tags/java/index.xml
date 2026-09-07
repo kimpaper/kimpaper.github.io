@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Java on 기록 저장소</title>
+    <link>https://paper.kim/tags/java/</link>
+    <description>Recent content in Java on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 08 Oct 2015 01:32:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>spring jpa의 @NamedQuery, @NamedNativeQuery 연습</title>
+      <link>https://paper.kim/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</link>
+      <pubDate>Thu, 08 Oct 2015 01:32:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</guid>
+      <description>jpa에서.. repository를 이용하여 findAll이나.. findOneBy.... 시리즈를 써서 데이타를 조회 할수 있지만 아래와 같이 특정 쿼리를 직접 입력하여 이용도 가능합니다. 또는..</description>
+    </item>
+    <item>
+      <title>spring jpa 조회 연습 </title>
+      <link>https://paper.kim/posts/spring/2015-10-08-spring-jpa/</link>
+      <pubDate>Wed, 07 Oct 2015 18:04:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/spring/2015-10-08-spring-jpa/</guid>
+      <description>entity 작업에 조회까지.. 테스트 해봤습니다. 조회 조건 1. Member를 가져오면.. member의 이미지들과... inter의 목록을 함께 가져오도록 2.</description>
+    </item>
+    <item>
+      <title>jfreeChart에서 한글 폰트 사용 (centos 폰트 설정)</title>
+      <link>https://paper.kim/posts/centos/2015-07-02-jfreechart-centos/</link>
+      <pubDate>Wed, 01 Jul 2015 20:33:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-07-02-jfreechart-centos/</guid>
+      <description>jfreeChart를 사용하는 중인데 tomcat위에서 돌리면 한글이 ㅁㅁㅁ 과 같이 나온다. /usr/share/fonts 폴더에 폰트파일을 넣고 fc-cache -fv 를 해주자!!</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Samgyeopsal on paper.archive</title>
+    <link>https://paper.kim/en/tags/samgyeopsal/</link>
+    <description>Recent content in Samgyeopsal on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 30 Jul 2026 13:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/samgyeopsal/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Samgyeopsal and Beef Sirloin for Lunch, with a Mountain of Minari</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-30-samgyeopsal/</link>
+      <pubDate>Thu, 30 Jul 2026 13:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-30-samgyeopsal/</guid>
+      <description>Grilling samgyeopsal and beef sirloin at home, starting at lunch. Half the pan is minari. Onion, potato and a pot of stew on the side, and no drinks today.</description>
+    </item>
+  </channel>
+</rss>

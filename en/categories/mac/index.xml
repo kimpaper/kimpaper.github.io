@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Mac on paper.archive</title>
+    <link>https://paper.kim/en/categories/mac/</link>
+    <description>Recent content in Mac on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 08 Apr 2023 01:05:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/categories/mac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Archive Utility not working on macOS</title>
+      <link>https://paper.kim/en/posts/mac/2023-04-08-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EB%8F%99%EC%9E%91-%EC%95%88%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81/</link>
+      <pubDate>Sat, 08 Apr 2023 01:05:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/mac/2023-04-08-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EB%8F%99%EC%9E%91-%EC%95%88%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81/</guid>
+      <description>Ran into this on a MacBook Air M2. Archive Utility wouldn&amp;#39;t extract a zip on double-click.</description>
+    </item>
+    <item>
+      <title>Installing homebrew on OSX 10.10.3</title>
+      <link>https://paper.kim/en/posts/mac/2015-06-04-osx-10103-homebrew/</link>
+      <pubDate>Thu, 04 Jun 2015 01:05:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/mac/2015-06-04-osx-10103-homebrew/</guid>
+      <description>Installing homebrew on OSX 10.10.3, from running the install script in the terminal through the initial checks.</description>
+    </item>
+    <item>
+      <title>Switching Korean/English input with Command&#43;Space in Parallels</title>
+      <link>https://paper.kim/en/posts/mac/2015-02-06-parallels-8-9-commandspace/</link>
+      <pubDate>Thu, 05 Feb 2015 17:29:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/mac/2015-02-06-parallels-8-9-commandspace/</guid>
+      <description>I&amp;#39;ve been using the settings below from version 8 through 11. Done. This worked for me.</description>
+    </item>
+  </channel>
+</rss>

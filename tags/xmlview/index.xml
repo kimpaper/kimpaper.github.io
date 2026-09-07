@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Xmlview on 기록 저장소</title>
+    <link>https://paper.kim/tags/xmlview/</link>
+    <description>Recent content in Xmlview on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 05 Feb 2015 17:16:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/xmlview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>spring map to xml viewresolver</title>
+      <link>https://paper.kim/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</link>
+      <pubDate>Thu, 05 Feb 2015 17:16:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</guid>
+      <description>항상 json으로만 뱉다가 xml로 뱉어야 하는 상황이 발생해서 만든 spring view 클래스 결과가 map에 경우에만 해당됨 아래 설정하고... #### applicationServlet.xml</description>
+    </item>
+  </channel>
+</rss>

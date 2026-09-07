@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tomcat on paper.archive</title>
+    <link>https://paper.kim/en/tags/tomcat/</link>
+    <description>Recent content in Tomcat on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 05 Feb 2015 17:10:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/tomcat/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>When Tomcat keeps throwing OutOfMemory</title>
+      <link>https://paper.kim/en/posts/centos/2015-02-06-tomcat-outofmemory/</link>
+      <pubDate>Thu, 05 Feb 2015 17:10:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-02-06-tomcat-outofmemory/</guid>
+      <description>Fixing frequent Tomcat OutOfMemory errors by setting CATALINA_OPTS at the top of catalina.sh to raise heap and PermGen size.</description>
+    </item>
+  </channel>
+</rss>

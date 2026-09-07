@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Git on paper.archive</title>
+    <link>https://paper.kim/en/tags/git/</link>
+    <description>Recent content in Git on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 24 Mar 2016 16:36:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>rebase and merge in git</title>
+      <link>https://paper.kim/en/posts/etc/2016-03-24-git-rebase-merge/</link>
+      <pubDate>Thu, 24 Mar 2016 16:36:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/etc/2016-03-24-git-rebase-merge/</guid>
+      <description>I use git a lot these days and I&amp;#39;ve always been confused about rebase vs merge.</description>
+    </item>
+    <item>
+      <title>Reverting a git local commit</title>
+      <link>https://paper.kim/en/posts/etc/2016-02-25-git-revert-local-commit/</link>
+      <pubDate>Thu, 25 Feb 2016 14:35:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/etc/2016-02-25-git-revert-local-commit/</guid>
+      <description>Specify the target repository to restore, like below (when the current checkout is develop) If you don&amp;#39;t specify a repository, it seems to revert…</description>
+    </item>
+    <item>
+      <title>git command collection</title>
+      <link>https://paper.kim/en/posts/centos/2015-03-05-git/</link>
+      <pubDate>Wed, 04 Mar 2015 17:33:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-03-05-git/</guid>
+      <description>A collection of git commands: migrating from svn, handling ignore files, setting remotes, dealing with tags and branches, reverting local commits, and backup and restore.</description>
+    </item>
+  </channel>
+</rss>

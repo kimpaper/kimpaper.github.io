@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>삼겹살 on 기록 저장소</title>
+    <link>https://paper.kim/tags/%EC%82%BC%EA%B2%B9%EC%82%B4/</link>
+    <description>Recent content in 삼겹살 on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 30 Jul 2026 13:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/%EC%82%BC%EA%B2%B9%EC%82%B4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>점심부터 삼겹살 — 소고기 등심도 같이</title>
+      <link>https://paper.kim/posts/diary/2026-07-30-samgyeopsal/</link>
+      <pubDate>Thu, 30 Jul 2026 13:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-30-samgyeopsal/</guid>
+      <description>점심부터 집에서 삼겹살이랑 소고기 등심을 구웠다. 불판 절반이 미나리다. 양파랑 감자도 같이 올리고 찌개까지. 오늘은 술 없이 밥만.</description>
+    </item>
+    <item>
+      <title>개봉동 대빛식당 — 꽃삼겹</title>
+      <link>https://paper.kim/posts/diary/2026-07-17-daebit-sikdang-gaebong/</link>
+      <pubDate>Fri, 17 Jul 2026 18:37:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/diary/2026-07-17-daebit-sikdang-gaebong/</guid>
+      <description>집 근처 대빛식당. 돌판(솥뚜껑)에 구워 먹는 꽃삼겹 집이다. 꽃삼겹은 삼겹살을 장미처럼 말아놓은 건데, 돌판에 김치랑 고사리·미나리 같은 나물이랑 같이 굽는다. 비주얼부터 먹음직스럽다! 기름이 빠지면서 겉은 바삭! 나물에 싸먹으면 느끼하지 않아서 계속 들어간다.</description>
+    </item>
+  </channel>
+</rss>

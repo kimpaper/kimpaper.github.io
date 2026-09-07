@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Git on 기록 저장소</title>
+    <link>https://paper.kim/tags/git/</link>
+    <description>Recent content in Git on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 24 Mar 2016 16:36:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>git에서 rebase와 merge</title>
+      <link>https://paper.kim/posts/etc/2016-03-24-git-rebase-merge/</link>
+      <pubDate>Thu, 24 Mar 2016 16:36:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/etc/2016-03-24-git-rebase-merge/</guid>
+      <description>요즘엔 git을 많이 이용하는데 항상 rebase와 merge에 대해서 헷갈리곤 했다. 잘 모를때 rebase로 하다가 소스를 날려먹은 후로는.. merge만 써왔다 최근에 몇군데 찾아봤는데 rebase 는 branch의 base를 재배치 한다는 의미라고 한다.</description>
+    </item>
+    <item>
+      <title>git local commit revert 시키기</title>
+      <link>https://paper.kim/posts/etc/2016-02-25-git-revert-local-commit/</link>
+      <pubDate>Thu, 25 Feb 2016 14:35:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/etc/2016-02-25-git-revert-local-commit/</guid>
+      <description>로컬에 쌓인 커밋을 되돌리고 remote 기준으로 되감는 방법. git reset --hard로 복구 대상 저장소를 지정해서 처리한다.</description>
+    </item>
+    <item>
+      <title>git 관련 명령어 모음</title>
+      <link>https://paper.kim/posts/centos/2015-03-05-git/</link>
+      <pubDate>Wed, 04 Mar 2015 17:33:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-03-05-git/</guid>
+      <description>git 명령어 모음. svn에서 git으로 마이그레이션, ignore 파일 처리, remote 지정, tags와 branches 처리, 로컬 커밋 revert, 백업과 복원.</description>
+    </item>
+  </channel>
+</rss>

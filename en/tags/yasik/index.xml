@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Yasik on paper.archive</title>
+    <link>https://paper.kim/en/tags/yasik/</link>
+    <description>Recent content in Yasik on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 18 Jul 2026 22:47:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/yasik/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Yasik — Sea Snail Salad &amp; Blanched Squid, Delivered</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-18-yasik-sora-ojingeo/</link>
+      <pubDate>Sat, 18 Jul 2026 22:47:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-18-yasik-sora-ojingeo/</guid>
+      <description>Late-night eating is practically a national sport in Korea — it even has its own word, yasik (야식). Tonight&amp;#39;s yasik came by delivery app.</description>
+    </item>
+  </channel>
+</rss>

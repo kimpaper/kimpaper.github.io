@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Etc on paper.archive</title>
+    <link>https://paper.kim/en/categories/etc/</link>
+    <description>Recent content in Etc on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 14 Jul 2016 14:15:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/categories/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Converting from maven to gradle...</title>
+      <link>https://paper.kim/en/2016/07/14/gradle/</link>
+      <pubDate>Thu, 14 Jul 2016 14:15:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2016/07/14/gradle/</guid>
+      <description>There&amp;#39;s a manual install method.. but I prefer automatic installs like the above doesn&amp;#39;t everyone For manual install see the site…</description>
+    </item>
+    <item>
+      <title>rebase and merge in git</title>
+      <link>https://paper.kim/en/posts/etc/2016-03-24-git-rebase-merge/</link>
+      <pubDate>Thu, 24 Mar 2016 16:36:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/etc/2016-03-24-git-rebase-merge/</guid>
+      <description>I use git a lot these days and I&amp;#39;ve always been confused about rebase vs merge.</description>
+    </item>
+    <item>
+      <title>Reverting a git local commit</title>
+      <link>https://paper.kim/en/posts/etc/2016-02-25-git-revert-local-commit/</link>
+      <pubDate>Thu, 25 Feb 2016 14:35:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/etc/2016-02-25-git-revert-local-commit/</guid>
+      <description>Specify the target repository to restore, like below (when the current checkout is develop) If you don&amp;#39;t specify a repository, it seems to revert…</description>
+    </item>
+    <item>
+      <title>Using Visual Studio Code as the default editor for Unity3D on Mac</title>
+      <link>https://paper.kim/en/posts/etc/2015-12-18-unity-with-visualstudio-code/</link>
+      <pubDate>Fri, 18 Dec 2015 15:39:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/etc/2015-12-18-unity-with-visualstudio-code/</guid>
+      <description>When developing with Unity on Mac you usually code with MonoDevelop. But it doesn&amp;#39;t support Korean, which was really annoying.</description>
+    </item>
+    <item>
+      <title>Disabling the cache when testing MariaDB queries</title>
+      <link>https://paper.kim/en/posts/etc/2015-12-15-mysql-cache-reset/</link>
+      <pubDate>Tue, 15 Dec 2015 14:55:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/etc/2015-12-15-mysql-cache-reset/</guid>
+      <description>When tuning queries, run this first to see uncached results.</description>
+    </item>
+    <item>
+      <title>Splitting log files by time &#43; size in logback</title>
+      <link>https://paper.kim/en/2015/10/30/logback-config/</link>
+      <pubDate>Fri, 30 Oct 2015 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2015/10/30/logback-config/</guid>
+      <description>With logback, the file rolls over when the day passes or the size goes over 100MB.</description>
+    </item>
+  </channel>
+</rss>

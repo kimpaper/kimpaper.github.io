@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on paper.archive</title>
+    <link>https://paper.kim/en/tags/</link>
+    <description>Recent content in Tags on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 06 Sep 2026 22:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ai</title>
+      <link>https://paper.kim/en/tags/ai/</link>
+      <pubDate>Sun, 06 Sep 2026 22:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Benchmarks</title>
+      <link>https://paper.kim/en/tags/benchmarks/</link>
+      <pubDate>Sun, 06 Sep 2026 22:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/benchmarks/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cost</title>
+      <link>https://paper.kim/en/tags/cost/</link>
+      <pubDate>Sun, 06 Sep 2026 22:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/cost/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gpt</title>
+      <link>https://paper.kim/en/tags/gpt/</link>
+      <pubDate>Sun, 06 Sep 2026 22:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/gpt/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Llm</title>
+      <link>https://paper.kim/en/tags/llm/</link>
+      <pubDate>Sun, 06 Sep 2026 22:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/llm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Claude</title>
+      <link>https://paper.kim/en/tags/claude/</link>
+      <pubDate>Tue, 01 Sep 2026 21:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/claude/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Bucheon</title>
+      <link>https://paper.kim/en/tags/bucheon/</link>
+      <pubDate>Sun, 16 Aug 2026 11:20:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/bucheon/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Catfish</title>
+      <link>https://paper.kim/en/tags/catfish/</link>
+      <pubDate>Sun, 16 Aug 2026 11:20:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/catfish/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>K-Food</title>
+      <link>https://paper.kim/en/tags/k-food/</link>
+      <pubDate>Sun, 16 Aug 2026 11:20:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/k-food/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Korea-Travel</title>
+      <link>https://paper.kim/en/tags/korea-travel/</link>
+      <pubDate>Sun, 16 Aug 2026 11:20:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/korea-travel/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Maeuntang</title>
+      <link>https://paper.kim/en/tags/maeuntang/</link>
+      <pubDate>Sun, 16 Aug 2026 11:20:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/maeuntang/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Home-Cooking</title>
+      <link>https://paper.kim/en/tags/home-cooking/</link>
+      <pubDate>Wed, 05 Aug 2026 20:23:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/home-cooking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Malatang</title>
+      <link>https://paper.kim/en/tags/malatang/</link>
+      <pubDate>Wed, 05 Aug 2026 20:23:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/malatang/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Raw-Beef</title>
+      <link>https://paper.kim/en/tags/raw-beef/</link>
+      <pubDate>Wed, 05 Aug 2026 20:23:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/raw-beef/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Soju</title>
+      <link>https://paper.kim/en/tags/soju/</link>
+      <pubDate>Wed, 05 Aug 2026 20:23:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/soju/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Yukhoe</title>
+      <link>https://paper.kim/en/tags/yukhoe/</link>
+      <pubDate>Wed, 05 Aug 2026 20:23:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/yukhoe/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Beef</title>
+      <link>https://paper.kim/en/tags/beef/</link>
+      <pubDate>Thu, 30 Jul 2026 13:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/beef/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Minari</title>
+      <link>https://paper.kim/en/tags/minari/</link>
+      <pubDate>Thu, 30 Jul 2026 13:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/minari/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Samgyeopsal</title>
+      <link>https://paper.kim/en/tags/samgyeopsal/</link>
+      <pubDate>Thu, 30 Jul 2026 13:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/samgyeopsal/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Seoul</title>
+      <link>https://paper.kim/en/tags/seoul/</link>
+      <pubDate>Thu, 30 Jul 2026 13:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/seoul/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Knowledge-Base</title>
+      <link>https://paper.kim/en/tags/knowledge-base/</link>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/knowledge-base/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Obsidian</title>
+      <link>https://paper.kim/en/tags/obsidian/</link>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/obsidian/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rag</title>
+      <link>https://paper.kim/en/tags/rag/</link>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/rag/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Data-Centers</title>
+      <link>https://paper.kim/en/tags/data-centers/</link>
+      <pubDate>Sat, 25 Jul 2026 09:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/data-centers/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Korea</title>
+      <link>https://paper.kim/en/tags/korea/</link>
+      <pubDate>Sat, 25 Jul 2026 09:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/korea/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Policy</title>
+      <link>https://paper.kim/en/tags/policy/</link>
+      <pubDate>Sat, 25 Jul 2026 09:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/policy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Semiconductors</title>
+      <link>https://paper.kim/en/tags/semiconductors/</link>
+      <pubDate>Sat, 25 Jul 2026 09:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/semiconductors/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Openai</title>
+      <link>https://paper.kim/en/tags/openai/</link>
+      <pubDate>Sat, 25 Jul 2026 08:30:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/openai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Daily-Life</title>
+      <link>https://paper.kim/en/tags/daily-life/</link>
+      <pubDate>Tue, 21 Jul 2026 12:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/daily-life/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gardening</title>
+      <link>https://paper.kim/en/tags/gardening/</link>
+      <pubDate>Tue, 21 Jul 2026 12:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/gardening/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Paju</title>
+      <link>https://paper.kim/en/tags/paju/</link>
+      <pubDate>Tue, 21 Jul 2026 12:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/paju/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Plants</title>
+      <link>https://paper.kim/en/tags/plants/</link>
+      <pubDate>Tue, 21 Jul 2026 12:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/plants/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Aws</title>
+      <link>https://paper.kim/en/tags/aws/</link>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/aws/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Devops</title>
+      <link>https://paper.kim/en/tags/devops/</link>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/devops/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Harness</title>
+      <link>https://paper.kim/en/tags/harness/</link>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/harness/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Iam</title>
+      <link>https://paper.kim/en/tags/iam/</link>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/iam/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Saas</title>
+      <link>https://paper.kim/en/tags/saas/</link>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/saas/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Security</title>
+      <link>https://paper.kim/en/tags/security/</link>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Homesul</title>
+      <link>https://paper.kim/en/tags/homesul/</link>
+      <pubDate>Sun, 19 Jul 2026 19:10:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/homesul/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shabu-Shabu</title>
+      <link>https://paper.kim/en/tags/shabu-shabu/</link>
+      <pubDate>Sun, 19 Jul 2026 19:10:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/shabu-shabu/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Seafood</title>
+      <link>https://paper.kim/en/tags/seafood/</link>
+      <pubDate>Sat, 18 Jul 2026 22:47:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/seafood/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Yasik</title>
+      <link>https://paper.kim/en/tags/yasik/</link>
+      <pubDate>Sat, 18 Jul 2026 22:47:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/yasik/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Baekban</title>
+      <link>https://paper.kim/en/tags/baekban/</link>
+      <pubDate>Sat, 18 Jul 2026 12:44:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/baekban/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kbbq</title>
+      <link>https://paper.kim/en/tags/kbbq/</link>
+      <pubDate>Fri, 17 Jul 2026 18:37:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/kbbq/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pork-Belly</title>
+      <link>https://paper.kim/en/tags/pork-belly/</link>
+      <pubDate>Fri, 17 Jul 2026 18:37:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/pork-belly/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Drinking-Food</title>
+      <link>https://paper.kim/en/tags/drinking-food/</link>
+      <pubDate>Thu, 16 Jul 2026 21:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/drinking-food/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Chimaek</title>
+      <link>https://paper.kim/en/tags/chimaek/</link>
+      <pubDate>Wed, 15 Jul 2026 20:19:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/chimaek/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cable-Car</title>
+      <link>https://paper.kim/en/tags/cable-car/</link>
+      <pubDate>Sun, 12 Jul 2026 15:39:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/cable-car/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Geoje</title>
+      <link>https://paper.kim/en/tags/geoje/</link>
+      <pubDate>Sun, 12 Jul 2026 15:39:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/geoje/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Namhae</title>
+      <link>https://paper.kim/en/tags/namhae/</link>
+      <pubDate>Sun, 12 Jul 2026 15:39:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/namhae/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Stew</title>
+      <link>https://paper.kim/en/tags/stew/</link>
+      <pubDate>Sun, 12 Jul 2026 08:20:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/stew/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cruise</title>
+      <link>https://paper.kim/en/tags/cruise/</link>
+      <pubDate>Sat, 11 Jul 2026 14:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/cruise/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Haegeumgang</title>
+      <link>https://paper.kim/en/tags/haegeumgang/</link>
+      <pubDate>Sat, 11 Jul 2026 14:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/haegeumgang/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Noodles</title>
+      <link>https://paper.kim/en/tags/noodles/</link>
+      <pubDate>Sat, 11 Jul 2026 12:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/noodles/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hot-Pot</title>
+      <link>https://paper.kim/en/tags/hot-pot/</link>
+      <pubDate>Fri, 10 Jul 2026 13:30:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/hot-pot/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Blog</title>
+      <link>https://paper.kim/en/tags/blog/</link>
+      <pubDate>Thu, 09 Jul 2026 10:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/blog/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Life</title>
+      <link>https://paper.kim/en/tags/life/</link>
+      <pubDate>Thu, 09 Jul 2026 10:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/tags/life/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Macos</title>
+      <link>https://paper.kim/en/tags/macos/</link>
+      <pubDate>Sat, 08 Apr 2023 01:05:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/macos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Go</title>
+      <link>https://paper.kim/en/tags/go/</link>
+      <pubDate>Mon, 28 Mar 2022 16:53:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/go/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Golang</title>
+      <link>https://paper.kim/en/tags/golang/</link>
+      <pubDate>Mon, 28 Mar 2022 16:53:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/golang/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pprof</title>
+      <link>https://paper.kim/en/tags/pprof/</link>
+      <pubDate>Mon, 28 Mar 2022 16:53:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/pprof/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cert-Manager</title>
+      <link>https://paper.kim/en/tags/cert-manager/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/cert-manager/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Glusterfs</title>
+      <link>https://paper.kim/en/tags/glusterfs/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/glusterfs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ingress</title>
+      <link>https://paper.kim/en/tags/ingress/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/ingress/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>https://paper.kim/en/tags/kubernetes/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Letsencrypt</title>
+      <link>https://paper.kim/en/tags/letsencrypt/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/letsencrypt/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Centos</title>
+      <link>https://paper.kim/en/tags/centos/</link>
+      <pubDate>Thu, 11 Aug 2016 16:07:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/centos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ssh</title>
+      <link>https://paper.kim/en/tags/ssh/</link>
+      <pubDate>Thu, 11 Aug 2016 16:07:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/ssh/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Redis</title>
+      <link>https://paper.kim/en/tags/redis/</link>
+      <pubDate>Wed, 27 Jul 2016 14:32:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/redis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gradle</title>
+      <link>https://paper.kim/en/tags/gradle/</link>
+      <pubDate>Thu, 14 Jul 2016 14:15:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/gradle/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Spring</title>
+      <link>https://paper.kim/en/tags/spring/</link>
+      <pubDate>Thu, 14 Jul 2016 14:15:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/spring/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fluentd</title>
+      <link>https://paper.kim/en/tags/fluentd/</link>
+      <pubDate>Wed, 22 Jun 2016 15:47:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/fluentd/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Apache</title>
+      <link>https://paper.kim/en/tags/apache/</link>
+      <pubDate>Wed, 08 Jun 2016 15:32:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/apache/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hadoop</title>
+      <link>https://paper.kim/en/tags/hadoop/</link>
+      <pubDate>Wed, 08 Jun 2016 15:32:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/hadoop/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>https://paper.kim/en/tags/python/</link>
+      <pubDate>Wed, 08 Jun 2016 15:32:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Spark</title>
+      <link>https://paper.kim/en/tags/spark/</link>
+      <pubDate>Wed, 08 Jun 2016 15:32:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/spark/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Git</title>
+      <link>https://paper.kim/en/tags/git/</link>
+      <pubDate>Thu, 24 Mar 2016 16:36:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/git/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Unity</title>
+      <link>https://paper.kim/en/tags/unity/</link>
+      <pubDate>Fri, 18 Dec 2015 15:39:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/unity/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vscode</title>
+      <link>https://paper.kim/en/tags/vscode/</link>
+      <pubDate>Fri, 18 Dec 2015 15:39:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/vscode/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cache</title>
+      <link>https://paper.kim/en/tags/cache/</link>
+      <pubDate>Tue, 15 Dec 2015 14:55:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/cache/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mariadb</title>
+      <link>https://paper.kim/en/tags/mariadb/</link>
+      <pubDate>Tue, 15 Dec 2015 14:55:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/mariadb/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mysql</title>
+      <link>https://paper.kim/en/tags/mysql/</link>
+      <pubDate>Tue, 15 Dec 2015 14:55:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/mysql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Jpa</title>
+      <link>https://paper.kim/en/tags/jpa/</link>
+      <pubDate>Fri, 13 Nov 2015 17:57:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/jpa/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Flume</title>
+      <link>https://paper.kim/en/tags/flume/</link>
+      <pubDate>Fri, 30 Oct 2015 18:13:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/flume/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Logback</title>
+      <link>https://paper.kim/en/tags/logback/</link>
+      <pubDate>Fri, 30 Oct 2015 18:13:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/logback/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mac</title>
+      <link>https://paper.kim/en/tags/mac/</link>
+      <pubDate>Thu, 29 Oct 2015 15:51:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/mac/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sitemesh</title>
+      <link>https://paper.kim/en/tags/sitemesh/</link>
+      <pubDate>Wed, 28 Oct 2015 17:08:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/sitemesh/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>.Net</title>
+      <link>https://paper.kim/en/tags/.net/</link>
+      <pubDate>Thu, 15 Oct 2015 12:13:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/.net/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Marshalling</title>
+      <link>https://paper.kim/en/tags/marshalling/</link>
+      <pubDate>Thu, 15 Oct 2015 12:13:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/marshalling/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Wpf</title>
+      <link>https://paper.kim/en/tags/wpf/</link>
+      <pubDate>Thu, 15 Oct 2015 12:13:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/wpf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>마샬링</title>
+      <link>https://paper.kim/en/tags/%EB%A7%88%EC%83%AC%EB%A7%81/</link>
+      <pubDate>Thu, 15 Oct 2015 12:13:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/%EB%A7%88%EC%83%AC%EB%A7%81/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java</title>
+      <link>https://paper.kim/en/tags/java/</link>
+      <pubDate>Thu, 08 Oct 2015 01:32:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>일상</title>
+      <link>https://paper.kim/en/tags/%EC%9D%BC%EC%83%81/</link>
+      <pubDate>Wed, 16 Sep 2015 20:21:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/%EC%9D%BC%EC%83%81/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rabbitmq</title>
+      <link>https://paper.kim/en/tags/rabbitmq/</link>
+      <pubDate>Tue, 15 Sep 2015 20:40:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/rabbitmq/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Jfreechart</title>
+      <link>https://paper.kim/en/tags/jfreechart/</link>
+      <pubDate>Wed, 01 Jul 2015 20:33:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/jfreechart/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Junit</title>
+      <link>https://paper.kim/en/tags/junit/</link>
+      <pubDate>Tue, 24 Mar 2015 22:42:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/junit/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Spring-Test</title>
+      <link>https://paper.kim/en/tags/spring-test/</link>
+      <pubDate>Tue, 24 Mar 2015 22:42:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/spring-test/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gitlab</title>
+      <link>https://paper.kim/en/tags/gitlab/</link>
+      <pubDate>Wed, 04 Mar 2015 17:33:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/gitlab/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Svn</title>
+      <link>https://paper.kim/en/tags/svn/</link>
+      <pubDate>Wed, 04 Mar 2015 17:33:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/svn/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Parallels</title>
+      <link>https://paper.kim/en/tags/parallels/</link>
+      <pubDate>Thu, 05 Feb 2015 17:29:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/parallels/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Xmlview</title>
+      <link>https://paper.kim/en/tags/xmlview/</link>
+      <pubDate>Thu, 05 Feb 2015 17:16:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/xmlview/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tomcat</title>
+      <link>https://paper.kim/en/tags/tomcat/</link>
+      <pubDate>Thu, 05 Feb 2015 17:10:00 +0000</pubDate>
+      <guid>https://paper.kim/en/tags/tomcat/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

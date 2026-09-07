@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Spring on paper.archive</title>
+    <link>https://paper.kim/en/categories/spring/</link>
+    <description>Recent content in Spring on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 13 Nov 2015 17:57:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/categories/spring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>calling a spring jpa namedQuery directly</title>
+      <link>https://paper.kim/en/posts/spring/2015-11-13-spring-jpa-createnamedquery/</link>
+      <pubDate>Fri, 13 Nov 2015 17:57:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-11-13-spring-jpa-createnamedquery/</guid>
+      <description>As in Test.java, you can execute a NamedQuery defined in orm.xml directly with the EntityManager..</description>
+    </item>
+    <item>
+      <title>spring redis integration </title>
+      <link>https://paper.kim/en/posts/spring/2015-11-11-spring-redis/</link>
+      <pubDate>Tue, 10 Nov 2015 17:36:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-11-11-spring-redis/</guid>
+      <description>Integrating Redis with Spring using spring-data-redis, from the dependency through configuration and the result.</description>
+    </item>
+    <item>
+      <title>building a website with spring &#43; sitemesh</title>
+      <link>https://paper.kim/en/2015/10/28/spring-sitemesh-setting/</link>
+      <pubDate>Wed, 28 Oct 2015 17:08:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2015/10/28/spring-sitemesh-setting/</guid>
+      <description>Let&amp;#39;s set up sitemesh. There&amp;#39;s almost nothing to change in sitemesh.xml (just the decorators.xml file path) Setup is done once you drop in the xml…</description>
+    </item>
+    <item>
+      <title>spring jpa save</title>
+      <link>https://paper.kim/en/2015/10/21/jpa-save/</link>
+      <pubDate>Wed, 21 Oct 2015 16:20:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2015/10/21/jpa-save/</guid>
+      <description>In jpa you save with the repository.save method Like the class, @OneToMany or @ManyToOne fields can be saved together.</description>
+    </item>
+    <item>
+      <title>practicing spring jpa @NamedQuery, @NamedNativeQuery</title>
+      <link>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</link>
+      <pubDate>Thu, 08 Oct 2015 01:32:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</guid>
+      <description>In jpa.. you can query data through a repository with findAll or the findOneBy....</description>
+    </item>
+    <item>
+      <title>spring jpa query practice </title>
+      <link>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa/</link>
+      <pubDate>Wed, 07 Oct 2015 18:04:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa/</guid>
+      <description>Tested entity mapping plus queries.. Query conditions 1. When fetching a Member.. also fetch the member&amp;#39;s images... and the list of inters 2.</description>
+    </item>
+    <item>
+      <title>spring jpa setup and test (maven config)</title>
+      <link>https://paper.kim/en/2015/10/05/spring-jpa-maven/</link>
+      <pubDate>Mon, 05 Oct 2015 00:41:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2015/10/05/spring-jpa-maven/</guid>
+      <description>I develop with mybatis most of the time.. But JPA is supposedly the trend, so I wired it into a small project.</description>
+    </item>
+    <item>
+      <title>using spring batch </title>
+      <link>https://paper.kim/en/posts/spring/2015-08-28-spring-batch/</link>
+      <pubDate>Thu, 27 Aug 2015 22:44:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-08-28-spring-batch/</guid>
+      <description>Tried spring-batch recently.. worked out well. Being able to set the transaction commit size and read size separately seems especially nice.</description>
+    </item>
+    <item>
+      <title>hadoop &#43; spring integration test 2 - hadoop 2.6.x with spring 4.0 (MapReduce WordCount example)</title>
+      <link>https://paper.kim/en/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</link>
+      <pubDate>Wed, 15 Apr 2015 00:39:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</guid>
+      <description>hadoop &#43; spring integration test 2 - hadoop 2.6.x with spring 4.0 (MapReduce WordCount example)</description>
+    </item>
+    <item>
+      <title>hadoop &#43; spring integration test - hadoop 2.6.x with spring 4.0</title>
+      <link>https://paper.kim/en/2015/04/12/hadoop-26x-with-spring-40/</link>
+      <pubDate>Sun, 12 Apr 2015 19:46:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2015/04/12/hadoop-26x-with-spring-40/</guid>
+      <description>Using Hadoop 2.6.x with Spring 4.0: installing Hadoop on OSX Yosemite and lining up the pom.xml dependencies.</description>
+    </item>
+    <item>
+      <title>writing spring junit testcases</title>
+      <link>https://paper.kim/en/posts/spring/2015-03-25-spring-junit-testcase/</link>
+      <pubDate>Tue, 24 Mar 2015 22:42:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-03-25-spring-junit-testcase/</guid>
+      <description>Writing JUnit test cases in Spring: adding spring-test to pom.xml and loading the application context in the test.</description>
+    </item>
+    <item>
+      <title>spring-rabbitmq integration </title>
+      <link>https://paper.kim/en/posts/spring/2015-03-11-spring-rabbitmq/</link>
+      <pubDate>Tue, 10 Mar 2015 18:55:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-03-11-spring-rabbitmq/</guid>
+      <description>Integrating RabbitMQ with Spring, from the rpm install and starting the server through the Spring configuration.</description>
+    </item>
+    <item>
+      <title>spring map to xml viewresolver</title>
+      <link>https://paper.kim/en/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</link>
+      <pubDate>Thu, 05 Feb 2015 17:16:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</guid>
+      <description>A Spring view class I made when I had to return xml instead of the usual json. Only works when the result is a map. Set up the config below...</description>
+    </item>
+  </channel>
+</rss>

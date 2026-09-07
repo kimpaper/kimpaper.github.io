@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Jpa on paper.archive</title>
+    <link>https://paper.kim/en/tags/jpa/</link>
+    <description>Recent content in Jpa on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 13 Nov 2015 17:57:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/jpa/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>calling a spring jpa namedQuery directly</title>
+      <link>https://paper.kim/en/posts/spring/2015-11-13-spring-jpa-createnamedquery/</link>
+      <pubDate>Fri, 13 Nov 2015 17:57:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-11-13-spring-jpa-createnamedquery/</guid>
+      <description>As in Test.java, you can execute a NamedQuery defined in orm.xml directly with the EntityManager..</description>
+    </item>
+    <item>
+      <title>spring jpa save</title>
+      <link>https://paper.kim/en/2015/10/21/jpa-save/</link>
+      <pubDate>Wed, 21 Oct 2015 16:20:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2015/10/21/jpa-save/</guid>
+      <description>In jpa you save with the repository.save method Like the class, @OneToMany or @ManyToOne fields can be saved together.</description>
+    </item>
+    <item>
+      <title>practicing spring jpa @NamedQuery, @NamedNativeQuery</title>
+      <link>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</link>
+      <pubDate>Thu, 08 Oct 2015 01:32:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</guid>
+      <description>In jpa.. you can query data through a repository with findAll or the findOneBy....</description>
+    </item>
+    <item>
+      <title>spring jpa query practice </title>
+      <link>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa/</link>
+      <pubDate>Wed, 07 Oct 2015 18:04:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa/</guid>
+      <description>Tested entity mapping plus queries.. Query conditions 1. When fetching a Member.. also fetch the member&amp;#39;s images... and the list of inters 2.</description>
+    </item>
+    <item>
+      <title>spring jpa setup and test (maven config)</title>
+      <link>https://paper.kim/en/2015/10/05/spring-jpa-maven/</link>
+      <pubDate>Mon, 05 Oct 2015 00:41:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2015/10/05/spring-jpa-maven/</guid>
+      <description>I develop with mybatis most of the time.. But JPA is supposedly the trend, so I wired it into a small project.</description>
+    </item>
+  </channel>
+</rss>

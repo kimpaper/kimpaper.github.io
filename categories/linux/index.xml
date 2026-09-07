@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Linux on 기록 저장소</title>
+    <link>https://paper.kim/categories/linux/</link>
+    <description>Recent content in Linux on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 11 Aug 2016 16:07:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ssh key를 이용한 로그인</title>
+      <link>https://paper.kim/posts/centos/2016-08-11-ssh-key-login/</link>
+      <pubDate>Thu, 11 Aug 2016 16:07:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2016-08-11-ssh-key-login/</guid>
+      <description>macOS 에서 ssh key를 지정하여 서버로 비밀번호 타이핑 없이 바로 로그인 하게 하자 평소엔 보안때문에 안해놓는다.</description>
+    </item>
+    <item>
+      <title>AWS EC2서버에 패스워드로 로그인 하기</title>
+      <link>https://paper.kim/2016/04/08/amazon-ec2-root-pwd/</link>
+      <pubDate>Fri, 08 Apr 2016 11:33:00 +0000</pubDate>
+      <guid>https://paper.kim/2016/04/08/amazon-ec2-root-pwd/</guid>
+      <description>AWS ec2 서버에는 password로 ssh접근이 안되도록 되어 있다. 아래 파일을 수정하여 접근이 되도록 해보자. centos 6.5에서 작업한 것이다</description>
+    </item>
+    <item>
+      <title>Flume의 기본 로그를 log4j에서 logback으로 변경</title>
+      <link>https://paper.kim/posts/centos/2015-10-30-flume-logback-sink/</link>
+      <pubDate>Fri, 30 Oct 2015 18:13:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-10-30-flume-logback-sink/</guid>
+      <description>Flume 기본 sink의 한계 때문에 직접 만든 slf4j sink. logback.xml 설정으로 각 서버 로그를 한곳에 모으는 구성.</description>
+    </item>
+    <item>
+      <title>Flume 설치 및 테스트 (mac)</title>
+      <link>https://paper.kim/posts/centos/2015-10-29-flume-setting-sample/</link>
+      <pubDate>Thu, 29 Oct 2015 15:51:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-10-29-flume-setting-sample/</guid>
+      <description>Flume 설치와 기본 flume.conf 설정 샘플. JAVA_HOME 지정부터 source·channel·sink 구성까지 정리했다.</description>
+    </item>
+    <item>
+      <title>디지탈오션에 서버 셋팅기 (centos 6.7)</title>
+      <link>https://paper.kim/posts/centos/2015-09-16-centos-67/</link>
+      <pubDate>Tue, 15 Sep 2015 20:40:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-09-16-centos-67/</guid>
+      <description>친구랑 개발하는 간단한 쪽지앱의 서버로 사용할 서버를 구축했다. 물론 나는 잘 모른다 모든건 다 구글을 통해.. 아래 내용을 /etc/fstab 에 붙인다.</description>
+    </item>
+    <item>
+      <title>jfreeChart에서 한글 폰트 사용 (centos 폰트 설정)</title>
+      <link>https://paper.kim/posts/centos/2015-07-02-jfreechart-centos/</link>
+      <pubDate>Wed, 01 Jul 2015 20:33:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-07-02-jfreechart-centos/</guid>
+      <description>jfreeChart를 사용하는 중인데 tomcat위에서 돌리면 한글이 ㅁㅁㅁ 과 같이 나온다. /usr/share/fonts 폴더에 폰트파일을 넣고 fc-cache -fv 를 해주자!!</description>
+    </item>
+    <item>
+      <title>아파치에서 403 오류 나올때.</title>
+      <link>https://paper.kim/posts/centos/2015-03-27-403/</link>
+      <pubDate>Fri, 27 Mar 2015 01:47:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-03-27-403/</guid>
+      <description>아파치에서 설정을 다 맞췄는데도 403이 계속 나올 때. SELinux 컨텍스트를 chcon으로 webroot에 맞춰주면 해결된다.</description>
+    </item>
+    <item>
+      <title>git 관련 명령어 모음</title>
+      <link>https://paper.kim/posts/centos/2015-03-05-git/</link>
+      <pubDate>Wed, 04 Mar 2015 17:33:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-03-05-git/</guid>
+      <description>git 명령어 모음. svn에서 git으로 마이그레이션, ignore 파일 처리, remote 지정, tags와 branches 처리, 로컬 커밋 revert, 백업과 복원.</description>
+    </item>
+    <item>
+      <title>mysql, mariadb에서 유니코드(utf8mb4) 지원하기</title>
+      <link>https://paper.kim/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</link>
+      <pubDate>Tue, 10 Feb 2015 20:48:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</guid>
+      <description>MySQL과 MariaDB에서 이모지까지 저장하려고 문자셋을 utf8에서 utf8mb4로 바꾼 과정. 서버 설정과 실제 컬럼 타입 변경까지.</description>
+    </item>
+    <item>
+      <title>CentOS 명령어 모음</title>
+      <link>https://paper.kim/posts/centos/2015-02-06-blog-post_21/</link>
+      <pubDate>Thu, 05 Feb 2015 17:42:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-02-06-blog-post_21/</guid>
+      <description>CentOS에서 자주 쓰던 명령어 모음. 프로그램 설치 위치 찾기, 오래된 로그 삭제, hosts와 DNS 수정, OS 비트·버전 확인, 폰트 반영, crond 편집, 톰캣 프로세스 확인과 kill.</description>
+    </item>
+    <item>
+      <title>tomcat 에서 OutOfMemory 자주 나오면.</title>
+      <link>https://paper.kim/posts/centos/2015-02-06-tomcat-outofmemory/</link>
+      <pubDate>Thu, 05 Feb 2015 17:10:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-02-06-tomcat-outofmemory/</guid>
+      <description>톰캣에서 OutOfMemory가 자주 날 때 catalina.sh 상단에 CATALINA_OPTS로 힙과 PermGen 크기를 올려 잡는 설정.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Marshalling on 기록 저장소</title>
+    <link>https://paper.kim/tags/marshalling/</link>
+    <description>Recent content in Marshalling on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 15 Oct 2015 12:13:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/marshalling/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>c# 에서 c&#43;&#43;(dll)로 LPCTSTR parameter 넘겨 호출 하기</title>
+      <link>https://paper.kim/2015/10/15/csharp-lpcstr-parameter-call/</link>
+      <pubDate>Thu, 15 Oct 2015 12:13:00 +0000</pubDate>
+      <guid>https://paper.kim/2015/10/15/csharp-lpcstr-parameter-call/</guid>
+      <description>c&#43;&#43; 로 된 dll을 c#에서 호출할때 예제입니다. CallingConvention = CallingConvention.Cdecl와 [MarshalAs(UnmanagedType.LPWStr)] 가 중요합니다.</description>
+    </item>
+  </channel>
+</rss>

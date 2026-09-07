@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Flume on paper.archive</title>
+    <link>https://paper.kim/en/tags/flume/</link>
+    <description>Recent content in Flume on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 30 Oct 2015 18:13:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/flume/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Switching Flume&#39;s default logging from log4j to logback</title>
+      <link>https://paper.kim/en/posts/centos/2015-10-30-flume-logback-sink/</link>
+      <pubDate>Fri, 30 Oct 2015 18:13:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-10-30-flume-logback-sink/</guid>
+      <description>These turned out to be bigger downsides than expected, so I made a simple sink project.</description>
+    </item>
+    <item>
+      <title>Flume install and test (mac)</title>
+      <link>https://paper.kim/en/posts/centos/2015-10-29-flume-setting-sample/</link>
+      <pubDate>Thu, 29 Oct 2015 15:51:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-10-29-flume-setting-sample/</guid>
+      <description>Installing Flume and a basic flume.conf sample, from setting JAVA_HOME to configuring sources, channels and sinks.</description>
+    </item>
+  </channel>
+</rss>

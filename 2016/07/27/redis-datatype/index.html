@@ -1,0 +1,1084 @@
+<!doctype html><html lang=ko dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>redis data type 종류 · 기록 저장소</title><meta name=description content="Strings, Lists, Sets, Hashes, Sorted sets, Bitmaps 에 HyperLogLog, Geo, Streams 까지. redis-cli 로 하나씩 찍어보면서 어디에 뭘 쓰면 될지 정리했다"><meta name=keywords content="redis"><meta name=author content="페이퍼"><meta name=robots content="index, follow, max-image-preview:large"><link rel=canonical href=https://paper.kim/2016/07/27/redis-datatype/><link rel=alternate hreflang=ko-KR href=https://paper.kim/2016/07/27/redis-datatype/><link rel=alternate hreflang=en-US href=https://paper.kim/en/2016/07/27/redis-datatype/><link rel=alternate hreflang=x-default href=https://paper.kim/en/2016/07/27/redis-datatype/><meta name=google-site-verification content="y1M38dn7tn_g66ZU4sW9oodCBS79uDleUIpnFABhR_I"><meta name=naver-site-verification content="d4c08a44984bf4ebeb4b26f639fedfb26163b6e3"><meta property="og:site_name" content="기록 저장소"><meta property="og:type" content="article"><meta property="og:title" content="redis data type 종류"><meta property="og:description" content="Strings, Lists, Sets, Hashes, Sorted sets, Bitmaps 에 HyperLogLog, Geo, Streams 까지. redis-cli 로 하나씩 찍어보면서 어디에 뭘 쓰면 될지 정리했다"><meta property="og:url" content="https://paper.kim/2016/07/27/redis-datatype/"><meta property="og:locale" content="ko_KR"><meta property="og:locale:alternate" content="en_US"><meta property="og:image" content="https://paper.kim/images/default-thumb.jpg"><meta property="og:image:alt" content="redis data type 종류"><meta property="article:published_time" content="2016-07-27T14:32:00+00:00"><meta property="article:modified_time" content="2016-07-27T14:32:00+00:00"><meta property="article:tag" content="redis"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="redis data type 종류"><meta name=twitter:description content="Strings, Lists, Sets, Hashes, Sorted sets, Bitmaps 에 HyperLogLog, Geo, Streams 까지. redis-cli 로 하나씩 찍어보면서 어디에 뭘 쓰면 될지 정리했다"><meta name=twitter:domain content="paper.kim"><meta name=twitter:image content="https://paper.kim/images/default-thumb.jpg"><script>(function(){try{var e=localStorage.getItem("theme");e&&document.documentElement.setAttribute("data-theme",e)}catch{}})()</script><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css onload='this.onload=null,this.rel="stylesheet"'><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap"></noscript><link rel=stylesheet href=/css/site.min.4016cb5265290cd3e09ce8cb43c26d23e143347225282a595297fe9ed9e17c2f.css integrity="sha256-QBbLUmUpDNPgnOjLQ8JtI+FDNHIlKCpZUpf+ntnhfC8="><link rel=icon href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5eE77iPPC90ZXh0Pjwvc3ZnPg=="><script async src="https://www.googletagmanager.com/gtag/js?id=G-ECTTT48V9Y"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ECTTT48V9Y")</script><meta name=google-adsense-account content="ca-pub-8048816011496920"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8048816011496920" crossorigin=anonymous></script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"페이퍼","url":"https://paper.kim/"},"dateModified":"2016-07-27T14:32:00+00:00","datePublished":"2016-07-27T14:32:00+00:00","description":"Strings, Lists, Sets, Hashes, Sorted sets, Bitmaps 에 HyperLogLog, Geo, Streams 까지. redis-cli 로 하나씩 찍어보면서 어디에 뭘 쓰면 될지 정리했다","headline":"redis data type 종류","image":["https://paper.kim/images/default-thumb.jpg"],"inLanguage":"ko-KR","keywords":"redis","mainEntityOfPage":{"@id":"https://paper.kim/2016/07/27/redis-datatype/","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://paper.kim/images/site-logo.png"},"name":"기록 저장소"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://paper.kim/","name":"기록 저장소","position":1},{"@type":"ListItem","item":"https://paper.kim/categories/opensource/","name":"Opensource","position":2},{"@type":"ListItem","item":"https://paper.kim/2016/07/27/redis-datatype/","name":"redis data type 종류","position":3}]}</script></head><body><div class=scrim id=scrim></div><div class=shell><aside class=index id=sidebar><div class=masthead><a href=/ class=wordmark>기록<b>.</b>저장소</a><div class=sub>a developer’s archive</div><div class="range num">2015 — 2026 · 70 entries</div></div><nav class=toc aria-label=categories><details class=grp open><summary><span class=idx>I</span> 기술 블로그 <span class=chev></span></summary><div class=sub-list><a href=/categories/ai/>AI · LLM <span class="c num">5</span></a><a href=/categories/aws/>AWS · 클라우드 <span class="c num">1</span></a><a href=/categories/spring/>Spring · JPA <span class="c num">13</span></a><a href=/categories/golang/>Golang <span class="c num">1</span></a><a href=/categories/kubernetes/>Kubernetes · 인프라 <span class="c num">3</span></a><a href=/categories/python/>Python <span class="c num">2</span></a><a href=/categories/opensource/>오픈소스 · 데이터 <span class="c num">5</span></a><a href=/categories/linux/>CentOS · 리눅스 <span class="c num">11</span></a><a href=/categories/dotnet/>.NET <span class="c num">3</span></a></div></details><details class=grp><summary><span class=idx>II</span> 일상 <span class=chev></span></summary><div class=sub-list><a href=/categories/diary/>일기 · 소소한 기록 <span class="c num">17</span></a></div></details><details class=grp><summary><span class=idx>III</span> 기타 잡지식 <span class=chev></span></summary><div class=sub-list><a href=/categories/etc/>팁 · 트러블슈팅 <span class="c num">6</span></a><a href=/categories/mac/>Mac · 기타 <span class="c num">3</span></a></div></details><div class=toc-flat><a href=/archives/><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg> 전체 아카이브
+</a><a href=/tags/><svg viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/><circle cx="12" cy="12" r="2"/></svg> 태그
+</a><a href=/about/><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> 소개
+</a><a href=/en/2016/07/27/redis-datatype/ id=lang-toggle data-lang=en title="Read in English"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+English</a></div></nav><div class=index-foot><button class=icon-btn id=theme title=theme aria-label=theme>
+<svg id="theme-ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+</button>
+<a class=icon-btn href=https://github.com/kimpaper title=GitHub aria-label=GitHub><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2.0C7 4.9 5.9 5.2 5.9 5.2a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004.5 11.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V23"/></svg></a>
+<a class=icon-btn href=/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<span class=spacer></span>
+<span class=copy>© 페이퍼</span></div></aside><div class=main><header class=topbar><button class="icon-btn hamburger" id=burger aria-label=menu><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class=crumb><a href=/>기록 저장소</a><span class=sep>/</span><b>Opensource</b></div><span class=spacer></span>
+<label class=search><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+<input id=q type=search placeholder="이 목록에서 검색…" aria-label=search></label></header><main class=content id=content><article class=post><header class=post-head><a class=cat-tag href=/categories/opensource/>Opensource</a><h1 class=post-title>redis data type 종류</h1><div class="post-meta num"><span>2016 · 07 · 27</span>
+<span>14 min read</span>
+<span>페이퍼</span></div></header><details class=toc-box open><summary>목차</summary><nav><nav id=TableOfContents><ul><li><a href=#redis-data-type-요약>Redis Data Type 요약</a></li><li><a href=#타입-얘기-전에-알아둘-것>타입 얘기 전에 알아둘 것</a><ul><li><a href=#key-하나에-타입-하나>key 하나에 타입 하나</a></li><li><a href=#type--exists--del>type / exists / del</a></li><li><a href=#만료-expire--ttl>만료 (expire / ttl)</a></li><li><a href=#keys-말고-scan>keys 말고 scan</a></li></ul></li><li><a href=#strings>Strings</a><ul><li><a href=#카운터>카운터</a></li><li><a href=#만료-붙여서-저장-세션>만료 붙여서 저장 (세션)</a></li><li><a href=#nx-로-락-비슷한거>nx 로 락 비슷한거</a></li><li><a href=#한번에-여러개>한번에 여러개</a></li><li><a href=#문자열-조작>문자열 조작</a></li></ul></li><li><a href=#lists>Lists</a><ul><li><a href=#큐>큐</a></li><li><a href=#brpop-으로-블로킹>brpop 으로 블로킹</a></li><li><a href=#ltrim-으로-최근-n개만-유지>ltrim 으로 최근 N개만 유지</a></li><li><a href=#값-지우기--중간에-넣기>값 지우기 / 중간에 넣기</a></li><li><a href=#lmove-로-안-잃어버리는-큐>lmove 로 안 잃어버리는 큐</a></li></ul></li><li><a href=#sets>Sets</a><ul><li><a href=#개수--있는지--지우기>개수 / 있는지 / 지우기</a></li><li><a href=#집합-연산>집합 연산</a></li><li><a href=#랜덤-뽑기>랜덤 뽑기</a></li></ul></li><li><a href=#hashes>Hashes</a><ul><li><a href=#여러-필드-한번에>여러 필드 한번에</a></li><li><a href=#필드-단위-카운터>필드 단위 카운터</a></li><li><a href=#왜-string-여러개-말고-hash-인가>왜 string 여러개 말고 hash 인가</a></li><li><a href=#작을-때만-싸다>작을 때만 싸다</a></li></ul></li><li><a href=#sorted-sets>Sorted sets</a><ul><li><a href=#랭킹보드>랭킹보드</a></li><li><a href=#점수-범위로-뽑기>점수 범위로 뽑기</a></li><li><a href=#score-에-시간을-넣으면-지연-큐>score 에 시간을 넣으면 지연 큐</a></li><li><a href=#최고점만-남기기>최고점만 남기기</a></li></ul></li><li><a href=#bitmaps>Bitmaps</a><ul><li><a href=#출석-체크>출석 체크</a></li><li><a href=#얼마나-아끼나>얼마나 아끼나</a></li></ul></li><li><a href=#hyperloglog>HyperLogLog</a></li><li><a href=#geo>Geo</a></li><li><a href=#streams>Streams</a><ul><li><a href=#consumer-group>consumer group</a></li><li><a href=#무한정-쌓이는거-막기>무한정 쌓이는거 막기</a></li></ul></li><li><a href=#어디에-뭘-쓸까>어디에 뭘 쓸까</a></li><li><a href=#참고>참고</a></li></ul></nav></nav></details><div class=prose><h2 id=redis-data-type-요약>Redis Data Type 요약</h2><p>인터넷상에 수많은 좋은 자료가 있음에도 공부 차원에서 정리를 한다</p><p>테스트는 <code>redis-cli</code>를 이용해서 하지만 실제 사용은 언어에 맞는 <code>api library</code>를 사용 할듯</p><blockquote><p>덧. 10년쯤 지나서 다시 보니 빠진게 너무 많다. 예제를 전부 다시 돌려서 보강했다.
+아래 출력은 redis 7.0 에서 직접 찍은 거라 옛날 버전이랑 조금 다를 수 있다.
+<del>그때는 타입 여섯개면 다 아는줄 알았지</del></p></blockquote><p>공식 문서는 이 두 개를 보면 된다</p><ul><li>개요: <a href=http://redis.io/topics/data-types-intro>http://redis.io/topics/data-types-intro</a></li><li>예제: <a href=http://redis.io/topics/data-types>http://redis.io/topics/data-types</a></li></ul><hr><h2 id=타입-얘기-전에-알아둘-것>타입 얘기 전에 알아둘 것</h2><p>타입별로 들어가기 전에 key 에 공통으로 걸리는 것들이 있다. 이걸 모르고 시작하면
+나중에 헷갈린다</p><h3 id=key-하나에-타입-하나>key 하나에 타입 하나</h3><p>key 는 타입을 하나만 가진다. string 으로 만들어놓고 list 명령을 쓰면 바로 에러가 난다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> k hello
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lpush k world
+</span></span><span class=line><span class=cl><span class=o>(</span>error<span class=o>)</span> WRONGTYPE Operation against a key holding the wrong kind of value
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hget k f
+</span></span><span class=line><span class=cl><span class=o>(</span>error<span class=o>)</span> WRONGTYPE Operation against a key holding the wrong kind of value
+</span></span></code></pre></td></tr></table></div></div><p><code>WRONGTYPE</code> 이 뜨면 십중팔구 key 이름이 겹친 거다. 그래서 key 이름을
+<code>user:1000:name</code> 처럼 콜론으로 네임스페이스를 나눠 쓰는 관례가 있는듯</p><h3 id=type--exists--del>type / exists / del</h3><p>지금 이 key 가 무슨 타입인지 모르겠으면 <code>type</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> mykey hello
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>type</span> mykey
+</span></span><span class=line><span class=cl>string
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; exists mykey
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; del mykey
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; exists mykey
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=만료-expire--ttl>만료 (expire / ttl)</h3><p>캐시로 쓸꺼면 이게 제일 중요하다. <code>expire</code> 로 초를 걸고 <code>ttl</code> 로 확인한다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> mykey hello
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; expire mykey <span class=m>60</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ttl mykey
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>60</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; persist mykey
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ttl mykey
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> -1
+</span></span></code></pre></td></tr></table></div></div><p><code>ttl</code> 반환값이 세 종류라 헷갈린다</p><ul><li>양수: 남은 초</li><li><code>-1</code>: key 는 있는데 만료가 안 걸려있음</li><li><code>-2</code>: key 자체가 없음</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; ttl nokey
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> -2
+</span></span></code></pre></td></tr></table></div></div><p>그리고 <strong>만료는 key 단위지 필드 단위가 아니다.</strong> hash 안의 필드 하나만 30초 뒤에
+지우고 싶어도 그런건 없다. 지워도 key 의 ttl 은 그대로다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; hset cart:1 item1 <span class=m>2</span> item2 <span class=m>3</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; expire cart:1 <span class=m>100</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ttl cart:1
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>100</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hdel cart:1 item1
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ttl cart:1
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>100</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=keys-말고-scan>keys 말고 scan</h3><p><code>keys *</code> 는 편한데 redis 가 싱글 스레드라 key 가 많으면 그동안 서버가 멈춘다.
+운영에서는 <code>scan</code> 으로 커서를 돌려가며 조금씩 가져와야 한다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; scan <span class=m>0</span> match <span class=s2>&#34;user:*&#34;</span> count <span class=m>100</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;0&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;user:1&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> <span class=s2>&#34;user:3&#34;</span>
+</span></span><span class=line><span class=cl>   3<span class=o>)</span> <span class=s2>&#34;user:2&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>첫번째 값이 다음 커서다. <code>0</code> 이 나오면 한 바퀴 다 돈 것. <code>count</code> 는 정확한 개수가
+아니고 힌트 정도라 실제로 몇개가 올지는 모른다</p><hr><h2 id=strings>Strings</h2><ul><li>value에 문자 숫자 등을 저장한다</li><li>저장시 별도로 형이 없다 (숫자 문자 구분이 없음)</li><li>숫자도 저장가능 하다 그리고 숫자에 <code>incr</code>, <code>incrby</code>, <code>decr</code>, <code>decrby</code> 같은 atomic counter 연산이 가능</li><li><code>incrby</code>, <code>decrby</code> 는 특정 수를 더하거나 뺄때 사용 <code>incrby "test_strings" 10</code> 처럼 사용</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># redis-cli</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> <span class=s2>&#34;test_strings&#34;</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; get <span class=s2>&#34;test_strings&#34;</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;1&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; incr <span class=s2>&#34;test_strings&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; get <span class=s2>&#34;test_strings&#34;</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;2&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=카운터>카운터</h3><p>조회수 같은거 세는데 그냥 쓰면 된다. <code>incr</code> 계열은 atomic 이라 여러 프로세스가
+동시에 때려도 안 샌다. 읽어서 +1 하고 다시 쓰는 짓을 안 해도 되는게 핵심</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> page:view:home <span class=m>0</span>
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; incr page:view:home
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; incrby page:view:home <span class=m>10</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>11</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; decrby page:view:home <span class=m>3</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>8</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; get page:view:home
+</span></span><span class=line><span class=cl><span class=s2>&#34;8&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>소수는 <code>incrbyfloat</code>. 딱 떨어지면 뒤가 잘려서 나온다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; incrbyfloat price 19.99
+</span></span><span class=line><span class=cl><span class=s2>&#34;19.99&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; incrbyfloat price 0.01
+</span></span><span class=line><span class=cl><span class=s2>&#34;20&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>값이 숫자가 아니면 당연히 에러</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> name paper
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; incr name
+</span></span><span class=line><span class=cl><span class=o>(</span>error<span class=o>)</span> ERR value is not an integer or out of range
+</span></span></code></pre></td></tr></table></div></div><h3 id=만료-붙여서-저장-세션>만료 붙여서 저장 (세션)</h3><p><code>setex</code> 는 <code>set</code> + <code>expire</code> 를 한 방에 한다. 세션이나 인증 코드 같은데 쓰면 된다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; setex session:abc <span class=m>30</span> <span class=s2>&#34;user_1&#34;</span>
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ttl session:abc
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>30</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=nx-로-락-비슷한거>nx 로 락 비슷한거</h3><p><code>set key value nx ex 10</code> 은 <strong>key 가 없을 때만</strong> 쓰고 10초 만료를 건다.
+이미 있으면 <code>(nil)</code> 이 온다. 이게 atomic 이라 간단한 분산 락으로 쓸 수 있을듯</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> lock:job1 worker-a nx ex <span class=m>10</span>
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>set</span> lock:job1 worker-b nx ex <span class=m>10</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>nil<span class=o>)</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ttl lock:job1
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>10</span>
+</span></span></code></pre></td></tr></table></div></div><p>풀 때는 그냥 <code>del</code> 하면 안된다. 내가 건 락이 만료된 뒤 남이 잡은 락을 지워버릴 수
+있어서.. 보통 value 에 자기 식별자를 넣고 lua 로 비교 후 삭제한다.
+제대로 하려면 Redlock 문서를 봐야 할꺼 같다</p><h3 id=한번에-여러개>한번에 여러개</h3><p>왕복 횟수를 줄이려면 <code>mset</code> / <code>mget</code>. 없는 key 는 <code>(nil)</code> 자리로 온다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; mset user:1:name paper user:1:city seoul
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; mget user:1:name user:1:city user:1:none
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;paper&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;seoul&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=o>(</span>nil<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=문자열-조작>문자열 조작</h3><p>값 뒤에 붙이거나 잘라서 볼 수도 있다. 로그 같은거 이어붙일 때</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; append log <span class=s2>&#34;hello&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>5</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; append log <span class=s2>&#34; world&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>11</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; get log
+</span></span><span class=line><span class=cl><span class=s2>&#34;hello world&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; strlen log
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>11</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; getrange log <span class=m>0</span> <span class=m>4</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;hello&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=lists>Lists</h2><ul><li>value에 list를 저장한다</li><li>lrange: 값을 조회 이때 -1은 모두 가져오라는 뜻</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; lpush <span class=s2>&#34;test_lists&#34;</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lpush test_lists <span class=m>2</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange test_lists <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;2&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; rpush test_lists <span class=m>3</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange test_lists <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;2&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;3&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>lpush</code> 는 왼쪽(머리), <code>rpush</code> 는 오른쪽(꼬리)에 넣는다. 그래서 위에서 1, 2 를
+<code>lpush</code> 했더니 2가 앞으로 온 것</p><p>길이랑 특정 위치 값도 볼 수 있다. 인덱스에 음수를 쓰면 뒤에서부터</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; llen test_lists
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lindex test_lists <span class=m>0</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;2&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lindex test_lists -1
+</span></span><span class=line><span class=cl><span class=s2>&#34;3&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=큐>큐</h3><ul><li><code>rpop</code>를 이용하여 queue 구현이 가능할꺼 같다</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; rpop test_lists
+</span></span><span class=line><span class=cl><span class=s2>&#34;3&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange test_lists <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;2&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>lpush</code> 로 넣고 <code>rpop</code> 으로 빼면 FIFO 큐, <code>lpush</code> / <code>lpop</code> 이면 스택이 된다</p><h3 id=brpop-으로-블로킹>brpop 으로 블로킹</h3><p><code>brpop</code> 을 쓰면 순차적인 분산 작업도 구현 가능할꺼 같다. <code>rpop</code>과 비슷하나
+데이타가 없다면 데이타가 들어올때까지 <code>block</code> 상태로 대기한다.
+빈 리스트에 <code>rpop</code> 을 계속 때리는 폴링을 안 해도 된다</p><p>터미널 하나에서 이걸 실행하면 그냥 멈춰있는다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; brpop test_lists <span class=m>0</span>
+</span></span></code></pre></td></tr></table></div></div><p>다른 터미널에서 넣어주면 그제서야 반환된다. 어느 key 에서 나왔는지도 같이 온다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; rpush test_lists hello
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 대기중이던 쪽</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;test_lists&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;hello&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>마지막 인자가 타임아웃(초)이고 <code>0</code> 이면 무한 대기다. 시간이 지나면 <code>(nil)</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; brpop empty_list <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>nil<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=ltrim-으로-최근-n개만-유지>ltrim 으로 최근 N개만 유지</h3><p>&ldquo;최근 본 상품 3개&rdquo; 같은거. <code>lpush</code> 하고 <code>ltrim</code> 으로 잘라내면 리스트가
+계속 커지지 않는다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; lpush recent:user:1 page1 page2 page3 page4 page5
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>5</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ltrim recent:user:1 <span class=m>0</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange recent:user:1 <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;page5&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;page4&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;page3&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lpush recent:user:1 page6
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; ltrim recent:user:1 <span class=m>0</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange recent:user:1 <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;page6&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;page5&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;page4&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>ltrim</code> 은 남길 범위를 주는거지 지울 범위를 주는게 아니다. 이거 자주 헷갈린다</p><h3 id=값-지우기--중간에-넣기>값 지우기 / 중간에 넣기</h3><p><code>lrem key count value</code> 는 앞에서부터 count 개만큼 지운다. count 가 0 이면 전부</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; rpush q a b a c a
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>5</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrem q <span class=m>2</span> a
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange q <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;b&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;c&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;a&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; linsert q before c x
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange q <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;b&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;x&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;c&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;a&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=lmove-로-안-잃어버리는-큐>lmove 로 안 잃어버리는 큐</h3><p><code>rpop</code> 으로 꺼낸 다음 워커가 죽으면 그 작업은 그냥 사라진다.
+<code>lmove</code> 는 꺼내면서 동시에 다른 리스트에 넣는걸 atomic 하게 한다.
+처리중 리스트에 남아있으니 죽어도 복구가 된다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; rpush <span class=nb>jobs</span> job1 job2
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lmove <span class=nb>jobs</span> processing left right
+</span></span><span class=line><span class=cl><span class=s2>&#34;job1&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange <span class=nb>jobs</span> <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;job2&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; lrange processing <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;job1&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>작업이 끝나면 <code>processing</code> 에서 <code>lrem</code> 으로 지우면 된다.
+옛날엔 <code>rpoplpush</code> 를 썼는데 방향이 고정이라 <code>lmove</code> 가 나왔다 (6.2+).
+블로킹 버전은 <code>blmove</code></p><hr><h2 id=sets>Sets</h2><ul><li>value을 set형태로 가지고 있음</li><li>list는 중복이 되나 set은 중복이 안됨</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; sadd test_sets <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; smembers test_sets
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sadd test_sets <span class=m>1</span> <span class=m>2</span> <span class=m>3</span> <span class=m>4</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; smembers test_sets
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;2&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;3&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;4&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>sadd</code> 반환값이 4가 아니고 3인게 포인트다. <strong>실제로 새로 들어간 개수</strong>만 센다.
+1은 이미 있어서 안 세짐</p><p>순서는 보장 안된다. 위에서 정렬돼 보이는건 우연이다</p><h3 id=개수--있는지--지우기>개수 / 있는지 / 지우기</h3><p><code>smembers</code> 로 다 가져와서 세거나 찾으면 안된다. 전용 명령이 있다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; scard test_sets
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sismember test_sets <span class=m>3</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sismember test_sets <span class=m>99</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; srem test_sets <span class=m>4</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>sismember</code> 가 O(1) 이라 &ldquo;이 유저가 이거 봤나&rdquo; 같은 체크에 딱이다</p><h3 id=집합-연산>집합 연산</h3><p>이게 set 을 쓰는 진짜 이유인듯. 교집합 합집합 차집합을 서버가 해준다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; sadd tag:redis post1 post2 post3
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sadd tag:java post2 post3 post4
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sinter tag:redis tag:java
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;post3&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;post2&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sunion tag:redis tag:java
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;post2&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;post3&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;post1&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;post4&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sdiff tag:redis tag:java
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;post1&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>결과를 다시 key 로 저장하려면 <code>sinterstore</code>. 반환값은 저장된 개수</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; sinterstore tag:both tag:redis tag:java
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; smembers tag:both
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;post2&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;post3&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>개수만 필요하면 <code>sintercard</code> (7.0+). 결과를 다 만들지 않아서 더 싸다.
+<code>limit</code> 을 주면 거기까지만 세고 멈춘다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; sintercard <span class=m>2</span> A B
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; sintercard <span class=m>2</span> A B limit <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span></code></pre></td></tr></table></div></div><p>집합 연산은 원소가 많으면 무거우니 큰 set 끼리 실시간으로 돌리는건 피하는게 좋을듯</p><h3 id=랜덤-뽑기>랜덤 뽑기</h3><p><code>srandmember</code> 는 보고만 오고 <code>spop</code> 은 뽑으면서 지운다. 추첨 같은데 쓰면 된다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; srandmember tag:redis
+</span></span><span class=line><span class=cl><span class=s2>&#34;post1&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; srandmember tag:redis <span class=m>2</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;post3&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;post1&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; spop tag:java
+</span></span><span class=line><span class=cl><span class=s2>&#34;post3&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=hashes>Hashes</h2><ul><li>Hashs key/value 목록을 값으로 가진다</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; hset htest username hi
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hset htest userpwd asdf
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hget htest username
+</span></span><span class=line><span class=cl><span class=s2>&#34;hi&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hgetall htest
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;username&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;hi&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;userpwd&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;asdf&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>hgetall</code> 은 필드와 값이 번갈아 나온다. 라이브러리 쓰면 알아서 map 으로 묶어준다</p><ul><li>hget시에 값이 없다면 (nil)을 반환</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; hget htest temp
+</span></span><span class=line><span class=cl><span class=o>(</span>nil<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>hashkey에 대한 값을 바꿈</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; hget htest userpwd
+</span></span><span class=line><span class=cl><span class=s2>&#34;asdf&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hset htest userpwd <span class=m>1234</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hget htest userpwd
+</span></span><span class=line><span class=cl><span class=s2>&#34;1234&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>반환값 <code>0</code> 은 실패가 아니고 <strong>새 필드가 아니라 덮어쓴 것</strong>이라는 뜻이다</p><h3 id=여러-필드-한번에>여러 필드 한번에</h3><p><code>hset</code> 에 필드/값 쌍을 계속 붙여쓸 수 있다 (4.0+). 예전에 쓰던 <code>hmset</code> 은 폐기됨</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; hset user:1000 name paper city seoul age <span class=m>20</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hmget user:1000 name city
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;paper&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;seoul&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hkeys user:1000
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;name&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;city&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;age&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hvals user:1000
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;paper&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;seoul&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;20&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hlen user:1000
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hexists user:1000 email
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hdel user:1000 age
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=필드-단위-카운터>필드 단위 카운터</h3><p><code>hincrby</code> 로 필드 하나만 올릴 수 있다. 로그인 횟수 같은거</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; hincrby user:1000 login_count <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hincrby user:1000 login_count <span class=m>5</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>6</span>
+</span></span></code></pre></td></tr></table></div></div><p>없던 필드면 0에서 시작한다. 미리 만들어둘 필요가 없다</p><p><code>hsetnx</code> 는 필드가 없을 때만 쓴다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; hsetnx user:1000 name other
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; hsetnx user:1000 email a@b.c
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=왜-string-여러개-말고-hash-인가>왜 string 여러개 말고 hash 인가</h3><p><code>user:1:name</code>, <code>user:1:city</code> … 이렇게 string 을 흩뿌리는 대신 hash 하나로 묶으면
+메모리가 꽤 줄어든다. 필드 5개를 직접 재보면</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># string 5개</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage s:user:1:name
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>72</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage s:user:1:age
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>56</span>
+</span></span><span class=line><span class=cl><span class=c1># 5개 합쳐서 344 bytes</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># hash 1개</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage h:user:1
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>120</span>
+</span></span></code></pre></td></tr></table></div></div><p>같은 데이터인데 344 vs 120. key 하나마다 붙는 오버헤드가 없어져서 그렇다.
+유저가 백만이면 이 차이가 꽤 커진다</p><h3 id=작을-때만-싸다>작을 때만 싸다</h3><p>hash 는 필드가 적으면 <code>listpack</code> 이라는 납작한 배열로 저장한다.
+개수가 임계치를 넘으면 진짜 해시테이블로 바뀌고 메모리가 확 뛴다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; config get hash-max-listpack-entries
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;hash-max-listpack-entries&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;512&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>512개랑 600개를 각각 넣고 재보면</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 필드 512개</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; object encoding big
+</span></span><span class=line><span class=cl><span class=s2>&#34;listpack&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage big
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>6192</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 필드 600개</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; object encoding big
+</span></span><span class=line><span class=cl><span class=s2>&#34;hashtable&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage big
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>32296</span>
+</span></span></code></pre></td></tr></table></div></div><p>필드는 17% 늘었는데 메모리는 5배가 됐다. 한 hash 에 수천개씩 몰아넣을 생각이면
+차라리 key 를 쪼개는게 나을꺼 같다.
+(옛날 버전은 이 인코딩 이름이 <code>ziplist</code> 였고 설정도 <code>hash-max-ziplist-entries</code> 였다)</p><hr><h2 id=sorted-sets>Sorted sets</h2><ul><li>value를 set형태로 가지고 있음</li><li><code>Sets</code>과 마찬가지로 중복은 안됨</li><li>score와 함께 저장되며 score를 기준으로 정렬됨</li><li>list처럼 사용이 될꺼 같으나 정렬된다는 장점이 있는 것 같다</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zadd test_ssets <span class=m>1</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zadd test_ssets <span class=m>2</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrange test_ssets <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;2&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>score를 문자형으로 쓰면 안된다</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zadd test_ssets <span class=s2>&#34;a&#34;</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>error<span class=o>)</span> ERR value is not a valid float
+</span></span></code></pre></td></tr></table></div></div><ul><li>중복이 안되면 동일한 value를 넣으면 기존 데이타의 score를 덮어서 데이타 순서가 바뀐다</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zadd test_ssets <span class=s2>&#34;0&#34;</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrange test_ssets <span class=m>0</span> -1
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;2&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>withscores</code> 를 붙이면 score 도 같이 온다. 뭐가 어떻게 정렬됐는지 볼 때 필요하다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zrange test_ssets <span class=m>0</span> -1 withscores
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;2&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;0&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>인자 순서가 <code>zadd key score member</code> 라 score 가 먼저다. <code>sadd</code> 하다가 넘어오면
+자꾸 반대로 쓰게 된다..</p><h3 id=랭킹보드>랭킹보드</h3><p>sorted set 하면 이게 제일 먼저 떠오른다. 점수 넣고 역순으로 자르면 끝</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zadd rank <span class=m>100</span> paper <span class=m>250</span> kim <span class=m>175</span> lee <span class=m>90</span> park
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrevrange rank <span class=m>0</span> <span class=m>2</span> withscores
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;kim&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;250&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;lee&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;175&#34;</span>
+</span></span><span class=line><span class=cl>5<span class=o>)</span> <span class=s2>&#34;paper&#34;</span>
+</span></span><span class=line><span class=cl>6<span class=o>)</span> <span class=s2>&#34;100&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>zrange</code> 는 낮은 점수부터, <code>zrevrange</code> 는 높은 점수부터다.
+등수랑 점수만 따로 보려면</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zscore rank lee
+</span></span><span class=line><span class=cl><span class=s2>&#34;175&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrank rank lee
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrevrank rank lee
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zcard rank
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>zrank</code> 는 0부터 시작하니 화면에 뿌릴 때 1을 더해야 한다</p><p>점수를 더할 때는 <code>zincrby</code>. string 의 <code>incrby</code> 랑 같은 느낌인데 순위가 자동으로 따라온다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zincrby rank <span class=m>200</span> park
+</span></span><span class=line><span class=cl><span class=s2>&#34;290&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrevrange rank <span class=m>0</span> -1 withscores
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;park&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;290&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;kim&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;250&#34;</span>
+</span></span><span class=line><span class=cl>5<span class=o>)</span> <span class=s2>&#34;lee&#34;</span>
+</span></span><span class=line><span class=cl>6<span class=o>)</span> <span class=s2>&#34;175&#34;</span>
+</span></span><span class=line><span class=cl>7<span class=o>)</span> <span class=s2>&#34;paper&#34;</span>
+</span></span><span class=line><span class=cl>8<span class=o>)</span> <span class=s2>&#34;100&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=점수-범위로-뽑기>점수 범위로 뽑기</h3><p><code>zrange</code> 가 순위(인덱스) 기준이면 <code>zrangebyscore</code> 는 점수 기준이다.
+<code>(</code> 를 붙이면 그 값은 뺀다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zrangebyscore rank <span class=m>100</span> <span class=m>250</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;paper&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;lee&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;kim&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrangebyscore rank <span class=s2>&#34;(100&#34;</span> <span class=m>250</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;lee&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;kim&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zcount rank <span class=m>100</span> <span class=m>250</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span></code></pre></td></tr></table></div></div><p>전체는 <code>-inf</code> / <code>+inf</code> 로 열고, <code>limit</code> 으로 페이징한다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zrangebyscore rank -inf +inf limit <span class=m>0</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;park&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;paper&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrangebyscore rank -inf +inf limit <span class=m>2</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;lee&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;kim&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>지우는 것도 점수 범위(<code>zremrangebyscore</code>)와 순위 범위(<code>zremrangebyrank</code>) 두 가지가 있다</p><h3 id=score-에-시간을-넣으면-지연-큐>score 에 시간을 넣으면 지연 큐</h3><p>score 를 점수가 아니라 timestamp 로 쓰면 &ldquo;지금 실행할 작업&rdquo; 을 뽑아낼 수 있다.
+sorted set 이 랭킹 말고 이런 데도 잘 쓰인다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zadd delayed <span class=m>1700000000</span> job:a <span class=m>1700000060</span> job:b <span class=m>1700003600</span> job:c
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrangebyscore delayed -inf <span class=m>1700000100</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;job:a&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;job:b&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zremrangebyrank delayed <span class=m>0</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrange delayed <span class=m>0</span> -1 withscores
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;job:c&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;1700003600&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>뽑기랑 지우기가 따로라 워커가 여럿이면 겹칠 수 있다. lua 로 묶거나
+<code>zpopmin</code> 을 쓰는게 안전할듯</p><h3 id=최고점만-남기기>최고점만 남기기</h3><p>그냥 <code>zadd</code> 하면 무조건 덮어써서 점수가 내려갈 수도 있다.
+<code>gt</code> 를 주면 더 클 때만 갱신한다 (6.2+). <code>ch</code> 는 반환값을 &ldquo;바뀐 개수&rdquo; 로 바꿔준다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zadd best <span class=m>100</span> paper
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zadd best gt ch <span class=m>50</span> paper
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zscore best paper
+</span></span><span class=line><span class=cl><span class=s2>&#34;100&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zadd best gt ch <span class=m>300</span> paper
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zscore best paper
+</span></span><span class=line><span class=cl><span class=s2>&#34;300&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>nx</code> 는 없을 때만, <code>xx</code> 는 있을 때만 쓴다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; zadd best nx <span class=m>999</span> paper
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zscore best paper
+</span></span><span class=line><span class=cl><span class=s2>&#34;300&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=bitmaps>Bitmaps</h2><ul><li>bit값을 저장해준다</li><li>512MB 용량으로 2^32(42억)개의 bit값들을 저장할 수 있다</li><li>boolean 옵션값을 저장하는 용도로 사용하면 좋을거 같다 (회원마다 공지 조회여부 등)</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; setbit test_bits <span class=m>0</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; getbit test_bits <span class=m>0</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; setbit test_bits <span class=m>0</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; getbit test_bits <span class=m>0</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>setbit</code> 반환값은 <strong>바꾸기 전 값</strong>이다. 새 타입은 아니고 사실 string 을
+비트 단위로 보는 것</p><h3 id=출석-체크>출석 체크</h3><p>날짜별 key 를 만들고 유저 id 를 비트 위치로 쓴다.
+<code>bitcount</code> 로 그날 방문자 수가 바로 나온다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; setbit visit:20160727 <span class=m>100</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; setbit visit:20160727 <span class=m>200</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; setbit visit:20160727 <span class=m>300</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; setbit visit:20160728 <span class=m>200</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; setbit visit:20160728 <span class=m>400</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; bitcount visit:20160727
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; bitcount visit:20160728
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span></code></pre></td></tr></table></div></div><p>이틀 다 온 사람은 <code>bitop and</code>, 하루라도 온 사람은 <code>bitop or</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; bitop and visit:both visit:20160727 visit:20160728
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>51</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; bitcount visit:both
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; bitop or visit:any visit:20160727 visit:20160728
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>51</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; bitcount visit:any
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>bitop</code> 의 반환값 51은 사람 수가 아니라 결과 문자열의 바이트 길이다.
+사람 수는 <code>bitcount</code> 로 따로 세야 한다</p><p>처음 1이 나오는 위치는 <code>bitpos</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; bitpos visit:20160727 <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>100</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=얼마나-아끼나>얼마나 아끼나</h3><p>유저 백만명 방문 여부를 하루치 담아보면</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; setbit big <span class=m>999999</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; strlen big
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>125000</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage big
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>131120</span>
+</span></span></code></pre></td></tr></table></div></div><p>122KB. 같은걸 Set 으로 하면 백만개 원소를 다 들고 있어야 하니 수십 MB 는 간다.
+대신 &ldquo;누가 왔는지&rdquo; 목록은 못 뽑고 비트를 훑어야 한다. id 가 연속된 정수여야
+효율이 나오는 것도 제약이다. uuid 쓰면 못 쓴다</p><hr><h2 id=hyperloglog>HyperLogLog</h2><p>여기부터는 원래 글에 없던 건데 같이 정리해둔다</p><p>중복 없는 개수(cardinality)만 알고 싶을 때 쓴다. 원소를 저장하지 않고
+확률적으로 추정해서 메모리를 거의 안 쓴다. 대신 값이 정확하지 않고
+멤버를 다시 꺼낼 수도 없다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; pfadd uv:20160727 user1 user2 user3
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; pfadd uv:20160727 user1
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; pfcount uv:20160727
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; pfadd uv:20160728 user3 user4
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; pfmerge uv:total uv:20160727 uv:20160728
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; pfcount uv:total
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>pfmerge</code> 로 일별을 합쳐서 주간/월간 UV 를 만들 수 있는게 좋다.
+Set 으로 하면 원본을 다 들고 있어야 하는 일이라..</p><p>10만개를 넣고 Set 이랑 비교해봤다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># HyperLogLog</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; pfcount uv:big
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>100420</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage uv:big
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>14384</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 같은 데이터를 Set 으로</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; scard uv:set
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>100000</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; memory usage uv:set
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>4772968</span>
+</span></span></code></pre></td></tr></table></div></div><p>실제 10만인데 100420 이 나왔다. 0.42% 틀렸다. 대신 14KB vs 4.6MB 로
+메모리는 330배 차이다. 표준오차가 0.81% 라고 하니 대체로 저 정도인듯</p><p>UV 처럼 &ldquo;대충 몇명&rdquo; 이면 되는데 정확히는 필요 없는 지표에 쓰면 좋을꺼 같다.
+과금이나 정산에 쓰면 안된다</p><hr><h2 id=geo>Geo</h2><p>좌표를 넣고 거리나 반경 검색을 한다. 3.2 에서 들어왔다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; geoadd stores 126.9784 37.5665 cityhall 127.0276 37.4979 gangnam 126.9245 37.5563 hongdae
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; geodist stores cityhall gangnam km
+</span></span><span class=line><span class=cl><span class=s2>&#34;8.7777&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; geopos stores gangnam
+</span></span><span class=line><span class=cl>1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;127.02759772539138794&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> <span class=s2>&#34;37.4979006128308967&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>경도가 먼저고 위도가 나중이다. 지도 API 는 보통 반대라 헷갈린다</p><p>반경 검색은 <code>geosearch</code> (6.2+). 예전 <code>georadius</code> 는 폐기 예정이다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; geosearch stores frommember cityhall byradius <span class=m>6</span> km asc withdist
+</span></span><span class=line><span class=cl>1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;cityhall&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> <span class=s2>&#34;0.0000&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;hongdae&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> <span class=s2>&#34;4.8860&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; geosearch stores fromlonlat 127.0276 37.4979 byradius <span class=m>20</span> km asc withdist withcoord
+</span></span><span class=line><span class=cl>1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;gangnam&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> <span class=s2>&#34;0.0002&#34;</span>
+</span></span><span class=line><span class=cl>   3<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;127.02759772539138794&#34;</span>
+</span></span><span class=line><span class=cl>      2<span class=o>)</span> <span class=s2>&#34;37.4979006128308967&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;cityhall&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> <span class=s2>&#34;8.7779&#34;</span>
+</span></span><span class=line><span class=cl>   3<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;126.97840064764022827&#34;</span>
+</span></span><span class=line><span class=cl>      2<span class=o>)</span> <span class=s2>&#34;37.56650030628724579&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;hongdae&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> <span class=s2>&#34;11.1760&#34;</span>
+</span></span><span class=line><span class=cl>   3<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;126.92449897527694702&#34;</span>
+</span></span><span class=line><span class=cl>      2<span class=o>)</span> <span class=s2>&#34;37.55630058834207574&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>넣은 좌표랑 꺼낸 좌표가 미묘하게 다른게 보인다. geohash 로 인코딩하면서
+정밀도가 깎여서 그렇다. 미터 단위로 정확해야 하는 용도면 안 맞을듯</p><p>새 타입이 아니고 실체는 sorted set 이다. score 에 geohash 를 넣은 것</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; <span class=nb>type</span> stores
+</span></span><span class=line><span class=cl>zset
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; zrange stores <span class=m>0</span> -1 withscores
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=s2>&#34;gangnam&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;4077553489665188&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;hongdae&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=s2>&#34;4077564662109830&#34;</span>
+</span></span><span class=line><span class=cl>5<span class=o>)</span> <span class=s2>&#34;cityhall&#34;</span>
+</span></span><span class=line><span class=cl>6<span class=o>)</span> <span class=s2>&#34;4077564854920134&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>그래서 <code>zrem</code> 으로 지우면 된다. geo 전용 삭제 명령이 없는 이유가 이거다</p><p>한글 멤버를 넣으면 <code>redis-cli</code> 가 <code>"\xed\x99\x8d..."</code> 처럼 이스케이프해서 보여준다.
+데이터가 깨진게 아니라 표시만 그런거고 <code>redis-cli --raw</code> 로 보면 제대로 나온다</p><hr><h2 id=streams>Streams</h2><p>5.0 에 들어온 로그형 타입. 위 여섯개보다 한참 나중이다.
+List 로 큐를 만들면 꺼내는 순간 사라지는데, Stream 은 로그처럼 쌓아두고
+여러 소비자가 각자 위치를 들고 읽는다. 카프카 비슷한 모양</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; xadd events <span class=s2>&#34;*&#34;</span> <span class=nb>type</span> login user <span class=m>1000</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;1788327172134-0&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; xadd events <span class=s2>&#34;*&#34;</span> <span class=nb>type</span> <span class=nb>logout</span> user <span class=m>1000</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;1788327172139-0&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; xlen events
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; xrange events - +
+</span></span><span class=line><span class=cl>1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;1788327172134-0&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;type&#34;</span>
+</span></span><span class=line><span class=cl>      2<span class=o>)</span> <span class=s2>&#34;login&#34;</span>
+</span></span><span class=line><span class=cl>      3<span class=o>)</span> <span class=s2>&#34;user&#34;</span>
+</span></span><span class=line><span class=cl>      4<span class=o>)</span> <span class=s2>&#34;1000&#34;</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;1788327172139-0&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;type&#34;</span>
+</span></span><span class=line><span class=cl>      2<span class=o>)</span> <span class=s2>&#34;logout&#34;</span>
+</span></span><span class=line><span class=cl>      3<span class=o>)</span> <span class=s2>&#34;user&#34;</span>
+</span></span><span class=line><span class=cl>      4<span class=o>)</span> <span class=s2>&#34;1000&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>*</code> 를 주면 id 를 자동 생성한다. <code>밀리초-순번</code> 형식이라 같은 ms 에 여러개가
+들어와도 안 겹친다. 각 항목은 hash 처럼 필드/값 쌍을 가진다</p><h3 id=consumer-group>consumer group</h3><p>같은 그룹의 워커들이 메시지를 나눠 갖는다. 읽어간 건 &ldquo;처리중(pending)&rdquo; 으로
+남아있다가 <code>xack</code> 을 해야 사라진다. 워커가 죽으면 pending 에 남아있으니
+다른 워커가 가져갈 수 있다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; xgroup create events workers <span class=m>0</span>
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; xreadgroup group workers worker-1 count <span class=m>1</span> streams events <span class=s2>&#34;&gt;&#34;</span>
+</span></span><span class=line><span class=cl>1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;events&#34;</span>
+</span></span><span class=line><span class=cl>   2<span class=o>)</span> 1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;1788327172134-0&#34;</span>
+</span></span><span class=line><span class=cl>         2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;type&#34;</span>
+</span></span><span class=line><span class=cl>            2<span class=o>)</span> <span class=s2>&#34;login&#34;</span>
+</span></span><span class=line><span class=cl>            3<span class=o>)</span> <span class=s2>&#34;user&#34;</span>
+</span></span><span class=line><span class=cl>            4<span class=o>)</span> <span class=s2>&#34;1000&#34;</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; xpending events workers
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=s2>&#34;1788327172134-0&#34;</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=s2>&#34;1788327172134-0&#34;</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> 1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;worker-1&#34;</span>
+</span></span><span class=line><span class=cl>      2<span class=o>)</span> <span class=s2>&#34;1&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>></code> 는 &ldquo;아직 아무도 안 가져간 것&rdquo; 이라는 뜻이다. <code>xack</code> 하면 pending 이 빈다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; xack events workers 1788327172134-0
+</span></span><span class=line><span class=cl><span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>127.0.0.1:6379&gt; xpending events workers
+</span></span><span class=line><span class=cl>1<span class=o>)</span> <span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>2<span class=o>)</span> <span class=o>(</span>nil<span class=o>)</span>
+</span></span><span class=line><span class=cl>3<span class=o>)</span> <span class=o>(</span>nil<span class=o>)</span>
+</span></span><span class=line><span class=cl>4<span class=o>)</span> <span class=o>(</span>nil<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>List 큐랑 제일 다른 점이 이거다. 꺼내자마자 사라지는게 아니라 ack 를 받아야 한다</p><h3 id=무한정-쌓이는거-막기>무한정 쌓이는거 막기</h3><p>로그라 놔두면 계속 큰다. <code>maxlen</code> 으로 상한을 건다.
+<code>~</code> 를 붙이면 정확히 그 개수가 아니라 대략 그쯤에서 자르는데 훨씬 싸다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>127.0.0.1:6379&gt; xadd events maxlen <span class=s2>&#34;~&#34;</span> <span class=m>1000</span> <span class=s2>&#34;*&#34;</span> <span class=nb>type</span> ping
+</span></span><span class=line><span class=cl><span class=s2>&#34;1788327172184-0&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=어디에-뭘-쓸까>어디에 뭘 쓸까</h2><table><thead><tr><th>타입</th><th>쓸 만한 곳</th><th>주의</th></tr></thead><tbody><tr><td>Strings</td><td>캐시, 카운터, 세션, 간단한 락</td><td>값이 크면 통째로 오간다</td></tr><tr><td>Lists</td><td>큐, 최근 목록</td><td>중간 접근이 O(N)</td></tr><tr><td>Sets</td><td>태그, 중복 제거, 교집합</td><td>원소 많으면 집합 연산이 무겁다</td></tr><tr><td>Hashes</td><td>객체 하나 묶기</td><td>필드가 수천개면 메모리가 뛴다</td></tr><tr><td>Sorted sets</td><td>랭킹, 지연 큐, 범위 조회</td><td>score 는 double 이라 큰 정수는 정밀도 손실</td></tr><tr><td>Bitmaps</td><td>대량 boolean (출석, 조회 여부)</td><td>id 가 연속 정수여야 이득</td></tr><tr><td>HyperLogLog</td><td>UV 처럼 대략의 유니크 수</td><td>오차 0.81%, 멤버 못 꺼냄</td></tr><tr><td>Geo</td><td>반경 검색</td><td>좌표 정밀도 손실, 실체는 zset</td></tr><tr><td>Streams</td><td>이벤트 로그, ack 필요한 큐</td><td>maxlen 안 걸면 계속 큰다</td></tr></tbody></table><p>고민되면 대충 이 순서로 생각하면 될듯</p><ul><li>값 하나면 String</li><li>필드 여러개를 한 덩어리로 보면 Hash</li><li>순서가 중요하면 List, 순위나 범위가 중요하면 Sorted set</li><li>중복 제거가 목적이면 Set, 개수만 알면 되고 좀 틀려도 되면 HyperLogLog</li><li>유저 수만큼의 on/off 면 Bitmap</li><li>처리 실패를 복구해야 하면 List 말고 Stream</li></ul><h2 id=참고>참고</h2><ul><li><a href=https://redis.io/docs/latest/develop/data-types/>https://redis.io/docs/latest/develop/data-types/</a></li><li><a href=https://redis.io/docs/latest/commands/>https://redis.io/docs/latest/commands/</a></li><li><a href=https://redis.io/docs/latest/develop/use/patterns/distributed-locks/>https://redis.io/docs/latest/develop/use/patterns/distributed-locks/</a></li></ul></div><footer class=post-foot><div class=tags><a href=/tags/redis/>#redis</a></div><section class=related><h2>관련 글</h2><ul><li><a href=/posts/opensource/2015-09-21-redis-304/><span class=t>redis 3.2.3 설치</span>
+<span class="d num">2015 · 09 · 20</span></a></li><li><a href=/posts/spring/2015-11-11-spring-redis/><span class=t>spring redis 연동 </span><span class="d num">2015 · 11 · 10</span></a></li><li><a href=/posts/opensource/2016-06-21-fluentd/><span class=t>fluentd로 로그를 모으기</span>
+<span class="d num">2016 · 06 · 22</span></a></li><li><a href=/2016/06/08/apachelog/><span class=t>restful api 서버에서 평균 응답시간, 호출횟수, Min, Max 구하기</span>
+<span class="d num">2016 · 06 · 08</span></a></li></ul></section><nav class=post-nav><a class=prev href=/2016/07/14/gradle/><span class=lbl>이전 글</span><span class=t>maven에서 gradle로 변환...</span></a><a class=next href=/posts/centos/2016-08-11-ssh-key-login/><span class=lbl>다음 글</span><span class=t>ssh key를 이용한 로그인</span></a></nav></footer></article></main></div></div><script>(function(){var t,n,s,o,i,a,l,e=document.documentElement,d="M12 3v2M12 19v2M5 5l1.5 1.5M17.5 17.5L19 19M3 12h2M19 12h2M5 19l1.5-1.5M17.5 6.5L19 5",u="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z";function r(){var t=e.getAttribute("data-theme");return t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches}function c(){var e=document.getElementById("theme-ic");e&&e.setAttribute("d",r()?d:u)}s=document.getElementById("theme"),s&&s.addEventListener("click",function(){var t=r()?"light":"dark";e.setAttribute("data-theme",t);try{localStorage.setItem("theme",t)}catch{}c()}),c(),t=document.getElementById("lang-toggle"),t&&t.addEventListener("click",function(){try{localStorage.setItem("lang",t.getAttribute("data-lang"))}catch{}}),o=document.getElementById("burger"),i=document.getElementById("scrim"),o&&o.addEventListener("click",function(){e.setAttribute("data-nav","open")}),i&&i.addEventListener("click",function(){e.removeAttribute("data-nav")}),n=document.getElementById("q"),n&&(l=[].slice.call(document.querySelectorAll(".row")),a=document.getElementById("empty"),n.addEventListener("input",function(){var t=n.value.trim().toLowerCase(),e=0;l.forEach(function(n){var s=n.textContent.toLowerCase().indexOf(t)!==-1;n.style.display=s?"":"none",s&&e++}),a&&(a.style.display=e?"none":"block")}))})()</script></body></html>

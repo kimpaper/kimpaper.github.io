@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Java on paper.archive</title>
+    <link>https://paper.kim/en/tags/java/</link>
+    <description>Recent content in Java on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 08 Oct 2015 01:32:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>practicing spring jpa @NamedQuery, @NamedNativeQuery</title>
+      <link>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</link>
+      <pubDate>Thu, 08 Oct 2015 01:32:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</guid>
+      <description>In jpa.. you can query data through a repository with findAll or the findOneBy....</description>
+    </item>
+    <item>
+      <title>spring jpa query practice </title>
+      <link>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa/</link>
+      <pubDate>Wed, 07 Oct 2015 18:04:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa/</guid>
+      <description>Tested entity mapping plus queries.. Query conditions 1. When fetching a Member.. also fetch the member&amp;#39;s images... and the list of inters 2.</description>
+    </item>
+    <item>
+      <title>Korean fonts in JFreeChart (CentOS font setup)</title>
+      <link>https://paper.kim/en/posts/centos/2015-07-02-jfreechart-centos/</link>
+      <pubDate>Wed, 01 Jul 2015 20:33:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-07-02-jfreechart-centos/</guid>
+      <description>I&amp;#39;m using JFreeChart, and when it runs on Tomcat, Korean text renders as broken boxes. Put the font files in /usr/share/fonts and run fc-cache -fv.</description>
+    </item>
+  </channel>
+</rss>

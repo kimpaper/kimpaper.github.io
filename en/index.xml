@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>paper.archive</title>
+    <link>https://paper.kim/en/</link>
+    <description>Recent content on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 06 Sep 2026 22:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GPT-6 Astra vs Fable 5.1, Opus 5 and GPT-5.6 Sol</title>
+      <link>https://paper.kim/en/posts/ai/2026-09-06-gpt6-astra-model-comparison/</link>
+      <pubDate>Sun, 06 Sep 2026 22:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/ai/2026-09-06-gpt6-astra-model-comparison/</guid>
+      <description>GPT-6 Astra shipped on September 3. Compared against Claude Fable 5.1, Opus 5 and GPT-5.6 Sol: the 2.5x price increase, the token-efficiency twist, the ARC-AGI-3 harness problem, and the row missing from the announcement.</description>
+    </item>
+    <item>
+      <title>Claude Fable 5.1 vs Opus 5, Fable 5 and GPT-5.6 Sol</title>
+      <link>https://paper.kim/en/posts/ai/2026-09-01-fable51-model-comparison/</link>
+      <pubDate>Tue, 01 Sep 2026 21:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/ai/2026-09-01-fable51-model-comparison/</guid>
+      <description>Claude Fable 5.1 shipped today. Compared against Opus 5, Fable 5 and GPT-5.6 Sol: the 75% cache-read price cut, three breaking changes, and where the vendor table and third-party measurements disagree.</description>
+    </item>
+    <item>
+      <title>Megi Maeuntang at Uiseong Maneul Hwangto Megi, Bucheon</title>
+      <link>https://paper.kim/en/posts/diary/2026-08-16-megi-maeuntang/</link>
+      <pubDate>Sun, 16 Aug 2026 11:20:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-08-16-megi-maeuntang/</guid>
+      <description>Spicy catfish stew at Uiseong Maneul Hwangto Megi in Jakdong, Bucheon. Freshwater shrimp make the broth, and a block of ramyeon noodles goes in as a matter of course.</description>
+    </item>
+    <item>
+      <title>Yukhoe Sashimi and a DIY Malatang</title>
+      <link>https://paper.kim/en/posts/diary/2026-08-05-yuksashimi-malatang/</link>
+      <pubDate>Wed, 05 Aug 2026 20:23:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-08-05-yuksashimi-malatang/</guid>
+      <description>Dinner was yuksashimi — sliced raw beef eaten with sesame oil, garlic and green chilli — alongside a malatang cooked at home. Good ingredients, not quite enough broth.</description>
+    </item>
+    <item>
+      <title>Samgyeopsal and Beef Sirloin for Lunch, with a Mountain of Minari</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-30-samgyeopsal/</link>
+      <pubDate>Thu, 30 Jul 2026 13:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-30-samgyeopsal/</guid>
+      <description>Grilling samgyeopsal and beef sirloin at home, starting at lunch. Half the pan is minari. Onion, potato and a pot of stew on the side, and no drinks today.</description>
+    </item>
+    <item>
+      <title>LLM Wiki — Compiling Knowledge Instead of Re-reading It</title>
+      <link>https://paper.kim/en/posts/ai/2026-07-28-llm-wiki/</link>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/ai/2026-07-28-llm-wiki/</guid>
+      <description>A walkthrough of Karpathy&amp;#39;s LLM Wiki pattern: the three-layer structure, the ingest/query/lint loop, how people actually use it, and how much of the efficiency claim has actually been measured.</description>
+    </item>
+    <item>
+      <title>The San Francisco AI Declaration, Summarized</title>
+      <link>https://paper.kim/en/posts/ai/2026-07-25-sf-ai-declaration/</link>
+      <pubDate>Sat, 25 Jul 2026 09:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/ai/2026-07-25-sf-ai-declaration/</guid>
+      <description>What the San Francisco AI Declaration of July 24, 2026 actually says, which deals were signed alongside it, and what Korea&amp;#39;s AI Framework Act requires from developers today.</description>
+    </item>
+    <item>
+      <title>Claude Opus 5 vs GPT-5.6 Sol, Fable 5 and Sonnet 5</title>
+      <link>https://paper.kim/en/posts/ai/2026-07-25-opus5-model-comparison/</link>
+      <pubDate>Sat, 25 Jul 2026 08:30:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/ai/2026-07-25-opus5-model-comparison/</guid>
+      <description>Claude Opus 5 compared with GPT-5.6 Sol, Fable 5 and Sonnet 5 across coding, agentic work, long context and cost, plus what changed from Opus 4.8 and what to watch when migrating.</description>
+    </item>
+    <item>
+      <title>Plant Shopping at Joinfolia in Paju</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-21-joinfolia-paju/</link>
+      <pubDate>Tue, 21 Jul 2026 12:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-21-joinfolia-paju/</guid>
+      <description>We went to Joinfolia in Paju to look around and came home with a few more plants. The place is much bigger than it looks from outside.</description>
+    </item>
+    <item>
+      <title>Least-Privilege AWS Account Setup for Harness in a SaaS Environment</title>
+      <link>https://paper.kim/en/2026/07/20/harness-aws-limited-account/</link>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2026/07/20/harness-aws-limited-account/</guid>
+      <description>When deploying a SaaS service on AWS and connecting Harness for CI/CD, one of the first questions is how Harness should access the AWS account.</description>
+    </item>
+    <item>
+      <title>Korean Shabu-Shabu at Home — the Three-Act Dinner</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-19-deungchon-shabu/</link>
+      <pubDate>Sun, 19 Jul 2026 19:10:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-19-deungchon-shabu/</guid>
+      <description>Tonight&amp;#39;s dinner: Deungchon-style shabu-shabu, delivered — with one hack. The beef came from the supermarket, since a tray of shabu-sliced beef costs…</description>
+    </item>
+    <item>
+      <title>Yasik — Sea Snail Salad &amp; Blanched Squid, Delivered</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-18-yasik-sora-ojingeo/</link>
+      <pubDate>Sat, 18 Jul 2026 22:47:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-18-yasik-sora-ojingeo/</guid>
+      <description>Late-night eating is practically a national sport in Korea — it even has its own word, yasik (야식). Tonight&amp;#39;s yasik came by delivery app.</description>
+    </item>
+    <item>
+      <title>Baekban — A Proper Korean Set Meal in Paju</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-18-bapsarang-paju/</link>
+      <pubDate>Sat, 18 Jul 2026 12:44:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-18-bapsarang-paju/</guid>
+      <description>Lunch at Bapsarang, a countryside diner in Paju (north of Seoul), the kind of place Koreans call a baekban-jip (백반집).</description>
+    </item>
+    <item>
+      <title>Kkot-Samgyeop (Flower Pork Belly) — Daebit Sikdang, Gaebong-dong</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-17-daebit-sikdang-gaebong/</link>
+      <pubDate>Fri, 17 Jul 2026 18:37:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-17-daebit-sikdang-gaebong/</guid>
+      <description>Korean BBQ night at Daebit Sikdang near home. Their thing is kkot-samgyeop (꽃삼겹, &amp;#39;flower pork belly&amp;#39;) grilled on a dome-shaped stone pan.</description>
+    </item>
+    <item>
+      <title>Homesul Night — Kahlúa Milk, Jjukkumi, Yukhoe</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-16-home-drink-kahlua/</link>
+      <pubDate>Thu, 16 Jul 2026 21:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-16-home-drink-kahlua/</guid>
+      <description>Drinking at home tonight — Koreans call it homesul (홈술, home &#43; sul/alcohol). All the food is takeout. The drink: Kahlúa mixed with milk.</description>
+    </item>
+    <item>
+      <title>Dakjang Maekju — My Neighborhood Chicken &amp; Beer Pub</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-15-dakjang-beer-gaebong/</link>
+      <pubDate>Wed, 15 Jul 2026 20:19:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-15-dakjang-beer-gaebong/</guid>
+      <description>My local pub, Dakjang Maekju in Gaebong-dong — walking distance from home, which in Korea is a blessing.</description>
+    </item>
+    <item>
+      <title>Geoje Panorama Cable Car — Nojasan Observatory</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-12-geoje-cablecar/</link>
+      <pubDate>Sun, 12 Jul 2026 15:39:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-12-geoje-cablecar/</guid>
+      <description>Riding the Geoje Panorama Cable Car up to the 565m Nojasan observatory, and the view over Korea&amp;#39;s southern archipelago from the top.</description>
+    </item>
+    <item>
+      <title>Hanchi Mulhoe &amp; Octopus Rice Bowl — Yoonsikdang, Geoje</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-12-yoonsikdang-geoje/</link>
+      <pubDate>Sun, 12 Jul 2026 13:22:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-12-yoonsikdang-geoje/</guid>
+      <description>Lunch on Geoje Island at a place called Yoonsikdang. We ordered hanchi mulhoe and a rock-octopus rice bowl.</description>
+    </item>
+    <item>
+      <title>Dongtae-tang Breakfast on Geoje Island</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-12-dongtaetang-geoje/</link>
+      <pubDate>Sun, 12 Jul 2026 08:20:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-12-dongtaetang-geoje/</guid>
+      <description>Day two on Geoje Island. Breakfast at the pollack-stew place right in front of our lodging.</description>
+    </item>
+    <item>
+      <title>Geoje Haegeumgang Cruise — Between Seagulls and Cliffs</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-11-geoje-haegeumgang/</link>
+      <pubDate>Sat, 11 Jul 2026 14:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-11-geoje-haegeumgang/</guid>
+      <description>Taking the Haegeumgang sightseeing cruise off Geoje Island, where the seagulls follow the boat close enough to take snacks from your hand.</description>
+    </item>
+    <item>
+      <title>Milmyeon on Geoje Island — Woomyeonga</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-11-milmyeon-woomyeonga/</link>
+      <pubDate>Sat, 11 Jul 2026 12:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-11-milmyeon-woomyeonga/</guid>
+      <description>Found a great noodle place on Geoje Island (south coast of Korea) called Woomyeonga. This one was seriously good.</description>
+    </item>
+    <item>
+      <title>Gopchang Jeongol — Korean Intestine Hot Pot in Gaebong-dong</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-10-gopchang-jeongol/</link>
+      <pubDate>Fri, 10 Jul 2026 13:30:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-10-gopchang-jeongol/</guid>
+      <description>Tonight&amp;#39;s anju (안주 — food you eat while drinking) is gopchang jeongol, at my regular place Yeokjeon Sundae-guk in Gaebong-dong, Seoul.</description>
+    </item>
+    <item>
+      <title>Blog Redesign</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-09-blog-renewal/</link>
+      <pubDate>Thu, 09 Jul 2026 10:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-09-blog-renewal/</guid>
+      <description>Finally gave this old dev blog a facelift. Tech posts will still be the main thing, but from now on I&amp;#39;ll also drop everyday records here — mostly…</description>
+    </item>
+    <item>
+      <title>Archive Utility not working on macOS</title>
+      <link>https://paper.kim/en/posts/mac/2023-04-08-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EB%8F%99%EC%9E%91-%EC%95%88%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81/</link>
+      <pubDate>Sat, 08 Apr 2023 01:05:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/mac/2023-04-08-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EB%8F%99%EC%9E%91-%EC%95%88%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81/</guid>
+      <description>Ran into this on a MacBook Air M2. Archive Utility wouldn&amp;#39;t extract a zip on double-click.</description>
+    </item>
+    <item>
+      <title>Using the Go profiler (pprof)</title>
+      <link>https://paper.kim/en/posts/golang/2022-03-28-golang_profiler/</link>
+      <pubDate>Mon, 28 Mar 2022 16:53:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/golang/2022-03-28-golang_profiler/</guid>
+      <description>Using the Go profiler (pprof). Profile via net/http/pprof, CPU profile (collects data for 30 seconds), Heap memory (returns current memory info).</description>
+    </item>
+    <item>
+      <title>kubernetes cert-manager</title>
+      <link>https://paper.kim/en/2020/05/13/kubernetes-certmanager/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2020/05/13/kubernetes-certmanager/</guid>
+      <description>Installing and configuring cert-manager to serve https through a Kubernetes ingress, with certificate issuance handled automatically.</description>
+    </item>
+    <item>
+      <title>kubernetes glusterfs integration</title>
+      <link>https://paper.kim/en/posts/kube/2020-05-13-kubernetes-glusterfs/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/kube/2020-05-13-kubernetes-glusterfs/</guid>
+      <description>Setting up GlusterFS on Kubernetes, including patching the gk-deploy script where it still used deprecated kubectl options.</description>
+    </item>
+    <item>
+      <title>kubernetes ingress - proxying to a specific url</title>
+      <link>https://paper.kim/en/2020/05/13/kubernetes-ingress-urlproxy/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2020/05/13/kubernetes-ingress-urlproxy/</guid>
+      <description>kubernetes ingress - proxying to a specific url</description>
+    </item>
+    <item>
+      <title>Login with an ssh key</title>
+      <link>https://paper.kim/en/posts/centos/2016-08-11-ssh-key-login/</link>
+      <pubDate>Thu, 11 Aug 2016 16:07:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2016-08-11-ssh-key-login/</guid>
+      <description>Set up an ssh key on macOS so you can log into the server without typing a password Normally I don&amp;#39;t do this, for security.</description>
+    </item>
+    <item>
+      <title>redis data types</title>
+      <link>https://paper.kim/en/2016/07/27/redis-datatype/</link>
+      <pubDate>Wed, 27 Jul 2016 14:32:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2016/07/27/redis-datatype/</guid>
+      <description>Strings, Lists, Sets, Hashes, Sorted sets and Bitmaps, plus HyperLogLog, Geo and Streams. Every example run against redis-cli, with notes on which type to reach for</description>
+    </item>
+    <item>
+      <title>Converting from maven to gradle...</title>
+      <link>https://paper.kim/en/2016/07/14/gradle/</link>
+      <pubDate>Thu, 14 Jul 2016 14:15:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2016/07/14/gradle/</guid>
+      <description>There&amp;#39;s a manual install method.. but I prefer automatic installs like the above doesn&amp;#39;t everyone For manual install see the site…</description>
+    </item>
+    <item>
+      <title>Collecting logs with fluentd</title>
+      <link>https://paper.kim/en/posts/opensource/2016-06-21-fluentd/</link>
+      <pubDate>Wed, 22 Jun 2016 15:47:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/opensource/2016-06-21-fluentd/</guid>
+      <description>I&amp;#39;ve been collecting error logs with flume, but I&amp;#39;m switching to fluentd. actually the goal is monitoring, not collecting The architecture seems…</description>
+    </item>
+    <item>
+      <title>Getting average response time, call count, Min, Max on a restful api server</title>
+      <link>https://paper.kim/en/2016/06/08/apachelog/</link>
+      <pubDate>Wed, 08 Jun 2016 15:32:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2016/06/08/apachelog/</guid>
+      <description>There&amp;#39;s an api server that handles data traffic from an app I computed the average response time per interface using the apache logs For the hadoop,…</description>
+    </item>
+    <item>
+      <title>Analyzing log files with Python and Spark (with hadoop)</title>
+      <link>https://paper.kim/en/posts/opensource/2016-05-30-spark-hadoop/</link>
+      <pubDate>Mon, 30 May 2016 16:35:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/opensource/2016-05-30-spark-hadoop/</guid>
+      <description>Installing and running Hadoop, then analyzing files with Spark. Done on OSX, written up in order from configuration to execution.</description>
+    </item>
+    <item>
+      <title>Logging into an AWS EC2 server with a password</title>
+      <link>https://paper.kim/en/2016/04/08/amazon-ec2-root-pwd/</link>
+      <pubDate>Fri, 08 Apr 2016 11:33:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2016/04/08/amazon-ec2-root-pwd/</guid>
+      <description>AWS ec2 servers block ssh access with a password by default. Let&amp;#39;s edit the file below to allow it.</description>
+    </item>
+    <item>
+      <title>rebase and merge in git</title>
+      <link>https://paper.kim/en/posts/etc/2016-03-24-git-rebase-merge/</link>
+      <pubDate>Thu, 24 Mar 2016 16:36:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/etc/2016-03-24-git-rebase-merge/</guid>
+      <description>I use git a lot these days and I&amp;#39;ve always been confused about rebase vs merge.</description>
+    </item>
+    <item>
+      <title>Reverting a git local commit</title>
+      <link>https://paper.kim/en/posts/etc/2016-02-25-git-revert-local-commit/</link>
+      <pubDate>Thu, 25 Feb 2016 14:35:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/etc/2016-02-25-git-revert-local-commit/</guid>
+      <description>Specify the target repository to restore, like below (when the current checkout is develop) If you don&amp;#39;t specify a repository, it seems to revert…</description>
+    </item>
+    <item>
+      <title>A simple webserver check with Python</title>
+      <link>https://paper.kim/en/posts/python/2016-02-17-python-http-request/</link>
+      <pubDate>Wed, 17 Feb 2016 11:41:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/python/2016-02-17-python-http-request/</guid>
+      <description>I&amp;#39;ve been studying python lately, so as practice I made a simple program that checks every 10 seconds whether a webserver is dead.</description>
+    </item>
+    <item>
+      <title>Installing Python3 on CentOS 6</title>
+      <link>https://paper.kim/en/posts/python/2016-02-12-install-python3/</link>
+      <pubDate>Fri, 12 Feb 2016 16:53:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/python/2016-02-12-install-python3/</guid>
+      <description>Installing Python3 on CentOS 6. Command line to install 3.5.1 on centos 6.</description>
+    </item>
+    <item>
+      <title>Using Visual Studio Code as the default editor for Unity3D on Mac</title>
+      <link>https://paper.kim/en/posts/etc/2015-12-18-unity-with-visualstudio-code/</link>
+      <pubDate>Fri, 18 Dec 2015 15:39:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/etc/2015-12-18-unity-with-visualstudio-code/</guid>
+      <description>When developing with Unity on Mac you usually code with MonoDevelop. But it doesn&amp;#39;t support Korean, which was really annoying.</description>
+    </item>
+    <item>
+      <title>Disabling the cache when testing MariaDB queries</title>
+      <link>https://paper.kim/en/posts/etc/2015-12-15-mysql-cache-reset/</link>
+      <pubDate>Tue, 15 Dec 2015 14:55:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/etc/2015-12-15-mysql-cache-reset/</guid>
+      <description>When tuning queries, run this first to see uncached results.</description>
+    </item>
+    <item>
+      <title>calling a spring jpa namedQuery directly</title>
+      <link>https://paper.kim/en/posts/spring/2015-11-13-spring-jpa-createnamedquery/</link>
+      <pubDate>Fri, 13 Nov 2015 17:57:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-11-13-spring-jpa-createnamedquery/</guid>
+      <description>As in Test.java, you can execute a NamedQuery defined in orm.xml directly with the EntityManager..</description>
+    </item>
+    <item>
+      <title>spring redis integration </title>
+      <link>https://paper.kim/en/posts/spring/2015-11-11-spring-redis/</link>
+      <pubDate>Tue, 10 Nov 2015 17:36:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-11-11-spring-redis/</guid>
+      <description>Integrating Redis with Spring using spring-data-redis, from the dependency through configuration and the result.</description>
+    </item>
+    <item>
+      <title>Switching Flume&#39;s default logging from log4j to logback</title>
+      <link>https://paper.kim/en/posts/centos/2015-10-30-flume-logback-sink/</link>
+      <pubDate>Fri, 30 Oct 2015 18:13:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-10-30-flume-logback-sink/</guid>
+      <description>These turned out to be bigger downsides than expected, so I made a simple sink project.</description>
+    </item>
+    <item>
+      <title>Splitting log files by time &#43; size in logback</title>
+      <link>https://paper.kim/en/2015/10/30/logback-config/</link>
+      <pubDate>Fri, 30 Oct 2015 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2015/10/30/logback-config/</guid>
+      <description>With logback, the file rolls over when the day passes or the size goes over 100MB.</description>
+    </item>
+    <item>
+      <title>Flume install and test (mac)</title>
+      <link>https://paper.kim/en/posts/centos/2015-10-29-flume-setting-sample/</link>
+      <pubDate>Thu, 29 Oct 2015 15:51:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-10-29-flume-setting-sample/</guid>
+      <description>Installing Flume and a basic flume.conf sample, from setting JAVA_HOME to configuring sources, channels and sinks.</description>
+    </item>
+    <item>
+      <title>building a website with spring &#43; sitemesh</title>
+      <link>https://paper.kim/en/2015/10/28/spring-sitemesh-setting/</link>
+      <pubDate>Wed, 28 Oct 2015 17:08:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2015/10/28/spring-sitemesh-setting/</guid>
+      <description>Let&amp;#39;s set up sitemesh. There&amp;#39;s almost nothing to change in sitemesh.xml (just the decorators.xml file path) Setup is done once you drop in the xml…</description>
+    </item>
+    <item>
+      <title>spring jpa save</title>
+      <link>https://paper.kim/en/2015/10/21/jpa-save/</link>
+      <pubDate>Wed, 21 Oct 2015 16:20:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2015/10/21/jpa-save/</guid>
+      <description>In jpa you save with the repository.save method Like the class, @OneToMany or @ManyToOne fields can be saved together.</description>
+    </item>
+    <item>
+      <title>Calling c&#43;&#43; (dll) from c# with an LPCTSTR parameter</title>
+      <link>https://paper.kim/en/2015/10/15/csharp-lpcstr-parameter-call/</link>
+      <pubDate>Thu, 15 Oct 2015 12:13:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2015/10/15/csharp-lpcstr-parameter-call/</guid>
+      <description>An example of calling a c&#43;&#43; dll from c#. CallingConvention = CallingConvention.Cdecl and [MarshalAs(UnmanagedType.LPWStr)] are the important parts.</description>
+    </item>
+    <item>
+      <title>Saving a control to png in WPF (c#)</title>
+      <link>https://paper.kim/en/posts/dotnet/2015-10-16-wpf-control-save-to-png/</link>
+      <pubDate>Thu, 15 Oct 2015 12:13:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/dotnet/2015-10-16-wpf-control-save-to-png/</guid>
+      <description>I was going to use System.Drawing like I did before.. turns out wpf already has this built in..</description>
+    </item>
+    <item>
+      <title>practicing spring jpa @NamedQuery, @NamedNativeQuery</title>
+      <link>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</link>
+      <pubDate>Thu, 08 Oct 2015 01:32:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa-namedquery-namednativequery/</guid>
+      <description>In jpa.. you can query data through a repository with findAll or the findOneBy....</description>
+    </item>
+    <item>
+      <title>spring jpa query practice </title>
+      <link>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa/</link>
+      <pubDate>Wed, 07 Oct 2015 18:04:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-10-08-spring-jpa/</guid>
+      <description>Tested entity mapping plus queries.. Query conditions 1. When fetching a Member.. also fetch the member&amp;#39;s images... and the list of inters 2.</description>
+    </item>
+    <item>
+      <title>spring jpa setup and test (maven config)</title>
+      <link>https://paper.kim/en/2015/10/05/spring-jpa-maven/</link>
+      <pubDate>Mon, 05 Oct 2015 00:41:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2015/10/05/spring-jpa-maven/</guid>
+      <description>I develop with mybatis most of the time.. But JPA is supposedly the trend, so I wired it into a small project.</description>
+    </item>
+    <item>
+      <title>Installing redis 3.2.3</title>
+      <link>https://paper.kim/en/posts/opensource/2015-09-21-redis-304/</link>
+      <pubDate>Sun, 20 Sep 2015 21:47:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/opensource/2015-09-21-redis-304/</guid>
+      <description>Building and installing Redis 3.0.4 from source, from preparing gcc and the build tools through compiling and running it.</description>
+    </item>
+    <item>
+      <title>Built on .NET Framework 4.5.2. Then downgraded to 4.0... </title>
+      <link>https://paper.kim/en/posts/dotnet/2015-09-17-net-framework-452-40/</link>
+      <pubDate>Wed, 16 Sep 2015 20:21:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/dotnet/2015-09-17-net-framework-452-40/</guid>
+      <description>Recently I had to build a Windows app. I heard .NET 4.5 added the new async syntax, so.. might as well, I went with 4.5.2. Oh......</description>
+    </item>
+    <item>
+      <title>Setting up a server on DigitalOcean (CentOS 6.7)</title>
+      <link>https://paper.kim/en/posts/centos/2015-09-16-centos-67/</link>
+      <pubDate>Tue, 15 Sep 2015 20:40:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-09-16-centos-67/</guid>
+      <description>Set up a server for a simple messaging app I&amp;#39;m building with a friend. Of course I don&amp;#39;t really know what I&amp;#39;m doing. Everything comes from Google..</description>
+    </item>
+    <item>
+      <title>using spring batch </title>
+      <link>https://paper.kim/en/posts/spring/2015-08-28-spring-batch/</link>
+      <pubDate>Thu, 27 Aug 2015 22:44:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-08-28-spring-batch/</guid>
+      <description>Tried spring-batch recently.. worked out well. Being able to set the transaction commit size and read size separately seems especially nice.</description>
+    </item>
+    <item>
+      <title>Korean fonts in JFreeChart (CentOS font setup)</title>
+      <link>https://paper.kim/en/posts/centos/2015-07-02-jfreechart-centos/</link>
+      <pubDate>Wed, 01 Jul 2015 20:33:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-07-02-jfreechart-centos/</guid>
+      <description>I&amp;#39;m using JFreeChart, and when it runs on Tomcat, Korean text renders as broken boxes. Put the font files in /usr/share/fonts and run fc-cache -fv.</description>
+    </item>
+    <item>
+      <title>Installing homebrew on OSX 10.10.3</title>
+      <link>https://paper.kim/en/posts/mac/2015-06-04-osx-10103-homebrew/</link>
+      <pubDate>Thu, 04 Jun 2015 01:05:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/mac/2015-06-04-osx-10103-homebrew/</guid>
+      <description>Installing homebrew on OSX 10.10.3, from running the install script in the terminal through the initial checks.</description>
+    </item>
+    <item>
+      <title>hadoop &#43; spring integration test 2 - hadoop 2.6.x with spring 4.0 (MapReduce WordCount example)</title>
+      <link>https://paper.kim/en/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</link>
+      <pubDate>Wed, 15 Apr 2015 00:39:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2015/04/15/2-hadoop-26x-with-spring-40-mapreduce/</guid>
+      <description>hadoop &#43; spring integration test 2 - hadoop 2.6.x with spring 4.0 (MapReduce WordCount example)</description>
+    </item>
+    <item>
+      <title>hadoop &#43; spring integration test - hadoop 2.6.x with spring 4.0</title>
+      <link>https://paper.kim/en/2015/04/12/hadoop-26x-with-spring-40/</link>
+      <pubDate>Sun, 12 Apr 2015 19:46:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2015/04/12/hadoop-26x-with-spring-40/</guid>
+      <description>Using Hadoop 2.6.x with Spring 4.0: installing Hadoop on OSX Yosemite and lining up the pom.xml dependencies.</description>
+    </item>
+    <item>
+      <title>When Apache returns 403 errors</title>
+      <link>https://paper.kim/en/posts/centos/2015-03-27-403/</link>
+      <pubDate>Fri, 27 Mar 2015 01:47:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-03-27-403/</guid>
+      <description>If you&amp;#39;ve tried everything and still keep getting 403..</description>
+    </item>
+    <item>
+      <title>writing spring junit testcases</title>
+      <link>https://paper.kim/en/posts/spring/2015-03-25-spring-junit-testcase/</link>
+      <pubDate>Tue, 24 Mar 2015 22:42:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-03-25-spring-junit-testcase/</guid>
+      <description>Writing JUnit test cases in Spring: adding spring-test to pom.xml and loading the application context in the test.</description>
+    </item>
+    <item>
+      <title>spring-rabbitmq integration </title>
+      <link>https://paper.kim/en/posts/spring/2015-03-11-spring-rabbitmq/</link>
+      <pubDate>Tue, 10 Mar 2015 18:55:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-03-11-spring-rabbitmq/</guid>
+      <description>Integrating RabbitMQ with Spring, from the rpm install and starting the server through the Spring configuration.</description>
+    </item>
+    <item>
+      <title>git command collection</title>
+      <link>https://paper.kim/en/posts/centos/2015-03-05-git/</link>
+      <pubDate>Wed, 04 Mar 2015 17:33:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-03-05-git/</guid>
+      <description>A collection of git commands: migrating from svn, handling ignore files, setting remotes, dealing with tags and branches, reverting local commits, and backup and restore.</description>
+    </item>
+    <item>
+      <title>Unicode (utf8mb4) support in MySQL and MariaDB</title>
+      <link>https://paper.kim/en/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</link>
+      <pubDate>Tue, 10 Feb 2015 20:48:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-02-11-mysql-mariadb-utf8mb4/</guid>
+      <description>Switching MySQL and MariaDB from utf8 to utf8mb4 so emoji can be stored, covering both the server settings and the actual column type changes.</description>
+    </item>
+    <item>
+      <title>CentOS command collection</title>
+      <link>https://paper.kim/en/posts/centos/2015-02-06-blog-post_21/</link>
+      <pubDate>Thu, 05 Feb 2015 17:42:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-02-06-blog-post_21/</guid>
+      <description>A collection of CentOS commands: locating installed programs, deleting old logs, editing hosts and DNS, checking OS bits and version, installing fonts, editing crond, and finding and killing Tomcat processes.</description>
+    </item>
+    <item>
+      <title>Switching Korean/English input with Command&#43;Space in Parallels</title>
+      <link>https://paper.kim/en/posts/mac/2015-02-06-parallels-8-9-commandspace/</link>
+      <pubDate>Thu, 05 Feb 2015 17:29:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/mac/2015-02-06-parallels-8-9-commandspace/</guid>
+      <description>I&amp;#39;ve been using the settings below from version 8 through 11. Done. This worked for me.</description>
+    </item>
+    <item>
+      <title>spring map to xml viewresolver</title>
+      <link>https://paper.kim/en/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</link>
+      <pubDate>Thu, 05 Feb 2015 17:16:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-02-06-spring-map-to-xml-viewresolver/</guid>
+      <description>A Spring view class I made when I had to return xml instead of the usual json. Only works when the result is a map. Set up the config below...</description>
+    </item>
+    <item>
+      <title>When Tomcat keeps throwing OutOfMemory</title>
+      <link>https://paper.kim/en/posts/centos/2015-02-06-tomcat-outofmemory/</link>
+      <pubDate>Thu, 05 Feb 2015 17:10:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-02-06-tomcat-outofmemory/</guid>
+      <description>Fixing frequent Tomcat OutOfMemory errors by setting CATALINA_OPTS at the top of catalina.sh to raise heap and PermGen size.</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>https://paper.kim/en/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://paper.kim/en/about/</guid>
+      <description>A developer&amp;#39;s archive of backend and infrastructure notes, plus everyday food and travel records from Seoul, Korea.</description>
+    </item>
+    <item>
+      <title>Privacy Policy</title>
+      <link>https://paper.kim/en/privacy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://paper.kim/en/privacy/</guid>
+      <description>&lt;p&gt;This site (&lt;code&gt;paper.kim&lt;/code&gt;) respects your privacy. Here is how data and
+cookies are handled.&lt;/p&gt;
+&lt;h2 id=&#34;1-what-we-collect&#34;&gt;1. What we collect&lt;/h2&gt;
+&lt;p&gt;This site has no sign-up and does not directly collect or store personally
+identifying information. Anonymous usage statistics and cookies may be
+collected through the third-party services below.&lt;/p&gt;
+&lt;h2 id=&#34;2-cookies&#34;&gt;2. Cookies&lt;/h2&gt;
+&lt;p&gt;Cookies may be used to improve the site and serve ads. You can block or delete
+cookies in your browser settings.&lt;/p&gt;
+&lt;h2 id=&#34;3-google-analytics&#34;&gt;3. Google Analytics&lt;/h2&gt;
+&lt;p&gt;We use Google Analytics to understand anonymous visit patterns (pages viewed,
+time on site). Opt out: &lt;a href=&#34;https://tools.google.com/dlpage/gaoptout&#34;&gt;Google Analytics Opt-out Add-on&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

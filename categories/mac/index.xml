@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Mac on 기록 저장소</title>
+    <link>https://paper.kim/categories/mac/</link>
+    <description>Recent content in Mac on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Sat, 08 Apr 2023 01:05:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/categories/mac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>아카이브유틸리티 동작 안되는 현상</title>
+      <link>https://paper.kim/posts/mac/2023-04-08-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EB%8F%99%EC%9E%91-%EC%95%88%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81/</link>
+      <pubDate>Sat, 08 Apr 2023 01:05:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/mac/2023-04-08-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EB%8F%99%EC%9E%91-%EC%95%88%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81/</guid>
+      <description>아카이브 유틸리티 동작이 안되는 현상 왜 그러는지는 모르겠지만, zip을 클릭했을때 압축이 안풀리는 현상이 있었다 이유를 보니 1test.zip 압축이 풀리지 않음 test.zip 압축풀림 이름을 변경하니 더블클릭으로 압축이 풀렸다.</description>
+    </item>
+    <item>
+      <title>OSX 10.10.3 homebrew 설치하기</title>
+      <link>https://paper.kim/posts/mac/2015-06-04-osx-10103-homebrew/</link>
+      <pubDate>Thu, 04 Jun 2015 01:05:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/mac/2015-06-04-osx-10103-homebrew/</guid>
+      <description>OSX 10.10.3에서 homebrew를 설치하는 과정. 터미널에서 설치 스크립트 실행부터 기본 확인까지.</description>
+    </item>
+    <item>
+      <title>Parallels에서 Command&#43;Space로 한영변환 하기</title>
+      <link>https://paper.kim/posts/mac/2015-02-06-parallels-8-9-commandspace/</link>
+      <pubDate>Thu, 05 Feb 2015 17:29:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/mac/2015-02-06-parallels-8-9-commandspace/</guid>
+      <description>Parallels에서 Command&#43;Space 한영 전환이 게스트로 먹히지 않을 때. 키보드 입력 소스 설정과 단축키 매핑으로 해결한 방법.</description>
+    </item>
+  </channel>
+</rss>
