@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Mysql on 기록 저장소</title>
+    <link>https://paper.kim/tags/mysql/</link>
+    <description>Recent content in Mysql on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 11 Aug 2016 16:07:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CentOS 서버 운영 메모 모음 — 명령어, 톰캣 OOM, 아파치 403, 폰트, SSH</title>
+      <link>https://paper.kim/posts/centos/2016-08-11-centos-server-notes/</link>
+      <pubDate>Thu, 11 Aug 2016 16:07:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/centos/2016-08-11-centos-server-notes/</guid>
+      <description>2015~2016년에 CentOS 서버를 만지면서 따로따로 올렸던 메모를 한 페이지로 모았다. 자주 쓰던 명령어, 톰캣 OutOfMemory, MySQL utf8mb4 전환, 아파치 403(SELinux), 한글 폰트, EC2 패스워드 로그인, SSH 키 로그인.</description>
+    </item>
+  </channel>
+</rss>

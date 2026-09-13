@@ -1,0 +1,727 @@
+<!doctype html><html lang=ko dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Spring JPA 연습 기록 — 설정부터 저장·NamedQuery 까지 · 기록 저장소</title><meta name=description content="2015년에 mybatis 쓰던 프로젝트에 Spring Data JPA 를 붙여보면서 남긴 기록. maven 설정, 연관관계 조회, save 동작, @NamedQuery 와 @NamedNativeQuery, EntityManager 로 직접 호출까지 한 페이지에 모았다.…"><meta name=keywords content="spring,jpa,java"><meta name=author content="페이퍼"><meta name=robots content="index, follow, max-image-preview:large"><link rel=canonical href=https://paper.kim/posts/spring/2015-11-13-spring-jpa-notes/><link rel=alternate hreflang=ko-KR href=https://paper.kim/posts/spring/2015-11-13-spring-jpa-notes/><link rel=alternate hreflang=en-US href=https://paper.kim/en/posts/spring/2015-11-13-spring-jpa-notes/><link rel=alternate hreflang=x-default href=https://paper.kim/en/posts/spring/2015-11-13-spring-jpa-notes/><meta name=google-site-verification content="y1M38dn7tn_g66ZU4sW9oodCBS79uDleUIpnFABhR_I"><meta name=naver-site-verification content="d4c08a44984bf4ebeb4b26f639fedfb26163b6e3"><meta property="og:site_name" content="기록 저장소"><meta property="og:type" content="article"><meta property="og:title" content="Spring JPA 연습 기록 — 설정부터 저장·NamedQuery 까지"><meta property="og:description" content="2015년에 mybatis 쓰던 프로젝트에 Spring Data JPA 를 붙여보면서 남긴 기록. maven 설정, 연관관계 조회, save 동작, @NamedQuery 와 @NamedNativeQuery, EntityManager 로 직접 호출까지 한 페이지에 모았다.…"><meta property="og:url" content="https://paper.kim/posts/spring/2015-11-13-spring-jpa-notes/"><meta property="og:locale" content="ko_KR"><meta property="og:locale:alternate" content="en_US"><meta property="og:image" content="https://paper.kim/images/default-thumb.jpg"><meta property="og:image:alt" content="Spring JPA 연습 기록 — 설정부터 저장·NamedQuery 까지"><meta property="article:published_time" content="2015-11-13T17:57:00+09:00"><meta property="article:modified_time" content="2015-11-13T17:57:00+09:00"><meta property="article:tag" content="spring"><meta property="article:tag" content="jpa"><meta property="article:tag" content="java"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Spring JPA 연습 기록 — 설정부터 저장·NamedQuery 까지"><meta name=twitter:description content="2015년에 mybatis 쓰던 프로젝트에 Spring Data JPA 를 붙여보면서 남긴 기록. maven 설정, 연관관계 조회, save 동작, @NamedQuery 와 @NamedNativeQuery, EntityManager 로 직접 호출까지 한 페이지에 모았다.…"><meta name=twitter:domain content="paper.kim"><meta name=twitter:image content="https://paper.kim/images/default-thumb.jpg"><script>(function(){try{var e=localStorage.getItem("theme");e&&document.documentElement.setAttribute("data-theme",e)}catch{}})()</script><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css onload='this.onload=null,this.rel="stylesheet"'><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap"></noscript><link rel=stylesheet href=/css/site.min.4016cb5265290cd3e09ce8cb43c26d23e143347225282a595297fe9ed9e17c2f.css integrity="sha256-QBbLUmUpDNPgnOjLQ8JtI+FDNHIlKCpZUpf+ntnhfC8="><link rel=icon href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5eE77iPPC90ZXh0Pjwvc3ZnPg=="><script async src="https://www.googletagmanager.com/gtag/js?id=G-ECTTT48V9Y"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ECTTT48V9Y")</script><meta name=google-adsense-account content="ca-pub-8048816011496920"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8048816011496920" crossorigin=anonymous></script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"페이퍼","url":"https://paper.kim/"},"dateModified":"2015-11-13T17:57:00+09:00","datePublished":"2015-11-13T17:57:00+09:00","description":"2015년에 mybatis 쓰던 프로젝트에 Spring Data JPA 를 붙여보면서 남긴 기록. maven 설정, 연관관계 조회, save 동작, @NamedQuery 와 @NamedNativeQuery, EntityManager 로 직접 호출까지 한 페이지에 모았다.…","headline":"Spring JPA 연습 기록 — 설정부터 저장·NamedQuery 까지","image":["https://paper.kim/images/default-thumb.jpg"],"inLanguage":"ko-KR","keywords":"spring, jpa, java","mainEntityOfPage":{"@id":"https://paper.kim/posts/spring/2015-11-13-spring-jpa-notes/","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://paper.kim/images/site-logo.png"},"name":"기록 저장소"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://paper.kim/","name":"기록 저장소","position":1},{"@type":"ListItem","item":"https://paper.kim/categories/spring/","name":"Spring","position":2},{"@type":"ListItem","item":"https://paper.kim/posts/spring/2015-11-13-spring-jpa-notes/","name":"Spring JPA 연습 기록 — 설정부터 저장·NamedQuery 까지","position":3}]}</script></head><body><div class=scrim id=scrim></div><div class=shell><aside class=index id=sidebar><div class=masthead><a href=/ class=wordmark>기록<b>.</b>저장소</a><div class=sub>a developer’s archive</div><div class="range num">2015 — 2026 · 39 entries</div></div><nav class=toc aria-label=categories><details class=grp open><summary><span class=idx>I</span> 기술 블로그 <span class=chev></span></summary><div class=sub-list><a href=/categories/ai/>AI · LLM <span class="c num">5</span></a><a href=/categories/aws/>AWS · 클라우드 <span class="c num">1</span></a><a href=/categories/spring/>Spring · JPA <span class="c num">2</span></a><a href=/categories/golang/>Golang <span class="c num">1</span></a><a href=/categories/kubernetes/>Kubernetes · 인프라 <span class="c num">3</span></a><a href=/categories/python/>Python <span class="c num">1</span></a><a href=/categories/opensource/>오픈소스 · 데이터 <span class="c num">4</span></a><a href=/categories/linux/>CentOS · 리눅스 <span class="c num">3</span></a><a href=/categories/dotnet/>.NET <span class="c num">1</span></a></div></details><details class=grp><summary><span class=idx>II</span> 일상 <span class=chev></span></summary><div class=sub-list><a href=/categories/diary/>일기 · 소소한 기록 <span class="c num">13</span></a></div></details><details class=grp><summary><span class=idx>III</span> 기타 잡지식 <span class=chev></span></summary><div class=sub-list><a href=/categories/etc/>팁 · 트러블슈팅 <span class="c num">4</span></a><a href=/categories/mac/>Mac · 기타 <span class="c num">1</span></a></div></details><div class=toc-flat><a href=/archives/><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg> 전체 아카이브
+</a><a href=/tags/><svg viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/><circle cx="12" cy="12" r="2"/></svg> 태그
+</a><a href=/about/><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> 소개
+</a><a href=/en/posts/spring/2015-11-13-spring-jpa-notes/ id=lang-toggle data-lang=en title="Read in English"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+English</a></div></nav><div class=index-foot><button class=icon-btn id=theme title=theme aria-label=theme>
+<svg id="theme-ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+</button>
+<a class=icon-btn href=https://github.com/kimpaper title=GitHub aria-label=GitHub><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2.0C7 4.9 5.9 5.2 5.9 5.2a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004.5 11.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V23"/></svg></a>
+<a class=icon-btn href=/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<span class=spacer></span>
+<span class=copy>© 페이퍼</span></div></aside><div class=main><header class=topbar><button class="icon-btn hamburger" id=burger aria-label=menu><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class=crumb><a href=/>기록 저장소</a><span class=sep>/</span><b>Spring</b></div><span class=spacer></span>
+<label class=search><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+<input id=q type=search placeholder="이 목록에서 검색…" aria-label=search></label></header><main class=content id=content><article class=post><header class=post-head><a class=cat-tag href=/categories/spring/>Spring</a><h1 class=post-title>Spring JPA 연습 기록 — 설정부터 저장·NamedQuery 까지</h1><div class="post-meta num"><span>2015 · 11 · 13</span>
+<span>5 min read</span>
+<span>페이퍼</span></div></header><details class=toc-box open><summary>목차</summary><nav><nav id=TableOfContents><ul><li><a href=#1-maven-설정>1. maven 설정</a></li><li><a href=#2-entity-클래스>2. Entity 클래스</a></li><li><a href=#3-repository>3. Repository</a></li><li><a href=#4-context-jpaxml>4. context-jpa.xml</a></li><li><a href=#5-여기까지의-사용-예제>5. 여기까지의 사용 예제</a></li><li><a href=#연관관계-조회>연관관계 조회</a><ul><li><a href=#memberjava>Member.java</a></li><li><a href=#memberrepositoryjava>MemberRepository.java</a></li><li><a href=#imagejava>Image.java</a></li><li><a href=#interjava>Inter.java</a></li><li><a href=#memberinterjava>MemberInter.java</a></li><li><a href=#memberinterpkjava>MemberInterPk.java</a></li><li><a href=#테스트-코드>테스트 코드</a></li></ul></li><li><a href=#저장>저장</a><ul><li><a href=#memberjava-1>Member.java</a></li><li><a href=#memberinterjava-1>MemberInter.java</a></li><li><a href=#테스트>테스트</a></li></ul></li><li><a href=#namedquery-와-namednativequery>@NamedQuery 와 @NamedNativeQuery</a><ul><li><a href=#classesmeta-informxml>/classes/META-INF/orm.xml</a></li><li><a href=#interjava-1>Inter.java</a></li></ul></li><li><a href=#namedquery-를-직접-호출하기>NamedQuery 를 직접 호출하기</a><ul><li><a href=#meta-informxml>META-INF/orm.xml</a></li></ul></li><li><a href=#정리>정리</a></li></ul></nav></nav></details><div class=prose><p>2015년 가을에 JPA 를 처음 붙여보면서 다섯 번에 나눠 올렸던 글을 한 페이지로 합쳤다.
+따로 보면 토막글이라 순서대로 읽기가 불편했다.</p><p>그때 상황은 이랬다. 거의 다 mybatis 로 개발하고 있었는데 JPA 가 대세라길래
+가벼운 프로젝트에 얹어봤다. 자료가 많아서 설정 자체는 어렵지 않았다.
+<del>mybatis 를 한번에 다 걷어낼 자신은 없었고</del> 기존 트랜잭션에 영향을 주지 않는
+선에서 얹는게 목표였다.</p><h2 id=1-maven-설정>1. maven 설정</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=line><span class=cl><span class=nt>&lt;dependency&gt;</span>
+</span></span><span class=line><span class=cl>   <span class=nt>&lt;groupId&gt;</span>org.springframework.data<span class=nt>&lt;/groupId&gt;</span>
+</span></span><span class=line><span class=cl>   <span class=nt>&lt;artifactId&gt;</span>spring-data-jpa<span class=nt>&lt;/artifactId&gt;</span>
+</span></span><span class=line><span class=cl>   <span class=nt>&lt;version&gt;</span>1.9.0.RELEASE<span class=nt>&lt;/version&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;/dependency&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;dependency&gt;</span>
+</span></span><span class=line><span class=cl>   <span class=nt>&lt;groupId&gt;</span>org.hibernate<span class=nt>&lt;/groupId&gt;</span>
+</span></span><span class=line><span class=cl>   <span class=nt>&lt;artifactId&gt;</span>hibernate-entitymanager<span class=nt>&lt;/artifactId&gt;</span>
+</span></span><span class=line><span class=cl>   <span class=nt>&lt;version&gt;</span>4.3.8.Final<span class=nt>&lt;/version&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=2-entity-클래스>2. Entity 클래스</h2><p><code>@SerializedName</code>, <code>@Expose</code> 는 JPA 와 직접 관련이 없다.
+객체를 그대로 JsonView 로 뿌릴 때 쓰는 Gson 쪽 어노테이션이다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=nn>com.google.gson.annotations.Expose</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=nn>com.google.gson.annotations.SerializedName</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=nn>javax.persistence.*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nd>@Entity</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nd>@Table</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s>&#34;tb_notice&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>Notice</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Id</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@GeneratedValue</span><span class=p>(</span><span class=n>strategy</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>GenerationType</span><span class=p>.</span><span class=na>AUTO</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;notice_id&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@SerializedName</span><span class=p>(</span><span class=n>value</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;notice_id&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=n>noticeId</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s>&#34;title&#34;</span><span class=p>,</span><span class=w> </span><span class=n>nullable</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=n>title</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s>&#34;content&#34;</span><span class=p>,</span><span class=w> </span><span class=n>nullable</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=n>content</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s>&#34;reg_date&#34;</span><span class=p>,</span><span class=w> </span><span class=n>nullable</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@SerializedName</span><span class=p>(</span><span class=n>value</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;reg_date&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=n>regDate</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s>&#34;del_yn&#34;</span><span class=p>,</span><span class=w> </span><span class=n>nullable</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Expose</span><span class=p>(</span><span class=n>serialize</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>,</span><span class=w> </span><span class=n>deserialize</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=n>delYn</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=nf>getNoticeId</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>noticeId</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>setNoticeId</span><span class=p>(</span><span class=n>Integer</span><span class=w> </span><span class=n>noticeId</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>this</span><span class=p>.</span><span class=na>noticeId</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>noticeId</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=nf>getTitle</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>title</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>setTitle</span><span class=p>(</span><span class=n>String</span><span class=w> </span><span class=n>title</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>this</span><span class=p>.</span><span class=na>title</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>title</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=nf>getContent</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>content</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>setContent</span><span class=p>(</span><span class=n>String</span><span class=w> </span><span class=n>content</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>this</span><span class=p>.</span><span class=na>content</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>content</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=nf>getRegDate</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>regDate</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>setRegDate</span><span class=p>(</span><span class=n>String</span><span class=w> </span><span class=n>regDate</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>this</span><span class=p>.</span><span class=na>regDate</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>regDate</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=nf>getDelYn</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>delYn</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>setDelYn</span><span class=p>(</span><span class=n>String</span><span class=w> </span><span class=n>delYn</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>this</span><span class=p>.</span><span class=na>delYn</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>delYn</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h2 id=3-repository>3. Repository</h2><p>내용이 하나도 없어도 된다. 이게 JPA 를 쓰는 이유이기도 하다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>interface</span> <span class=nc>NoticeRepository</span><span class=w> </span><span class=kd>extends</span><span class=w> </span><span class=n>JpaRepository</span><span class=o>&lt;</span><span class=n>Notice</span><span class=p>,</span><span class=w> </span><span class=n>Integer</span><span class=o>&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h2 id=4-context-jpaxml>4. context-jpa.xml</h2><p>트랜잭션 매니저 이름이 <code>txManager2</code> 인 이유는 기존 mybatis 쪽에 영향을 주지 않기 위해서다.
+둘을 같이 쓰려면 이렇게 분리해야 한다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=line><span class=cl><span class=cp>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;beans</span> <span class=na>xmlns=</span><span class=s>&#34;http://www.springframework.org/schema/beans&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>xmlns:xsi=</span><span class=s>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>xmlns:jpa=</span><span class=s>&#34;http://www.springframework.org/schema/data/jpa&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>xmlns:tx=</span><span class=s>&#34;http://www.springframework.org/schema/tx&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>xmlns:aop=</span><span class=s>&#34;http://www.springframework.org/schema/aop&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>xmlns:p=</span><span class=s>&#34;http://www.springframework.org/schema/util&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>xsi:schemaLocation=</span><span class=s>&#34;http://www.springframework.org/schema/beans
+</span></span></span><span class=line><span class=cl><span class=s>    http://www.springframework.org/schema/beans/spring-beans.xsd
+</span></span></span><span class=line><span class=cl><span class=s>    http://www.springframework.org/schema/data/jpa
+</span></span></span><span class=line><span class=cl><span class=s>    http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+</span></span></span><span class=line><span class=cl><span class=s>    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+</span></span></span><span class=line><span class=cl><span class=s>    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+</span></span></span><span class=line><span class=cl><span class=s>    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+</span></span></span><span class=line><span class=cl><span class=s>    &#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c>&lt;!-- Configure the transaction manager bean --&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;bean</span> <span class=na>class=</span><span class=s>&#34;org.springframework.orm.jpa.JpaTransactionManager&#34;</span> <span class=na>id=</span><span class=s>&#34;txManager2&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;entityManagerFactory&#34;</span> <span class=na>ref=</span><span class=s>&#34;entityManagerFactory&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/bean&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;tx:advice</span> <span class=na>id=</span><span class=s>&#34;txAdvice2&#34;</span> <span class=na>transaction-manager=</span><span class=s>&#34;txManager2&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;tx:attributes&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;tx:method</span> <span class=na>name=</span><span class=s>&#34;*&#34;</span> <span class=na>rollback-for=</span><span class=s>&#34;Exception&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;/tx:attributes&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/tx:advice&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;aop:config&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;aop:pointcut</span> <span class=na>expression=</span><span class=s>&#34;execution(* sample..service..*.sr*(..))&#34;</span> <span class=na>id=</span><span class=s>&#34;requiredTx2&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;aop:advisor</span> <span class=na>advice-ref=</span><span class=s>&#34;txAdvice2&#34;</span> <span class=na>pointcut-ref=</span><span class=s>&#34;requiredTx2&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/aop:config&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;bean</span> <span class=na>class=</span><span class=s>&#34;org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter&#34;</span> <span class=na>id=</span><span class=s>&#34;hibernateJpaVendorAdapter&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;showSql&#34;</span> <span class=na>value=</span><span class=s>&#34;true&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/bean&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c>&lt;!-- Configure the entity manager factory bean --&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;bean</span> <span class=na>class=</span><span class=s>&#34;org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean&#34;</span> <span class=na>id=</span><span class=s>&#34;entityManagerFactory&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;dataSource&#34;</span> <span class=na>ref=</span><span class=s>&#34;dataSource&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;jpaVendorAdapter&#34;</span> <span class=na>ref=</span><span class=s>&#34;hibernateJpaVendorAdapter&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;packagesToScan&#34;</span> <span class=na>value=</span><span class=s>&#34;sample.app&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/bean&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;jpa:repositories</span> <span class=na>base-package=</span><span class=s>&#34;sample.app&#34;</span> <span class=na>transaction-manager-ref=</span><span class=s>&#34;txManager2&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;/beans&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=5-여기까지의-사용-예제>5. 여기까지의 사용 예제</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@Service</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>NoticeService</span><span class=w> </span><span class=kd>extends</span><span class=w> </span><span class=n>ServiceBase</span><span class=w>  </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=kd>static</span><span class=w> </span><span class=kd>final</span><span class=w> </span><span class=n>Logger</span><span class=w> </span><span class=n>logger</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>LoggerFactory</span><span class=p>.</span><span class=na>getLogger</span><span class=p>(</span><span class=n>NoticeService</span><span class=p>.</span><span class=na>class</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Autowired</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>NoticeRepository</span><span class=w> </span><span class=n>noticeRepository</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>srXX</span><span class=p>(</span><span class=n>RequestData</span><span class=w> </span><span class=n>req</span><span class=p>,</span><span class=w> </span><span class=n>ResponseData</span><span class=w> </span><span class=n>res</span><span class=p>)</span><span class=w> </span><span class=kd>throws</span><span class=w> </span><span class=n>Exception</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>List</span><span class=o>&lt;</span><span class=n>Notice</span><span class=o>&gt;</span><span class=w> </span><span class=n>list</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>noticeRepository</span><span class=p>.</span><span class=na>findAll</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>res</span><span class=p>.</span><span class=na>put</span><span class=p>(</span><span class=s>&#34;notice_list&#34;</span><span class=p>,</span><span class=w> </span><span class=n>list</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>설정은 여기까지가 끝이다. 문제는 실제로 쓸 때 요령이 필요하다는 것.
+제대로 이해하지 않고 쓰면 성능에 영향을 준다고 한다.</p><h2 id=연관관계-조회>연관관계 조회</h2><p>테이블 관계가 이런 상황이다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>tb_member -&lt; tb_member_inter &gt;- tb_inter
+</span></span></code></pre></td></tr></table></div></div><p>원하는 조회 조건은 두 가지였다.</p><ul><li>Member 를 가져오면 member 의 이미지들과 inter 목록을 함께 가져오도록</li><li>inter 의 상세 정보는 <code>tb_inter</code> 에 있으니 가져올 때 조인해서</li></ul><p>하면서 걸렸던 것들.</p><ul><li><code>MemberInter</code> 의 PK 가 두 개라 클래스를 따로 만들어서 <code>@IdClass</code> 를 지정해야 한다</li><li><code>MemberInter</code> 에서 제일 헷갈렸다. <code>@ManyToOne</code> 을 쓸 때 <code>@JoinColumn</code> 을 추가로 써야 한다</li><li><code>optional</code> 을 true 로 하면 조인할 때 outer join 을 한다. false 는 inner join</li></ul><p>FetchType 은 이렇게 갈린다.</p><ul><li><code>FetchType.EAGER</code> — 즉시 조회해서 데이터를 채운다</li><li><code>FetchType.LAZY</code> — 필요할 때 DB 조회</li></ul><blockquote><p>필드명은 카멜케이스를 꼭 써야 한다. 안 그러면 나중에 method named query 에서 곤란해진다.</p></blockquote><h3 id=memberjava>Member.java</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@Entity</span><span class=w> </span><span class=nd>@Table</span><span class=p>(</span><span class=n>name</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;tb_member&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>Member</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Id</span><span class=w> </span><span class=nd>@GeneratedValue</span><span class=p>(</span><span class=n>strategy</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>GenerationType</span><span class=p>.</span><span class=na>AUTO</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=n>member_seq</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@OneToMany</span><span class=p>(</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=n>targetEntity</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>Image</span><span class=p>.</span><span class=na>class</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=w> </span><span class=n>cascade</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>CascadeType</span><span class=p>.</span><span class=na>ALL</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=w> </span><span class=n>fetch</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>FetchType</span><span class=p>.</span><span class=na>EAGER</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=w> </span><span class=n>mappedBy</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;member_seq&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>List</span><span class=o>&lt;</span><span class=n>image</span><span class=o>&gt;</span><span class=w> </span><span class=n>imageList</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@OneToMany</span><span class=p>(</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=n>targetEntity</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>MemberInter</span><span class=p>.</span><span class=na>class</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=w> </span><span class=n>cascade</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>CascadeType</span><span class=p>.</span><span class=na>ALL</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=w> </span><span class=n>fetch</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>FetchType</span><span class=p>.</span><span class=na>EAGER</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=w> </span><span class=n>mappedBy</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;member_seq&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>List</span><span class=o>&lt;</span><span class=n>Memberinter</span><span class=o>&gt;</span><span class=w> </span><span class=n>memberInterList</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=memberrepositoryjava>MemberRepository.java</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>interface</span> <span class=nc>MemberRepository</span><span class=w> </span><span class=kd>extends</span><span class=w> </span><span class=n>JpaRepository</span><span class=o>&lt;</span><span class=n>Member</span><span class=p>,</span><span class=w> </span><span class=n>Integer</span><span class=o>&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=imagejava>Image.java</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@Entity</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nd>@Table</span><span class=p>(</span><span class=n>name</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;tb_image&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>Image</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Id</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@GeneratedValue</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=n>image_seq</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=n>member_seq</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=w> </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=n>file_name</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=interjava>Inter.java</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@Entity</span><span class=w> </span><span class=nd>@Table</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s>&#34;tb_inter&#34;</span><span class=p>)</span><span class=w> </span><span class=nd>@Embeddable</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>Inter</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Id</span><span class=w> </span><span class=nd>@GeneratedValue</span><span class=p>(</span><span class=n>strategy</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>GenerationType</span><span class=p>.</span><span class=na>AUTO</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=n>inter_seq</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=w> </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=n>inter_name_ko</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=memberinterjava>MemberInter.java</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@Entity</span><span class=w> </span><span class=nd>@Table</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s>&#34;tb_member_inter&#34;</span><span class=p>)</span><span class=w> </span><span class=nd>@IdClass</span><span class=p>(</span><span class=n>MemberInterPk</span><span class=p>.</span><span class=na>class</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>MemberInter</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Id</span><span class=w> </span><span class=nd>@Column</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=n>member_seq</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Id</span><span class=w> </span><span class=nd>@Column</span><span class=p>(</span><span class=n>insertable</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>,</span><span class=w> </span><span class=n>updatable</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=n>inter_seq</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@ManyToOne</span><span class=p>(</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=n>targetEntity</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>Inter</span><span class=p>.</span><span class=na>class</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=n>cascade</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>CascadeType</span><span class=p>.</span><span class=na>ALL</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=n>fetch</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>FetchType</span><span class=p>.</span><span class=na>EAGER</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=n>optional</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@JoinColumn</span><span class=p>(</span><span class=n>name</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;inter_seq&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>Inter</span><span class=w> </span><span class=n>inter</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=memberinterpkjava>MemberInterPk.java</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>MemberInterPk</span><span class=w> </span><span class=kd>implements</span><span class=w> </span><span class=n>Serializable</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=n>member_seq</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=n>inter_seq</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=테스트-코드>테스트 코드</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@RunWith</span><span class=p>(</span><span class=n>SpringJUnit4ClassRunner</span><span class=p>.</span><span class=na>class</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nd>@ContextConfiguration</span><span class=p>({</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=s>&#34;classpath:servlet-context.xml&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=s>&#34;classpath:config/context-datasource.xml&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>})</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>TestServiceTest</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=kd>static</span><span class=w> </span><span class=kd>final</span><span class=w> </span><span class=n>Logger</span><span class=w> </span><span class=n>logger</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>LoggerFactory</span><span class=p>.</span><span class=na>getLogger</span><span class=p>(</span><span class=n>TestServiceTest</span><span class=p>.</span><span class=na>class</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Autowired</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>Gson</span><span class=w> </span><span class=n>gson</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Autowired</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>MemberRepository</span><span class=w> </span><span class=n>memberRepository</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>testGetMemberList</span><span class=p>()</span><span class=w> </span><span class=kd>throws</span><span class=w> </span><span class=n>Exception</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>logger</span><span class=p>.</span><span class=na>info</span><span class=p>(</span><span class=s>&#34;------------ jpa test starting.... ------------------------&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>List</span><span class=o>&lt;</span><span class=n>Member</span><span class=o>&gt;</span><span class=w> </span><span class=n>list</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>memberRepository</span><span class=p>.</span><span class=na>findAll</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>logger</span><span class=p>.</span><span class=na>info</span><span class=p>(</span><span class=s>&#34;memberList={}&#34;</span><span class=p>,</span><span class=w> </span><span class=n>gson</span><span class=p>.</span><span class=na>toJson</span><span class=p>(</span><span class=n>list</span><span class=p>));</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>logger</span><span class=p>.</span><span class=na>info</span><span class=p>(</span><span class=s>&#34;------------ jpa test ended....    ------------------------&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h2 id=저장>저장</h2><p>저장은 <code>repository.save</code> 를 쓴다. 위 <code>Member</code> 처럼 <code>@OneToMany</code> 나 <code>@ManyToOne</code>
+필드를 함께 저장할 수 있다.</p><p>조회 때와 클래스가 조금 다르다. 필드명을 카멜케이스로 바꿨고,
+<code>@JoinColumn</code> 에 <code>insertable</code>, <code>updatable</code> 을 false 로 줬다.</p><h3 id=memberjava-1>Member.java</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@Entity</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=nd>@Table</span><span class=p>(</span><span class=n>name</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;tb_member&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>Member</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Id</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@GeneratedValue</span><span class=p>(</span><span class=n>strategy</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>GenerationType</span><span class=p>.</span><span class=na>AUTO</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;member_seq&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=n>memberSeq</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=n>nickname</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@OneToMany</span><span class=p>(</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=n>targetEntity</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>MemberInter</span><span class=p>.</span><span class=na>class</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=w> </span><span class=n>cascade</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>CascadeType</span><span class=p>.</span><span class=na>ALL</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=w> </span><span class=n>fetch</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>FetchType</span><span class=p>.</span><span class=na>EAGER</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=w> </span><span class=n>mappedBy</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;memberSeq&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>List</span><span class=o>&lt;</span><span class=n>MemberInter</span><span class=o>&gt;</span><span class=w> </span><span class=n>memberInterList</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=memberinterjava-1>MemberInter.java</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@Entity</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=nd>@Table</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s>&#34;tb_member_inter&#34;</span><span class=p>)</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=nd>@IdClass</span><span class=p>(</span><span class=n>value</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>MemberInterPk</span><span class=p>.</span><span class=na>class</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>MemberInter</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Id</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;member_seq&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=n>memberSeq</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Id</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;inter_seq&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=n>interSeq</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@ManyToOne</span><span class=p>(</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=n>targetEntity</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>Inter</span><span class=p>.</span><span class=na>class</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=n>cascade</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>CascadeType</span><span class=p>.</span><span class=na>ALL</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=n>fetch</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>FetchType</span><span class=p>.</span><span class=na>LAZY</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=n>optional</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@JoinColumn</span><span class=p>(</span><span class=n>name</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;inter_seq&#34;</span><span class=p>,</span><span class=w> </span><span class=n>referencedColumnName</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;inter_seq&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>,</span><span class=w> </span><span class=n>insertable</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>,</span><span class=w> </span><span class=n>updatable</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=kc>false</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>Inter</span><span class=w> </span><span class=n>inter</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=테스트>테스트</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@Test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>testSave</span><span class=p>()</span><span class=w> </span><span class=kd>throws</span><span class=w> </span><span class=n>Exception</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>logger</span><span class=p>.</span><span class=na>info</span><span class=p>(</span><span class=s>&#34;------------ jpa test starting.... ------------------------&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>Member</span><span class=w> </span><span class=n>data</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>memberRepository</span><span class=p>.</span><span class=na>findByNickname</span><span class=p>(</span><span class=s>&#34;111&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>logger</span><span class=p>.</span><span class=na>info</span><span class=p>(</span><span class=s>&#34;data={}&#34;</span><span class=p>,</span><span class=w> </span><span class=n>gson</span><span class=p>.</span><span class=na>toJson</span><span class=p>(</span><span class=n>data</span><span class=p>));</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>data</span><span class=p>.</span><span class=na>nickname</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;222&#34;</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>MemberInter</span><span class=w> </span><span class=n>memberInter</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>new</span><span class=w> </span><span class=n>MemberInter</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>memberInter</span><span class=p>.</span><span class=na>interSeq</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>28</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>memberInter</span><span class=p>.</span><span class=na>memberSeq</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>data</span><span class=p>.</span><span class=na>memberSeq</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>MemberInter</span><span class=w> </span><span class=n>memberInter2</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>new</span><span class=w> </span><span class=n>MemberInter</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>memberInter2</span><span class=p>.</span><span class=na>interSeq</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>29</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>memberInter2</span><span class=p>.</span><span class=na>memberSeq</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>data</span><span class=p>.</span><span class=na>memberSeq</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>data</span><span class=p>.</span><span class=na>memberInterList</span><span class=p>.</span><span class=na>add</span><span class=p>(</span><span class=n>memberInter</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>data</span><span class=p>.</span><span class=na>memberInterList</span><span class=p>.</span><span class=na>add</span><span class=p>(</span><span class=n>memberInter2</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c1>// 실제 저장. (member클래스를 저장. 한다)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>memberRepository</span><span class=p>.</span><span class=na>save</span><span class=p>(</span><span class=n>data</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>logger</span><span class=p>.</span><span class=na>info</span><span class=p>(</span><span class=s>&#34;------------ jpa test ended....    ------------------------&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>실행하면 SQL 이 이렇게 나간다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=p>...</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>...</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=n>Hibernate</span><span class=p>:</span><span class=w> </span><span class=k>insert</span><span class=w> </span><span class=k>into</span><span class=w> </span><span class=n>tb_member_inter</span><span class=w> </span><span class=p>(</span><span class=n>inter_seq</span><span class=p>,</span><span class=w> </span><span class=n>member_seq</span><span class=p>)</span><span class=w> </span><span class=k>values</span><span class=w> </span><span class=p>(</span><span class=o>?</span><span class=p>,</span><span class=w> </span><span class=o>?</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=n>Hibernate</span><span class=p>:</span><span class=w> </span><span class=k>insert</span><span class=w> </span><span class=k>into</span><span class=w> </span><span class=n>tb_member_inter</span><span class=w> </span><span class=p>(</span><span class=n>inter_seq</span><span class=p>,</span><span class=w> </span><span class=n>member_seq</span><span class=p>)</span><span class=w> </span><span class=k>values</span><span class=w> </span><span class=p>(</span><span class=o>?</span><span class=p>,</span><span class=w> </span><span class=o>?</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=n>Hibernate</span><span class=p>:</span><span class=w> </span><span class=k>update</span><span class=w> </span><span class=n>tb_member</span><span class=w> </span><span class=k>set</span><span class=w> </span><span class=n>nickname</span><span class=o>=?</span><span class=w> </span><span class=k>where</span><span class=w> </span><span class=n>member_seq</span><span class=o>=?</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p><code>insert into</code> 가 두 번, <code>update</code> 가 한 번 실행된걸 확인할 수 있다.
+리스트에 추가한 두 개가 insert 되고, 바꾼 nickname 이 update 된다.</p><h2 id=namedquery-와-namednativequery>@NamedQuery 와 @NamedNativeQuery</h2><p>repository 의 <code>findAll</code>, <code>findOneBy...</code> 시리즈로도 조회가 되지만
+쿼리를 직접 써야 할 때가 있다. <code>orm.xml</code> 에 정의하는 방법이다.</p><h3 id=classesmeta-informxml>/classes/META-INF/orm.xml</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=line><span class=cl><span class=cp>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;entity-mappings</span> <span class=na>xmlns=</span><span class=s>&#34;http://java.sun.com/xml/ns/persistence/orm&#34;</span>
+</span></span><span class=line><span class=cl>                 <span class=na>version=</span><span class=s>&#34;2.0&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;named-query</span> <span class=na>name=</span><span class=s>&#34;Inter.findByAlal2&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;query&gt;</span>select i from Inter i where i.internameko = ?1<span class=nt>&lt;/query&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/named-query&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;named-native-query</span> <span class=na>name=</span><span class=s>&#34;Inter.findByAlal&#34;</span> <span class=na>result-class=</span><span class=s>&#34;sample.jpa.Inter&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;query&gt;</span>select a.inter_seq, a.inter_name_ko, a.inter_name_en from tb_inter a where a.inter_name_ko = ?<span class=nt>&lt;/query&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/named-native-query&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nt>&lt;/entity-mappings&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>Entity 클래스에 직접 선언해도 된다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@Entity</span><span class=w> </span><span class=nd>@Table</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s>&#34;tb_inter&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nd>@NamedQuery</span><span class=p>(</span><span class=n>name</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;User.findByAlal2&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>query</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;select i from Inter i where i.internameko = ?1&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>Inter</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>....</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>비슷한 속성으로 <code>@Query</code> 도 있다. 이건 Repository 에 쓴다.</p><p><strong>둘의 차이가 중요하다.</strong></p><ul><li><code>named-query</code> 는 코드 안에 선언한 Entity 를 기준으로 쿼리를 날린다</li><li><code>named-native-query</code> 는 DB 에 직접 쿼리를 날린다. 그래서 <code>result-class</code> 를 지정해야 한다</li></ul><h3 id=interjava-1>Inter.java</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@Entity</span><span class=w> </span><span class=nd>@Table</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s>&#34;tb_inter&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>Inter</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Id</span><span class=w> </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;inter_seq&#34;</span><span class=p>)</span><span class=w> </span><span class=nd>@GeneratedValue</span><span class=p>(</span><span class=n>strategy</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>GenerationType</span><span class=p>.</span><span class=na>AUTO</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>Integer</span><span class=w> </span><span class=n>interseq</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;inter_name_ko&#34;</span><span class=p>)</span><span class=w> </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=n>internameko</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Column</span><span class=p>(</span><span class=n>name</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;inter_name_en&#34;</span><span class=p>)</span><span class=w> </span><span class=nd>@Expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=n>internameen</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h2 id=namedquery-를-직접-호출하기>NamedQuery 를 직접 호출하기</h2><p><code>EntityManager</code> 를 쓰면 <code>orm.xml</code> 에 정의한 NamedQuery 를 바로 실행할 수 있다.</p><p>repository 로 호출하면 <code>getResultList</code> 로만 실행되는 것 같다.
+update 로 반영된 row 수를 알아야 해서 아래처럼 했다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@PersistenceContext</span><span class=w> </span><span class=kd>private</span><span class=w> </span><span class=n>EntityManager</span><span class=w> </span><span class=n>em</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>test</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kt>int</span><span class=w> </span><span class=n>cnt</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>em</span><span class=p>.</span><span class=na>createNamedQuery</span><span class=p>(</span><span class=s>&#34;Order.clearOrder&#34;</span><span class=p>).</span><span class=na>executeUpdate</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>logger</span><span class=p>.</span><span class=na>info</span><span class=p>(</span><span class=s>&#34;Order.clearOrder updated={}&#34;</span><span class=p>,</span><span class=w> </span><span class=n>cnt</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p><code>@PersistenceContext</code> 와 <code>@Autowired</code> 둘 다 작동하는것 같다. 차이는 아직 잘 모르겠다.</p><h3 id=meta-informxml>META-INF/orm.xml</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=line><span class=cl><span class=cp>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;entity-mappings</span> <span class=na>xmlns=</span><span class=s>&#34;http://java.sun.com/xml/ns/persistence/orm&#34;</span>
+</span></span><span class=line><span class=cl>                 <span class=na>version=</span><span class=s>&#34;2.0&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;named-native-query</span> <span class=na>name=</span><span class=s>&#34;Order.clearOrder&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;query&gt;</span>
+</span></span><span class=line><span class=cl>update tb_order
+</span></span><span class=line><span class=cl>   set order_name=null 
+</span></span><span class=line><span class=cl>     , order_date=null
+</span></span><span class=line><span class=cl>     , order_no=null
+</span></span><span class=line><span class=cl>     , order_state=&#39;S00&#39;
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;/query&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/named-native-query&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;/entity-mappings&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=정리>정리</h2><ul><li>설정은 라이브러리 두 개 + <code>context-jpa.xml</code> 하나면 끝난다</li><li>mybatis 와 같이 쓸거면 트랜잭션 매니저를 분리한다</li><li>필드명은 카멜케이스로. 안 그러면 method named query 에서 막힌다</li><li>복합키는 <code>@IdClass</code> 로 별도 클래스를 만든다</li><li><code>@ManyToOne</code> 에는 <code>@JoinColumn</code> 을 같이 쓴다. <code>optional</code> 이 조인 종류를 가른다</li><li>쿼리를 직접 써야 하면 <code>orm.xml</code> 의 named-query / named-native-query</li><li>update 의 반영 건수가 필요하면 <code>EntityManager.createNamedQuery().executeUpdate()</code></li></ul></div><footer class=post-foot><div class=tags><a href=/tags/spring/>#spring</a><a href=/tags/jpa/>#jpa</a><a href=/tags/java/>#java</a></div><section class=related><h2>관련 글</h2><ul><li><a href=/posts/spring/2015-11-10-spring-integration-notes/><span class=t>Spring 4.0 연동 메모 모음 — JUnit · XML View · RabbitMQ · Redis · Batch · SiteMesh · Hadoop</span>
+<span class="d num">2015 · 11 · 10</span></a></li><li><a href=/2016/07/14/gradle/><span class=t>maven에서 gradle로 변환...</span>
+<span class="d num">2016 · 07 · 14</span></a></li></ul></section><nav class=post-nav><a class=prev href=/posts/spring/2015-11-10-spring-integration-notes/><span class=lbl>이전 글</span><span class=t>Spring 4.0 연동 메모 모음 — JUnit · XML View · RabbitMQ · Redis · Batch · SiteMesh · Hadoop</span></a><a class=next href=/posts/etc/2015-12-18-unity-with-visualstudio-code/><span class=lbl>다음 글</span><span class=t>맥에서 Unity3D 기본 에디터로 VisualStudio Code 사용하기</span></a></nav></footer></article></main></div></div><script>(function(){var t,n,s,o,i,a,l,e=document.documentElement,d="M12 3v2M12 19v2M5 5l1.5 1.5M17.5 17.5L19 19M3 12h2M19 12h2M5 19l1.5-1.5M17.5 6.5L19 5",u="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z";function r(){var t=e.getAttribute("data-theme");return t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches}function c(){var e=document.getElementById("theme-ic");e&&e.setAttribute("d",r()?d:u)}s=document.getElementById("theme"),s&&s.addEventListener("click",function(){var t=r()?"light":"dark";e.setAttribute("data-theme",t);try{localStorage.setItem("theme",t)}catch{}c()}),c(),t=document.getElementById("lang-toggle"),t&&t.addEventListener("click",function(){try{localStorage.setItem("lang",t.getAttribute("data-lang"))}catch{}}),o=document.getElementById("burger"),i=document.getElementById("scrim"),o&&o.addEventListener("click",function(){e.setAttribute("data-nav","open")}),i&&i.addEventListener("click",function(){e.removeAttribute("data-nav")}),n=document.getElementById("q"),n&&(l=[].slice.call(document.querySelectorAll(".row")),a=document.getElementById("empty"),n.addEventListener("input",function(){var t=n.value.trim().toLowerCase(),e=0;l.forEach(function(n){var s=n.textContent.toLowerCase().indexOf(t)!==-1;n.style.display=s?"":"none",s&&e++}),a&&(a.style.display=e?"none":"block")}))})()</script></body></html>

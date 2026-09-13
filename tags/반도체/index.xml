@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>반도체 on 기록 저장소</title>
+    <link>https://paper.kim/tags/%EB%B0%98%EB%8F%84%EC%B2%B4/</link>
+    <description>Recent content in 반도체 on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Sat, 25 Jul 2026 09:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/%EB%B0%98%EB%8F%84%EC%B2%B4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>샌프란시스코 AI 선언 정리</title>
+      <link>https://paper.kim/posts/ai/2026-07-25-sf-ai-declaration/</link>
+      <pubDate>Sat, 25 Jul 2026 09:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-07-25-sf-ai-declaration/</guid>
+      <description>2026년 7월 24일 샌프란시스코 AI 서밋에서 발표된 샌프란 AI 선언의 네 가지 축과, 같이 체결된 NVIDIA·SK 등 계약을 사실 위주로 정리했다. AI 기본법이 개발자에게 실제로 요구하는 의무도 함께 정리.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>AI on 기록 저장소</title>
+    <link>https://paper.kim/tags/ai/</link>
+    <description>Recent content in AI on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Sun, 06 Sep 2026 22:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GPT-6 Astra — Fable 5.1 · Opus 5 · GPT-5.6 Sol 비교</title>
+      <link>https://paper.kim/posts/ai/2026-09-06-gpt6-astra-model-comparison/</link>
+      <pubDate>Sun, 06 Sep 2026 22:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-09-06-gpt6-astra-model-comparison/</guid>
+      <description>9/3 에 나온 GPT-6 Astra 를 Claude Fable 5.1, Opus 5, GPT-5.6 Sol 과 비교했다. 2.5배 오른 단가, 토큰 효율이라는 반전, ARC-AGI-3 하네스 문제, 그리고 발표 표에 빠진 줄까지.</description>
+    </item>
+    <item>
+      <title>Claude Fable 5.1 — Opus 5 · Fable 5 · GPT-5.6 Sol 비교</title>
+      <link>https://paper.kim/posts/ai/2026-09-01-fable51-model-comparison/</link>
+      <pubDate>Tue, 01 Sep 2026 21:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-09-01-fable51-model-comparison/</guid>
+      <description>오늘 나온 Claude Fable 5.1 을 Opus 5, Fable 5, GPT-5.6 Sol 과 비교했다. 캐시 읽기 75% 인하, 세 가지 breaking change, 벤더 표와 제3자 측정이 어긋나는 지점까지.</description>
+    </item>
+    <item>
+      <title>LLM Wiki — 지식을 쌓아두는 방식</title>
+      <link>https://paper.kim/posts/ai/2026-07-28-llm-wiki/</link>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-07-28-llm-wiki/</guid>
+      <description>Karpathy 가 제안한 LLM Wiki 패턴을 정리했다. 3계층 구조와 ingest·query·lint 루프, 실제 활용 사례, 그리고 효율 주장이 어디까지 측정된 것인지까지.</description>
+    </item>
+    <item>
+      <title>샌프란시스코 AI 선언 정리</title>
+      <link>https://paper.kim/posts/ai/2026-07-25-sf-ai-declaration/</link>
+      <pubDate>Sat, 25 Jul 2026 09:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-07-25-sf-ai-declaration/</guid>
+      <description>2026년 7월 24일 샌프란시스코 AI 서밋에서 발표된 샌프란 AI 선언의 네 가지 축과, 같이 체결된 NVIDIA·SK 등 계약을 사실 위주로 정리했다. AI 기본법이 개발자에게 실제로 요구하는 의무도 함께 정리.</description>
+    </item>
+    <item>
+      <title>Claude Opus 5 — GPT-5.6 Sol · Fable 5 · Sonnet 5 비교</title>
+      <link>https://paper.kim/posts/ai/2026-07-25-opus5-model-comparison/</link>
+      <pubDate>Sat, 25 Jul 2026 08:30:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-07-25-opus5-model-comparison/</guid>
+      <description>Claude Opus 5 를 GPT-5.6 Sol, Fable 5, Sonnet 5 와 코딩·에이전틱·롱컨텍스트·비용 등 작업 영역별로 비교했다. Opus 4.8 대비 무엇이 달라졌는지와 마이그레이션 시 주의점까지.</description>
+    </item>
+  </channel>
+</rss>
