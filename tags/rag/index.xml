@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>RAG on 기록 저장소</title>
+    <link>https://paper.kim/tags/rag/</link>
+    <description>Recent content in RAG on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Tue, 28 Jul 2026 00:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/rag/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LLM Wiki — 지식을 쌓아두는 방식</title>
+      <link>https://paper.kim/posts/ai/2026-07-28-llm-wiki/</link>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-07-28-llm-wiki/</guid>
+      <description>Karpathy 가 제안한 LLM Wiki 패턴을 정리했다. 3계층 구조와 ingest·query·lint 루프, 실제 활용 사례, 그리고 효율 주장이 어디까지 측정된 것인지까지.</description>
+    </item>
+  </channel>
+</rss>

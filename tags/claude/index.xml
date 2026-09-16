@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Claude on 기록 저장소</title>
+    <link>https://paper.kim/tags/claude/</link>
+    <description>Recent content in Claude on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Tue, 01 Sep 2026 21:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/claude/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Claude Fable 5.1 — Opus 5 · Fable 5 · GPT-5.6 Sol 비교</title>
+      <link>https://paper.kim/posts/ai/2026-09-01-fable51-model-comparison/</link>
+      <pubDate>Tue, 01 Sep 2026 21:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-09-01-fable51-model-comparison/</guid>
+      <description>오늘 나온 Claude Fable 5.1 을 Opus 5, Fable 5, GPT-5.6 Sol 과 비교했다. 캐시 읽기 75% 인하, 세 가지 breaking change, 벤더 표와 제3자 측정이 어긋나는 지점까지.</description>
+    </item>
+    <item>
+      <title>Claude Opus 5 — GPT-5.6 Sol · Fable 5 · Sonnet 5 비교</title>
+      <link>https://paper.kim/posts/ai/2026-07-25-opus5-model-comparison/</link>
+      <pubDate>Sat, 25 Jul 2026 08:30:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-07-25-opus5-model-comparison/</guid>
+      <description>Claude Opus 5 를 GPT-5.6 Sol, Fable 5, Sonnet 5 와 코딩·에이전틱·롱컨텍스트·비용 등 작업 영역별로 비교했다. Opus 4.8 대비 무엇이 달라졌는지와 마이그레이션 시 주의점까지.</description>
+    </item>
+  </channel>
+</rss>

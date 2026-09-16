@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Gardening on paper.archive</title>
+    <link>https://paper.kim/en/tags/gardening/</link>
+    <description>Recent content in Gardening on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 21 Jul 2026 12:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/gardening/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Plant Shopping at Joinfolia in Paju</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-21-joinfolia-paju/</link>
+      <pubDate>Tue, 21 Jul 2026 12:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-21-joinfolia-paju/</guid>
+      <description>We went to Joinfolia in Paju to look around and came home with a few more plants. The place is much bigger than it looks from outside.</description>
+    </item>
+  </channel>
+</rss>

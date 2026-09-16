@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Knowledge-Base on paper.archive</title>
+    <link>https://paper.kim/en/tags/knowledge-base/</link>
+    <description>Recent content in Knowledge-Base on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 28 Jul 2026 00:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/knowledge-base/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LLM Wiki — Compiling Knowledge Instead of Re-reading It</title>
+      <link>https://paper.kim/en/posts/ai/2026-07-28-llm-wiki/</link>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/ai/2026-07-28-llm-wiki/</guid>
+      <description>A walkthrough of Karpathy&amp;#39;s LLM Wiki pattern: the three-layer structure, the ingest/query/lint loop, how people actually use it, and how much of the efficiency claim has actually been measured.</description>
+    </item>
+  </channel>
+</rss>
