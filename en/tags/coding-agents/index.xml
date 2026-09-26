@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Coding-Agents on paper.archive</title>
+    <link>https://paper.kim/en/tags/coding-agents/</link>
+    <description>Recent content in Coding-Agents on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 24 Sep 2026 19:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/coding-agents/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Claude Opus 5.5 vs GPT-6 Sol — Cost, Performance, Coding Agents</title>
+      <link>https://paper.kim/en/posts/ai/2026-09-24-opus55-vs-gpt6-sol/</link>
+      <pubDate>Thu, 24 Sep 2026 19:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/ai/2026-09-24-opus55-vs-gpt6-sol/</guid>
+      <description>Claude Opus 5.5 and GPT-6 Sol shipped 90 minutes apart on September 22. Sol is exactly half the per-token price, but cost per task, coding agent scores and the 272K surcharge tell a different story.</description>
+    </item>
+  </channel>
+</rss>

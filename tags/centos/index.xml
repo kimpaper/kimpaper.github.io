@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Centos on 기록 저장소</title>
+    <link>https://paper.kim/tags/centos/</link>
+    <description>Recent content in Centos on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 11 Aug 2016 16:07:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CentOS 서버 운영 메모 모음 — 명령어, 톰캣 OOM, 아파치 403, 폰트, SSH</title>
+      <link>https://paper.kim/posts/centos/2016-08-11-centos-server-notes/</link>
+      <pubDate>Thu, 11 Aug 2016 16:07:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/centos/2016-08-11-centos-server-notes/</guid>
+      <description>2015~2016년에 CentOS 서버를 만지면서 따로따로 올렸던 메모를 한 페이지로 모았다. 자주 쓰던 명령어, 톰캣 OutOfMemory, MySQL utf8mb4 전환, 아파치 403(SELinux), 한글 폰트, EC2 패스워드 로그인, SSH 키 로그인.</description>
+    </item>
+    <item>
+      <title>fluentd로 로그를 모으기</title>
+      <link>https://paper.kim/posts/opensource/2016-06-21-fluentd/</link>
+      <pubDate>Wed, 22 Jun 2016 15:47:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/opensource/2016-06-21-fluentd/</guid>
+      <description>예전에 flume로 에러 로그들을 모으고 있었는데 fluentd로 갈아타려고 한다. 사실 모으는 목적이 아니라 모니터링이 목적 구성은 flume와 비슷한것 같다 client -&amp;gt; server 구성으로 해놓고 client에서 수집된 로그를 server로 전달.</description>
+    </item>
+    <item>
+      <title>Python 메모 — CentOS 6 에 Python 3 설치, 웹서버 감시 스크립트</title>
+      <link>https://paper.kim/posts/python/2016-02-17-python-notes/</link>
+      <pubDate>Wed, 17 Feb 2016 11:41:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/python/2016-02-17-python-notes/</guid>
+      <description>CentOS 6 에 Python 3.5.1 을 소스로 올리는 과정과, 10초마다 웹서버가 살아있는지 확인하는 연습용 스크립트. http request, thread, logging, 예외처리, json 파싱을 한 파일에 넣었다.</description>
+    </item>
+    <item>
+      <title>logback 로그 설정 메모 — 시간·용량 기준 분할과 Flume 로그 수집</title>
+      <link>https://paper.kim/posts/etc/2015-10-30-logback-notes/</link>
+      <pubDate>Fri, 30 Oct 2015 18:13:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/etc/2015-10-30-logback-notes/</guid>
+      <description>logback 으로 로그 파일을 날짜와 용량 기준으로 같이 자르는 설정, 그리고 Flume 의 기본 로거를 log4j 에서 logback 으로 바꿔 각 서버 로그를 한곳에 모은 구성. file_roll sink 의 한계 때문에 직접 만든 sink 도 같이.</description>
+    </item>
+    <item>
+      <title>Flume 설치 및 테스트 (mac)</title>
+      <link>https://paper.kim/posts/centos/2015-10-29-flume-setting-sample/</link>
+      <pubDate>Thu, 29 Oct 2015 15:51:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-10-29-flume-setting-sample/</guid>
+      <description>Flume 설치와 기본 flume.conf 설정 샘플. JAVA_HOME 지정부터 source·channel·sink 구성까지 정리했다.</description>
+    </item>
+    <item>
+      <title>디지탈오션에 서버 셋팅기 (centos 6.7)</title>
+      <link>https://paper.kim/posts/centos/2015-09-16-centos-67/</link>
+      <pubDate>Tue, 15 Sep 2015 20:40:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-09-16-centos-67/</guid>
+      <description>친구랑 개발하는 간단한 쪽지앱의 서버로 사용할 서버를 구축했다. 물론 나는 잘 모른다 모든건 다 구글을 통해.. 아래 내용을 /etc/fstab 에 붙인다.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Kubernetes on paper.archive</title>
+    <link>https://paper.kim/en/categories/kubernetes/</link>
+    <description>Recent content in Kubernetes on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 13 May 2020 11:18:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kubernetes cert-manager</title>
+      <link>https://paper.kim/en/2020/05/13/kubernetes-certmanager/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2020/05/13/kubernetes-certmanager/</guid>
+      <description>Installing and configuring cert-manager to serve https through a Kubernetes ingress, with certificate issuance handled automatically.</description>
+    </item>
+    <item>
+      <title>kubernetes glusterfs integration</title>
+      <link>https://paper.kim/en/posts/kube/2020-05-13-kubernetes-glusterfs/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/kube/2020-05-13-kubernetes-glusterfs/</guid>
+      <description>Setting up GlusterFS on Kubernetes, including patching the gk-deploy script where it still used deprecated kubectl options.</description>
+    </item>
+    <item>
+      <title>kubernetes ingress - proxying to a specific url</title>
+      <link>https://paper.kim/en/2020/05/13/kubernetes-ingress-urlproxy/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/en/2020/05/13/kubernetes-ingress-urlproxy/</guid>
+      <description>kubernetes ingress - proxying to a specific url</description>
+    </item>
+  </channel>
+</rss>

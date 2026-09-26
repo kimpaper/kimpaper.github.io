@@ -1,0 +1,189 @@
+<!doctype html><html lang=ko dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Python 메모 — CentOS 6 에 Python 3 설치, 웹서버 감시 스크립트 · 기록 저장소</title><meta name=description content="CentOS 6 에 Python 3.5.1 을 소스로 올리는 과정과, 10초마다 웹서버가 살아있는지 확인하는 연습용 스크립트. http request, thread, logging, 예외처리, json 파싱을 한 파일에 넣었다.…"><meta name=keywords content="python,centos"><meta name=author content="페이퍼"><meta name=robots content="index, follow, max-image-preview:large"><link rel=canonical href=https://paper.kim/posts/python/2016-02-17-python-notes/><link rel=alternate hreflang=ko-KR href=https://paper.kim/posts/python/2016-02-17-python-notes/><link rel=alternate hreflang=en-US href=https://paper.kim/en/posts/python/2016-02-17-python-notes/><link rel=alternate hreflang=x-default href=https://paper.kim/en/posts/python/2016-02-17-python-notes/><meta name=google-site-verification content="y1M38dn7tn_g66ZU4sW9oodCBS79uDleUIpnFABhR_I"><meta name=naver-site-verification content="d4c08a44984bf4ebeb4b26f639fedfb26163b6e3"><meta property="og:site_name" content="기록 저장소"><meta property="og:type" content="article"><meta property="og:title" content="Python 메모 — CentOS 6 에 Python 3 설치, 웹서버 감시 스크립트"><meta property="og:description" content="CentOS 6 에 Python 3.5.1 을 소스로 올리는 과정과, 10초마다 웹서버가 살아있는지 확인하는 연습용 스크립트. http request, thread, logging, 예외처리, json 파싱을 한 파일에 넣었다.…"><meta property="og:url" content="https://paper.kim/posts/python/2016-02-17-python-notes/"><meta property="og:locale" content="ko_KR"><meta property="og:locale:alternate" content="en_US"><meta property="og:image" content="https://paper.kim/images/default-thumb.jpg"><meta property="og:image:alt" content="Python 메모 — CentOS 6 에 Python 3 설치, 웹서버 감시 스크립트"><meta property="article:published_time" content="2016-02-17T11:41:00+09:00"><meta property="article:modified_time" content="2016-02-17T11:41:00+09:00"><meta property="article:tag" content="python"><meta property="article:tag" content="centos"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Python 메모 — CentOS 6 에 Python 3 설치, 웹서버 감시 스크립트"><meta name=twitter:description content="CentOS 6 에 Python 3.5.1 을 소스로 올리는 과정과, 10초마다 웹서버가 살아있는지 확인하는 연습용 스크립트. http request, thread, logging, 예외처리, json 파싱을 한 파일에 넣었다.…"><meta name=twitter:domain content="paper.kim"><meta name=twitter:image content="https://paper.kim/images/default-thumb.jpg"><script>(function(){try{var e=localStorage.getItem("theme");e&&document.documentElement.setAttribute("data-theme",e)}catch{}})()</script><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css onload='this.onload=null,this.rel="stylesheet"'><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap"></noscript><link rel=stylesheet href=/css/site.min.4016cb5265290cd3e09ce8cb43c26d23e143347225282a595297fe9ed9e17c2f.css integrity="sha256-QBbLUmUpDNPgnOjLQ8JtI+FDNHIlKCpZUpf+ntnhfC8="><link rel=icon href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5eE77iPPC90ZXh0Pjwvc3ZnPg=="><script async src="https://www.googletagmanager.com/gtag/js?id=G-ECTTT48V9Y"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ECTTT48V9Y")</script><meta name=google-adsense-account content="ca-pub-8048816011496920"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8048816011496920" crossorigin=anonymous></script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"페이퍼","url":"https://paper.kim/"},"dateModified":"2016-02-17T11:41:00+09:00","datePublished":"2016-02-17T11:41:00+09:00","description":"CentOS 6 에 Python 3.5.1 을 소스로 올리는 과정과, 10초마다 웹서버가 살아있는지 확인하는 연습용 스크립트. http request, thread, logging, 예외처리, json 파싱을 한 파일에 넣었다.…","headline":"Python 메모 — CentOS 6 에 Python 3 설치, 웹서버 감시 스크립트","image":["https://paper.kim/images/default-thumb.jpg"],"inLanguage":"ko-KR","keywords":"python, centos","mainEntityOfPage":{"@id":"https://paper.kim/posts/python/2016-02-17-python-notes/","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://paper.kim/images/site-logo.png"},"name":"기록 저장소"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://paper.kim/","name":"기록 저장소","position":1},{"@type":"ListItem","item":"https://paper.kim/categories/python/","name":"Python","position":2},{"@type":"ListItem","item":"https://paper.kim/posts/python/2016-02-17-python-notes/","name":"Python 메모 — CentOS 6 에 Python 3 설치, 웹서버 감시 스크립트","position":3}]}</script></head><body><div class=scrim id=scrim></div><div class=shell><aside class=index id=sidebar><div class=masthead><a href=/ class=wordmark>기록<b>.</b>저장소</a><div class=sub>a developer’s archive</div><div class="range num">2015 — 2026 · 43 entries</div></div><nav class=toc aria-label=categories><details class=grp open><summary><span class=idx>I</span> 기술 블로그 <span class=chev></span></summary><div class=sub-list><a href=/categories/ai/>AI · LLM <span class="c num">8</span></a><a href=/categories/aws/>AWS · 클라우드 <span class="c num">1</span></a><a href=/categories/spring/>Spring · JPA <span class="c num">2</span></a><a href=/categories/golang/>Golang <span class="c num">1</span></a><a href=/categories/kubernetes/>Kubernetes · 인프라 <span class="c num">3</span></a><a href=/categories/python/>Python <span class="c num">1</span></a><a href=/categories/opensource/>오픈소스 · 데이터 <span class="c num">4</span></a><a href=/categories/linux/>CentOS · 리눅스 <span class="c num">3</span></a><a href=/categories/dotnet/>.NET <span class="c num">1</span></a></div></details><details class=grp><summary><span class=idx>II</span> 일상 <span class=chev></span></summary><div class=sub-list><a href=/categories/diary/>일기 · 소소한 기록 <span class="c num">14</span></a></div></details><details class=grp><summary><span class=idx>III</span> 기타 잡지식 <span class=chev></span></summary><div class=sub-list><a href=/categories/etc/>팁 · 트러블슈팅 <span class="c num">4</span></a><a href=/categories/mac/>Mac · 기타 <span class="c num">1</span></a></div></details><div class=toc-flat><a href=/archives/><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg> 전체 아카이브
+</a><a href=/tags/><svg viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/><circle cx="12" cy="12" r="2"/></svg> 태그
+</a><a href=/about/><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> 소개
+</a><a href=/en/posts/python/2016-02-17-python-notes/ id=lang-toggle data-lang=en title="Read in English"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+English</a></div></nav><div class=index-foot><button class=icon-btn id=theme title=theme aria-label=theme>
+<svg id="theme-ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+</button>
+<a class=icon-btn href=https://github.com/kimpaper title=GitHub aria-label=GitHub><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2.0C7 4.9 5.9 5.2 5.9 5.2a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004.5 11.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V23"/></svg></a>
+<a class=icon-btn href=/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<span class=spacer></span>
+<span class=copy>© 페이퍼</span></div></aside><div class=main><header class=topbar><button class="icon-btn hamburger" id=burger aria-label=menu><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class=crumb><a href=/>기록 저장소</a><span class=sep>/</span><b>Python</b></div><span class=spacer></span>
+<label class=search><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+<input id=q type=search placeholder="이 목록에서 검색…" aria-label=search></label></header><main class=content id=content><article class=post><header class=post-head><a class=cat-tag href=/categories/python/>Python</a><h1 class=post-title>Python 메모 — CentOS 6 에 Python 3 설치, 웹서버 감시 스크립트</h1><div class="post-meta num"><span>2016 · 02 · 17</span>
+<span>2 min read</span>
+<span>페이퍼</span></div></header><details class=toc-box open><summary>목차</summary><nav><nav id=TableOfContents><ul><li><a href=#centos-6-에-python-3-설치>CentOS 6 에 Python 3 설치</a></li><li><a href=#웹서버-감시-스크립트>웹서버 감시 스크립트</a><ul><li><a href=#실행>실행</a></li></ul></li><li><a href=#정리>정리</a></li></ul></nav></nav></details><div class=prose><p>2016년에 파이썬을 처음 만지면서 올렸던 두 글을 합쳤다.
+설치하고 바로 뭘 만들어본 순서라 이어 붙이는게 자연스럽다.</p><h2 id=centos-6-에-python-3-설치>CentOS 6 에 Python 3 설치</h2><p>CentOS 6 에는 기본으로 Python 2.6 이 들어 있다. 3.5.1 을 소스로 올린다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>yum install zlib-devel -y
+</span></span><span class=line><span class=cl>yum install openssl openssl-devel -y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz
+</span></span><span class=line><span class=cl>xz -d Python-3.5.1.tar.xz
+</span></span><span class=line><span class=cl><span class=c1># 혹시 xz가 없다면 yum install xz 로 설치 하라.</span>
+</span></span><span class=line><span class=cl>tar -xvf Python-3.5.1.tar
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> Python-3.5.1
+</span></span><span class=line><span class=cl>./configure --prefix<span class=o>=</span>/usr/local --enable-shared <span class=nv>LDFLAGS</span><span class=o>=</span><span class=s2>&#34;-Wl,-rpath /usr/local/lib&#34;</span>
+</span></span><span class=line><span class=cl>make <span class=o>&amp;&amp;</span> make altinstall
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># pip설치 </span>
+</span></span><span class=line><span class=cl>curl -k -O https://bootstrap.pypa.io/get-pip.py
+</span></span><span class=line><span class=cl>python3.5 get-pip.py
+</span></span></code></pre></td></tr></table></div></div><p><code>make altinstall</code> 인게 중요하다. <code>make install</code> 로 하면 기존 <code>python</code> 을 덮어써서
+yum 같은 시스템 도구가 깨진다. altinstall 은 <code>python3.5</code> 라는 이름으로만 깔아준다.</p><p><code>zlib-devel</code> 과 <code>openssl-devel</code> 을 먼저 넣는 이유는, 없으면 빌드는 되는데
+<code>pip</code> 이 SSL 을 못 써서 패키지 설치가 안 되기 때문이다.</p><p>간단한 프로그램에는 Python 이 좋은듯. java 는 프로젝트 구성하기도 귀찮고..</p><h2 id=웹서버-감시-스크립트>웹서버 감시 스크립트</h2><p>설치했으니 연습 삼아 10초마다 웹서버가 죽었는지 체크하는 걸 만들어봤다.
+아래 코드에 이런 것들이 들어 있다.</p><ul><li>http request</li><li>thread (timer 대응)</li><li>logging 사용법</li><li>try-except 예외처리</li><li>raise throw</li><li>json parsing 및 데이터 읽기</li><li>string 처리</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>threading</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>urllib.request</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>json</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>time</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>logging</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>logger</span> <span class=o>=</span> <span class=n>logging</span><span class=o>.</span><span class=n>getLogger</span><span class=p>(</span><span class=s2>&#34;myLogger&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 이런 로그 파일 셋팅 </span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>config_logger</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>formatter</span> <span class=o>=</span> <span class=n>logging</span><span class=o>.</span><span class=n>Formatter</span><span class=p>(</span><span class=s2>&#34;[</span><span class=si>%(levelname)s</span><span class=s2>] </span><span class=si>%(asctime)s</span><span class=s2> - </span><span class=si>%(message)s</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>file_handler</span> <span class=o>=</span> <span class=n>logging</span><span class=o>.</span><span class=n>FileHandler</span><span class=p>(</span><span class=s2>&#34;/logs/py/log.log&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>stream_handler</span> <span class=o>=</span> <span class=n>logging</span><span class=o>.</span><span class=n>StreamHandler</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>file_handler</span><span class=o>.</span><span class=n>setFormatter</span><span class=p>(</span><span class=n>formatter</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>stream_handler</span><span class=o>.</span><span class=n>setFormatter</span><span class=p>(</span><span class=n>formatter</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>logger</span><span class=o>.</span><span class=n>addHandler</span><span class=p>(</span><span class=n>file_handler</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>logger</span><span class=o>.</span><span class=n>addHandler</span><span class=p>(</span><span class=n>stream_handler</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>logger</span><span class=o>.</span><span class=n>setLevel</span><span class=p>(</span><span class=n>logging</span><span class=o>.</span><span class=n>DEBUG</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>call_error</span><span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=n>e</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>logger</span><span class=o>.</span><span class=n>error</span><span class=p>(</span><span class=s2>&#34;</span><span class=si>%s</span><span class=s2>에서 &#39;</span><span class=si>%s</span><span class=s2>&#39;가 발생했습니다&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=n>e</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>check_server</span><span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=n>url</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>check_server_private</span><span class=p>(</span><span class=n>url</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>logger</span><span class=o>.</span><span class=n>info</span><span class=p>(</span><span class=s2>&#34;서버 체크 완료 name=</span><span class=si>%s</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=n>name</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>call_error</span><span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=n>e</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>check_server_private</span><span class=p>(</span><span class=n>url</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>req</span> <span class=o>=</span> <span class=n>urllib</span><span class=o>.</span><span class=n>request</span><span class=o>.</span><span class=n>urlopen</span><span class=p>(</span><span class=n>url</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>req</span><span class=o>.</span><span class=n>getcode</span><span class=p>()</span> <span class=o>!=</span> <span class=mi>200</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>raise</span> <span class=ne>RuntimeError</span><span class=p>(</span><span class=s2>&#34;서버 오류&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>data</span> <span class=o>=</span> <span class=n>req</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>json_object</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>loads</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=s2>&#34;utf-8&#34;</span><span class=p>),</span> <span class=s2>&#34;utf-8&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>json_object</span><span class=p>[</span><span class=s2>&#34;result_code&#34;</span><span class=p>]</span> <span class=o>!=</span> <span class=s2>&#34;0000&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>raise</span> <span class=ne>RuntimeError</span><span class=p>(</span><span class=s2>&#34;서버 응답 오류&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>finally</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>req</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>check_all</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>check_server</span><span class=p>(</span><span class=s2>&#34;server1&#34;</span><span class=p>,</span> <span class=s2>&#34;http://server1/checkjson&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>check_server</span><span class=p>(</span><span class=s2>&#34;server2&#34;</span><span class=p>,</span> <span class=s2>&#34;http://server2/checkjson&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>run_thread</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>check_all</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>config_logger</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>th</span> <span class=o>=</span> <span class=n>threading</span><span class=o>.</span><span class=n>Thread</span><span class=p>(</span><span class=n>target</span><span class=o>=</span><span class=n>run_thread</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>th</span><span class=o>.</span><span class=n>start</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>logger</span><span class=o>.</span><span class=n>info</span><span class=p>(</span><span class=s2>&#34;모니터링 시작 합니다&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>HTTP 200 인지만 보는게 아니라 응답 JSON 의 <code>result_code</code> 까지 확인한다.
+서버가 떠 있어도 내부적으로 죽어 있는 경우를 잡으려고 그랬다.</p><p><code>finally</code> 에서 <code>req.close()</code> 를 하는 것도 의도적이다.
+예외가 나도 소켓은 닫아야 한다.</p><h3 id=실행>실행</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>python ServerCheck.py 
+</span></span></code></pre></td></tr></table></div></div><p><del>근데 타이머를 저런 식으로 해도 될런지 모르겠네..</del></p><h2 id=정리>정리</h2><ul><li>CentOS 6 에 Python 3 올릴 땐 <strong>반드시 <code>make altinstall</code></strong>. <code>make install</code> 하면 yum 이 깨진다</li><li><code>zlib-devel</code>, <code>openssl-devel</code> 을 먼저. 없으면 pip 이 SSL 을 못 쓴다</li><li>서버 감시는 상태코드만 보지 말고 응답 본문까지 확인하는게 낫다</li></ul></div><footer class=post-foot><div class=tags><a href=/tags/python/>#python</a><a href=/tags/centos/>#centos</a></div><section class=related><h2>관련 글</h2><ul><li><a href=/posts/centos/2016-08-11-centos-server-notes/><span class=t>CentOS 서버 운영 메모 모음 — 명령어, 톰캣 OOM, 아파치 403, 폰트, SSH</span>
+<span class="d num">2016 · 08 · 11</span></a></li><li><a href=/posts/opensource/2016-06-21-fluentd/><span class=t>fluentd로 로그를 모으기</span>
+<span class="d num">2016 · 06 · 22</span></a></li><li><a href=/2016/06/08/apachelog/><span class=t>restful api 서버에서 평균 응답시간, 호출횟수, Min, Max 구하기</span>
+<span class="d num">2016 · 06 · 08</span></a></li><li><a href=/posts/opensource/2016-05-30-spark-hadoop/><span class=t>Python and Spark로 로그 파일 분석 (with hadoop)</span>
+<span class="d num">2016 · 05 · 30</span></a></li></ul></section><nav class=post-nav><a class=prev href=/posts/etc/2015-12-18-unity-with-visualstudio-code/><span class=lbl>이전 글</span><span class=t>맥에서 Unity3D 기본 에디터로 VisualStudio Code 사용하기</span></a><a class=next href=/posts/etc/2016-03-24-git-notes/><span class=lbl>다음 글</span><span class=t>Git 메모 모음 — svn 마이그레이션, 로컬 커밋 되돌리기, rebase 와 merge</span></a></nav></footer></article></main></div></div><script>(function(){var t,n,s,o,i,a,l,e=document.documentElement,d="M12 3v2M12 19v2M5 5l1.5 1.5M17.5 17.5L19 19M3 12h2M19 12h2M5 19l1.5-1.5M17.5 6.5L19 5",u="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z";function r(){var t=e.getAttribute("data-theme");return t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches}function c(){var e=document.getElementById("theme-ic");e&&e.setAttribute("d",r()?d:u)}s=document.getElementById("theme"),s&&s.addEventListener("click",function(){var t=r()?"light":"dark";e.setAttribute("data-theme",t);try{localStorage.setItem("theme",t)}catch{}c()}),c(),t=document.getElementById("lang-toggle"),t&&t.addEventListener("click",function(){try{localStorage.setItem("lang",t.getAttribute("data-lang"))}catch{}}),o=document.getElementById("burger"),i=document.getElementById("scrim"),o&&o.addEventListener("click",function(){e.setAttribute("data-nav","open")}),i&&i.addEventListener("click",function(){e.removeAttribute("data-nav")}),n=document.getElementById("q"),n&&(l=[].slice.call(document.querySelectorAll(".row")),a=document.getElementById("empty"),n.addEventListener("input",function(){var t=n.value.trim().toLowerCase(),e=0;l.forEach(function(n){var s=n.textContent.toLowerCase().indexOf(t)!==-1;n.style.display=s?"":"none",s&&e++}),a&&(a.style.display=e?"none":"block")}))})()</script></body></html>

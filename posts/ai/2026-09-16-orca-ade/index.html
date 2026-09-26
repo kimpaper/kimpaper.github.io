@@ -1,0 +1,141 @@
+<!doctype html><html lang=ko dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Orca — 에이전트를 병렬로 굴리는 개발 환경(ADE) · 기록 저장소</title><meta name=description content="Claude Code, Codex 같은 CLI 에이전트를 git worktree 단위로 격리해서 동시에 굴리는 오픈소스 ADE. 설치, worktree 의존성 문제, Orca CLI 자동화, 비용이랑 보안에서 걸리는 부분까지 적어봤다.…"><meta name=keywords content="AI,LLM,에이전트,개발도구"><meta name=author content="페이퍼"><meta name=robots content="index, follow, max-image-preview:large"><link rel=canonical href=https://paper.kim/posts/ai/2026-09-16-orca-ade/><link rel=alternate hreflang=ko-KR href=https://paper.kim/posts/ai/2026-09-16-orca-ade/><link rel=alternate hreflang=en-US href=https://paper.kim/en/posts/ai/2026-09-16-orca-ade/><link rel=alternate hreflang=x-default href=https://paper.kim/en/posts/ai/2026-09-16-orca-ade/><meta name=google-site-verification content="y1M38dn7tn_g66ZU4sW9oodCBS79uDleUIpnFABhR_I"><meta name=naver-site-verification content="d4c08a44984bf4ebeb4b26f639fedfb26163b6e3"><meta property="og:site_name" content="기록 저장소"><meta property="og:type" content="article"><meta property="og:title" content="Orca — 에이전트를 병렬로 굴리는 개발 환경(ADE)"><meta property="og:description" content="Claude Code, Codex 같은 CLI 에이전트를 git worktree 단위로 격리해서 동시에 굴리는 오픈소스 ADE. 설치, worktree 의존성 문제, Orca CLI 자동화, 비용이랑 보안에서 걸리는 부분까지 적어봤다.…"><meta property="og:url" content="https://paper.kim/posts/ai/2026-09-16-orca-ade/"><meta property="og:locale" content="ko_KR"><meta property="og:locale:alternate" content="en_US"><meta property="og:image" content="https://paper.kim/images/2026-09-16-orca-ade-cover.jpg"><meta property="og:image:alt" content="Orca — 에이전트를 병렬로 굴리는 개발 환경(ADE)"><meta property="article:published_time" content="2026-09-16T21:00:00+09:00"><meta property="article:modified_time" content="2026-09-16T21:00:00+09:00"><meta property="article:tag" content="AI"><meta property="article:tag" content="LLM"><meta property="article:tag" content="에이전트"><meta property="article:tag" content="개발도구"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Orca — 에이전트를 병렬로 굴리는 개발 환경(ADE)"><meta name=twitter:description content="Claude Code, Codex 같은 CLI 에이전트를 git worktree 단위로 격리해서 동시에 굴리는 오픈소스 ADE. 설치, worktree 의존성 문제, Orca CLI 자동화, 비용이랑 보안에서 걸리는 부분까지 적어봤다.…"><meta name=twitter:domain content="paper.kim"><meta name=twitter:image content="https://paper.kim/images/2026-09-16-orca-ade-cover.jpg"><script>(function(){try{var e=localStorage.getItem("theme");e&&document.documentElement.setAttribute("data-theme",e)}catch{}})()</script><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css onload='this.onload=null,this.rel="stylesheet"'><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap"></noscript><link rel=stylesheet href=/css/site.min.4016cb5265290cd3e09ce8cb43c26d23e143347225282a595297fe9ed9e17c2f.css integrity="sha256-QBbLUmUpDNPgnOjLQ8JtI+FDNHIlKCpZUpf+ntnhfC8="><link rel=icon href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5eE77iPPC90ZXh0Pjwvc3ZnPg=="><script async src="https://www.googletagmanager.com/gtag/js?id=G-ECTTT48V9Y"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ECTTT48V9Y")</script><meta name=google-adsense-account content="ca-pub-8048816011496920"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8048816011496920" crossorigin=anonymous></script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"페이퍼","url":"https://paper.kim/"},"dateModified":"2026-09-16T21:00:00+09:00","datePublished":"2026-09-16T21:00:00+09:00","description":"Claude Code, Codex 같은 CLI 에이전트를 git worktree 단위로 격리해서 동시에 굴리는 오픈소스 ADE. 설치, worktree 의존성 문제, Orca CLI 자동화, 비용이랑 보안에서 걸리는 부분까지 적어봤다.…","headline":"Orca — 에이전트를 병렬로 굴리는 개발 환경(ADE)","image":["https://paper.kim/images/2026-09-16-orca-ade-cover.jpg"],"inLanguage":"ko-KR","keywords":"AI, LLM, 에이전트, 개발도구","mainEntityOfPage":{"@id":"https://paper.kim/posts/ai/2026-09-16-orca-ade/","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://paper.kim/images/site-logo.png"},"name":"기록 저장소"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://paper.kim/","name":"기록 저장소","position":1},{"@type":"ListItem","item":"https://paper.kim/categories/ai/","name":"Ai","position":2},{"@type":"ListItem","item":"https://paper.kim/posts/ai/2026-09-16-orca-ade/","name":"Orca — 에이전트를 병렬로 굴리는 개발 환경(ADE)","position":3}]}</script></head><body><div class=scrim id=scrim></div><div class=shell><aside class=index id=sidebar><div class=masthead><a href=/ class=wordmark>기록<b>.</b>저장소</a><div class=sub>a developer’s archive</div><div class="range num">2015 — 2026 · 43 entries</div></div><nav class=toc aria-label=categories><details class=grp open><summary><span class=idx>I</span> 기술 블로그 <span class=chev></span></summary><div class=sub-list><a href=/categories/ai/>AI · LLM <span class="c num">8</span></a><a href=/categories/aws/>AWS · 클라우드 <span class="c num">1</span></a><a href=/categories/spring/>Spring · JPA <span class="c num">2</span></a><a href=/categories/golang/>Golang <span class="c num">1</span></a><a href=/categories/kubernetes/>Kubernetes · 인프라 <span class="c num">3</span></a><a href=/categories/python/>Python <span class="c num">1</span></a><a href=/categories/opensource/>오픈소스 · 데이터 <span class="c num">4</span></a><a href=/categories/linux/>CentOS · 리눅스 <span class="c num">3</span></a><a href=/categories/dotnet/>.NET <span class="c num">1</span></a></div></details><details class=grp><summary><span class=idx>II</span> 일상 <span class=chev></span></summary><div class=sub-list><a href=/categories/diary/>일기 · 소소한 기록 <span class="c num">14</span></a></div></details><details class=grp><summary><span class=idx>III</span> 기타 잡지식 <span class=chev></span></summary><div class=sub-list><a href=/categories/etc/>팁 · 트러블슈팅 <span class="c num">4</span></a><a href=/categories/mac/>Mac · 기타 <span class="c num">1</span></a></div></details><div class=toc-flat><a href=/archives/><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg> 전체 아카이브
+</a><a href=/tags/><svg viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/><circle cx="12" cy="12" r="2"/></svg> 태그
+</a><a href=/about/><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> 소개
+</a><a href=/en/posts/ai/2026-09-16-orca-ade/ id=lang-toggle data-lang=en title="Read in English"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+English</a></div></nav><div class=index-foot><button class=icon-btn id=theme title=theme aria-label=theme>
+<svg id="theme-ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+</button>
+<a class=icon-btn href=https://github.com/kimpaper title=GitHub aria-label=GitHub><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2.0C7 4.9 5.9 5.2 5.9 5.2a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004.5 11.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V23"/></svg></a>
+<a class=icon-btn href=/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<span class=spacer></span>
+<span class=copy>© 페이퍼</span></div></aside><div class=main><header class=topbar><button class="icon-btn hamburger" id=burger aria-label=menu><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class=crumb><a href=/>기록 저장소</a><span class=sep>/</span><b>Ai</b></div><span class=spacer></span>
+<label class=search><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+<input id=q type=search placeholder="이 목록에서 검색…" aria-label=search></label></header><main class=content id=content><article class=post><header class=post-head><a class=cat-tag href=/categories/ai/>Ai</a><h1 class=post-title>Orca — 에이전트를 병렬로 굴리는 개발 환경(ADE)</h1><div class="post-meta num"><span>2026 · 09 · 16</span>
+<span>8 min read</span>
+<span>페이퍼</span></div></header><details class=toc-box open><summary>목차</summary><nav><nav id=TableOfContents><ul><li><a href=#모델이-아니다>모델이 아니다</a></li><li><a href=#worktree-개념>worktree 개념</a></li><li><a href=#설치>설치</a></li><li><a href=#기본-흐름>기본 흐름</a><ul><li><a href=#1-저장소-추가>1. 저장소 추가</a></li><li><a href=#2-worktree-만들기>2. worktree 만들기</a></li><li><a href=#3-에이전트-붙이기>3. 에이전트 붙이기</a></li><li><a href=#4-경주시키기>4. 경주시키기</a></li><li><a href=#5-화면-분할>5. 화면 분할</a></li><li><a href=#6-고르고-내보내기>6. 고르고 내보내기</a></li></ul></li><li><a href=#실무에서-제일-먼저-막히는-것>실무에서 제일 먼저 막히는 것</a><ul><li><a href=#orcayaml--공유-symlink--clone-copy>orca.yaml — 공유 (symlink / clone-copy)</a></li><li><a href=#worktreeinclude--복사>.worktreeinclude — 복사</a></li></ul></li><li><a href=#orca-cli-로-조종하기>Orca CLI 로 조종하기</a></li><li><a href=#어디서-돌릴지-고르기>어디서 돌릴지 고르기</a></li><li><a href=#언제-쓰면-좋을까>언제 쓰면 좋을까</a></li><li><a href=#걸리는-것들>걸리는 것들</a><ul><li><a href=#비용이-배수로-는다>비용이 배수로 는다</a></li><li><a href=#보안-지적은-절반만-정리됐다>보안 지적은 절반만 정리됐다</a></li><li><a href=#텔레메트리가-기본-켜짐>텔레메트리가 기본 켜짐</a></li><li><a href=#아직-어리다>아직 어리다</a></li></ul></li><li><a href=#정리>정리</a></li><li><a href=#참고>참고</a></li></ul></nav></nav></details><div class=prose><p>터미널에서 Claude Code 하나 띄워놓고 일하다 보면 결국 이렇게 된다.
+작업 하나 시켜놓고 기다리고, 끝나면 브랜치 갈아끼우고, 다음 작업 시키고.
+에이전트는 병렬로 일할 수 있는데 내 작업 공간이 하나라 순차가 된다.</p><p>Orca 는 그 부분을 건드리는 도구다. ADE 라고 부른다. Agent Development Environment.
+에디터가 사람용 IDE 면 이건 에이전트용 IDE 인듯</p><p>2026년 3월에 나왔고 MIT 라이선스다. 아래 내용은 2026년 9월 기준.
+변화가 빠른 프로젝트라 설정 포맷 같은건 바뀔 수 있다.</p><h2 id=모델이-아니다>모델이 아니다</h2><p>Orca 는 AI 가 아니다.</p><p>자체 모델이 없다. 내가 이미 쓰고 있는 CLI 에이전트를 대신 실행해주는 껍데기다.
+Claude Code, Codex, Cursor CLI, OpenCode, GLM-5.2 같은 것들. 문서상 30종이 넘는다.
+터미널에서 도는 코딩 에이전트면 대체로 붙는다.</p><p>그래서 구독이나 API 키가 따로 있어야 한다. Orca 자체는 공짜다.</p><h2 id=worktree-개념>worktree 개념</h2><p>이 도구는 아래 한 줄로 설명된다.</p><blockquote><p>작업 하나 = git worktree 하나 = 에이전트 하나</p></blockquote><p>Orca 가 만드는건 진짜 <code>git worktree</code> 다. 자체 가상 레이어가 아님.
+디스크에 실제 디렉토리가 생기고 브랜치가 체크아웃된다.
+터미널에서 <code>cd</code> 해서 평범한 <code>git</code> 명령을 그대로 써도 된다.
+Orca 를 지워도 작업물은 남는다.</p><p>에이전트끼리 같은 파일을 건드릴 일이 없다. 각자 자기 디렉토리를 가진다.
+브랜치 갈아끼울 필요도, stash 할 필요도 없다.</p><h2 id=설치>설치</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># macOS</span>
+</span></span><span class=line><span class=cl>brew install --cask stablyai/orca/orca
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Arch</span>
+</span></span><span class=line><span class=cl>yay -S stably-orca-bin
+</span></span></code></pre></td></tr></table></div></div><p>Windows 는 GitHub releases 의 installer, Linux 는 AppImage 나 <code>.deb</code> / <code>.rpm</code>.
+macOS 빌드는 서명·공증돼 있다.</p><p>리눅스에서는 CLI 이름이 <code>orca</code> 가 아니라 <code>orca-ide</code> 다.
+GNOME 스크린리더 <code>orca</code> 랑 이름이 겹쳐서 그렇다.</p><p>첫 실행 때 저장소 관리용으로 홈 디렉토리 접근을 요청한다.
+<code>~/.claude</code> <code>~/.codex</code> Ghostty 설정이 있으면 가져올지 물어본다.
+자동 업데이트가 기본이고 stable 채널을 탄다.</p><h2 id=기본-흐름>기본 흐름</h2><p>문서에 정리된 흐름은 아래와 같다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>add → worktree → agent → split → diff → ship
+</span></span></code></pre></td></tr></table></div></div><h3 id=1-저장소-추가>1. 저장소 추가</h3><p>사이드바 <code>Add Repo</code> 로 로컬 체크아웃을 지정한다.
+git 상태를 읽고 기본 브랜치를 base ref 로 잡는다.</p><h3 id=2-worktree-만들기>2. worktree 만들기</h3><p>저장소 이름 옆 <code>+</code>. 작업 이름을 넣으면 그게 브랜치명이 된다.
+비우면 바다생물 이름을 알아서 붙여준다.</p><p>start-from ref 를 고른다. 보통 base ref(<code>origin/main</code>)인데
+다른 로컬 브랜치, 원격 브랜치, 커밋 SHA 도 된다.</p><p>만들기를 누르면 다이얼로그는 바로 닫힌다.
+<code>git fetch</code> 와 <code>git worktree add</code> 는 백그라운드로 돈다.
+사이드바에는 진행 표시줄이 달린 채로 나타난다.</p><h3 id=3-에이전트-붙이기>3. 에이전트 붙이기</h3><p>터미널이 열리고 위에 에이전트 콤보박스가 있다.
+고르면 해당 디렉토리 컨텍스트와 자격증명을 물려서 그 CLI 를 띄워준다.</p><h3 id=4-경주시키기>4. 경주시키기</h3><p>2~3번을 반복해서 같은 프롬프트를 서로 다른 에이전트 셋에 던진다.
+Orca 가 내세우는 원래 용도가 이거다.</p><h3 id=5-화면-분할>5. 화면 분할</h3><p>worktree 탭을 다른 패널의 오른쪽이나 아래 가장자리로 드래그하면 쪼개진다.
+셋이 동시에 도는걸 한 화면에서 본다.</p><h3 id=6-고르고-내보내기>6. 고르고 내보내기</h3><p>각 worktree 의 diff 뷰어를 연다.
+<code>Annotate AI Diff</code> 로 diff 줄에 직접 코멘트를 달면 그대로 에이전트한테 되돌려 보낼 수 있다.
+이게 꽤 괜찮다. 리뷰 → 수정 지시가 한 화면에서 끝난다.</p><p>제일 나은걸 고르면 Orca 안에서 바로 commit·push.
+나머지는 원클릭으로 지운다. 디렉토리와 브랜치가 같이 삭제된다 (확인은 받는다).</p><p>병합 안 된 커밋 때문에 git 이 브랜치 삭제를 거부하면 일단 지우지 않고 남겨둔다.
+그 다음 강제 삭제할지 유지할지 고르게 해준다.</p><h2 id=실무에서-제일-먼저-막히는-것>실무에서 제일 먼저 막히는 것</h2><p>worktree 를 새로 파면 <code>node_modules</code> 도 <code>.env</code> 도 빌드 캐시도 없다.
+매번 <code>npm install</code> 을 새로 돌리면 병렬의 의미가 없다. 여기가 진짜 장벽이다.</p><p>Orca 는 두 가지로 푼다. 공유할 것과 복사할 것을 나눈다.</p><h3 id=orcayaml--공유-symlink--clone-copy>orca.yaml — 공유 (symlink / clone-copy)</h3><p>저장소에 커밋하는 파일이다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>worktree</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>sharedDirectories</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>node_modules</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>.cache</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>복사가 아니고 symlink 나 APFS clone-copy 라서 디스크와 시간을 아낀다.
+<code>npm install</code> 자체는 그대로 돈다. 주 체크아웃에서 이미 받아둔게 깔려 있어서 훨씬 빨리 끝난다.</p><p>조건이 두 개 있다.</p><ul><li>주 체크아웃에 실제로 있는 디렉토리일 것</li><li>gitignore 되어 있을 것</li></ul><p>추적 중이거나 없는 경로는 그냥 건너뛴다. 조용히 무시된다. 안 먹으면 이걸 의심하자.</p><h3 id=worktreeinclude--복사>.worktreeinclude — 복사</h3><p>저장소 루트에 두는 파일. 이쪽은 symlink 가 아니고 복사다.
+worktree 마다 자기 사본이 있어야 하는 것들을 넣는다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 로컬 환경변수
+</span></span><span class=line><span class=cl>.env
+</span></span><span class=line><span class=cl>.vscode/settings.json
+</span></span></code></pre></td></tr></table></div></div><p>빈 줄과 <code>#</code> 주석은 된다. 글롭은 안 되고 리터럴 경로만 된다.</p><p>기준은 아래처럼 잡으면 된다.</p><table><thead><tr><th></th><th>대상</th><th>예</th></tr></thead><tbody><tr><td><code>sharedDirectories</code></td><td>재생성 가능하고 큰 것</td><td><code>node_modules</code>, <code>.cache</code></td></tr><tr><td><code>.worktreeinclude</code></td><td>worktree 별로 값이 달라야 하는 것</td><td><code>.env</code>, 로컬 설정</td></tr></tbody></table><h2 id=orca-cli-로-조종하기>Orca CLI 로 조종하기</h2><p>UI 만 보면 그냥 예쁜 터미널 래퍼 같다. 개인적으로는 이쪽이 더 흥미롭다.</p><p><code>orca</code> 명령으로 실행 중인 Orca 를 외부 셸에서 조종할 수 있다.
+<code>Settings → General → Orca CLI</code> 에서 등록한다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># worktree</span>
+</span></span><span class=line><span class=cl>orca worktree ps                 <span class=c1># 목록</span>
+</span></span><span class=line><span class=cl>orca worktree create             <span class=c1># 생성 (repo, name, issue 연결)</span>
+</span></span><span class=line><span class=cl>orca worktree current            <span class=c1># 현재 worktree</span>
+</span></span><span class=line><span class=cl>orca worktree rm                 <span class=c1># 삭제</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 에이전트 터미널</span>
+</span></span><span class=line><span class=cl>orca terminal list
+</span></span><span class=line><span class=cl>orca terminal send  ...          <span class=c1># 입력 밀어넣기</span>
+</span></span><span class=line><span class=cl>orca terminal <span class=nb>read</span>  ...          <span class=c1># 출력 읽기</span>
+</span></span><span class=line><span class=cl>orca terminal <span class=nb>wait</span>  ...          <span class=c1># 특정 상태까지 대기</span>
+</span></span><span class=line><span class=cl>orca terminal split ...          <span class=c1># 방향 지정 분할</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 파일 / diff</span>
+</span></span><span class=line><span class=cl>orca file open
+</span></span><span class=line><span class=cl>orca file diff
+</span></span><span class=line><span class=cl>orca file open-changed
+</span></span></code></pre></td></tr></table></div></div><p>브라우저도 조종된다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>orca goto &lt;url&gt;
+</span></span><span class=line><span class=cl>orca snapshot          <span class=c1># 상호작용 가능한 DOM 상태</span>
+</span></span><span class=line><span class=cl>orca click / orca fill
+</span></span><span class=line><span class=cl>orca screenshot
+</span></span><span class=line><span class=cl>orca <span class=nb>set</span> device        <span class=c1># 반응형 테스트용 디바이스 프로파일 전환</span>
+</span></span><span class=line><span class=cl>orca tab profile       <span class=c1># 격리된 브라우저 세션</span>
+</span></span></code></pre></td></tr></table></div></div><p>iOS 시뮬레이터 제어(<code>orca emulator attach/tap/type/gesture/rotate</code>)도 있다.
+<code>orca automations</code> 로 스케줄 작업, <code>orca artifacts</code> 로 공유 링크 관리,
+<code>orca skills install</code> 로 에이전트 능력 등록까지 된다.</p><p>대부분 <code>--json</code> 출력과 <code>--worktree &lt;selector></code> 타게팅을 받는다.</p><p>그러니까 에이전트가 Orca 자체를 조종하게 만들 수 있다.
+<code>terminal send</code> 로 지시를 넣고, <code>terminal wait</code> 으로 끝날때까지 기다리고, <code>file diff</code> 로 결과를 읽는다.
+이 루프를 셸 스크립트로 짜면 된다.</p><h2 id=어디서-돌릴지-고르기>어디서 돌릴지 고르기</h2><table><thead><tr><th>방식</th><th>하는 일</th><th>한계</th></tr></thead><tbody><tr><td>로컬 데스크톱</td><td>에이전트·터미널·브라우저가 내 노트북에서</td><td>노트북 자원에 묶이고 슬립되면 멈춤</td></tr><tr><td>SSH 타깃</td><td>에이전트와 worktree 는 원격, 에디터·diff 는 로컬</td><td>원격에 git 등 사전 세팅 필요, 연결 끊기면 멈춤</td></tr><tr><td>원격 Orca 서버</td><td><code>orca serve</code> 로 상시 런타임, 여러 클라이언트가 세션 공유</td><td>상시 켜둘 장비를 따로 관리해야 함</td></tr><tr><td>클라우드 VM</td><td>worktree 마다 레시피로 샌드박스·VM·Docker 를 띄움</td><td>worktree 당 비용, 레시피 관리. 관리형 호스팅은 제공 안 함</td></tr><tr><td>모바일</td><td>원격 서버 세션에 폰으로 재접속</td><td>원격 서버가 있어야 함</td></tr></tbody></table><p>원격 서버 방식은 Tailscale 을 권장한다.
+장시간 도는 에이전트 세션이나 폰으로 상태만 볼 거면 이 조합이 맞는듯</p><h2 id=언제-쓰면-좋을까>언제 쓰면 좋을까</h2><p>쓸 데와 안 쓸 데가 꽤 명확하다.</p><p>맞는 경우</p><ul><li>어떻게 짤지 모르겠는 문제: 정답 접근이 안 보일때 셋을 경주시키고 고른다. 원래 용도다</li><li>에이전트 비교 평가: Claude Code 와 Codex 중 뭐가 나은지 실제 코드로 재보고 싶을때</li><li>독립적인 작업이 여러 개: 버그 셋이 서로 다른 파일이면 진짜로 병렬이 된다</li><li>리뷰가 무거운 팀: diff 줄 코멘트를 에이전트에 되돌리는 루프</li><li>원격 개발: SSH 로 서버에서 돌리고 폰으로 상태만 본다</li></ul><p>안 맞는 경우</p><ul><li>작업이 순차 의존적일때: A 가 끝나야 B 를 아는 구조면 병렬이 의미 없다.
+진단 → 수정 → 측정으로 이어지는 일이 대체로 이렇다</li><li>답이 하나로 모이는 일: 글쓰기나 설정 수정. 셋을 돌리면 고르는데 더 걸린다</li><li>토큰 예산이 빡빡할때</li><li>안정성이 중요한 프로덕션 워크플로: 아직 이르다</li></ul><h2 id=걸리는-것들>걸리는 것들</h2><h3 id=비용이-배수로-는다>비용이 배수로 는다</h3><p>셋을 경주시키면 토큰도 3배다. 그리고 둘은 버린다.</p><p>리뷰 부담도 같이 는다. 한 독립 리뷰에 &ldquo;parallel sessions can multiply cost and
+<strong>review debt</strong>&rdquo; 라고 적혀 있다.
+셋 중 하나를 고르려면 diff 셋을 다 읽어야 한다.
+안 읽고 고르면 그냥 주사위 굴리는 거다.</p><h3 id=보안-지적은-절반만-정리됐다>보안 지적은 절반만 정리됐다</h3><p>Windows 쪽으로 네 가지가 지적됐다.
+2026년 9월 16일 기준으로 저장소를 확인해보니 아래와 같다.</p><table><thead><tr><th>지적</th><th>상태</th></tr></thead><tbody><tr><td>Windows 경로 하드닝 ACL 이 실제로는 안 돌던 문제</td><td>머지됨 (9/6, PR #17884)</td></tr><tr><td>불필요한 <code>-ExecutionPolicy Bypass</code></td><td>머지됨 (9/6, PR #17873)</td></tr><tr><td>데몬 리스너가 모든 인터페이스에 열리던 문제</td><td>열려 있음 (PR #20690, 9/14 생성)</td></tr><tr><td>에이전트 프롬프트가 자격증명 입력창에 타이핑되는 문제</td><td>열린 draft (PR #19978, 리뷰 지적 미해결)</td></tr></tbody></table><p>ACL 건은 꽤 실질적이었다. <code>powershell.exe -Command</code> 가 <code>$args</code> 를 안 채웠다.
+그래서 하드닝 스크립트가 대상 없이 돌았고 아무것도 보호하지 않았다. 그런데 테스트는 통과하고 있었다..
+<code>icacls.exe</code> 로 바꾸면서 인젝션 표면도 같이 없앴다.</p><p>아직 열려 있는 두 건이 더 신경쓰인다.</p><p>리스너 건은 한 번이라도 페어링한 기기가 있으면 그 이력만으로 런타임이 <code>0.0.0.0</code> 에 바인딩되던 동작이다.
+PR 설명에 이렇게 적혀 있다.</p><blockquote><p>네트워크에 노출하겠다고 한 적 없는 운영자에게, 어떤 기기가 한 번 붙었다는 이유만으로
+런타임이 모든 인터페이스에 바인딩돼서는 안 된다.</p></blockquote><p>수정은 <code>networkExposureConsent</code> 를 기본 <code>false</code> 로 두고, 명시적 동의가 있을때만 loopback 밖으로 나가게 한다.
+아직 머지 전이다.</p><p>자격증명 건은 더 고약하다. Orca 는 에이전트가 준비됐다고 판단하면 작업 프롬프트를 타이핑한다.
+그 판단이 틀렸는데 화면에 자격증명 입력창이 떠 있으면 프롬프트가 인증 제공자한테 자격증명으로 제출된다.
+draft 상태고, 리뷰에서 지적된 오탐·비영어 프롬프트 미탐지가 아직 안 풀렸다.</p><p><strong>사내 장비나 민감한 저장소에 바로 붙이기 전에 격리 환경에서 먼저 보자.</strong></p><h3 id=텔레메트리가-기본-켜짐>텔레메트리가 기본 켜짐</h3><p>익명 수집이고 opt-out 방식이다. 직접 꺼야 한다.</p><h3 id=아직-어리다>아직 어리다</h3><p>나온 지 반년이다. 워크플로나 설정 안정성이 검증됐다고 보긴 어려운듯</p><h2 id=정리>정리</h2><ul><li>모델이 아니고 껍데기다. 에이전트 구독은 따로 있어야 한다</li><li>worktree 가 전부. 진짜 git worktree 라서 Orca 없이도 남는다</li><li>의존성 처리가 첫 관문. <code>orca.yaml</code> 로 공유, <code>.worktreeinclude</code> 로 복사</li><li>CLI 쪽이 진짜 쓸만한 부분. 에이전트가 Orca 를 조종하게 만들 수 있다</li><li>순차 의존적인 일에는 이득이 없다. 접근법이 갈리는 문제에 쓰는 도구</li><li>비용도 배수, 리뷰 부담도 배수</li><li>보안 지적 4건 중 2건은 머지, 2건은 진행 중. 격리 환경에서 먼저 보자</li></ul><p>써볼 거면 <code>Your first 3-agent session</code> 튜토리얼 하나만 따라가면 감이 올듯.
+문서가 스스로 &ldquo;가장 중요한 페이지&rdquo; 라고 표시해둔 곳이다.</p><p>이 블로그처럼 <code>node_modules</code> 도 없는 Hugo 정적 사이트에선 worktree 생성 비용이 거의 0이다.
+병렬 이득도 그만큼 작다.
+쓴다면 회사 코드베이스 쪽이 맞을 것 같다.</p><h2 id=참고>참고</h2><ul><li>공식 문서 — <a href=https://www.onorca.dev/docs>https://www.onorca.dev/docs</a></li><li>첫 3-에이전트 세션 — <a href=https://www.onorca.dev/docs/first-session>https://www.onorca.dev/docs/first-session</a></li><li>worktree 모델 — <a href=https://www.onorca.dev/docs/model/worktrees>https://www.onorca.dev/docs/model/worktrees</a></li><li>Orca CLI — <a href=https://www.onorca.dev/docs/cli/overview>https://www.onorca.dev/docs/cli/overview</a></li><li>실행 방식 — <a href=https://www.onorca.dev/docs/ways-to-run>https://www.onorca.dev/docs/ways-to-run</a></li><li>GitHub — <a href=https://github.com/stablyai/orca>https://github.com/stablyai/orca</a></li><li>독립 리뷰 (한계·보안 지적) — <a href=https://vibecodinghub.org/tools/orca>https://vibecodinghub.org/tools/orca</a></li></ul></div><footer class=post-foot><div class=tags><a href=/tags/ai/>#AI</a><a href=/tags/llm/>#LLM</a><a href=/tags/%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8/>#에이전트</a><a href=/tags/%EA%B0%9C%EB%B0%9C%EB%8F%84%EA%B5%AC/>#개발도구</a></div><section class=related><h2>관련 글</h2><ul><li><a href=/posts/ai/2026-09-24-opus55-vs-gpt6-sol/><span class=t>Claude Opus 5.5 vs GPT-6 Sol — 비용 · 성능 · 코딩 에이전트</span>
+<span class="d num">2026 · 09 · 24</span></a></li><li><a href=/posts/ai/2026-09-06-gpt6-astra-model-comparison/><span class=t>GPT-6 Astra — Fable 5.1 · Opus 5 · GPT-5.6 Sol 비교</span>
+<span class="d num">2026 · 09 · 06</span></a></li><li><a href=/posts/ai/2026-09-01-fable51-model-comparison/><span class=t>Claude Fable 5.1 — Opus 5 · Fable 5 · GPT-5.6 Sol 비교</span>
+<span class="d num">2026 · 09 · 01</span></a></li><li><a href=/posts/ai/2026-07-28-llm-wiki/><span class=t>LLM Wiki — 지식을 쌓아두는 방식</span>
+<span class="d num">2026 · 07 · 28</span></a></li></ul></section><nav class=post-nav><a class=prev href=/posts/ai/2026-09-06-gpt6-astra-model-comparison/><span class=lbl>이전 글</span><span class=t>GPT-6 Astra — Fable 5.1 · Opus 5 · GPT-5.6 Sol 비교</span></a><a class=next href=/posts/diary/2026-09-21-sarah-michelle-gellar/><span class=lbl>다음 글</span><span class=t>사라 미셸 겔러 — 버피, 그리고 그 이후 30년</span></a></nav></footer></article></main></div></div><script>(function(){var t,n,s,o,i,a,l,e=document.documentElement,d="M12 3v2M12 19v2M5 5l1.5 1.5M17.5 17.5L19 19M3 12h2M19 12h2M5 19l1.5-1.5M17.5 6.5L19 5",u="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z";function r(){var t=e.getAttribute("data-theme");return t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches}function c(){var e=document.getElementById("theme-ic");e&&e.setAttribute("d",r()?d:u)}s=document.getElementById("theme"),s&&s.addEventListener("click",function(){var t=r()?"light":"dark";e.setAttribute("data-theme",t);try{localStorage.setItem("theme",t)}catch{}c()}),c(),t=document.getElementById("lang-toggle"),t&&t.addEventListener("click",function(){try{localStorage.setItem("lang",t.getAttribute("data-lang"))}catch{}}),o=document.getElementById("burger"),i=document.getElementById("scrim"),o&&o.addEventListener("click",function(){e.setAttribute("data-nav","open")}),i&&i.addEventListener("click",function(){e.removeAttribute("data-nav")}),n=document.getElementById("q"),n&&(l=[].slice.call(document.querySelectorAll(".row")),a=document.getElementById("empty"),n.addEventListener("input",function(){var t=n.value.trim().toLowerCase(),e=0;l.forEach(function(n){var s=n.textContent.toLowerCase().indexOf(t)!==-1;n.style.display=s?"":"none",s&&e++}),a&&(a.style.display=e?"none":"block")}))})()</script></body></html>

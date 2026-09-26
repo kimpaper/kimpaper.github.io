@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Unity on paper.archive</title>
+    <link>https://paper.kim/en/tags/unity/</link>
+    <description>Recent content in Unity on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 18 Dec 2015 15:39:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/unity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using Visual Studio Code as the default editor for Unity3D on Mac</title>
+      <link>https://paper.kim/en/posts/etc/2015-12-18-unity-with-visualstudio-code/</link>
+      <pubDate>Fri, 18 Dec 2015 15:39:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/etc/2015-12-18-unity-with-visualstudio-code/</guid>
+      <description>When developing with Unity on Mac you usually code with MonoDevelop. But it doesn&amp;#39;t support Korean, which was really annoying.</description>
+    </item>
+  </channel>
+</rss>

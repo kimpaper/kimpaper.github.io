@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>코딩에이전트 on 기록 저장소</title>
+    <link>https://paper.kim/tags/%EC%BD%94%EB%94%A9%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8/</link>
+    <description>Recent content in 코딩에이전트 on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 24 Sep 2026 19:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/%EC%BD%94%EB%94%A9%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Claude Opus 5.5 vs GPT-6 Sol — 비용 · 성능 · 코딩 에이전트</title>
+      <link>https://paper.kim/posts/ai/2026-09-24-opus55-vs-gpt6-sol/</link>
+      <pubDate>Thu, 24 Sep 2026 19:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-09-24-opus55-vs-gpt6-sol/</guid>
+      <description>9/22 에 90분 차이로 나온 Claude Opus 5.5 와 GPT-6 Sol 비교. 단가는 Sol 이 딱 절반인데 태스크당 비용, 코딩 에이전트 점수, 272K 할증까지 넣어보면 좀 달라진다.</description>
+    </item>
+  </channel>
+</rss>
