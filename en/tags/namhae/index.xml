@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Namhae on paper.archive</title>
+    <link>https://paper.kim/en/tags/namhae/</link>
+    <description>Recent content in Namhae on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 12 Jul 2026 15:39:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/namhae/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Geoje Panorama Cable Car — Nojasan Observatory</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-12-geoje-cablecar/</link>
+      <pubDate>Sun, 12 Jul 2026 15:39:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-12-geoje-cablecar/</guid>
+      <description>Riding the Geoje Panorama Cable Car up to the 565m Nojasan observatory, and the view over Korea&amp;#39;s southern archipelago from the top.</description>
+    </item>
+  </channel>
+</rss>

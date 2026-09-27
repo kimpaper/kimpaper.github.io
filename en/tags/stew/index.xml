@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Stew on paper.archive</title>
+    <link>https://paper.kim/en/tags/stew/</link>
+    <description>Recent content in Stew on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 12 Jul 2026 08:20:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/stew/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dongtae-tang Breakfast on Geoje Island</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-12-dongtaetang-geoje/</link>
+      <pubDate>Sun, 12 Jul 2026 08:20:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-12-dongtaetang-geoje/</guid>
+      <description>Day two on Geoje Island. Breakfast at the pollack-stew place right in front of our lodging.</description>
+    </item>
+  </channel>
+</rss>

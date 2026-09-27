@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Mysql on paper.archive</title>
+    <link>https://paper.kim/en/tags/mysql/</link>
+    <description>Recent content in Mysql on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 11 Aug 2016 16:07:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CentOS Server Notes — Commands, Tomcat OOM, Apache 403, Fonts, SSH</title>
+      <link>https://paper.kim/en/posts/centos/2016-08-11-centos-server-notes/</link>
+      <pubDate>Thu, 11 Aug 2016 16:07:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2016-08-11-centos-server-notes/</guid>
+      <description>Notes collected from running CentOS servers in 2015-2016, gathered onto one page: everyday commands, Tomcat OutOfMemory, migrating MySQL to utf8mb4, Apache 403 caused by SELinux, Korean fonts, EC2 password login and SSH key login.</description>
+    </item>
+  </channel>
+</rss>

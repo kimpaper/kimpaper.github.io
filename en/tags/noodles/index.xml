@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Noodles on paper.archive</title>
+    <link>https://paper.kim/en/tags/noodles/</link>
+    <description>Recent content in Noodles on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 11 Jul 2026 12:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/noodles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Milmyeon on Geoje Island — Woomyeonga</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-11-milmyeon-woomyeonga/</link>
+      <pubDate>Sat, 11 Jul 2026 12:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-11-milmyeon-woomyeonga/</guid>
+      <description>Found a great noodle place on Geoje Island (south coast of Korea) called Woomyeonga. This one was seriously good.</description>
+    </item>
+  </channel>
+</rss>

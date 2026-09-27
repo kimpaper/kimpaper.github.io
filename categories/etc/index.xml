@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Etc on 기록 저장소</title>
+    <link>https://paper.kim/categories/etc/</link>
+    <description>Recent content in Etc on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 14 Jul 2016 14:15:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/categories/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>maven에서 gradle로 변환...</title>
+      <link>https://paper.kim/2016/07/14/gradle/</link>
+      <pubDate>Thu, 14 Jul 2016 14:15:00 +0000</pubDate>
+      <guid>https://paper.kim/2016/07/14/gradle/</guid>
+      <description>macOS에서 brew로 gradle을 설치하고 기본 빌드 설정을 잡는 과정 정리.</description>
+    </item>
+    <item>
+      <title>Git 메모 모음 — svn 마이그레이션, 로컬 커밋 되돌리기, rebase 와 merge</title>
+      <link>https://paper.kim/posts/etc/2016-03-24-git-notes/</link>
+      <pubDate>Thu, 24 Mar 2016 16:36:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/etc/2016-03-24-git-notes/</guid>
+      <description>2015~2016년에 git 을 쓰면서 남긴 메모를 모았다. svn 에서 git 으로 마이그레이션하는 명령어, GitLab 백업과 복원, 로컬 커밋 되돌리기, 그리고 rebase 와 merge 를 헷갈리다 정리한 내용.</description>
+    </item>
+    <item>
+      <title>맥에서 Unity3D 기본 에디터로 VisualStudio Code 사용하기</title>
+      <link>https://paper.kim/posts/etc/2015-12-18-unity-with-visualstudio-code/</link>
+      <pubDate>Fri, 18 Dec 2015 15:39:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/etc/2015-12-18-unity-with-visualstudio-code/</guid>
+      <description>맥용 Unity로 개발할때 보통 MonoDevelopr를 이용하여 코딩 한다 그런데 한글을 지원안해서. 아주 불편했는데. MS에서 얼마전에 공개한 mac용 VisualStudio Code에서 유니티를 지원한다고 해서 한번 설정해봤다. 2. 커맨드&#43;P를 누르고.</description>
+    </item>
+    <item>
+      <title>logback 로그 설정 메모 — 시간·용량 기준 분할과 Flume 로그 수집</title>
+      <link>https://paper.kim/posts/etc/2015-10-30-logback-notes/</link>
+      <pubDate>Fri, 30 Oct 2015 18:13:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/etc/2015-10-30-logback-notes/</guid>
+      <description>logback 으로 로그 파일을 날짜와 용량 기준으로 같이 자르는 설정, 그리고 Flume 의 기본 로거를 log4j 에서 logback 으로 바꿔 각 서버 로그를 한곳에 모은 구성. file_roll sink 의 한계 때문에 직접 만든 sink 도 같이.</description>
+    </item>
+  </channel>
+</rss>
