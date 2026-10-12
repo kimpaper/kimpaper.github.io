@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Mac on 기록 저장소</title>
+    <link>https://paper.kim/tags/mac/</link>
+    <description>Recent content in Mac on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 29 Oct 2015 15:51:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flume 설치 및 테스트 (mac)</title>
+      <link>https://paper.kim/posts/centos/2015-10-29-flume-setting-sample/</link>
+      <pubDate>Thu, 29 Oct 2015 15:51:00 +0000</pubDate>
+      <guid>https://paper.kim/posts/centos/2015-10-29-flume-setting-sample/</guid>
+      <description>Flume 설치와 기본 flume.conf 설정 샘플. JAVA_HOME 지정부터 source·channel·sink 구성까지 정리했다.</description>
+    </item>
+  </channel>
+</rss>

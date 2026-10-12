@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Wpf on 기록 저장소</title>
+    <link>https://paper.kim/tags/wpf/</link>
+    <description>Recent content in Wpf on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Fri, 16 Oct 2015 12:13:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/wpf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>.NET · C# 메모 — async/await 에서 4.0 으로 내려오기, C&#43;&#43; DLL 마샬링, WPF 컨트롤 PNG 저장</title>
+      <link>https://paper.kim/posts/dotnet/2015-10-16-dotnet-notes/</link>
+      <pubDate>Fri, 16 Oct 2015 12:13:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/dotnet/2015-10-16-dotnet-notes/</guid>
+      <description>2015년에 윈도우 앱을 만들면서 남긴 메모. .NET 4.5.2 의 async/await 로 짰다가 설치 PC 문제로 4.0 으로 내려온 이야기, C# 에서 C&#43;&#43; DLL 에 LPCTSTR 넘기는 마샬링, WPF 컨트롤을 PNG 로 저장하는 방법.</description>
+    </item>
+  </channel>
+</rss>

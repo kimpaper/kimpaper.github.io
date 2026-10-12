@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>지역축제 on 기록 저장소</title>
+    <link>https://paper.kim/tags/%EC%A7%80%EC%97%AD%EC%B6%95%EC%A0%9C/</link>
+    <description>Recent content in 지역축제 on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Mon, 12 Oct 2026 00:20:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/%EC%A7%80%EC%97%AD%EC%B6%95%EC%A0%9C/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>10월 지역 축제 — 강원 · 충청 · 전라 · 경상 · 제주</title>
+      <link>https://paper.kim/posts/festival/2026-10-12-festival-2026-10-regions/</link>
+      <pubDate>Mon, 12 Oct 2026 00:20:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/festival/2026-10-12-festival-2026-10-regions/</guid>
+      <description>2026년 10월 수도권 밖 지역 축제 정리. 강릉커피축제, 진주남강유등축제, 정읍 구절초꽃축제, 탐라문화제, 함평 국향대전 등 10월 12일 이후 남은 축제의 일정, 장소, 요금, 셔틀, 즐길 거리를 모았습니다.</description>
+    </item>
+  </channel>
+</rss>
