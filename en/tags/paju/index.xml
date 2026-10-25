@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Paju on paper.archive</title>
+    <link>https://paper.kim/en/tags/paju/</link>
+    <description>Recent content in Paju on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 21 Jul 2026 12:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/paju/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Plant Shopping at Joinfolia in Paju</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-21-joinfolia-paju/</link>
+      <pubDate>Tue, 21 Jul 2026 12:00:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-21-joinfolia-paju/</guid>
+      <description>We went to Joinfolia in Paju to look around and came home with a few more plants. The place is much bigger than it looks from outside.</description>
+    </item>
+    <item>
+      <title>Baekban — A Proper Korean Set Meal in Paju</title>
+      <link>https://paper.kim/en/posts/diary/2026-07-18-bapsarang-paju/</link>
+      <pubDate>Sat, 18 Jul 2026 12:44:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/diary/2026-07-18-bapsarang-paju/</guid>
+      <description>Lunch at Bapsarang, a countryside diner in Paju (north of Seoul), the kind of place Koreans call a baekban-jip (백반집).</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Svn on 기록 저장소</title>
+    <link>https://paper.kim/tags/svn/</link>
+    <description>Recent content in Svn on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 24 Mar 2016 16:36:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/svn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git 메모 모음 — svn 마이그레이션, 로컬 커밋 되돌리기, rebase 와 merge</title>
+      <link>https://paper.kim/posts/etc/2016-03-24-git-notes/</link>
+      <pubDate>Thu, 24 Mar 2016 16:36:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/etc/2016-03-24-git-notes/</guid>
+      <description>2015~2016년에 git 을 쓰면서 남긴 메모를 모았다. svn 에서 git 으로 마이그레이션하는 명령어, GitLab 백업과 복원, 로컬 커밋 되돌리기, 그리고 rebase 와 merge 를 헷갈리다 정리한 내용.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Golang on paper.archive</title>
+    <link>https://paper.kim/en/tags/golang/</link>
+    <description>Recent content in Golang on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 28 Mar 2022 16:53:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using the Go profiler (pprof)</title>
+      <link>https://paper.kim/en/posts/golang/2022-03-28-golang_profiler/</link>
+      <pubDate>Mon, 28 Mar 2022 16:53:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/golang/2022-03-28-golang_profiler/</guid>
+      <description>Using the Go profiler (pprof). Profile via net/http/pprof, CPU profile (collects data for 30 seconds), Heap memory (returns current memory info).</description>
+    </item>
+  </channel>
+</rss>

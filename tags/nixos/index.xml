@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>NixOS on 기록 저장소</title>
+    <link>https://paper.kim/tags/nixos/</link>
+    <description>Recent content in NixOS on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Wed, 21 Oct 2026 23:50:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/nixos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NixOS — 처음 보는 사람용 정리</title>
+      <link>https://paper.kim/posts/centos/2026-10-21-nixos-intro/</link>
+      <pubDate>Wed, 21 Oct 2026 23:50:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/centos/2026-10-21-nixos-intro/</guid>
+      <description>NixOS 가 뭔지, 우분투 같은 기존 리눅스랑 뭐가 다른지 정리했다. 우분투에 Nix 를 깔고 버전 여러개 설치, 롤백, NixOS 설정 빌드까지 직접 해본 결과 포함. 26.05 기준.</description>
+    </item>
+  </channel>
+</rss>

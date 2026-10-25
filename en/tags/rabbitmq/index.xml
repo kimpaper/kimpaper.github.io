@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Rabbitmq on paper.archive</title>
+    <link>https://paper.kim/en/tags/rabbitmq/</link>
+    <description>Recent content in Rabbitmq on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 10 Nov 2015 17:36:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spring 4.0 Integration Notes — JUnit, XML View, RabbitMQ, Redis, Batch, SiteMesh, Hadoop</title>
+      <link>https://paper.kim/en/posts/spring/2015-11-10-spring-integration-notes/</link>
+      <pubDate>Tue, 10 Nov 2015 17:36:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/spring/2015-11-10-spring-integration-notes/</guid>
+      <description>Configuration notes from wiring various things into a Spring 4.0 project through 2015, collected on one page: the JUnit test setup, an XML ViewResolver for Map results, RabbitMQ, Redis, Spring Batch, SiteMesh and Hadoop MapReduce.</description>
+    </item>
+    <item>
+      <title>Setting up a server on DigitalOcean (CentOS 6.7)</title>
+      <link>https://paper.kim/en/posts/centos/2015-09-16-centos-67/</link>
+      <pubDate>Tue, 15 Sep 2015 20:40:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/centos/2015-09-16-centos-67/</guid>
+      <description>Set up a server for a simple messaging app I&amp;#39;m building with a friend. Of course I don&amp;#39;t really know what I&amp;#39;m doing. Everything comes from Google..</description>
+    </item>
+  </channel>
+</rss>

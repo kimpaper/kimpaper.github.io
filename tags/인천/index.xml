@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>인천 on 기록 저장소</title>
+    <link>https://paper.kim/tags/%EC%9D%B8%EC%B2%9C/</link>
+    <description>Recent content in 인천 on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Mon, 19 Oct 2026 09:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/%EC%9D%B8%EC%B2%9C/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>11월 수도권 축제 — 서울 · 경기 · 인천</title>
+      <link>https://paper.kim/posts/festival/2026-10-19-festival-2026-11-capital/</link>
+      <pubDate>Mon, 19 Oct 2026 09:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/festival/2026-10-19-festival-2026-11-capital/</guid>
+      <description>2026년 11월 서울·경기·인천 축제 정리. 노원달빛산책, 남산 나이트 페스티벌, 서울카페쇼, 여주 산북 김장축제, 경기미 디저트 페스타, 인천공항 스카이 페스티벌 등 일정, 장소, 요금, 교통, 즐길 거리를 모았습니다.</description>
+    </item>
+    <item>
+      <title>10월 수도권 축제 — 서울 · 경기 · 인천</title>
+      <link>https://paper.kim/posts/festival/2026-10-12-festival-2026-10-capital/</link>
+      <pubDate>Mon, 12 Oct 2026 00:10:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/festival/2026-10-12-festival-2026-10-capital/</guid>
+      <description>2026년 10월 서울·경기·인천 축제 정리. 서울억새축제, 한성백제문화제, 정동야행, 이천쌀문화축제, 여주오곡나루축제 등 10월 12일 이후 남은 축제의 일정, 장소, 요금, 교통, 즐길 거리를 모았습니다.</description>
+    </item>
+  </channel>
+</rss>

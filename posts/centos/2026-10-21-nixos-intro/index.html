@@ -1,0 +1,217 @@
+<!doctype html><html lang=ko dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>NixOS — 처음 보는 사람용 정리 · 기록 저장소</title><meta name=description content="NixOS 가 뭔지, 우분투 같은 기존 리눅스랑 뭐가 다른지 정리했다. 우분투에 Nix 를 깔고 버전 여러개 설치, 롤백, NixOS 설정 빌드까지 직접 해본 결과 포함. 26.05 기준.…"><meta name=keywords content="NixOS,Nix,리눅스,패키지관리"><meta name=author content="페이퍼"><meta name=robots content="index, follow, max-image-preview:large"><link rel=canonical href=https://paper.kim/posts/centos/2026-10-21-nixos-intro/><link rel=alternate hreflang=ko-KR href=https://paper.kim/posts/centos/2026-10-21-nixos-intro/><link rel=alternate hreflang=en-US href=https://paper.kim/en/posts/centos/2026-10-21-nixos-intro/><link rel=alternate hreflang=x-default href=https://paper.kim/en/posts/centos/2026-10-21-nixos-intro/><meta name=google-site-verification content="y1M38dn7tn_g66ZU4sW9oodCBS79uDleUIpnFABhR_I"><meta name=naver-site-verification content="d4c08a44984bf4ebeb4b26f639fedfb26163b6e3"><meta property="og:site_name" content="기록 저장소"><meta property="og:type" content="article"><meta property="og:title" content="NixOS — 처음 보는 사람용 정리"><meta property="og:description" content="NixOS 가 뭔지, 우분투 같은 기존 리눅스랑 뭐가 다른지 정리했다. 우분투에 Nix 를 깔고 버전 여러개 설치, 롤백, NixOS 설정 빌드까지 직접 해본 결과 포함. 26.05 기준.…"><meta property="og:url" content="https://paper.kim/posts/centos/2026-10-21-nixos-intro/"><meta property="og:locale" content="ko_KR"><meta property="og:locale:alternate" content="en_US"><meta property="og:image" content="https://paper.kim/images/default-thumb.jpg"><meta property="og:image:alt" content="NixOS — 처음 보는 사람용 정리"><meta property="article:published_time" content="2026-10-21T23:50:00+09:00"><meta property="article:modified_time" content="2026-10-21T23:50:00+09:00"><meta property="article:tag" content="NixOS"><meta property="article:tag" content="Nix"><meta property="article:tag" content="리눅스"><meta property="article:tag" content="패키지관리"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="NixOS — 처음 보는 사람용 정리"><meta name=twitter:description content="NixOS 가 뭔지, 우분투 같은 기존 리눅스랑 뭐가 다른지 정리했다. 우분투에 Nix 를 깔고 버전 여러개 설치, 롤백, NixOS 설정 빌드까지 직접 해본 결과 포함. 26.05 기준.…"><meta name=twitter:domain content="paper.kim"><meta name=twitter:image content="https://paper.kim/images/default-thumb.jpg"><script>(function(){try{var e=localStorage.getItem("theme");e&&document.documentElement.setAttribute("data-theme",e)}catch{}})()</script><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css onload='this.onload=null,this.rel="stylesheet"'><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap"></noscript><link rel=stylesheet href=/css/site.min.4016cb5265290cd3e09ce8cb43c26d23e143347225282a595297fe9ed9e17c2f.css integrity="sha256-QBbLUmUpDNPgnOjLQ8JtI+FDNHIlKCpZUpf+ntnhfC8="><link rel=icon href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5eE77iPPC90ZXh0Pjwvc3ZnPg=="><script async src="https://www.googletagmanager.com/gtag/js?id=G-ECTTT48V9Y"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ECTTT48V9Y")</script><meta name=google-adsense-account content="ca-pub-8048816011496920"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8048816011496920" crossorigin=anonymous></script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"페이퍼","url":"https://paper.kim/"},"dateModified":"2026-10-21T23:50:00+09:00","datePublished":"2026-10-21T23:50:00+09:00","description":"NixOS 가 뭔지, 우분투 같은 기존 리눅스랑 뭐가 다른지 정리했다. 우분투에 Nix 를 깔고 버전 여러개 설치, 롤백, NixOS 설정 빌드까지 직접 해본 결과 포함. 26.05 기준.…","headline":"NixOS — 처음 보는 사람용 정리","image":["https://paper.kim/images/default-thumb.jpg"],"inLanguage":"ko-KR","keywords":"NixOS, Nix, 리눅스, 패키지관리","mainEntityOfPage":{"@id":"https://paper.kim/posts/centos/2026-10-21-nixos-intro/","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://paper.kim/images/site-logo.png"},"name":"기록 저장소"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://paper.kim/","name":"기록 저장소","position":1},{"@type":"ListItem","item":"https://paper.kim/categories/linux/","name":"Linux","position":2},{"@type":"ListItem","item":"https://paper.kim/posts/centos/2026-10-21-nixos-intro/","name":"NixOS — 처음 보는 사람용 정리","position":3}]}</script></head><body><div class=scrim id=scrim></div><div class=shell><aside class=index id=sidebar><div class=masthead><a href=/ class=wordmark>기록<b>.</b>저장소</a><div class=sub>a developer’s archive</div><div class="range num">2015 — 2026 · 51 entries</div></div><nav class=toc aria-label=categories><details class=grp open><summary><span class=idx>I</span> 기술 블로그 <span class=chev></span></summary><div class=sub-list><a href=/categories/ai/>AI · LLM <span class="c num">9</span></a><a href=/categories/aws/>AWS · 클라우드 <span class="c num">1</span></a><a href=/categories/spring/>Spring · JPA <span class="c num">2</span></a><a href=/categories/golang/>Golang <span class="c num">1</span></a><a href=/categories/kubernetes/>Kubernetes · 인프라 <span class="c num">3</span></a><a href=/categories/python/>Python <span class="c num">1</span></a><a href=/categories/opensource/>오픈소스 · 데이터 <span class="c num">4</span></a><a href=/categories/linux/>CentOS · 리눅스 <span class="c num">4</span></a><a href=/categories/dotnet/>.NET <span class="c num">1</span></a></div></details><details class=grp><summary><span class=idx>II</span> 일상 <span class=chev></span></summary><div class=sub-list><a href=/categories/diary/>일기 · 소소한 기록 <span class="c num">15</span></a><a href=/categories/festival/>이달의 축제 · 지역 정보 <span class="c num">5</span></a></div></details><details class=grp><summary><span class=idx>III</span> 기타 잡지식 <span class=chev></span></summary><div class=sub-list><a href=/categories/etc/>팁 · 트러블슈팅 <span class="c num">4</span></a><a href=/categories/mac/>Mac · 기타 <span class="c num">1</span></a></div></details><div class=toc-flat><a href=/archives/><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg> 전체 아카이브
+</a><a href=/tags/><svg viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/><circle cx="12" cy="12" r="2"/></svg> 태그
+</a><a href=/about/><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> 소개
+</a><a href=/en/posts/centos/2026-10-21-nixos-intro/ id=lang-toggle data-lang=en title="Read in English"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+English</a></div></nav><div class=index-foot><button class=icon-btn id=theme title=theme aria-label=theme>
+<svg id="theme-ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+</button>
+<a class=icon-btn href=https://github.com/kimpaper title=GitHub aria-label=GitHub><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2.0C7 4.9 5.9 5.2 5.9 5.2a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004.5 11.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V23"/></svg></a>
+<a class=icon-btn href=/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<span class=spacer></span>
+<span class=copy>© 페이퍼</span></div></aside><div class=main><header class=topbar><button class="icon-btn hamburger" id=burger aria-label=menu><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class=crumb><a href=/>기록 저장소</a><span class=sep>/</span><b>Linux</b></div><span class=spacer></span>
+<label class=search><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+<input id=q type=search placeholder="이 목록에서 검색…" aria-label=search></label></header><main class=content id=content><article class=post><header class=post-head><a class=cat-tag href=/categories/linux/>Linux</a><h1 class=post-title>NixOS — 처음 보는 사람용 정리</h1><div class="post-meta num"><span>2026 · 10 · 21</span>
+<span>5 min read</span>
+<span>페이퍼</span></div></header><details class=toc-box open><summary>목차</summary><nav><nav id=TableOfContents><ul><li><a href=#nixos-가-뭔가>NixOS 가 뭔가</a></li><li><a href=#기존-리눅스랑-다른-점>기존 리눅스랑 다른 점</a></li><li><a href=#설치>설치</a></li><li><a href=#패키지는-nixstore-에-들어간다>패키지는 /nix/store 에 들어간다</a></li><li><a href=#설치-안하고-잠깐-쓰기>설치 안하고 잠깐 쓰기</a></li><li><a href=#롤백>롤백</a></li><li><a href=#시스템-전체를-파일-하나로>시스템 전체를 파일 하나로</a></li><li><a href=#바꾼-것만-다시-빌드된다>바꾼 것만 다시 빌드된다</a></li><li><a href=#오타-내면>오타 내면</a></li><li><a href=#처음-하면-힘든-점>처음 하면 힘든 점</a><ul><li></li></ul></li><li><a href=#써보려면>써보려면</a></li></ul></nav></nav></details><div class=prose><p>요즘 NixOS 얘기가 자주 보여서 뭔지 정리했다.
+NixOS 를 VM 에 설치까지는 안 해봤다. 우분투 24.04 서버에 Nix 패키지 매니저만 깔고 NixOS 설정을 빌드하는데까지 해봤다.
+버전은 NixOS 26.05, Nix 2.35.3 기준.</p><h2 id=nixos-가-뭔가>NixOS 가 뭔가</h2><p>리눅스 배포판이다. Nix 라는 패키지 매니저 위에 만들어졌다.</p><p>보통 리눅스는 설치하고 나서 패키지 깔고, <code>/etc</code> 아래 설정 파일 고치고 하면서 서버를 만든다.
+NixOS 는 시스템 전체를 <code>configuration.nix</code> 파일 하나에 적어두고, 그 파일로 OS 를 빌드한다.
+어떤 패키지가 깔려있고 어떤 서비스가 켜져 있는지 전부 이 파일에 있다.</p><ul><li>Nix 는 2003년쯤 시작된 프로젝트. Eelco Dolstra 의 박사 논문이 출발점이다</li><li>릴리즈는 1년에 두번, 5월하고 11월. 버전 이름이 <code>연도.월</code> 이다</li><li>지금 최신은 26.05 &ldquo;Yarara&rdquo; (2026.5.30). 다음은 26.11 &ldquo;Zokor&rdquo;</li><li>한 버전 지원 기간은 7개월. 26.05 는 2026.12.31 까지</li></ul><p>Nix 패키지 매니저는 NixOS 가 아니어도 쓸 수 있다. 우분투, 맥에 Nix 만 깔아서 쓰는 사람도 많다.</p><h2 id=기존-리눅스랑-다른-점>기존 리눅스랑 다른 점</h2><ul><li>패키지 위치: 우분투는 <code>/usr/bin</code>, <code>/usr/lib</code>. NixOS 는 <code>/nix/store/&lt;해시>-&lt;이름>-&lt;버전></code></li><li>설정: 우분투는 <code>/etc</code> 아래 파일을 직접 고친다. NixOS 는 <code>configuration.nix</code> 를 고치고 다시 빌드</li><li>같은 패키지 여러 버전: 우분투는 어렵다. NixOS 는 그냥 같이 깔린다</li><li>업데이트하다 망하면: 우분투는 백업에서 복구. NixOS 는 이전 세대로 롤백. 부팅 메뉴에서도 고를 수 있다</li><li>서버 여러대 똑같이 맞추기: 우분투는 ansible 같은걸 쓴다. NixOS 는 같은 파일이면 같은 시스템이 나온다</li></ul><p>아래는 하나씩 직접 해본 것.</p><h2 id=설치>설치</h2><p>우분투에 Nix 만 깔았다. 보통은 아래처럼 데몬 모드로 깐다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sh &lt;<span class=o>(</span>curl -L https://nixos.org/nix/install<span class=o>)</span> --daemon
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>나는 root 로 컨테이너에서 해서 <code>--no-daemon</code> 으로 깔았다. root 로 하면 <code>nixbld</code> 그룹이 없다고 에러가 나서 <code>/etc/nix/nix.conf</code> 에 <code>build-users-group =</code> 을 넣고 다시 돌렸다.</p></blockquote><p><code>nix run</code>, <code>nix shell</code> 같은 새 명령어하고 flakes 는 아직 실험 기능이다. 설정에 켜줘야 한다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># /etc/nix/nix.conf
+</span></span><span class=line><span class=cl>experimental-features = nix-command flakes
+</span></span></code></pre></td></tr></table></div></div><p>안 켜면 이렇게 나온다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>error: experimental Nix feature &#39;nix-command&#39; is disabled; add &#39;--extra-experimental-features nix-command&#39; to enable it
+</span></span></code></pre></td></tr></table></div></div><h2 id=패키지는-nixstore-에-들어간다>패키지는 /nix/store 에 들어간다</h2><p>서버에 원래 깔려있던 python 은 3.11 이다. 여기에 3.12 랑 3.13 을 Nix 로 띄워봤다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ python3 --version
+</span></span><span class=line><span class=cl>Python 3.11.15
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ nix shell nixpkgs/nixos-26.05#python312 -c python3 --version
+</span></span><span class=line><span class=cl>Python 3.12.14
+</span></span><span class=line><span class=cl>/nix/store/6jmqjw0f3s7kl7x4ps1abab1dpaxp3yj-python3-3.12.14/bin/python3.12
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ nix shell nixpkgs/nixos-26.05#python313 -c python3 --version
+</span></span><span class=line><span class=cl>Python 3.13.15
+</span></span><span class=line><span class=cl>/nix/store/jy00n3jp5xj8s40n1fbldmkcr5n7avxc-python3-3.13.15/bin/python3.13
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ python3 --version
+</span></span><span class=line><span class=cl>Python 3.11.15
+</span></span></code></pre></td></tr></table></div></div><ul><li>버전마다 <code>/nix/store</code> 아래 다른 경로에 들어간다. 그래서 안 부딪힌다</li><li>앞에 붙은 해시는 빌드에 들어간 재료(소스, 의존성, 옵션)로 만든다. 재료가 하나라도 다르면 경로가 달라진다</li><li>원래 있던 3.11 은 그대로다</li></ul><p>처음 받을때 python 3.12 는 의존성까지 23개, 74.7MB 를 받았다. 3.13 은 겹치는게 있어서 1개 54.1MB 만 받았다.</p><h2 id=설치-안하고-잠깐-쓰기>설치 안하고 잠깐 쓰기</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ nix shell nixpkgs/nixos-26.05#cowsay -c cowsay nix
+</span></span><span class=line><span class=cl> _____
+</span></span><span class=line><span class=cl>&lt; nix &gt;
+</span></span><span class=line><span class=cl> -----
+</span></span><span class=line><span class=cl>        \   ^__^
+</span></span><span class=line><span class=cl>         \  (oo)\_______
+</span></span><span class=line><span class=cl>            (__)\       )\/\
+</span></span><span class=line><span class=cl>                ||----w |
+</span></span><span class=line><span class=cl>                ||     ||
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ which cowsay
+</span></span><span class=line><span class=cl>(없음)
+</span></span></code></pre></td></tr></table></div></div><p>한번 쓰고 끝이다. 시스템에 아무것도 안 남는다. 프로젝트마다 필요한 툴을 이렇게 띄우는게 편하다.</p><h2 id=롤백>롤백</h2><p>설치할때마다 &ldquo;세대"가 하나씩 쌓인다. hello 깔고 jq 를 깔아봤다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ nix profile add nixpkgs/nixos-26.05#hello
+</span></span><span class=line><span class=cl>$ nix profile add nixpkgs/nixos-26.05#jq
+</span></span><span class=line><span class=cl>$ jq --version
+</span></span><span class=line><span class=cl>jq-1.8.2
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ nix profile history
+</span></span><span class=line><span class=cl>Version 1 (2026-10-21):
+</span></span><span class=line><span class=cl>  nix: ∅ -&gt; 2.35.3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Version 2 (2026-10-21) &lt;- 1:
+</span></span><span class=line><span class=cl>  flake:nixpkgs/nixos-26.05#legacyPackages.x86_64-linux.hello: ∅ -&gt; 2.12.3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Version 3 (2026-10-21) &lt;- 2:
+</span></span><span class=line><span class=cl>  flake:nixpkgs/nixos-26.05#legacyPackages.x86_64-linux.jq: ∅ -&gt; 1.8.2-bin, 1.8.2-man
+</span></span></code></pre></td></tr></table></div></div><p>한단계 되돌리기.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ nix profile rollback
+</span></span><span class=line><span class=cl>switching profile from version 3 to 2
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ jq --version
+</span></span><span class=line><span class=cl>jq-1.7
+</span></span></code></pre></td></tr></table></div></div><p>Nix 로 깐 jq 1.8.2 가 빠지고 우분투에 원래 있던 jq 1.7 이 다시 잡혔다.
+파일은 안 지워진다. <code>/nix/store</code> 에 그대로 있어서 다시 앞으로 가는것도 바로 된다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ nix profile rollback --to 3
+</span></span><span class=line><span class=cl>switching profile from version 2 to 3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ jq --version
+</span></span><span class=line><span class=cl>jq-1.8.2
+</span></span></code></pre></td></tr></table></div></div><p>NixOS 에서는 이게 OS 전체 단위로 된다. 시스템을 바꿀때마다 세대가 생기고 부팅 메뉴에 남는다. 업데이트하고 부팅이 안 되면 부팅 메뉴에서 이전 세대를 고르면 된다고 한다. 이건 실제 NixOS 가 있어야 해서 안 해봤다.</p><h2 id=시스템-전체를-파일-하나로>시스템 전체를 파일 하나로</h2><p>nginx, ssh 켜고 사용자 하나 만드는 설정이다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-nix data-lang=nix><span class=line><span class=cl><span class=c1># configuration.nix</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=n>config</span><span class=o>,</span> <span class=n>pkgs</span><span class=o>,</span> <span class=o>...</span> <span class=p>}:</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>boot</span><span class=o>.</span><span class=n>loader</span><span class=o>.</span><span class=n>grub</span><span class=o>.</span><span class=n>device</span> <span class=o>=</span> <span class=s2>&#34;/dev/sda&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=n>fileSystems</span><span class=o>.</span><span class=s2>&#34;/&#34;</span> <span class=o>=</span> <span class=p>{</span> <span class=n>device</span> <span class=o>=</span> <span class=s2>&#34;/dev/sda1&#34;</span><span class=p>;</span> <span class=n>fsType</span> <span class=o>=</span> <span class=s2>&#34;ext4&#34;</span><span class=p>;</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>networking</span><span class=o>.</span><span class=n>hostName</span> <span class=o>=</span> <span class=s2>&#34;paper-test&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=n>time</span><span class=o>.</span><span class=n>timeZone</span> <span class=o>=</span> <span class=s2>&#34;Asia/Seoul&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>users</span><span class=o>.</span><span class=n>users</span><span class=o>.</span><span class=n>paper</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>isNormalUser</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>extraGroups</span> <span class=o>=</span> <span class=p>[</span> <span class=s2>&#34;wheel&#34;</span> <span class=p>];</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>environment</span><span class=o>.</span><span class=n>systemPackages</span> <span class=o>=</span> <span class=k>with</span> <span class=n>pkgs</span><span class=p>;</span> <span class=p>[</span> <span class=n>git</span> <span class=n>vim</span> <span class=n>htop</span> <span class=p>];</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>services</span><span class=o>.</span><span class=n>openssh</span><span class=o>.</span><span class=n>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=n>services</span><span class=o>.</span><span class=n>nginx</span><span class=o>.</span><span class=n>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=n>networking</span><span class=o>.</span><span class=n>firewall</span><span class=o>.</span><span class=n>allowedTCPPorts</span> <span class=o>=</span> <span class=p>[</span> <span class=mi>22</span> <span class=mi>80</span> <span class=p>];</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>system</span><span class=o>.</span><span class=n>stateVersion</span> <span class=o>=</span> <span class=s2>&#34;26.05&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>실제 NixOS 에서는 이 파일을 <code>/etc/nixos/configuration.nix</code> 에 두고 아래 한줄이면 적용된다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo nixos-rebuild switch
+</span></span></code></pre></td></tr></table></div></div><p>우분투에서는 적용은 못 하니까 빌드만 해봤다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nix-build -I <span class=nv>nixpkgs</span><span class=o>=</span>channel:nixos-26.05 -I nixos-config<span class=o>=</span>./configuration.nix <span class=s1>&#39;&lt;nixpkgs/nixos&gt;&#39;</span> -A system
+</span></span></code></pre></td></tr></table></div></div><ul><li>처음 빌드: 465개 받고(487.5MB) 270개 빌드. 107초 걸렸다</li><li>결과물 크기 1.2GB. 커널은 6.18.57</li></ul><p>결과 폴더 안에 커널, initrd, <code>/etc</code> 가 다 들어있다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ls result
+</span></span><span class=line><span class=cl>activate  bin  boot.json  dry-activate  etc  firmware  init  initrd  kernel  kernel-modules  ...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ cat result/nixos-version
+</span></span><span class=line><span class=cl>26.05.12297.cd4ea8d57de1
+</span></span></code></pre></td></tr></table></div></div><p>nginx 설정 파일도 <code>/etc/nginx</code> 에 있는게 아니다. store 에 만들어지고 서비스가 그 경로를 바로 본다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>ExecStart=/nix/store/smpkfhyjj22b4zy1f0cprzfhr0nimllr-nginx-1.30.6/bin/nginx -c &#39;/nix/store/biwy2jjqy6gvw5k9j41fg3c2y1kv996v-nginx.conf&#39;
+</span></span></code></pre></td></tr></table></div></div><p>그래서 서버에 들어가서 설정 파일을 손으로 고치는 방식이 아니다. 고치려면 <code>configuration.nix</code> 를 고치고 다시 빌드한다.</p><h2 id=바꾼-것만-다시-빌드된다>바꾼 것만 다시 빌드된다</h2><p>패키지에 tmux 하나 추가하고 다시 빌드했다. 11초.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ nix store diff-closures ./result ./result2
+</span></span><span class=line><span class=cl>libutempter: ∅ → 1.2.3, 38.6 KiB
+</span></span><span class=line><span class=cl>tmux: ∅ → 3.7b, 1.4 MiB
+</span></span><span class=line><span class=cl>utf8proc: ∅ → 2.11.3, 393.5 KiB
+</span></span></code></pre></td></tr></table></div></div><p>tmux 랑 tmux 가 쓰는 라이브러리 두개만 추가됐다. 나머지는 이미 있는걸 그대로 쓴다.</p><h2 id=오타-내면>오타 내면</h2><p><code>enable</code> 을 <code>enabel</code> 로 쳐봤다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>error: The option `services.nginx.enabel&#39; does not exist. Definition values:
+</span></span><span class=line><span class=cl>- In `/.../typo.nix&#39;: true
+</span></span></code></pre></td></tr></table></div></div><p>적용 전에 빌드 단계에서 막힌다. 다만 진짜 에러 앞에 스택 트레이스가 길게 붙어서 처음엔 좀 당황스럽다.</p><h2 id=처음-하면-힘든-점>처음 하면 힘든 점</h2><h4 id=nix-언어>Nix 언어</h4><p>설정 파일이 Nix 라는 언어다. 문법은 짧은데 익숙해지는데 시간이 걸린다.
+위에서 본것처럼 에러 메시지도 길다.</p><h4 id=다른-리눅스용-실행파일이-그냥은-안-돈다>다른 리눅스용 실행파일이 그냥은 안 돈다</h4><p>보통 리눅스 바이너리는 <code>/lib64/ld-linux-x86-64.so.2</code> 를 찾는다. Nix 로 빌드한건 store 경로를 본다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 우분투 /usr/bin/ls
+</span></span><span class=line><span class=cl>interpreter: /lib64/ld-linux-x86-64.so.2
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># nix 로 받은 jq
+</span></span><span class=line><span class=cl>interpreter: /nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100/lib/ld-linux-x86-64.so.2
+</span></span></code></pre></td></tr></table></div></div><p>NixOS 에는 저 <code>/lib64</code> 경로가 없다. 26.05 기본값이 <code>environment.stub-ld.enable = true</code> 라서 실행하면 안내 메시지가 뜨는 정도다.
+외부 바이너리를 돌려야 하면 <code>programs.nix-ld.enable = true</code> 를 켜면 된다고 한다. 이건 안해봤다.</p><h4 id=디스크>디스크</h4><p>이것저것 테스트만 했는데 <code>/nix/store</code> 가 1.1GB 가 됐다. 옛날 세대를 안 지우면 계속 쌓인다. 가끔 정리해줘야 한다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nix-collect-garbage -d
+</span></span></code></pre></td></tr></table></div></div><h4 id=그-외>그 외</h4><ul><li>문서가 여기저기 흩어져 있다. 공식 매뉴얼, nix.dev, 위키가 따로 있다</li><li>26.05 부터 부팅 초기 단계(initrd)가 systemd 기반이 기본이다. 옛날 글 보고 따라하면 다를 수 있다</li></ul><h2 id=써보려면>써보려면</h2><ul><li>바로 NixOS 설치: <a href=https://nixos.org/download/>https://nixos.org/download/</a> 에서 ISO. GUI 설치판하고 minimal 이 있다</li><li>지금 쓰는 리눅스나 맥에 Nix 만 깔아서 <code>nix shell</code> 부터 써보는게 부담이 적다</li><li>인텔 맥은 26.05 가 마지막이다. 26.11 부터는 인텔 맥용 패키지를 안 만든다</li></ul><p>참고)</p><ul><li><a href=https://nixos.org/blog/announcements/2026/nixos-2605/>https://nixos.org/blog/announcements/2026/nixos-2605/</a></li><li><a href=https://nixos.org/manual/nixos/stable/>https://nixos.org/manual/nixos/stable/</a></li><li><a href=https://nix.dev>https://nix.dev</a></li><li><a href=https://wiki.nixos.org>https://wiki.nixos.org</a></li></ul></div><footer class=post-foot><div class=tags><a href=/tags/nixos/>#NixOS</a><a href=/tags/nix/>#Nix</a><a href=/tags/%EB%A6%AC%EB%88%85%EC%8A%A4/>#리눅스</a><a href=/tags/%ED%8C%A8%ED%82%A4%EC%A7%80%EA%B4%80%EB%A6%AC/>#패키지관리</a></div><section class=related><h2>관련 글</h2><ul><li><a href=/posts/centos/2016-08-11-centos-server-notes/><span class=t>CentOS 서버 운영 메모 모음 — 명령어, 톰캣 OOM, 아파치 403, 폰트, SSH</span>
+<span class="d num">2016 · 08 · 11</span></a></li><li><a href=/posts/centos/2015-10-29-flume-setting-sample/><span class=t>Flume 설치 및 테스트 (mac)</span>
+<span class="d num">2015 · 10 · 29</span></a></li><li><a href=/posts/centos/2015-09-16-centos-67/><span class=t>디지탈오션에 서버 셋팅기 (centos 6.7)</span>
+<span class="d num">2015 · 09 · 15</span></a></li></ul></section><nav class=post-nav><a class=prev href=/posts/ai/2026-10-21-threejs-basics-ai/><span class=lbl>이전 글</span><span class=t>three.js — 기본 사용법이랑 AI 쪽에서 쓸만한 점</span></a><a class=next href=/posts/festival/2026-10-24-gyeonggi-foliage/><span class=lbl>다음 글</span><span class=t>경기도 단풍 명소 — 2026 가을, 예약·요금·절정 시기</span></a></nav></footer></article></main></div></div><script>(function(){var t,n,s,o,i,a,l,e=document.documentElement,d="M12 3v2M12 19v2M5 5l1.5 1.5M17.5 17.5L19 19M3 12h2M19 12h2M5 19l1.5-1.5M17.5 6.5L19 5",u="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z";function r(){var t=e.getAttribute("data-theme");return t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches}function c(){var e=document.getElementById("theme-ic");e&&e.setAttribute("d",r()?d:u)}s=document.getElementById("theme"),s&&s.addEventListener("click",function(){var t=r()?"light":"dark";e.setAttribute("data-theme",t);try{localStorage.setItem("theme",t)}catch{}c()}),c(),t=document.getElementById("lang-toggle"),t&&t.addEventListener("click",function(){try{localStorage.setItem("lang",t.getAttribute("data-lang"))}catch{}}),o=document.getElementById("burger"),i=document.getElementById("scrim"),o&&o.addEventListener("click",function(){e.setAttribute("data-nav","open")}),i&&i.addEventListener("click",function(){e.removeAttribute("data-nav")}),n=document.getElementById("q"),n&&(l=[].slice.call(document.querySelectorAll(".row")),a=document.getElementById("empty"),n.addEventListener("input",function(){var t=n.value.trim().toLowerCase(),e=0;l.forEach(function(n){var s=n.textContent.toLowerCase().indexOf(t)!==-1;n.style.display=s?"":"none",s&&e++}),a&&(a.style.display=e?"none":"block")}))})()</script></body></html>

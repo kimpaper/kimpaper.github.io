@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>11월축제 on 기록 저장소</title>
+    <link>https://paper.kim/tags/11%EC%9B%94%EC%B6%95%EC%A0%9C/</link>
+    <description>Recent content in 11월축제 on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Mon, 19 Oct 2026 09:10:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/11%EC%9B%94%EC%B6%95%EC%A0%9C/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>11월 지역 축제 — 강원 · 충청 · 전라 · 경상 · 제주</title>
+      <link>https://paper.kim/posts/festival/2026-10-19-festival-2026-11-regions/</link>
+      <pubDate>Mon, 19 Oct 2026 09:10:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/festival/2026-10-19-festival-2026-11-regions/</guid>
+      <description>2026년 11월 수도권 밖 지역 축제 정리. 부산불꽃축제, 구미라면축제, 괴산김장축제, 고흥유자축제, 최남단 방어축제, 제주감귤박람회, 국화축제들의 일정, 장소, 요금, 셔틀, 즐길 거리를 모았습니다.</description>
+    </item>
+    <item>
+      <title>11월 수도권 축제 — 서울 · 경기 · 인천</title>
+      <link>https://paper.kim/posts/festival/2026-10-19-festival-2026-11-capital/</link>
+      <pubDate>Mon, 19 Oct 2026 09:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/festival/2026-10-19-festival-2026-11-capital/</guid>
+      <description>2026년 11월 서울·경기·인천 축제 정리. 노원달빛산책, 남산 나이트 페스티벌, 서울카페쇼, 여주 산북 김장축제, 경기미 디저트 페스타, 인천공항 스카이 페스티벌 등 일정, 장소, 요금, 교통, 즐길 거리를 모았습니다.</description>
+    </item>
+  </channel>
+</rss>

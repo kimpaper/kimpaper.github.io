@@ -1,0 +1,216 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>NixOS — Notes for First-Timers · paper.archive</title><meta name=description content="What NixOS is and how it differs from Ubuntu-style Linux. Tested by installing Nix on Ubuntu: multiple versions side by side, rollback, and building a NixOS configuration. Based on 26.05."><meta name=keywords content="nixos,nix,linux,package-management"><meta name=author content="페이퍼"><meta name=robots content="index, follow, max-image-preview:large"><link rel=canonical href=https://paper.kim/en/posts/centos/2026-10-21-nixos-intro/><link rel=alternate hreflang=ko-KR href=https://paper.kim/posts/centos/2026-10-21-nixos-intro/><link rel=alternate hreflang=en-US href=https://paper.kim/en/posts/centos/2026-10-21-nixos-intro/><link rel=alternate hreflang=x-default href=https://paper.kim/en/posts/centos/2026-10-21-nixos-intro/><meta name=google-site-verification content="y1M38dn7tn_g66ZU4sW9oodCBS79uDleUIpnFABhR_I"><meta name=naver-site-verification content="d4c08a44984bf4ebeb4b26f639fedfb26163b6e3"><meta property="og:site_name" content="paper.archive"><meta property="og:type" content="article"><meta property="og:title" content="NixOS — Notes for First-Timers"><meta property="og:description" content="What NixOS is and how it differs from Ubuntu-style Linux. Tested by installing Nix on Ubuntu: multiple versions side by side, rollback, and building a NixOS configuration. Based on 26.05."><meta property="og:url" content="https://paper.kim/en/posts/centos/2026-10-21-nixos-intro/"><meta property="og:locale" content="en_US"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:image" content="https://paper.kim/images/default-thumb.jpg"><meta property="og:image:alt" content="NixOS — Notes for First-Timers"><meta property="article:published_time" content="2026-10-21T23:50:00+09:00"><meta property="article:modified_time" content="2026-10-21T23:50:00+09:00"><meta property="article:tag" content="nixos"><meta property="article:tag" content="nix"><meta property="article:tag" content="linux"><meta property="article:tag" content="package-management"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="NixOS — Notes for First-Timers"><meta name=twitter:description content="What NixOS is and how it differs from Ubuntu-style Linux. Tested by installing Nix on Ubuntu: multiple versions side by side, rollback, and building a NixOS configuration. Based on 26.05."><meta name=twitter:domain content="paper.kim"><meta name=twitter:image content="https://paper.kim/images/default-thumb.jpg"><script>(function(){try{var e=localStorage.getItem("theme");e&&document.documentElement.setAttribute("data-theme",e)}catch{}})()</script><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css onload='this.onload=null,this.rel="stylesheet"'><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap"></noscript><link rel=stylesheet href=/css/site.min.4016cb5265290cd3e09ce8cb43c26d23e143347225282a595297fe9ed9e17c2f.css integrity="sha256-QBbLUmUpDNPgnOjLQ8JtI+FDNHIlKCpZUpf+ntnhfC8="><link rel=icon href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5eE77iPPC90ZXh0Pjwvc3ZnPg=="><script async src="https://www.googletagmanager.com/gtag/js?id=G-ECTTT48V9Y"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ECTTT48V9Y")</script><meta name=google-adsense-account content="ca-pub-8048816011496920"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8048816011496920" crossorigin=anonymous></script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Paper","url":"https://paper.kim/"},"dateModified":"2026-10-21T23:50:00+09:00","datePublished":"2026-10-21T23:50:00+09:00","description":"What NixOS is and how it differs from Ubuntu-style Linux. Tested by installing Nix on Ubuntu: multiple versions side by side, rollback, and building a NixOS configuration. Based on 26.05.","headline":"NixOS — Notes for First-Timers","image":["https://paper.kim/images/default-thumb.jpg"],"inLanguage":"en-US","keywords":"nixos, nix, linux, package-management","mainEntityOfPage":{"@id":"https://paper.kim/en/posts/centos/2026-10-21-nixos-intro/","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://paper.kim/images/site-logo.png"},"name":"paper.archive"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://paper.kim/en/","name":"paper.archive","position":1},{"@type":"ListItem","item":"https://paper.kim/en/categories/linux/","name":"Linux","position":2},{"@type":"ListItem","item":"https://paper.kim/en/posts/centos/2026-10-21-nixos-intro/","name":"NixOS — Notes for First-Timers","position":3}]}</script></head><body><div class=scrim id=scrim></div><div class=shell><aside class=index id=sidebar><div class=masthead><a href=/en/ class=wordmark>paper<b>.</b>archive</a><div class=sub>기록 저장소 · from Seoul, Korea</div><div class="range num">2015 — 2026 · 51 entries</div></div><nav class=toc aria-label=categories><details class=grp open><summary><span class=idx>I</span> Tech Notes <span class=chev></span></summary><div class=sub-list><a href=/en/categories/ai/>AI · LLM <span class="c num">9</span></a><a href=/en/categories/aws/>AWS · Cloud <span class="c num">1</span></a><a href=/en/categories/spring/>Spring · JPA <span class="c num">2</span></a><a href=/en/categories/golang/>Golang <span class="c num">1</span></a><a href=/en/categories/kubernetes/>Kubernetes · Infra <span class="c num">3</span></a><a href=/en/categories/python/>Python <span class="c num">1</span></a><a href=/en/categories/opensource/>Open Source · Data <span class="c num">4</span></a><a href=/en/categories/linux/>CentOS · Linux <span class="c num">4</span></a><a href=/en/categories/dotnet/>.NET <span class="c num">1</span></a></div></details><details class=grp><summary><span class=idx>II</span> Life & K-Food <span class=chev></span></summary><div class=sub-list><a href=/en/categories/diary/>Daily life · Food <span class="c num">15</span></a><a href=/en/categories/festival/>Festivals · Local Guide <span class="c num">5</span></a></div></details><details class=grp><summary><span class=idx>III</span> Misc <span class=chev></span></summary><div class=sub-list><a href=/en/categories/etc/>Tips · Troubleshooting <span class="c num">4</span></a><a href=/en/categories/mac/>Mac · Etc <span class="c num">1</span></a></div></details><div class=toc-flat><a href=/en/archives/><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg> Archive
+</a><a href=/en/tags/><svg viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/><circle cx="12" cy="12" r="2"/></svg> Tags
+</a><a href=/en/about/><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> About
+</a><a href=/posts/centos/2026-10-21-nixos-intro/ id=lang-toggle data-lang=ko title="한국어로 보기"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+한국어</a></div></nav><div class=index-foot><button class=icon-btn id=theme title=theme aria-label=theme>
+<svg id="theme-ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+</button>
+<a class=icon-btn href=https://github.com/kimpaper title=GitHub aria-label=GitHub><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2.0C7 4.9 5.9 5.2 5.9 5.2a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004.5 11.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V23"/></svg></a>
+<a class=icon-btn href=/en/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<span class=spacer></span>
+<span class=copy>© 페이퍼</span></div></aside><div class=main><header class=topbar><button class="icon-btn hamburger" id=burger aria-label=menu><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class=crumb><a href=/en/>paper.archive</a><span class=sep>/</span><b>Linux</b></div><span class=spacer></span>
+<label class=search><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+<input id=q type=search placeholder="Search this list…" aria-label=search></label></header><main class=content id=content><article class=post><header class=post-head><a class=cat-tag href=/en/categories/linux/>Linux</a><h1 class=post-title>NixOS — Notes for First-Timers</h1><div class="post-meta num"><span>2026 · 10 · 21</span>
+<span>6 min read</span>
+<span>Paper</span></div></header><details class=toc-box open><summary>Contents</summary><nav><nav id=TableOfContents><ul><li><a href=#what-it-is>What it is</a></li><li><a href=#how-it-differs-from-a-normal-distro>How it differs from a normal distro</a></li><li><a href=#install>Install</a></li><li><a href=#packages-live-in-nixstore>Packages live in /nix/store</a></li><li><a href=#use-a-tool-without-installing-it>Use a tool without installing it</a></li><li><a href=#rollback>Rollback</a></li><li><a href=#the-whole-system-in-one-file>The whole system in one file</a></li><li><a href=#only-the-change-gets-rebuilt>Only the change gets rebuilt</a></li><li><a href=#a-typo>A typo</a></li><li><a href=#what-is-hard-at-first>What is hard at first</a><ul><li></li></ul></li><li><a href=#trying-it>Trying it</a></li></ul></nav></nav></details><div class=prose><p>NixOS keeps coming up, so I looked into what it actually is.
+I did not install NixOS in a VM. I installed the Nix package manager on an Ubuntu 24.04 server and went as far as building a NixOS configuration.
+Versions: NixOS 26.05, Nix 2.35.3.</p><h2 id=what-it-is>What it is</h2><p>A Linux distribution built on top of the Nix package manager.</p><p>On a normal distro you install the OS, then add packages and edit files under <code>/etc</code> until the server looks right.
+On NixOS you describe the whole system in one file, <code>configuration.nix</code>, and the OS is built from it.
+Which packages are installed and which services run is all in that file.</p><ul><li>Nix started around 2003 as Eelco Dolstra&rsquo;s PhD research</li><li>Two releases a year, May and November, named <code>year.month</code></li><li>Current release: 26.05 &ldquo;Yarara&rdquo; (May 30, 2026). Next: 26.11 &ldquo;Zokor&rdquo;</li><li>Each release is supported for seven months. 26.05 runs until December 31, 2026</li></ul><p>You can use the Nix package manager without NixOS, on Ubuntu or macOS for example.</p><h2 id=how-it-differs-from-a-normal-distro>How it differs from a normal distro</h2><ul><li>Where packages live: Ubuntu uses <code>/usr/bin</code> and <code>/usr/lib</code>. NixOS uses <code>/nix/store/&lt;hash>-&lt;name>-&lt;version></code></li><li>Configuration: on Ubuntu you edit files under <code>/etc</code>. On NixOS you edit <code>configuration.nix</code> and rebuild</li><li>Several versions of one package: hard on Ubuntu. On NixOS they just sit side by side</li><li>An upgrade breaks things: on Ubuntu you restore from backup. On NixOS you roll back to the previous generation, also from the boot menu</li><li>Identical servers: Ubuntu needs Ansible or similar. On NixOS the same file gives the same system</li></ul><p>Below is what I actually tried.</p><h2 id=install>Install</h2><p>The usual way is the multi-user (daemon) install.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sh &lt;<span class=o>(</span>curl -L https://nixos.org/nix/install<span class=o>)</span> --daemon
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>I was root inside a container, so I used <code>--no-daemon</code>. As root it fails because the <code>nixbld</code> group is missing; adding <code>build-users-group =</code> to <code>/etc/nix/nix.conf</code> and rerunning fixed it.</p></blockquote><p>The newer commands (<code>nix run</code>, <code>nix shell</code>) and flakes are still experimental and have to be turned on.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># /etc/nix/nix.conf
+</span></span><span class=line><span class=cl>experimental-features = nix-command flakes
+</span></span></code></pre></td></tr></table></div></div><p>Without it:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>error: experimental Nix feature &#39;nix-command&#39; is disabled; add &#39;--extra-experimental-features nix-command&#39; to enable it
+</span></span></code></pre></td></tr></table></div></div><h2 id=packages-live-in-nixstore>Packages live in /nix/store</h2><p>The server already had Python 3.11. I ran 3.12 and 3.13 through Nix.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ python3 --version
+</span></span><span class=line><span class=cl>Python 3.11.15
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ nix shell nixpkgs/nixos-26.05#python312 -c python3 --version
+</span></span><span class=line><span class=cl>Python 3.12.14
+</span></span><span class=line><span class=cl>/nix/store/6jmqjw0f3s7kl7x4ps1abab1dpaxp3yj-python3-3.12.14/bin/python3.12
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ nix shell nixpkgs/nixos-26.05#python313 -c python3 --version
+</span></span><span class=line><span class=cl>Python 3.13.15
+</span></span><span class=line><span class=cl>/nix/store/jy00n3jp5xj8s40n1fbldmkcr5n7avxc-python3-3.13.15/bin/python3.13
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ python3 --version
+</span></span><span class=line><span class=cl>Python 3.11.15
+</span></span></code></pre></td></tr></table></div></div><ul><li>Each version gets its own path under <code>/nix/store</code>, so they never collide</li><li>The hash comes from everything that went into the build (source, dependencies, options). Change any of it and the path changes</li><li>The system&rsquo;s own 3.11 is untouched</li></ul><p>The first fetch for Python 3.12 pulled 23 paths (74.7 MB). Python 3.13 shared most of them and needed only one more path (54.1 MB).</p><h2 id=use-a-tool-without-installing-it>Use a tool without installing it</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ nix shell nixpkgs/nixos-26.05#cowsay -c cowsay nix
+</span></span><span class=line><span class=cl> _____
+</span></span><span class=line><span class=cl>&lt; nix &gt;
+</span></span><span class=line><span class=cl> -----
+</span></span><span class=line><span class=cl>        \   ^__^
+</span></span><span class=line><span class=cl>         \  (oo)\_______
+</span></span><span class=line><span class=cl>            (__)\       )\/\
+</span></span><span class=line><span class=cl>                ||----w |
+</span></span><span class=line><span class=cl>                ||     ||
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ which cowsay
+</span></span><span class=line><span class=cl>(nothing)
+</span></span></code></pre></td></tr></table></div></div><p>It runs once and leaves nothing on the system. Handy for per-project tools.</p><h2 id=rollback>Rollback</h2><p>Every install creates a new generation. I installed hello, then jq.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ nix profile add nixpkgs/nixos-26.05#hello
+</span></span><span class=line><span class=cl>$ nix profile add nixpkgs/nixos-26.05#jq
+</span></span><span class=line><span class=cl>$ jq --version
+</span></span><span class=line><span class=cl>jq-1.8.2
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ nix profile history
+</span></span><span class=line><span class=cl>Version 1 (2026-10-21):
+</span></span><span class=line><span class=cl>  nix: ∅ -&gt; 2.35.3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Version 2 (2026-10-21) &lt;- 1:
+</span></span><span class=line><span class=cl>  flake:nixpkgs/nixos-26.05#legacyPackages.x86_64-linux.hello: ∅ -&gt; 2.12.3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Version 3 (2026-10-21) &lt;- 2:
+</span></span><span class=line><span class=cl>  flake:nixpkgs/nixos-26.05#legacyPackages.x86_64-linux.jq: ∅ -&gt; 1.8.2-bin, 1.8.2-man
+</span></span></code></pre></td></tr></table></div></div><p>One step back:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ nix profile rollback
+</span></span><span class=line><span class=cl>switching profile from version 3 to 2
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ jq --version
+</span></span><span class=line><span class=cl>jq-1.7
+</span></span></code></pre></td></tr></table></div></div><p>The Nix jq 1.8.2 is gone from the path and Ubuntu&rsquo;s own jq 1.7 shows up again.
+Nothing was deleted. The files are still in <code>/nix/store</code>, so going forward again is instant.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ nix profile rollback --to 3
+</span></span><span class=line><span class=cl>switching profile from version 2 to 3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ jq --version
+</span></span><span class=line><span class=cl>jq-1.8.2
+</span></span></code></pre></td></tr></table></div></div><p>On NixOS this works for the whole OS. Every system change is a generation and stays in the boot menu, so if an update leaves the machine unbootable you pick the previous one. I could not try that part without a real NixOS install.</p><h2 id=the-whole-system-in-one-file>The whole system in one file</h2><p>A config with nginx, SSH and one user:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-nix data-lang=nix><span class=line><span class=cl><span class=c1># configuration.nix</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=n>config</span><span class=o>,</span> <span class=n>pkgs</span><span class=o>,</span> <span class=o>...</span> <span class=p>}:</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>boot</span><span class=o>.</span><span class=n>loader</span><span class=o>.</span><span class=n>grub</span><span class=o>.</span><span class=n>device</span> <span class=o>=</span> <span class=s2>&#34;/dev/sda&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=n>fileSystems</span><span class=o>.</span><span class=s2>&#34;/&#34;</span> <span class=o>=</span> <span class=p>{</span> <span class=n>device</span> <span class=o>=</span> <span class=s2>&#34;/dev/sda1&#34;</span><span class=p>;</span> <span class=n>fsType</span> <span class=o>=</span> <span class=s2>&#34;ext4&#34;</span><span class=p>;</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>networking</span><span class=o>.</span><span class=n>hostName</span> <span class=o>=</span> <span class=s2>&#34;paper-test&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=n>time</span><span class=o>.</span><span class=n>timeZone</span> <span class=o>=</span> <span class=s2>&#34;Asia/Seoul&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>users</span><span class=o>.</span><span class=n>users</span><span class=o>.</span><span class=n>paper</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>isNormalUser</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>extraGroups</span> <span class=o>=</span> <span class=p>[</span> <span class=s2>&#34;wheel&#34;</span> <span class=p>];</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>environment</span><span class=o>.</span><span class=n>systemPackages</span> <span class=o>=</span> <span class=k>with</span> <span class=n>pkgs</span><span class=p>;</span> <span class=p>[</span> <span class=n>git</span> <span class=n>vim</span> <span class=n>htop</span> <span class=p>];</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>services</span><span class=o>.</span><span class=n>openssh</span><span class=o>.</span><span class=n>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=n>services</span><span class=o>.</span><span class=n>nginx</span><span class=o>.</span><span class=n>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=n>networking</span><span class=o>.</span><span class=n>firewall</span><span class=o>.</span><span class=n>allowedTCPPorts</span> <span class=o>=</span> <span class=p>[</span> <span class=mi>22</span> <span class=mi>80</span> <span class=p>];</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>system</span><span class=o>.</span><span class=n>stateVersion</span> <span class=o>=</span> <span class=s2>&#34;26.05&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>On NixOS you put this in <code>/etc/nixos/configuration.nix</code> and apply it with:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo nixos-rebuild switch
+</span></span></code></pre></td></tr></table></div></div><p>On Ubuntu I can only build it:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nix-build -I <span class=nv>nixpkgs</span><span class=o>=</span>channel:nixos-26.05 -I nixos-config<span class=o>=</span>./configuration.nix <span class=s1>&#39;&lt;nixpkgs/nixos&gt;&#39;</span> -A system
+</span></span></code></pre></td></tr></table></div></div><ul><li>First build: 465 paths fetched (487.5 MB), 270 built, 107 seconds</li><li>Result is 1.2 GB, with kernel 6.18.57</li></ul><p>The result folder holds the kernel, the initrd and <code>/etc</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ls result
+</span></span><span class=line><span class=cl>activate  bin  boot.json  dry-activate  etc  firmware  init  initrd  kernel  kernel-modules  ...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ cat result/nixos-version
+</span></span><span class=line><span class=cl>26.05.12297.cd4ea8d57de1
+</span></span></code></pre></td></tr></table></div></div><p>Even the nginx config is not a file in <code>/etc/nginx</code>. It is generated in the store and the service points straight at it:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>ExecStart=/nix/store/smpkfhyjj22b4zy1f0cprzfhr0nimllr-nginx-1.30.6/bin/nginx -c &#39;/nix/store/biwy2jjqy6gvw5k9j41fg3c2y1kv996v-nginx.conf&#39;
+</span></span></code></pre></td></tr></table></div></div><p>So you don&rsquo;t log in and edit config files by hand. You change <code>configuration.nix</code> and rebuild.</p><h2 id=only-the-change-gets-rebuilt>Only the change gets rebuilt</h2><p>I added tmux to the package list and rebuilt. 11 seconds.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ nix store diff-closures ./result ./result2
+</span></span><span class=line><span class=cl>libutempter: ∅ → 1.2.3, 38.6 KiB
+</span></span><span class=line><span class=cl>tmux: ∅ → 3.7b, 1.4 MiB
+</span></span><span class=line><span class=cl>utf8proc: ∅ → 2.11.3, 393.5 KiB
+</span></span></code></pre></td></tr></table></div></div><p>Only tmux and the two libraries it needs were added. Everything else was reused.</p><h2 id=a-typo>A typo</h2><p>I changed <code>enable</code> to <code>enabel</code>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>error: The option `services.nginx.enabel&#39; does not exist. Definition values:
+</span></span><span class=line><span class=cl>- In `/.../typo.nix&#39;: true
+</span></span></code></pre></td></tr></table></div></div><p>It fails at build time, before anything is applied. The real error comes after a long stack trace, which is confusing at first.</p><h2 id=what-is-hard-at-first>What is hard at first</h2><h4 id=the-nix-language>The Nix language</h4><p>The config is written in Nix, its own language. The syntax is small but takes time to get used to, and error messages are long, as above.</p><h4 id=binaries-from-other-distros-dont-just-run>Binaries from other distros don&rsquo;t just run</h4><p>A normal Linux binary looks for <code>/lib64/ld-linux-x86-64.so.2</code>. Anything built by Nix points into the store instead:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># Ubuntu /usr/bin/ls
+</span></span><span class=line><span class=cl>interpreter: /lib64/ld-linux-x86-64.so.2
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># jq from nix
+</span></span><span class=line><span class=cl>interpreter: /nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100/lib/ld-linux-x86-64.so.2
+</span></span></code></pre></td></tr></table></div></div><p>NixOS has no real <code>/lib64</code> loader. In 26.05 <code>environment.stub-ld.enable</code> is on by default, so you get an explanatory message instead.
+To run outside binaries, the usual answer is <code>programs.nix-ld.enable = true</code>. I did not try it.</p><h4 id=disk-space>Disk space</h4><p>After only these tests <code>/nix/store</code> was 1.1 GB. Old generations keep piling up until you clean them:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nix-collect-garbage -d
+</span></span></code></pre></td></tr></table></div></div><h4 id=other>Other</h4><ul><li>Documentation is spread across the manual, nix.dev and the wiki</li><li>From 26.05 the early boot stage (initrd) is systemd-based by default, so older guides may not match</li></ul><h2 id=trying-it>Trying it</h2><ul><li>Full NixOS: ISO from <a href=https://nixos.org/download/>https://nixos.org/download/</a> (graphical installer or minimal)</li><li>Lower commitment: install just Nix on your current Linux or Mac and start with <code>nix shell</code></li><li>Intel Macs: 26.05 is the last release with packages built for them</li></ul><p>References</p><ul><li><a href=https://nixos.org/blog/announcements/2026/nixos-2605/>https://nixos.org/blog/announcements/2026/nixos-2605/</a></li><li><a href=https://nixos.org/manual/nixos/stable/>https://nixos.org/manual/nixos/stable/</a></li><li><a href=https://nix.dev>https://nix.dev</a></li><li><a href=https://wiki.nixos.org>https://wiki.nixos.org</a></li></ul></div><footer class=post-foot><div class=tags><a href=/tags/nixos/>#nixos</a><a href=/tags/nix/>#nix</a><a href=/tags/linux/>#linux</a><a href=/tags/package-management/>#package-management</a></div><section class=related><h2>Related posts</h2><ul><li><a href=/en/posts/centos/2016-08-11-centos-server-notes/><span class=t>CentOS Server Notes — Commands, Tomcat OOM, Apache 403, Fonts, SSH</span>
+<span class="d num">2016 · 08 · 11</span></a></li><li><a href=/en/posts/centos/2015-10-29-flume-setting-sample/><span class=t>Flume install and test (mac)</span>
+<span class="d num">2015 · 10 · 29</span></a></li><li><a href=/en/posts/centos/2015-09-16-centos-67/><span class=t>Setting up a server on DigitalOcean (CentOS 6.7)</span>
+<span class="d num">2015 · 09 · 15</span></a></li></ul></section><nav class=post-nav><a class=prev href=/en/posts/ai/2026-10-21-threejs-basics-ai/><span class=lbl>Previous</span><span class=t>three.js — The Basics, and Why It Fits AI Work</span></a><a class=next href=/en/posts/festival/2026-10-24-gyeonggi-foliage/><span class=lbl>Next</span><span class=t>Autumn Leaves in Gyeonggi-do, 2026: Where to Go, Bookings, Fees and Peak Dates</span></a></nav></footer></article></main></div></div><script>(function(){var t,n,s,o,i,a,l,e=document.documentElement,d="M12 3v2M12 19v2M5 5l1.5 1.5M17.5 17.5L19 19M3 12h2M19 12h2M5 19l1.5-1.5M17.5 6.5L19 5",u="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z";function r(){var t=e.getAttribute("data-theme");return t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches}function c(){var e=document.getElementById("theme-ic");e&&e.setAttribute("d",r()?d:u)}s=document.getElementById("theme"),s&&s.addEventListener("click",function(){var t=r()?"light":"dark";e.setAttribute("data-theme",t);try{localStorage.setItem("theme",t)}catch{}c()}),c(),t=document.getElementById("lang-toggle"),t&&t.addEventListener("click",function(){try{localStorage.setItem("lang",t.getAttribute("data-lang"))}catch{}}),o=document.getElementById("burger"),i=document.getElementById("scrim"),o&&o.addEventListener("click",function(){e.setAttribute("data-nav","open")}),i&&i.addEventListener("click",function(){e.removeAttribute("data-nav")}),n=document.getElementById("q"),n&&(l=[].slice.call(document.querySelectorAll(".row")),a=document.getElementById("empty"),n.addEventListener("input",function(){var t=n.value.trim().toLowerCase(),e=0;l.forEach(function(n){var s=n.textContent.toLowerCase().indexOf(t)!==-1;n.style.display=s?"":"none",s&&e++}),a&&(a.style.display=e?"none":"block")}))})()</script></body></html>
