@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Fluentd on paper.archive</title>
+    <link>https://paper.kim/en/tags/fluentd/</link>
+    <description>Recent content in Fluentd on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 22 Jun 2016 15:47:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/fluentd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Collecting logs with fluentd</title>
+      <link>https://paper.kim/en/posts/opensource/2016-06-21-fluentd/</link>
+      <pubDate>Wed, 22 Jun 2016 15:47:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/opensource/2016-06-21-fluentd/</guid>
+      <description>I&amp;#39;ve been collecting error logs with flume, but I&amp;#39;m switching to fluentd. actually the goal is monitoring, not collecting The architecture seems…</description>
+    </item>
+  </channel>
+</rss>

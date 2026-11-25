@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>팁 on 기록 저장소</title>
+    <link>https://paper.kim/tags/%ED%8C%81/</link>
+    <description>Recent content in 팁 on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Sat, 26 Sep 2026 16:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/%ED%8C%81/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Claude Code 토큰 절약 — 직접 재본 결과</title>
+      <link>https://paper.kim/posts/ai/2026-09-26-claude-code-token-tips/</link>
+      <pubDate>Sat, 26 Sep 2026 16:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-09-26-claude-code-token-tips/</guid>
+      <description>Claude Code 토큰 아끼는 팁들이 진짜 먹히는지 claude -p 로 직접 재봤다. CLAUDE.md 길이, 로그 넘기는 방법, 세션 정리, 모델과 effort, MCP 도구, 서브에이전트까지.</description>
+    </item>
+  </channel>
+</rss>

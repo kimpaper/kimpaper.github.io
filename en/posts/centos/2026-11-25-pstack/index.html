@@ -1,0 +1,251 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>pstack — Seeing Where a Stuck Process Is Stuck · paper.archive</title><meta name=description content="pstack prints the stack of every thread in a running process. Tested on a deadlocked C program. On Ubuntu the pstack package fails on 64-bit processes, so here is the gdb way, plus eu-stack and what …"><meta name=keywords content="pstack,gdb,linux,troubleshooting"><meta name=author content="페이퍼"><meta name=robots content="index, follow, max-image-preview:large"><link rel=canonical href=https://paper.kim/en/posts/centos/2026-11-25-pstack/><link rel=alternate hreflang=ko-KR href=https://paper.kim/posts/centos/2026-11-25-pstack/><link rel=alternate hreflang=en-US href=https://paper.kim/en/posts/centos/2026-11-25-pstack/><link rel=alternate hreflang=x-default href=https://paper.kim/en/posts/centos/2026-11-25-pstack/><meta name=google-site-verification content="y1M38dn7tn_g66ZU4sW9oodCBS79uDleUIpnFABhR_I"><meta name=naver-site-verification content="d4c08a44984bf4ebeb4b26f639fedfb26163b6e3"><meta property="og:site_name" content="paper.archive"><meta property="og:type" content="article"><meta property="og:title" content="pstack — Seeing Where a Stuck Process Is Stuck"><meta property="og:description" content="pstack prints the stack of every thread in a running process. Tested on a deadlocked C program. On Ubuntu the pstack package fails on 64-bit processes, so here is the gdb way, plus eu-stack and what …"><meta property="og:url" content="https://paper.kim/en/posts/centos/2026-11-25-pstack/"><meta property="og:locale" content="en_US"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:image" content="https://paper.kim/images/default-thumb.jpg"><meta property="og:image:alt" content="pstack — Seeing Where a Stuck Process Is Stuck"><meta property="article:published_time" content="2026-11-25T17:40:00+09:00"><meta property="article:modified_time" content="2026-11-25T17:40:00+09:00"><meta property="article:tag" content="pstack"><meta property="article:tag" content="gdb"><meta property="article:tag" content="linux"><meta property="article:tag" content="troubleshooting"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="pstack — Seeing Where a Stuck Process Is Stuck"><meta name=twitter:description content="pstack prints the stack of every thread in a running process. Tested on a deadlocked C program. On Ubuntu the pstack package fails on 64-bit processes, so here is the gdb way, plus eu-stack and what …"><meta name=twitter:domain content="paper.kim"><meta name=twitter:image content="https://paper.kim/images/default-thumb.jpg"><script>(function(){try{var e=localStorage.getItem("theme");e&&document.documentElement.setAttribute("data-theme",e)}catch{}})()</script><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css onload='this.onload=null,this.rel="stylesheet"'><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet crossorigin href=https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap"></noscript><link rel=stylesheet href=/css/site.min.3e47dad21148beffe267c282946345e4a1b530a1d5869fa0e2485e3a58d9762c.css integrity="sha256-Pkfa0hFIvv/iZ8KClGNF5KG1MKHVhp+g4kheOljZdiw="><link rel=icon href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5eE77iPPC90ZXh0Pjwvc3ZnPg=="><script async src="https://www.googletagmanager.com/gtag/js?id=G-ECTTT48V9Y"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ECTTT48V9Y")</script><meta name=google-adsense-account content="ca-pub-8048816011496920"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8048816011496920" crossorigin=anonymous></script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Paper","url":"https://paper.kim/"},"dateModified":"2026-11-25T17:40:00+09:00","datePublished":"2026-11-25T17:40:00+09:00","description":"pstack prints the stack of every thread in a running process. Tested on a deadlocked C program. On Ubuntu the pstack package fails on 64-bit processes, so here is the gdb way, plus eu-stack and what …","headline":"pstack — Seeing Where a Stuck Process Is Stuck","image":["https://paper.kim/images/default-thumb.jpg"],"inLanguage":"en-US","keywords":"pstack, gdb, linux, troubleshooting","mainEntityOfPage":{"@id":"https://paper.kim/en/posts/centos/2026-11-25-pstack/","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://paper.kim/images/site-logo.png"},"name":"paper.archive"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://paper.kim/en/","name":"paper.archive","position":1},{"@type":"ListItem","item":"https://paper.kim/en/categories/linux/","name":"Linux","position":2},{"@type":"ListItem","item":"https://paper.kim/en/posts/centos/2026-11-25-pstack/","name":"pstack — Seeing Where a Stuck Process Is Stuck","position":3}]}</script></head><body><div class=scrim id=scrim></div><div class=shell><aside class=index id=sidebar><div class=masthead><a href=/en/ class=wordmark>paper<b>.</b>archive</a><div class=sub>기록 저장소 · from Seoul, Korea</div><div class="range num">2015 — 2026 · 53 entries</div></div><nav class=toc aria-label=categories><details class=grp open><summary><span class=idx>I</span> Tech Notes <span class=chev></span></summary><div class=sub-list><a href=/en/categories/ai/>AI · LLM <span class="c num">10</span></a><a href=/en/categories/aws/>AWS · Cloud <span class="c num">1</span></a><a href=/en/categories/spring/>Spring · JPA <span class="c num">2</span></a><a href=/en/categories/golang/>Golang <span class="c num">1</span></a><a href=/en/categories/kubernetes/>Kubernetes · Infra <span class="c num">3</span></a><a href=/en/categories/python/>Python <span class="c num">1</span></a><a href=/en/categories/opensource/>Open Source · Data <span class="c num">4</span></a><a href=/en/categories/linux/>CentOS · Linux <span class="c num">5</span></a><a href=/en/categories/dotnet/>.NET <span class="c num">1</span></a></div></details><details class=grp><summary><span class=idx>II</span> Life & K-Food <span class=chev></span></summary><div class=sub-list><a href=/en/categories/diary/>Daily life · Food <span class="c num">15</span></a><a href=/en/categories/festival/>Festivals · Local Guide <span class="c num">5</span></a></div></details><details class=grp><summary><span class=idx>III</span> Misc <span class=chev></span></summary><div class=sub-list><a href=/en/categories/etc/>Tips · Troubleshooting <span class="c num">4</span></a><a href=/en/categories/mac/>Mac · Etc <span class="c num">1</span></a></div></details><div class=toc-flat><a href=/en/archives/><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg> Archive
+</a><a href=/en/tags/><svg viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/><circle cx="12" cy="12" r="2"/></svg> Tags
+</a><a href=/en/about/><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> About
+</a><a href=/posts/centos/2026-11-25-pstack/ id=lang-toggle data-lang=ko title="한국어로 보기"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+한국어</a></div></nav><div class=index-foot><button class=icon-btn id=theme title=theme aria-label=theme>
+<svg id="theme-ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+</button>
+<a class=icon-btn href=https://github.com/kimpaper title=GitHub aria-label=GitHub><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2.0C7 4.9 5.9 5.2 5.9 5.2a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004.5 11.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V23"/></svg></a>
+<a class=icon-btn href=/en/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<span class=spacer></span>
+<span class=copy>© 페이퍼</span></div></aside><div class=main><header class=topbar><button class="icon-btn hamburger" id=burger aria-label=menu><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class=crumb><a href=/en/>paper.archive</a><span class=sep>/</span><b>Linux</b></div><span class=spacer></span>
+<label class=search><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+<input id=q type=search placeholder="Search this list…" aria-label=search></label></header><main class=content id=content><article class=post><header class=post-head><a class=cat-tag href=/en/categories/linux/>Linux</a><h1 class=post-title>pstack — Seeing Where a Stuck Process Is Stuck</h1><div class="post-meta num"><span>2026 · 11 · 25</span>
+<span>6 min read</span>
+<span>Paper</span></div></header><details class=toc-box open><summary>Contents</summary><nav><nav id=TableOfContents><ul><li><a href=#what-it-is>What it is</a></li><li><a href=#a-program-that-deadlocks>A program that deadlocks</a></li><li><a href=#ubuntus-pstack-package-does-not-work>Ubuntu&rsquo;s pstack package does not work</a></li><li><a href=#with-gdb>With gdb</a><ul><li></li></ul></li><li><a href=#eu-stack>eu-stack</a></li><li><a href=#things-to-watch>Things to watch</a><ul><li></li></ul></li></ul></nav></nav></details><div class=prose><p>Sometimes a process on a server just hangs: no CPU, no response.
+Before killing it, pstack shows where it is stuck.</p><p>Tested on Ubuntu 24.04 with gdb 15.1.</p><h2 id=what-it-is>What it is</h2><p>Give it the PID of a running process and it prints the call stack of each thread. It does not kill or restart anything.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pstack &lt;pid&gt;
+</span></span></code></pre></td></tr></table></div></div><ul><li>It started as a Solaris command</li><li>On CentOS and RHEL it ships in the gdb package. <code>pstack</code> is a symlink to <code>gstack</code>, a script that attaches gdb and runs <code>thread apply all bt</code></li><li>Since gdb 16, <code>gstack</code> is part of upstream gdb</li></ul><p>Think of it as jstack for C and C++ programs.</p><h2 id=a-program-that-deadlocks>A program that deadlocks</h2><p>Two threads take two mutexes in opposite order. After one second they wait on each other forever.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;pthread.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;stdio.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;unistd.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>pthread_mutex_t</span> <span class=n>a</span> <span class=o>=</span> <span class=n>PTHREAD_MUTEX_INITIALIZER</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kt>pthread_mutex_t</span> <span class=n>b</span> <span class=o>=</span> <span class=n>PTHREAD_MUTEX_INITIALIZER</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=o>*</span><span class=nf>worker1</span><span class=p>(</span><span class=kt>void</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nf>pthread_mutex_lock</span><span class=p>(</span><span class=o>&amp;</span><span class=n>a</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nf>sleep</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nf>pthread_mutex_lock</span><span class=p>(</span><span class=o>&amp;</span><span class=n>b</span><span class=p>);</span>   <span class=cm>/* worker2 holds b */</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nb>NULL</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=o>*</span><span class=nf>worker2</span><span class=p>(</span><span class=kt>void</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nf>pthread_mutex_lock</span><span class=p>(</span><span class=o>&amp;</span><span class=n>b</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nf>sleep</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nf>pthread_mutex_lock</span><span class=p>(</span><span class=o>&amp;</span><span class=n>a</span><span class=p>);</span>   <span class=cm>/* worker1 holds a */</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nb>NULL</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>(</span><span class=kt>void</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>pthread_t</span> <span class=n>t1</span><span class=p>,</span> <span class=n>t2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=nf>pthread_create</span><span class=p>(</span><span class=o>&amp;</span><span class=n>t1</span><span class=p>,</span> <span class=nb>NULL</span><span class=p>,</span> <span class=n>worker1</span><span class=p>,</span> <span class=nb>NULL</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nf>pthread_create</span><span class=p>(</span><span class=o>&amp;</span><span class=n>t2</span><span class=p>,</span> <span class=nb>NULL</span><span class=p>,</span> <span class=n>worker2</span><span class=p>,</span> <span class=nb>NULL</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nf>printf</span><span class=p>(</span><span class=s>&#34;pid %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=nf>getpid</span><span class=p>());</span>
+</span></span><span class=line><span class=cl>    <span class=nf>fflush</span><span class=p>(</span><span class=n>stdout</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nf>pthread_join</span><span class=p>(</span><span class=n>t1</span><span class=p>,</span> <span class=nb>NULL</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nf>pthread_join</span><span class=p>(</span><span class=n>t2</span><span class=p>,</span> <span class=nb>NULL</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>gcc -g -O0 -pthread -o hang hang.c
+</span></span><span class=line><span class=cl>./hang <span class=p>&amp;</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ps -o pid,stat,nlwp,cmd -p 601
+</span></span><span class=line><span class=cl>  PID STAT NLWP CMD
+</span></span><span class=line><span class=cl>  601 Sl      3 ./hang
+</span></span></code></pre></td></tr></table></div></div><p>Three threads (<code>NLWP</code>), state <code>S</code> (sleeping). From the outside it looks like a normal idle process.</p><h2 id=ubuntus-pstack-package-does-not-work>Ubuntu&rsquo;s pstack package does not work</h2><p>Ubuntu does have a <code>pstack</code> package.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt install pstack
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ pstack 601
+</span></span><span class=line><span class=cl>pstack: Input/output error
+</span></span><span class=line><span class=cl>failed to read target.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>601: ./hang
+</span></span></code></pre></td></tr></table></div></div><p>It is version 1.3.1, a very old tool that cannot read 64-bit processes. On Ubuntu, use gdb directly.</p><h2 id=with-gdb>With gdb</h2><p>This is exactly what pstack does.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>gdb -q -batch -ex <span class=s2>&#34;thread apply all bt&#34;</span> -p <span class=m>601</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Thread 3 (Thread 0x7fdf5ffff6c0 (LWP 603) &#34;hang&#34;):
+</span></span><span class=line><span class=cl>#0  futex_wait (private=0, expected=2, futex_word=0x55ebdb842080 &lt;b&gt;) at ../sysdeps/nptl/futex-internal.h:146
+</span></span><span class=line><span class=cl>#1  __GI___lll_lock_wait (futex=futex@entry=0x55ebdb842080 &lt;b&gt;, private=0) at ./nptl/lowlevellock.c:49
+</span></span><span class=line><span class=cl>#2  0x00007fdf600a01c1 in lll_mutex_lock_optimized (mutex=0x55ebdb842080 &lt;b&gt;) at ./nptl/pthread_mutex_lock.c:48
+</span></span><span class=line><span class=cl>#3  ___pthread_mutex_lock (mutex=0x55ebdb842080 &lt;b&gt;) at ./nptl/pthread_mutex_lock.c:93
+</span></span><span class=line><span class=cl>#4  0x000055ebdb83f261 in worker1 (arg=0x0) at hang.c:11
+</span></span><span class=line><span class=cl>#5  0x00007fdf6009cb64 in start_thread (arg=&lt;optimized out&gt;) at ./nptl/pthread_create.c:447
+</span></span><span class=line><span class=cl>#6  0x00007fdf60129e8c in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+</span></span><span class=line><span class=cl>Thread 2 (Thread 0x7fdf5f7fe6c0 (LWP 604) &#34;hang&#34;):
+</span></span><span class=line><span class=cl>#0  futex_wait (private=0, expected=2, futex_word=0x55ebdb842040 &lt;a&gt;) at ../sysdeps/nptl/futex-internal.h:146
+</span></span><span class=line><span class=cl>#1  __GI___lll_lock_wait (futex=futex@entry=0x55ebdb842040 &lt;a&gt;, private=0) at ./nptl/lowlevellock.c:49
+</span></span><span class=line><span class=cl>#2  0x00007fdf600a01c1 in lll_mutex_lock_optimized (mutex=0x55ebdb842040 &lt;a&gt;) at ./nptl/pthread_mutex_lock.c:48
+</span></span><span class=line><span class=cl>#3  ___pthread_mutex_lock (mutex=0x55ebdb842040 &lt;a&gt;) at ./nptl/pthread_mutex_lock.c:93
+</span></span><span class=line><span class=cl>#4  0x000055ebdb83f2a0 in worker2 (arg=0x0) at hang.c:18
+</span></span><span class=line><span class=cl>#5  0x00007fdf6009cb64 in start_thread (arg=&lt;optimized out&gt;) at ./nptl/pthread_create.c:447
+</span></span><span class=line><span class=cl>#6  0x00007fdf60129e8c in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+</span></span><span class=line><span class=cl>Thread 1 (Thread 0x7fdf603de740 (LWP 601) &#34;hang&#34;):
+</span></span><span class=line><span class=cl>#0  0x00007fdf60098e31 in __futex_abstimed_wait_common64 (...) at ./nptl/futex-internal.c:57
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>#3  0x00007fdf6009e863 in __pthread_clockjoin_ex (...) at ./nptl/pthread_join_common.c:102
+</span></span><span class=line><span class=cl>#4  0x000055ebdb83f337 in main () at hang.c:28
+</span></span><span class=line><span class=cl>[Inferior 1 (process 601) detached]
+</span></span></code></pre></td></tr></table></div></div><p>For each thread, read down from <code>#0</code> until you hit the first frame from your own code.</p><ul><li>Thread 3: <code>worker1</code>, <code>hang.c:11</code>, waiting on mutex <code>b</code></li><li>Thread 2: <code>worker2</code>, <code>hang.c:18</code>, waiting on mutex <code>a</code></li><li>Thread 1: <code>main</code>, <code>hang.c:28</code>, waiting in <code>pthread_join</code></li></ul><p>Thread 3 waits for b, thread 2 waits for a, and the source shows each one holds what the other wants. A deadlock.</p><h4 id=a-pstack-like-wrapper>A pstack-like wrapper</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/sh
+</span></span></span><span class=line><span class=cl><span class=c1># usage: mypstack &lt;pid&gt;</span>
+</span></span><span class=line><span class=cl><span class=nb>exec</span> gdb -q -batch -ex <span class=s2>&#34;set pagination off&#34;</span> -ex <span class=s2>&#34;thread apply all bt&#34;</span> -p <span class=s2>&#34;</span><span class=nv>$1</span><span class=s2>&#34;</span> 2&gt;/dev/null <span class=p>|</span> grep -E <span class=s1>&#39;^(Thread|#)&#39;</span>
+</span></span></code></pre></td></tr></table></div></div><p>With gdb 16 or later you can just run <code>gstack &lt;pid></code>. Ubuntu 24.04 ships gdb 15, so it is not there.</p><h2 id=eu-stack>eu-stack</h2><p><code>eu-stack</code> from elfutils does the same thing with shorter output.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt install elfutils
+</span></span><span class=line><span class=cl>eu-stack -p <span class=m>601</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>PID 601 - process
+</span></span><span class=line><span class=cl>TID 601:
+</span></span><span class=line><span class=cl>#0  0x00007fdf60098e31 __GI___futex_abstimed_wait_cancelable64
+</span></span><span class=line><span class=cl>#1  0x00007fdf6009e863 __pthread_clockjoin_ex
+</span></span><span class=line><span class=cl>#2  0x000055ebdb83f337 main
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>TID 603:
+</span></span><span class=line><span class=cl>#0  0x00007fdf60099030 __GI___lll_lock_wait
+</span></span><span class=line><span class=cl>#1  0x00007fdf600a01c1 __pthread_mutex_lock@GLIBC_2.2.5
+</span></span><span class=line><span class=cl>#2  0x000055ebdb83f261 worker1
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>TID 604:
+</span></span><span class=line><span class=cl>#0  0x00007fdf60099030 __GI___lll_lock_wait
+</span></span><span class=line><span class=cl>#1  0x00007fdf600a01c1 __pthread_mutex_lock@GLIBC_2.2.5
+</span></span><span class=line><span class=cl>#2  0x000055ebdb83f2a0 worker2
+</span></span><span class=line><span class=cl>...
+</span></span></code></pre></td></tr></table></div></div><p>You get function names only: no file, no line number, no mutex name. Enough to see roughly where things stopped.</p><h2 id=things-to-watch>Things to watch</h2><h4 id=the-process-pauses>The process pauses</h4><p>While gdb is attached through ptrace, the process is stopped. Here the first run took about 1 second and later runs about 0.22 seconds. Most of that is loading symbols, so a big program takes longer.
+Don&rsquo;t run it several times a second on a production box.</p><h4 id=without-debug-symbols>Without debug symbols</h4><p>Built without <code>-g</code> and stripped, your own functions show up as <code>??</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>#3  ___pthread_mutex_lock (mutex=0x55797918a040) at ./nptl/pthread_mutex_lock.c:93
+</span></span><span class=line><span class=cl>#4  0x00005579791872fa in ?? ()
+</span></span><span class=line><span class=cl>#5  0x00007f206d29cb64 in start_thread (arg=&lt;optimized out&gt;) at ./nptl/pthread_create.c:447
+</span></span></code></pre></td></tr></table></div></div><p>libc still has symbols, so you can tell it is waiting on a mutex, but not in which function, and the mutex names (<code>&lt;a></code>, <code>&lt;b></code>) are gone.
+Keep symbol files for production binaries somewhere.</p><h4 id=permissions>Permissions</h4><p>You cannot attach to another user&rsquo;s process. As a normal user against a root process:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Could not attach to process.  If your uid matches the uid of the target
+</span></span><span class=line><span class=cl>process, check the setting of /proc/sys/kernel/yama/ptrace_scope, or try
+</span></span><span class=line><span class=cl>again as the root user.  For more details, see /etc/sysctl.d/10-ptrace.conf
+</span></span><span class=line><span class=cl>ptrace: Inappropriate ioctl for device.
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>eu-stack: dwfl_linux_proc_report pid 601: Permission denied
+</span></span></code></pre></td></tr></table></div></div><p>If it fails even for your own process, check <code>/proc/sys/kernel/yama/ptrace_scope</code>. Running as root usually works.</p><h4 id=java-and-python>Java and Python</h4><p>pstack only sees native frames. It will not show where your own code is.</p><p>I tried a Java program that just sleeps in a loop.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>Slow</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>static</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>waitForever</span><span class=p>()</span><span class=w> </span><span class=kd>throws</span><span class=w> </span><span class=n>Exception</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>while</span><span class=w> </span><span class=p>(</span><span class=kc>true</span><span class=p>)</span><span class=w> </span><span class=n>Thread</span><span class=p>.</span><span class=na>sleep</span><span class=p>(</span><span class=n>10000</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kd>static</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>main</span><span class=p>(</span><span class=n>String</span><span class=o>[]</span><span class=w> </span><span class=n>args</span><span class=p>)</span><span class=w> </span><span class=kd>throws</span><span class=w> </span><span class=n>Exception</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>waitForever</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>18 threads show up. Below <code>JVM_Sleep</code> the main thread is all <code>??</code>, and <code>Slow</code> or <code>waitForever</code> appear nowhere in the output.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>#5  0x00007fe88dd1bf37 in PlatformEvent::park_nanos(long) () from .../libjvm.so
+</span></span><span class=line><span class=cl>#6  0x00007fe88d934a04 in JavaThread::sleep_nanos(long) () from .../libjvm.so
+</span></span><span class=line><span class=cl>#7  0x00007fe88d9f89e5 in JVM_Sleep () from .../libjvm.so
+</span></span><span class=line><span class=cl>#8  0x00007fe877d43ac0 in ?? ()
+</span></span><span class=line><span class=cl>#9  0x00007fe88cffe840 in ?? ()
+</span></span><span class=line><span class=cl>#10 0x00007fe877d437a5 in ?? ()
+</span></span></code></pre></td></tr></table></div></div><p><code>jstack</code> on the same process shows it right away.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&#34;main&#34; #1 [857] prio=5 os_prio=0 cpu=36.96ms elapsed=3.22s ... waiting on condition
+</span></span><span class=line><span class=cl>   java.lang.Thread.State: TIMED_WAITING (sleeping)
+</span></span><span class=line><span class=cl>	at java.lang.Thread.sleep0(java.base@21.0.13.1/Native Method)
+</span></span><span class=line><span class=cl>	at java.lang.Thread.sleep(java.base@21.0.13.1/Thread.java:509)
+</span></span><span class=line><span class=cl>	at Slow.waitForever(Slow.java:3)
+</span></span></code></pre></td></tr></table></div></div><p>Python 3.13 is the same story: above <code>clock_nanosleep</code> you get interpreter functions like <code>PyEval_EvalCode</code> and <code>??</code>, never the Python function name.
+Use the language&rsquo;s own tool: <code>jstack</code> for Java, something like <code>py-spy dump</code> for Python. I did not try py-spy.</p><p>References</p><ul><li><a href=https://man7.org/linux/man-pages/man1/gstack.1.html>https://man7.org/linux/man-pages/man1/gstack.1.html</a></li><li><a href=https://sourceware.org/gdb/news/>https://sourceware.org/gdb/news/</a></li></ul></div><footer class=post-foot><div class=tags><a href=/en/tags/pstack/>#pstack</a><a href=/en/tags/gdb/>#gdb</a><a href=/en/tags/linux/>#linux</a><a href=/en/tags/troubleshooting/>#troubleshooting</a></div><section class=related><h2>Related posts</h2><ul><li><a href=/en/posts/centos/2026-10-21-nixos-intro/><span class=t>NixOS — Notes for First-Timers</span>
+<span class="d num">2026 · 10 · 21</span></a></li><li><a href=/en/posts/ai/2026-11-25-pstack/><span class=t>pstack — A Skill Pack for AI Coding Agents</span>
+<span class="d num">2026 · 11 · 25</span></a></li><li><a href=/en/posts/centos/2016-08-11-centos-server-notes/><span class=t>CentOS Server Notes — Commands, Tomcat OOM, Apache 403, Fonts, SSH</span>
+<span class="d num">2016 · 08 · 11</span></a></li><li><a href=/en/posts/centos/2015-10-29-flume-setting-sample/><span class=t>Flume install and test (mac)</span>
+<span class="d num">2015 · 10 · 29</span></a></li></ul></section><nav class=post-nav><a class=prev href=/en/posts/festival/2026-10-24-gyeonggi-foliage/><span class=lbl>Previous</span><span class=t>Autumn Leaves in Gyeonggi-do, 2026: Where to Go, Bookings, Fees and Peak Dates</span></a><a class=next href=/en/posts/ai/2026-11-25-pstack/><span class=lbl>Next</span><span class=t>pstack — A Skill Pack for AI Coding Agents</span></a></nav></footer></article></main></div></div><script>(function(){var t,n,s,o,i,a,l,e=document.documentElement,d="M12 3v2M12 19v2M5 5l1.5 1.5M17.5 17.5L19 19M3 12h2M19 12h2M5 19l1.5-1.5M17.5 6.5L19 5",u="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z";function r(){var t=e.getAttribute("data-theme");return t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches}function c(){var e=document.getElementById("theme-ic");e&&e.setAttribute("d",r()?d:u)}s=document.getElementById("theme"),s&&s.addEventListener("click",function(){var t=r()?"light":"dark";e.setAttribute("data-theme",t);try{localStorage.setItem("theme",t)}catch{}c()}),c(),t=document.getElementById("lang-toggle"),t&&t.addEventListener("click",function(){try{localStorage.setItem("lang",t.getAttribute("data-lang"))}catch{}}),o=document.getElementById("burger"),i=document.getElementById("scrim"),o&&o.addEventListener("click",function(){e.setAttribute("data-nav","open")}),i&&i.addEventListener("click",function(){e.removeAttribute("data-nav")}),n=document.getElementById("q"),n&&(l=[].slice.call(document.querySelectorAll(".row")),a=document.getElementById("empty"),n.addEventListener("input",function(){var t=n.value.trim().toLowerCase(),e=0;l.forEach(function(n){var s=n.textContent.toLowerCase().indexOf(t)!==-1;n.style.display=s?"":"none",s&&e++}),a&&(a.style.display=e?"none":"block")}))})()</script></body></html>

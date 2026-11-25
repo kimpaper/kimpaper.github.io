@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Cert-Manager on 기록 저장소</title>
+    <link>https://paper.kim/tags/cert-manager/</link>
+    <description>Recent content in Cert-Manager on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Wed, 13 May 2020 11:18:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/cert-manager/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kubernetes cert-manager</title>
+      <link>https://paper.kim/2020/05/13/kubernetes-certmanager/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/2020/05/13/kubernetes-certmanager/</guid>
+      <description>쿠버네티스 ingress에 https를 붙일 때 쓰는 cert-manager 설치와 설정. 인증서 발급을 자동으로 처리한다.</description>
+    </item>
+  </channel>
+</rss>

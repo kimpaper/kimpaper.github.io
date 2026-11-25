@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Glusterfs on paper.archive</title>
+    <link>https://paper.kim/en/tags/glusterfs/</link>
+    <description>Recent content in Glusterfs on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 13 May 2020 11:18:00 +0000</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/glusterfs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kubernetes glusterfs integration</title>
+      <link>https://paper.kim/en/posts/kube/2020-05-13-kubernetes-glusterfs/</link>
+      <pubDate>Wed, 13 May 2020 11:18:00 +0000</pubDate>
+      <guid>https://paper.kim/en/posts/kube/2020-05-13-kubernetes-glusterfs/</guid>
+      <description>Setting up GlusterFS on Kubernetes, including patching the gk-deploy script where it still used deprecated kubectl options.</description>
+    </item>
+  </channel>
+</rss>

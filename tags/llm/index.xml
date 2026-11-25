@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>LLM on 기록 저장소</title>
+    <link>https://paper.kim/tags/llm/</link>
+    <description>Recent content in LLM on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Thu, 24 Sep 2026 19:00:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/llm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Claude Opus 5.5 vs GPT-6 Sol — 비용 · 성능 · 코딩 에이전트</title>
+      <link>https://paper.kim/posts/ai/2026-09-24-opus55-vs-gpt6-sol/</link>
+      <pubDate>Thu, 24 Sep 2026 19:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-09-24-opus55-vs-gpt6-sol/</guid>
+      <description>9/22 에 90분 차이로 나온 Claude Opus 5.5 와 GPT-6 Sol 비교. 단가는 Sol 이 딱 절반인데 태스크당 비용, 코딩 에이전트 점수, 272K 할증까지 넣어보면 좀 달라진다.</description>
+    </item>
+    <item>
+      <title>Orca — 에이전트를 병렬로 굴리는 개발 환경(ADE)</title>
+      <link>https://paper.kim/posts/ai/2026-09-16-orca-ade/</link>
+      <pubDate>Wed, 16 Sep 2026 21:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-09-16-orca-ade/</guid>
+      <description>Claude Code, Codex 같은 CLI 에이전트를 git worktree 단위로 격리해서 동시에 굴리는 오픈소스 ADE. 설치, worktree 의존성 문제, Orca CLI 자동화, 비용이랑 보안에서 걸리는 부분까지 적어봤다.</description>
+    </item>
+    <item>
+      <title>GPT-6 Astra — Fable 5.1 · Opus 5 · GPT-5.6 Sol 비교</title>
+      <link>https://paper.kim/posts/ai/2026-09-06-gpt6-astra-model-comparison/</link>
+      <pubDate>Sun, 06 Sep 2026 22:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-09-06-gpt6-astra-model-comparison/</guid>
+      <description>9/3 에 나온 GPT-6 Astra 를 Claude Fable 5.1, Opus 5, GPT-5.6 Sol 이랑 비교했다. 2.5배 오른 단가, 의외의 토큰 효율, ARC-AGI-3 하네스 문제, 발표 표에서 빠진 줄까지.</description>
+    </item>
+    <item>
+      <title>Claude Fable 5.1 — Opus 5 · Fable 5 · GPT-5.6 Sol 비교</title>
+      <link>https://paper.kim/posts/ai/2026-09-01-fable51-model-comparison/</link>
+      <pubDate>Tue, 01 Sep 2026 21:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-09-01-fable51-model-comparison/</guid>
+      <description>오늘 나온 Claude Fable 5.1 을 Opus 5, Fable 5, GPT-5.6 Sol 이랑 비교했다. 캐시 읽기 75% 인하, breaking change 세 가지, 벤더 표랑 제3자 측정이 안 맞는 부분까지.</description>
+    </item>
+    <item>
+      <title>LLM Wiki — 지식을 쌓아두는 방식</title>
+      <link>https://paper.kim/posts/ai/2026-07-28-llm-wiki/</link>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-07-28-llm-wiki/</guid>
+      <description>Karpathy 가 제안한 LLM Wiki 패턴 정리. 3계층 구조와 ingest·query·lint 루프, 실제 활용 사례, 효율 주장이 어디까지 측정된건지까지 봤다.</description>
+    </item>
+    <item>
+      <title>Claude Opus 5 — GPT-5.6 Sol · Fable 5 · Sonnet 5 비교</title>
+      <link>https://paper.kim/posts/ai/2026-07-25-opus5-model-comparison/</link>
+      <pubDate>Sat, 25 Jul 2026 08:30:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-07-25-opus5-model-comparison/</guid>
+      <description>Claude Opus 5 를 GPT-5.6 Sol, Fable 5, Sonnet 5 와 코딩·에이전틱·롱컨텍스트·비용 등 작업 영역별로 비교해봤다. Opus 4.8 대비 바뀐 것과 마이그레이션 할때 주의할 점도 같이 적음.</description>
+    </item>
+  </channel>
+</rss>

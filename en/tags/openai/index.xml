@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Openai on paper.archive</title>
+    <link>https://paper.kim/en/tags/openai/</link>
+    <description>Recent content in Openai on paper.archive</description>
+    <image>
+      <title>paper.archive</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 25 Jul 2026 08:30:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/en/tags/openai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Claude Opus 5 vs GPT-5.6 Sol, Fable 5 and Sonnet 5</title>
+      <link>https://paper.kim/en/posts/ai/2026-07-25-opus5-model-comparison/</link>
+      <pubDate>Sat, 25 Jul 2026 08:30:00 +0900</pubDate>
+      <guid>https://paper.kim/en/posts/ai/2026-07-25-opus5-model-comparison/</guid>
+      <description>Claude Opus 5 compared with GPT-5.6 Sol, Fable 5 and Sonnet 5 across coding, agentic work, long context and cost, plus what changed from Opus 4.8 and what to watch when migrating.</description>
+    </item>
+  </channel>
+</rss>

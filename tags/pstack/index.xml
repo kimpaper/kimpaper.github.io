@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Pstack on 기록 저장소</title>
+    <link>https://paper.kim/tags/pstack/</link>
+    <description>Recent content in Pstack on 기록 저장소</description>
+    <image>
+      <title>기록 저장소</title>
+      <url>https://paper.kim/images/default-thumb.jpg</url>
+      <link>https://paper.kim/images/default-thumb.jpg</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Wed, 25 Nov 2026 17:40:00 +0900</lastBuildDate>
+    <atom:link href="https://paper.kim/tags/pstack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>pstack — AI 코딩 에이전트용 스킬 묶음</title>
+      <link>https://paper.kim/posts/ai/2026-11-25-pstack/</link>
+      <pubDate>Wed, 25 Nov 2026 17:40:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/ai/2026-11-25-pstack/</guid>
+      <description>Cursor 의 poteto(Lauren Tan)가 공개한 pstack 정리. 코드 라이브러리가 아니라 AI 코딩 에이전트한테 주는 작업 지침(스킬) 묶음이다. 저장소를 받아서 뭐가 들어있는지, poteto-mode 와 원칙 스킬, unslop, Claude Code 에서 쓸때 걸리는 점까지 봤다.</description>
+    </item>
+    <item>
+      <title>pstack — 멈춘 프로세스가 어디서 멈췄는지 보기</title>
+      <link>https://paper.kim/posts/centos/2026-11-25-pstack/</link>
+      <pubDate>Wed, 25 Nov 2026 17:40:00 +0900</pubDate>
+      <guid>https://paper.kim/posts/centos/2026-11-25-pstack/</guid>
+      <description>pstack 은 돌고 있는 프로세스의 스레드별 스택을 찍어주는 명령이다. 데드락 걸린 C 프로그램으로 직접 해봤다. 우분투에서는 pstack 패키지가 64비트에서 안 돼서 gdb 로 대신하는 방법까지.</description>
+    </item>
+  </channel>
+</rss>
